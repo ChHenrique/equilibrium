@@ -3,7 +3,7 @@ import { Button } from './button'
 import { Logo } from './logo'
 
 const LINKS = [
-  { name: 'Sou Psicologo', href: '/login_psi'},
+  { name: 'Sou Psicólogo', href: '/login_psi'},
   { name: 'Sobre nós', href: '/sobre' },
 ]
 
