@@ -6,7 +6,7 @@ import { Footer } from "./footer";
 
 export function Container() {
     return (
-        <div className='bg-white flex-col flex items-center p-0 h-[87vh] w-[70vw] relative rounded-[10px]'>
+        <div className='bg-white flex-col flex items-center p-0 h-[87vh] w-[65vw] relative rounded-[10px]'>
 
             <Header />
             <Form />
