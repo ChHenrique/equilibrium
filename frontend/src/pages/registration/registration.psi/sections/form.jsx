@@ -7,7 +7,7 @@ import { CPF_CRP } from "../storage/cpf_crp";
 
 export const Form = forwardRef(({ errors = {} },ref) => {
     return (
-        <article className="flex flex-col justify-center items-center p-5 w-full max-w-4xl h-auto font-satoshi-Regular mb-10">
+        <article className="flex flex-col justify-center items-center p-0 w-full max-w-4xl h-auto font-satoshi-Regular -mb-8">
 
             <form ref={ref} method = "post" className="w-4/6 max-w-1xl h-auto mt-12 ml-5">
 

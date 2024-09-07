@@ -10,7 +10,7 @@ export function Container() {
     const [errors, setErrors] = React.useState({});
 
     return (
-        <div className='bg-white flex-col flex items-center p-0 h-[90vh] w-[70vw] relative rounded-[10px]'>
+        <div className='bg-white flex-col flex items-center -p-2 h-[92vh] w-[65vw] relative rounded-[10px]'>
 
             <Header />
 
