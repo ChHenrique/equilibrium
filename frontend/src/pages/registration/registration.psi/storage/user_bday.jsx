@@ -5,7 +5,7 @@ export function User_Bday({ usernameError, birthdayError }) {
         <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between">
             <div className="flex flex-col sm:w-2/5">
                 <label htmlFor="username" className={`text-gray-700 mb-2 ${usernameError ? 'text-red-500' : ''}`}>
-                    {usernameError || 'Usuário:'}
+                    {usernameError || 'Nome social:'}
                 </label>
                 <input
                     id="username"

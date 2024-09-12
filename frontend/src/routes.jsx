@@ -2,11 +2,15 @@ import { createBrowserRouter, Outlet } from 'react-router-dom';
 
 import { Home } from './pages/home';
 import { About } from './pages/about';
-import { Registration_pc } from './pages/registration/registration.pc/index.jsx';
+
 import  { Dashboard } from './pages/Dashboard/principal'
+import { Consultas } from "./pages/Dashboard/sections/Consultas.jsx";
+import { Registration_pc } from './pages/registration/registration.pc/index.jsx';
 import { Registration_psi } from './pages/registration/registration.psi/index.jsx'
 import { Login_pc } from "./pages/Logins/Login.pc/Index.jsx";
 import { Login_psi } from "./pages/Logins/Login.psi/index.jsx";
+
+import { Seach } from "./pages/seach/index.jsx";
 
 export const routes = createBrowserRouter([
   {
@@ -39,6 +43,14 @@ export const routes = createBrowserRouter([
       {
         path: '/login_psi',
         element: <Login_psi />
+      },
+      {
+        path: '/seach',
+        element: <Seach />
+      },
+      {
+        path: '/consulta_pc',
+        element: <Consultas />
       }
 
 
