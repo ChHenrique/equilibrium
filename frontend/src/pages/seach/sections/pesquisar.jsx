@@ -11,10 +11,10 @@ export function Pesquisar() {
     return (
         <div className="flex items-center justify-center flex-col">
             {/* Container principal que alinha o input e o dropdown horizontalmente */}
-            <div className="mt-5 w-full h-auto flex justify-center items-center space-x-10">
+            <div className="mt-5 w-full h-auto flex justify-center items-center space-x-4">
                 
                 {/* Container para o campo de pesquisa */}
-                <div className="flex items-center bg-[#F1F5F9] rounded-[6px] w-[100vh] h-[4vh] p-1">
+                <div className="flex items-center bg-[#F1F5F9] rounded-[6px] w-[125vh] h-[4vh] p-1">
                     
                     {/* Campo de entrada de texto para pesquisa */}
                     <input
@@ -53,7 +53,7 @@ export function Pesquisar() {
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                     >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </div>
             </div>
