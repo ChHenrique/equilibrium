@@ -10,8 +10,8 @@ export function Dhamyla_ivina() {
                         className="w-full h-full object-cover rounded-full"
                         alt="imagem_psicologo"
                     />
-                </div>
-
+                </div>                                                                                   
+                  
                 <div className="flex flex-col flex-grow h-full ml-0 md:ml-4 p-2 md:p-1 mt-0">
 
                     <p className="text-xs md:text-sm font-poppins font-bold text-[#355081]">Nome</p>

@@ -24,7 +24,7 @@ export function Pesquisar() {
                     />
                     
                     {/* Ícone do logo de pesquisa */}
-                    <img
+                    <img                                                     
                         src={Pesquisar_logo}
                         alt="logo_pesquisar"
                         className="w-5 h-5 ml-2"
