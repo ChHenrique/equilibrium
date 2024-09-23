@@ -13,6 +13,12 @@ import { ParticipantsCard } from '../../../components/participant-card';
 export function Participants() {
   const participants = [
     {
+      id:3,
+      name: 'Dhamyla Ivina',
+      imageUrl: dhamyla,
+      description:'Olá, meu nome é Dhamyla Ivina, sou estudante do 2° ano de Desenvolvimento de Sistemas. Minha área de especialização é back-end, onde me dedico a criar e otimizar a lógica por trás dos sistemas. Estou empolgada para explorar novas tecnologias e aprimorar minhas habilidades na programação.'
+    },
+    {
       id: 0,
       name: 'Paulo Ricardo',
       imageUrl: ricardo,
@@ -30,12 +36,7 @@ export function Participants() {
       imageUrl: pedro,
       description: 'Me chamo Pedro Henrique, sou um estudante de Desenvolvimento de Sistemas e Front-End Developer na startup Equilibrium. Com habilidades avançadas em HTML, CSS, JavaScript e React, ele se especializa na criação e otimização de interfaces web para oferecer experiências de usuário eficientes e intuitivas. Pedro é comprometido com a excelência e a inovação, sempre buscando aprimorar suas competências e contribuir para o sucesso dos projetos.',
     },
-    {
-      id:3,
-      name: 'Dhamyla Ivina',
-      imageUrl: dhamyla,
-      description:'Olá, meu nome é Dhamyla Ivina, sou estudante do 2° ano de Desenvolvimento de Sistemas. Minha área de especialização é back-end, onde me dedico a criar e otimizar a lógica por trás dos sistemas. Estou empolgada para explorar novas tecnologias e aprimorar minhas habilidades na programação.'
-    }
+
   ]
   return (
     <section className='w-full h-[40rem] bg-white rounded-xl flex flex-col items-center py-8'>
