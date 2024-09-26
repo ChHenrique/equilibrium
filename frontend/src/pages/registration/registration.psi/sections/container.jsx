@@ -17,9 +17,10 @@ export function Container() {
             <Form ref={formRef} errors={errors}/>
 
             <Balls /> 
+            <div className='m-4'>
 
-            <Footer formRef={formRef} setErros={setErrors}/>
-            
+            <Footer formRef={formRef} setErros={setErrors} />
+            </div>
             <a href="./">
             <img
                 src={logo}
