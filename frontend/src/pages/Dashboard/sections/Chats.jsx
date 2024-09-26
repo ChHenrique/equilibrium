@@ -57,7 +57,6 @@ export function Chats() {
                         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-9 w-9">
                             <path d="M45.8337 4.16663L22.917 27.0833M45.8337 4.16663L31.2503 45.8333L22.917 27.0833M45.8337 4.16663L4.16699 18.75L22.917 27.0833" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-
                     </button>
                 </div>
             </div>

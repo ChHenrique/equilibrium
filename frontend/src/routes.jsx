@@ -10,7 +10,7 @@ import { Registration_psi } from './pages/registration/registration.psi/index.js
 import { Login_pc } from "./pages/Logins/Login.pc/Index.jsx";
 import { Login_psi } from "./pages/Logins/Login.psi/index.jsx";
 
-import { Seach } from "./pages/seach/index.jsx";
+import { Seach } from "./pages/search/index.jsx";
 
 export const routes = createBrowserRouter([
   {
@@ -45,7 +45,7 @@ export const routes = createBrowserRouter([
         element: <Login_psi />
       },
       {
-        path: '/seach',
+        path: '/search',
         element: <Seach />
       },
       {

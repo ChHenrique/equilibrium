@@ -4,9 +4,9 @@ import { Logo } from './logo'
 import  User_null from '../assets/images/user_null.svg'
 
 const LINKS = [
-  { name: 'Início', href: '#'},
+  { name: 'Início', href: '/homepage'},
   { name: 'Sobre nós', href: '/sobre' },
-  {name: 'Procurar Psicólogos', href: '#'}
+  {name: 'Procurar Psicólogos', href: '/search'}
 ]
 
 export function HeaderDash() {

@@ -8,6 +8,9 @@ export function Pesquisar() {
     // Função para alternar o estado do dropdown
     const handleToggle = () => setIsOpen(!isOpen);
 
+    // Função que seleciona o filtrar
+    const [selected, setSelected] = useState('');
+
     return (
         <div className="flex items-center justify-center flex-col">
             {/* Container principal que alinha o input e o dropdown horizontalmente */}
@@ -39,7 +42,7 @@ export function Pesquisar() {
                         onClick={handleToggle} // Alterna o estado do dropdown ao clicar
                         className="appearance-none border border-[#F1F5F9] text-slate-600 text-xs h-[4vh] w-[10vw] bg-[#F1F5F9] rounded-[6px] pl-3 pr-10 focus:outline-none"
                     >
-                        <option value="">Filtrar por...</option>
+                        <option className = "hover:bg-[#1d59cf]" value="">Filtrar por...</option>
                         <option value="psicologo-infantil">Psicólogo Infantil</option>
                         <option value="psicologo-casal">Psicólogo Casal</option>
                         <option value="psicologo-adulto">Psicólogo Adulto</option>
