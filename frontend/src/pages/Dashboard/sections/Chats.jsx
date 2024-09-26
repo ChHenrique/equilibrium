@@ -19,7 +19,7 @@ export function Chats() {
 
     return (
 
-        <div className="bg-white h-full max-h-full w-full font-poppins flex flex-row rounded-2xl">
+        <div className="bg-white h-full max-h-full w-full font-satoshi-medium flex flex-row rounded-2xl">
             {/*Aba dos conversantes*/}
             <div className="h-full w-4/12 bg-slate-100 flex flex-col  rounded-l-2xl border-r-2 border-slate-400">
                 <h1 className="text-2xl m-6 text-primary-700 font-medium">Chats</h1>
@@ -39,9 +39,9 @@ export function Chats() {
                 <div id="Text" className="h-3/4 w-full bg-white flex flex-col items-end overflow-y-scroll overflow-x-hidden max-h-screen" >
                     {mensagens.map((mensagem, index) => {
                         return (
-                            <div className="w-full h-fit flex items-end ">
-                                <div className="w-1/2 ml-auto h-fit">
-                                <h1 className="text-xl bg-primary-300 w-full ml-auto p-2 m-2 overflow-wrap break-word  h-max rounded-t-3xl rounded-bl-[24px] text-wrap" key={index}>{mensagem}</h1>
+                            <div className="w-full h-fit flex items-end w">
+                                <div className="w-7/12 ml-auto h-fit whitespace-wrap">
+                                <h1 className="text-base bg-primary-300 w-full ml-auto p-2 m-2 overflow-wrap break-word  h-max rounded-t-3xl rounded-bl-[24px] text-left" key={index}>{mensagem}</h1>
                                 </div>
                             </div>
                         )
