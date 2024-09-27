@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topico1, topico2, topico3, topico4, topico5 }) {
 
-    const [mouseFora, setMouseFora] = useState(false)
+    const [mouseFora, setMouseDentro] = useState(false)
 
     const [mouseDentroTopico, setMouseDentro_topico] = useState(false)
 
@@ -30,10 +30,9 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
 
                 <h3 className="mt-1 text-xs md:text-sm font-satoshi font-medium text-[#355081] relative">
                     <a href="#" className="flex items-center cursor-pointer"
-                        onMouseEnter={() => setMouseFora(true)}
-                        onMouseLeave={() => setMouseFora(false)}>
+                        onClick={() => setMouseDentro(!mouseFora)}>
                         Formação <svg
-                            className="w-3 h-3 text-[#355081] ml-1"
+                            className={`w-3 h-3 text-[#355081] ml-1 relative transform -translate-y-1/5 transition-transform duration-300 ${mouseFora ? 'rotate-180' : ''}`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -48,20 +47,18 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                         </svg>
                     </a>
                     {mouseFora && (
-                        <div className="w-fit h-fit bg-[#708ca8] absolute text-white rounded-lg p-1 text-xs font-poppins z-10">
+                        <div className="w-fit h-fit bg-slate-200 absolute text-[#355081] rounded-lg p-1 text-xs font-poppins z-10">
                             {formação_psicologo}
                         </div>
                     )}
                 </h3>
 
-                <h3 className="mt-1 text-xs md:text-sm font-satoshi font-medium text-[#355081] relative">
+                <h3 className="mt-1 text-xs md:text-sm font-satoshi font-medium text-[#3c4961] relative">
                     <a href="#" className="flex items-center cursor-pointer"
-                    onMouseEnter={() => setMouseDentro_topico(true)}
-
-                    onMouseLeave={() => setMouseDentro_topico(false)}
+                     onClick={() => setMouseDentro_topico(!mouseDentroTopico)}
                     >
                         Tópicos Abordáveis <svg
-                            className="w-3 h-3 text-[#355081] ml-1"
+                            className={`w-3 h-3 text-[#355081] ml-1 relative transform -translate-y-1/5 transition-transform duration-300 ${mouseDentroTopico ? 'rotate-180' : ''}`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -76,9 +73,9 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                         </svg>
                     </a>
                     {mouseDentroTopico && (
-                        <div className="w-fit h-9 bg-[#708ca8] absolute text-white rounded-lg p-1 text-xs font-poppins space-x-4 flex top-full left-0">
+                        <div className="w-fit h-9 bg-slate-200 absolute text-[#3c4961] rounded-lg p-1 text-xs font-poppins space-x-4 flex top-full left-0">
                             {[topico1, topico2, topico3, topico4, topico5].filter(Boolean).map((topico, index) => (
-                                <div key={index} className="h-7 w-fit border border-slate-200 rounded-xl p-1 text-center">
+                                <div key={index} className="h-7 w-fit border border-slate-600 rounded-xl p-1 text-center">
                                     {topico}
                                 </div>
                             ))}
