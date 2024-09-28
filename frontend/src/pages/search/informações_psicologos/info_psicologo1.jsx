@@ -94,7 +94,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
  <button
                     className="bg-[#355081] hover:bg-[#19376d] text-white font-bold py-2 px-4 rounded-xl"
                 >
-                    Acessar Consultas
+                    Agendar Consulta
                 </button>
             </aside>
 

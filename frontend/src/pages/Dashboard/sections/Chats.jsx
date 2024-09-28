@@ -40,8 +40,8 @@ export function Chats() {
                     {mensagens.map((mensagem, index) => {
                         return (
                             <div className="w-full h-fit flex items-end">
-                                <div className="w-7/12 ml-auto h-fit whitespace-wrap">
-                                <h1 className="text-base bg-primary-300 w-full ml-auto p-2 m-2 overflow-wrap break-word  h-max rounded-t-3xl rounded-bl-[24px] text-left" key={index}>{mensagem}</h1>
+                                <div className="w-fit ml-auto h-fit whitespace-wrap overflow-wrap ">
+                                <h1 className="text-base bg-[#8095AB] max-w-2xl ml-auto p-2 m-2 h-max rounded-t-3xl rounded-bl-[24px] text-left break-all text-[#dadada]" key={index}>{mensagem}</h1>
                                 </div>
                             </div>
                         )
