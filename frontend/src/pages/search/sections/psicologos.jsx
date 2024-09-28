@@ -1,4 +1,4 @@
-import { Psicologo } from "../informações_psicologos/info_psicologo1";
+import { Psicologo } from "../componente_psicologos/info_psicologo1";
 
 import DH from "../../../assets/images/dhamyla_ivina.png"
 import Belinha from "../../../assets/images/isabelle_brito.png"

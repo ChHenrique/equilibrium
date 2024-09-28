@@ -41,7 +41,7 @@ export function Chats() {
                         return (
                             <div className="w-full h-fit flex items-end">
                                 <div className="w-fit ml-auto h-fit whitespace-wrap overflow-wrap ">
-                                <h1 className="text-base bg-[#8095AB] max-w-2xl ml-auto p-2 m-2 h-max rounded-t-3xl rounded-bl-[24px] text-left break-all text-[#dadada]" key={index}>{mensagem}</h1>
+                                <h1 className="text-base bg-[#8095AB] max-w-2xl ml-auto p-2 m-2 h-max rounded-t-3xl rounded-bl-[24px] text-left break-all text-[#f0f0f0]" key={index}>{mensagem}</h1>
                                 </div>
                             </div>
                         )

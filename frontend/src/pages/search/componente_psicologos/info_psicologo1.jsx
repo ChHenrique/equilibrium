@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topico1, topico2, topico3, topico4, topico5 }) {
+export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topico1, topico2, topico3, topico4, topico5, topico6, topico7, topico8, topico9, topico10, topico11, topico12, topico13, topico14, topico15,}) {
 
     const [mouseFora, setMouseDentro] = useState(false)
 
@@ -74,7 +74,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                     </a>
                     {mouseDentroTopico && (
                         <div className="w-fit h-9 bg-slate-200 absolute text-[#3c4961] rounded-lg p-1 text-xs font-poppins space-x-4 flex top-full left-0">
-                            {[topico1, topico2, topico3, topico4, topico5].filter(Boolean).map((topico, index) => (
+                            {[topico1, topico2, topico3, topico4, topico5, topico6, topico7, topico8, topico9, topico10, topico11, topico12, topico13, topico14, topico15].filter(Boolean).map((topico, index) => (
                                 <div key={index} className="h-7 w-fit border border-slate-600 rounded-xl p-1 text-center">
                                     {topico}
                                 </div>
