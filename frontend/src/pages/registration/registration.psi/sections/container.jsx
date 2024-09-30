@@ -10,7 +10,7 @@ export function Container() {
     const [errors, setErrors] = React.useState({});
 
     return (
-        <div className='bg-white flex-col flex items-center -p-2 h-[92vh] w-[65vw] relative rounded-[10px]'>
+        <div className='bg-white flex-col flex items-center -p-2 h-[94vh] w-[65vw] relative rounded-[10px]'>
 
             <Header />
 
@@ -25,7 +25,7 @@ export function Container() {
             <img
                 src={logo}
                 alt="Logo"
-                className="absolute bottom-4 right-4 h-40 w-40"
+                className="absolute bottom-3 -right-14 h-[17vh] w-[17vw]"
             />
             </a>
         </div>

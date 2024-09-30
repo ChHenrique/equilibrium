@@ -11,7 +11,7 @@ export function Footer() {
         <FooterLink href='#'>
           <FaWhatsapp size={20} />
         </FooterLink>
-        <FooterLink href='#'>
+        <FooterLink href='https://www.instagram.com/equilibrium_web_/' >
           <FaInstagram size={20} />
         </FooterLink>
         <FooterLink href='#'>

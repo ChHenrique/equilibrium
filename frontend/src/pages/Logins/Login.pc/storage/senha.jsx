@@ -4,7 +4,7 @@ export function Password({ passwordError }) {
     return (
         <div className="flex flex-col ml-1.9 p-4 mb-2">
             <label htmlFor="senha" className={`text-gray-600 mb-2 ${passwordError ? 'text-red-500' : ''}`}>
-                {passwordError ? passwordError : 'Senha'}
+                {passwordError ? passwordError : 'Senha:'}
             </label>
             <div className="grid grid-place-items">
                 <input

@@ -10,7 +10,7 @@ export const Form = forwardRef(({errors = {} }, ref) => {
             <form ref={ref} method="post" className="w-4/6 max-w-1xl h-auto mt-2 ml-5 justify-center items-center ">
 
                 <Email 
-                    user_emailpsierror = {errors.user_emailpsierror}
+                    user_emailpsierror = {errors.user_emailpsi}
                 />
                 <Cpf 
                     cpferror = {errors.cpf_loginpsi}
