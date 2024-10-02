@@ -1,5 +1,5 @@
-import Pesquisar_logo from "../../../assets/images/pesquisar.svg"; // Importa o logo para o campo de pesquisa
-import { useState } from 'react'; // Importa o hook useState do React para gerenciar o estado
+import Pesquisar_logo from "../../../assets/images/pesquisar.svg";
+import { useState } from 'react'; 
 
 export function Pesquisar() {
     // Estado para controlar se o dropdown está aberto ou fechado

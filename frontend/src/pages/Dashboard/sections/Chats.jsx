@@ -42,7 +42,7 @@ export function Chats() {
             <div className="h-full w-4/12 bg-slate-100 flex flex-col rounded-l-2xl border-r-2 border-slate-400">
                 <h1 className="text-2xl m-6 text-primary-700 font-medium">Chats</h1>
                 <div className="w-full h-2/12 bg-slate-100 justify-start items-end flex rounded-tl-2xl border-b-2 border-slate-400">
-                    <input type="text" placeholder=" Pesquisar..." className="w-11/12 m-4 h-9 bg-gray-200 rounded-xl placeholder:text-primary-700 outline-2 outline-slate-400" />
+                    <input type="text"run placeholder=" Pesquisar..." className="w-11/12 m-4 h-9 bg-gray-200 rounded-xl placeholder:text-primary-700 outline-2 outline-slate-400" />
                 </div>
             </div>
 
