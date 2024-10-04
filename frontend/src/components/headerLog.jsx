@@ -1,19 +1,18 @@
 import { HeaderLink } from './header-link'
-import { Button } from './button'
 import { Logo } from './logo'
 import  User_null from '../assets/images/user_null.svg'
 
 const LINKS = [
-  { name: 'Início', href: '/homepage'},
-  { name: 'Sobre nós', href: '/sobre' },
-  {name: 'Procurar Psicólogos', href: '/search'}
+  { name: 'Sobre nós', href: '/sobre'},
+  { name: 'Procurar Psicólogos', href: '/search' },
+  {name: 'Acessar consultas', href: '/homepage'}
 ]
 
-export function HeaderDash() {
+export function HeaderLog(props) {
   return (
     <div
       id="Header"
-      className="w-[90%] h-20 flex flex-row items-center bg-white rounded-2xl m-4 justify-between"
+      className="w-[95%] h-16 flex flex-row items-center bg-white rounded-2xl m-4 justify-between"
       draggable="false"
     >
       <Logo draggable="false" />
@@ -24,10 +23,10 @@ export function HeaderDash() {
           </HeaderLink>
         ))}
         <div className='h-20 w-2/12 justify-end items-center flex m-4'>
-  
-               <h1 className='font-poppins text-2xl'>{}</h1>
 
-               <img src={User_null} alt="Foto de Perfil" className='h-14'/>
+               <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-7'>{props.nome}</h1>
+               <img src={props.foto ? props.foto : User_null} alt="Foto de Perfil" className='h-8'/>
+
         </div>
       </div>
     </div>

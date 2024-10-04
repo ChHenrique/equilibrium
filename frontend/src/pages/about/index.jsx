@@ -2,7 +2,7 @@ import { Footer } from '../../components/footer';
 import { Header } from '../../components/header';
 import { Participants } from './sections/participants';
 import { Us } from './sections/us';
-import { HeaderDash } from '../../components/headerDash';
+
 
 export function About() {
 

@@ -65,7 +65,7 @@ export function Camp_Dash() {
     
 
     return (
-        <div className="w-10/12 h-[85vh] flex justify-evenly flex-row items-center rounded-2xl mb-24">
+        <div className="w-10/12 h-full flex justify-evenly flex-row items-center rounded-2xl mb-24">
             <div 
                 className="h-full w-fit bg-white rounded-2xl p-2 flex flex-col items-center transition-colors duration-300"
                 id="barra" 
