@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "socket.io-client": "^4.8.0"
+  }
+}
