@@ -11,9 +11,9 @@ export function Chats() {
     const [x, setX] = useState(false);
     const textRef = useRef(null)
     const chatRef = useRef(null)
+    
 
-    const Chats = [{}]
-
+    const bobo = useRef(null)
 
 
 
@@ -47,23 +47,35 @@ export function Chats() {
         setvalue(e.target.value);
     }
 
+
+
+
     //envia a mensagem pro back pela funcao
     function aplicaMensagens() {
         if (value !== '' && value.length < 2000) {
 
             socketRef.current.emit('message', value);
-            setvalue('');
+            //limpa o input dps de enviar
+            setvalue(''); 
+
+
 
             
-            textRef.current.scrollIntoView({ behavior: 'smooth' });
-
-
-            //limpa o input dps de enviar
         }else if(value.length >= 2000){
            setX(true);
         }
 
+        
     }
+
+    useEffect(() => {
+        if (chatRef.current) {
+            chatRef.current.scrollTo({
+                top: chatRef.current.scrollHeight,
+                behavior: "auto"
+            });
+        }
+    }, [mensagens]);
 
     return (
         <div className="bg-white h-full max-h-full w-full font-satoshi-medium flex flex-row rounded-2xl">
@@ -82,9 +94,9 @@ export function Chats() {
             </div>
 
             {/* Aba do chat */}
-            <div ref={chatRef} className="bg-white h-full w-8/12 flex-col flex justify-start items-center rounded-r-2xl overflow-hidden m-0" id='chat'>
+            <div   className="bg-white h-full w-8/12 flex-col flex justify-start items-center rounded-r-2xl overflow-hidden m-0" id='chat'>
                 {/* Chat */}
-                <div id="Text" className="h-3/4 w-full bg-white flex flex-col items-end overflow-y-scroll overflow-x-hidden max-h-screen">
+                <div ref={chatRef} className="h-fit w-full bg-white flex flex-col items-end overflow-y-scroll overflow-x-hidden max-h-screen">
                     {mensagens.map((mensagem, index) => (
                         <div className={`h-fit flex items-end ${mensagem.authorId === socketRef.current.id ? 'ml-auto' : 'mr-auto'}`} key={index}>
                             <div className="w-fit h-fit whitespace-wrap overflow-wrap">
@@ -92,6 +104,8 @@ export function Chats() {
                                     {mensagem.text}
                                 </h1>
                             </div>
+
+                            <div ref={bobo}></div>
                         </div>
                     ))}
 
@@ -101,7 +115,8 @@ export function Chats() {
 
                 </div>
 
-                <div className="w-full justify-center items-center flex h-1/8 bg-white mt-auto m-8" >
+                <div className="w-full justify-center items-center flex h-fit bg-white mt-auto m-8" >
+                     {/* Input do chat */}
                     <input type="text" className=" w-9/12 h-fit p-2 wrap break-words overflow-y-auto rounded-2xl bg-secondary-100 mr-2 placeholder:text-primary-700 placeholder:p-2 border-2 border-slate-300 outline-1 outline-slate-400 p-2 m-8" placeholder="Mensagem" value={value} onChange={pegavalor} id='chatinput' onKeyDown={(e=>{
                         if(e.key == 13 ||e.key == "Enter" ){
                             aplicaMensagens();
@@ -114,6 +129,7 @@ export function Chats() {
                             <path d="M45.8337 4.16663L22.917 27.0833M45.8337 4.16663L31.2503 45.8333L22.917 27.0833M45.8337 4.16663L4.16699 18.75L22.917 27.0833" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
+                    {/*aviso de limite*/}
                     <h1 className = {`absolute text-bs bg-red-400 text-white p-2 translate-y-14 rounded-xl transition- ease duration-300  ${visible ? 'opacity-100' : 'opacity-0'}`}> O limite maximo de caracteres é 2000!!</h1>
                       
 
