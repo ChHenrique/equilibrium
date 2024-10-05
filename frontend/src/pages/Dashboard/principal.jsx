@@ -7,7 +7,7 @@ import { HeaderLog } from "../../components/headerLog.jsx";
 export function Dashboard() {
     return (
         
-        <div className="w-screen h-[120vh] bg-primary-300 justify-between flex items-center flex-col font-poppins overflow-x-hidden ">
+        <div className="w-screen h-[120vh] bg-primary-300 justify-between flex items-center flex-col font-poppins overflow-x-hidden scrollbar-thin">
             <div className=" w-screen h-fit flex justify-center items-center ">
             <HeaderLog nome={"Pedro"} />
             </div>
