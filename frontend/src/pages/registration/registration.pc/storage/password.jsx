@@ -9,11 +9,11 @@ export function Password({ passwordError, confirmPasswordError }) {
             <div className="flex flex-col sm:w-2/5">
                 <label htmlFor="senha" className={`text-gray-700 mb-2 ${passwordError ? 'text-red-500' : ''} whitespace-nowrap`}>
                     {passwordError || 'Senha:'}
-                    
                 </label>
                 <input
                     type="password"
                     id="senha"
+                    name="senha" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={`border-b border-black w-full focus:outline-none ${passwordError ? 'border-red-500' : ''}`}
@@ -27,6 +27,7 @@ export function Password({ passwordError, confirmPasswordError }) {
                 <input
                     type="password"
                     id="confirme_sua_senha"
+                    name="confirmarsenha" 
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className={`border-b border-black w-full focus:outline-none ${confirmPasswordError ? 'border-red-500' : ''}`}

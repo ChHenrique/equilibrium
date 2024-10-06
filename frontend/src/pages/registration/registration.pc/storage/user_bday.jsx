@@ -9,6 +9,7 @@ export function User_Bday({ usernameError, birthdayError }) {
                 </label>
                 <input
                     id="username"
+                    name="nome_social" // Ajuste aqui
                     type="text"
                     className={`border-b border-black w-full focus:outline-none ${usernameError ? 'border-red-500' : ''}`}
                     autoComplete="username"
@@ -20,6 +21,7 @@ export function User_Bday({ usernameError, birthdayError }) {
                 </label>
                 <input
                     id="birthday"
+                    name="data_nasc" // Ajuste aqui
                     type="date"
                     className={`border-b border-black w-full focus:outline-none ${birthdayError ? 'border-red-500' : ''}`}
                     autoComplete="bday"
