@@ -8,7 +8,7 @@ import { HeaderLog } from "../../components/headerLog";
 export function Search() {
     return(
         
-    <div className="bg-primary-300  h-screen w-screen flex flex-col items-center overflow-x-auto scrollbar-thin">
+    <div className="bg-primary-300  h-screen w-screen flex flex-col items-center  scrollbar-thin overflow-x-hidden">
         <div className=" w-screen h-fit flex justify-center items-center ">
         <HeaderLog nome={"Pedro"} />
         </div>

@@ -11,7 +11,7 @@ export function Header() {
   return (
     <div
       id="Header"
-      className="w-full h-20 flex flex-row items-center bg-white rounded-2xl m-4 justify-between"
+      className="w-full min-w-[700px] min-h-20 flex flex-row items-center bg-white rounded-2xl m-4 justify-between"
       draggable="false"
     >
       <Logo draggable="false" />
