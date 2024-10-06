@@ -59,7 +59,7 @@ export function Form1(){
                 name="" 
                 id="selecionar_sexo"
                 onClick={handleToggle}
-                className = "border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 mt-0 appearance-none">
+                className = "border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 mt-2 appearance-none">
                     <option value="prefiro_não_informar">Prefiro não informar...</option>
                     <option value="feminino">Feminino</option>
                 </select>

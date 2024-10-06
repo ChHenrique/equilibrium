@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { gsap } from 'gsap';
 
 export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topico1, topico2, topico3, topico4, topico5, topico6, topico7, topico8, topico9, topico10, topico11, topico12, topico13, topico14, topico15, }) {
 
@@ -9,22 +8,6 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
 
     const [mouseDentroTopico, setMouseDentro_topico] = useState(false)
 
-    const [sim_confirmação, setconfirmação] = useState(false)
-
-    const confirmação_sim = () => {
-        setconfirmação(true)
-    }
-
-    const confirmação = useRef(null)
-
-    useEffect(() => {
-        gsap.to(confirmação.current, {
-            duration: 0.5,
-            y: 40,
-            ease: 'ease-in-out',
-            delay: 0,
-        });
-    }, [button]);
 
     return (
         <div className="w-[75vw] h-auto bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row items-center p-4 md:p-6">
@@ -111,65 +94,15 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
             
             {/* Botão acessar consultas */}
             <aside className="flex-shrink-0 flex items-center flex-col h-full">
-                {button && (
-                    <div
-                        ref={confirmação}
-                        className="h-fit w-fit p-1 space-y-1 flex justify-center
-                        items-center flex-col rounded-md  text-[#0a1a2f] font-satoshi font-bold text-[13px] mt-[2vh] border-primary-700 border border-r-0 border-l-0">
-
-                        {sim_confirmação ? (
-                            <div className="flex justify-center items-center space-x-2">
-
-                            <h1 draggable="true" className="text-[13px]">Solicitação enviada!</h1>
-                            <button 
-                            onClick={() => setbutton(false)}
-                            draggable="true"
-                            className="border-slate-950 border hover:bg-red-600 hover:border-red-600 hover:text-white rounded-[4px] w-4 h-4 flex items-center justify-center mt-[0.4px] ">
-                                x
-                            </button>
-
-                            </div>
-                        ) : (
-                            <div>
-                                <h1>Confirme sua solicitação</h1>
-                                <div className="w-full flex justify-evenly">
-                                    <button
-                                        type="button"
-                                        id="sim_confirmar"
-                                        className=" hover:bg-[#0e0e0e] text-whitefont-bold rounded-md
-                        w-10 border hover:text-white border-slate-400
-                        hover:border-black"
-                                        onClick={() => {
-                                            confirmação_sim();
-                                        }}
-                                    >
-                                        Sim
-                                    </button>
-
-                                    <button
-                                        onClick={() => setbutton(false)}
-                                        type="button"
-                                        id="não_confirmar"
-                                        className=" hover:bg-[#0e0e0e] text-whitefont-bold rounded-md
-                        w-10 border hover:text-white border-slate-400
-                        hover:border-black">
-                                        Não
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                )}
+                <a href="/calendario" className="mt-auto relativo">
                 <button
                     className="bg-[#355081] hover:bg-[#19376d] text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto relativo"
-                    onClick={() => setbutton(!button)}
                     id="button_acessar_consulta"
                 >
                     Agendar Consulta
                 </button>
-
+                </a>
             </aside>
-
         </div>
 
 

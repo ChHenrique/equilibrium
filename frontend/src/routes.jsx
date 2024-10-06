@@ -11,6 +11,7 @@ import { Login_pc } from "./pages/Logins/Login.pc/Index.jsx";
 import { Login_psi } from "./pages/Logins/Login.psi/index.jsx";
 import { Search } from "./pages/search/index.jsx";
 import { Informations_pc } from './pages/informations/infomations.pc/index.jsx';
+import { Calendario } from './pages/search/calendario/index.jsx'
 
 export const routes = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ export const routes = createBrowserRouter([
       {
         path: '/info_pc',
         element: <Informations_pc />
+      },
+      {
+        path: '/calendario',
+        element: <Calendario />
       }
     ]
   },

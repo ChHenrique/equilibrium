@@ -56,7 +56,7 @@ export function Form2() {
                         name="" 
                         id="seleção de país" 
                         onClick={handleToggle}
-                        className = "border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 mt-0 appearance-none mt-0.5">
+                        className = "border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 mt-2 appearance-none">
                             <option value="">País</option>
                             <option value="">Brasil</option>
                         </select> 
