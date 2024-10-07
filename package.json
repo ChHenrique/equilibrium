@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "gsap": "^3.12.5",
     "react-calendar": "^5.0.0",
     "react-datepicker": "^7.4.0",
     "react-datetime": "^3.2.0",
+    "react-time-picker": "^7.0.0",
     "socket.io-client": "^4.8.0"
   }
 }

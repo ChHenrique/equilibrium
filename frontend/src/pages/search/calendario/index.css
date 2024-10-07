@@ -1,0 +1,16 @@
+.time {
+    width: 12em;
+    height: 2em;
+    border: black 1px solid;
+    position: relative;
+    top: 1em;
+    border-radius: 4px;
+  }
+
+  .time input {
+    background-color: transparent !important;
+  }
+
+  .time select {
+    background-color: transparent !important;
+  }
