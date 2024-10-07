@@ -44,5 +44,3 @@ Se você deseja contribuir para o desenvolvimento da nossa plataforma, siga os p
 4. Envie suas alterações (`git push origin feature/NovaFeature`)
 5. Abra um Pull Request
 
-## Licença
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
