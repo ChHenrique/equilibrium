@@ -3,8 +3,8 @@ import { createBrowserRouter, Outlet } from 'react-router-dom';
 
 import { Home } from './pages/home';
 import { About } from './pages/about';
-import { Dashboard } from './pages/Dashboard/principal';
-import { Consultas } from "./pages/Dashboard/sections/Consultas.jsx";
+import { Dashboard_psi } from './pages/Dashboard_psi/principal.jsx';
+import { Dashboard } from './pages/Dashboard_pc/principal.jsx';
 import { Registration_pc } from './pages/registration/registration.pc/index.jsx';
 import { Registration_psi } from './pages/registration/registration.psi/index.jsx';
 import { Login_pc } from "./pages/Logins/Login.pc/Index.jsx";
@@ -27,8 +27,13 @@ export const routes = createBrowserRouter([
         element: <About />
       },
       {
-        path: '/homepage',
+        path: '/homepage-pc',
         element: <Dashboard />
+      },
+      {
+        path: '/homepage-psi',
+        element: <Dashboard_psi />
+
       },
       {
         path: '/registro_pc',
@@ -49,10 +54,6 @@ export const routes = createBrowserRouter([
       {
         path: '/search',
         element: <Search />
-      },
-      {
-        path: '/consulta_pc',
-        element: <Consultas />
       },
       {
         path: '/info_pc',
