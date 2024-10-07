@@ -9,6 +9,12 @@ export function Consultas() {
     setpesq(e.target.value)
   }
 
+  /*
+  const [consultas,setConsulta] = useState([])
+  
+  a cada nova consulta empurra no consultas pelo bd
+
+  */
 
 
   return (
@@ -31,8 +37,22 @@ export function Consultas() {
         </button>
       </div>
       <div className="flex justify-start items-start w-full h-full p-8">
+
+
         <ConsultasPsicologos nome="Psi.Pedro Lucas" date="20/07" horario="13:20"></ConsultasPsicologos>
+{
+
+  /* 
+  consultas.map((consulta)=>(
+    
+    <ConsultasPsicologos nome={consulta.nome} date = {consulta.date} horario = {consulta.horario}/>
+))
+  */
+}
+
+
       </div>
+
     </div>
   )
 

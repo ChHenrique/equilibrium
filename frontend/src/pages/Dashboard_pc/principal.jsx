@@ -4,6 +4,7 @@ import { Footer } from "../../components/footer.jsx";
 import { HeaderLog } from "../../components/headerLog.jsx";
 import axios from "axios";
 
+
 export function Dashboard() {
     const [loading, setLoading] = useState(true); // Estado para controle de carregamento
 
@@ -43,19 +44,19 @@ export function Dashboard() {
 
     return (
         
-        <div className="w-screen h-[120vh] bg-primary-300 justify-between flex items-center flex-col font-poppins overflow-hidden scrollbar-thin">
+        <div className="w-full h-[120vh] bg-primary-300 justify-between flex items-center flex-col font-poppins overflow-x-hidden scrollbar-thin">
             <div className="w-full h-fit flex justify-center items-center m-0">
                 {loading ? (
                     <p>Carregando...</p> // Exibe uma mensagem de carregamento
                 ) : (
-                    <HeaderLog /> // Renderiza HeaderLog apenas quando não está carregando
+                    <HeaderLog className="overflow-hidden" /> // Renderiza HeaderLog apenas quando não está carregando
                 )}
             </div>
             <div className="w-full h-[70vh] flex justify-center items-center">
-                <Camp_Dash />
+                <Camp_Dash className="overflow-hidden"/>
             </div>
-            <div className="w-10/12 h-fit flex justify-center items-center">
-                <Footer />
+            <div className="w-10/12 h-fit flex justify-center items-center overflow-hidden">
+                <Footer className="overflow-hidden"/>
             </div>
         </div>
     );

@@ -58,7 +58,7 @@ export function Main() {
   return (
 
     // Div main
-    <div className="flex flex-col items-center h-[70vh] w-[95vw] bg-gray-700 rounded-2xl shadow-xl">
+    <div className="flex flex-col items-center h-[70vh] w-[95vw] bg-slate-900 rounded-2xl shadow-xl">
       <h1 
       draggable='true' 
       className='mt-5 font-satoshi text-[26px] font-bold text-white'>
@@ -76,17 +76,18 @@ export function Main() {
           <h1 draggable='true' className='font-poppins text-[24px] font-medium text-slate-800 mt-5'>Escolha a data desejável</h1>
           
         {/* Blibioteca do calendario*/}
-          <DatePicker
+        <div className="w-full h-fit flex justify-center items-center text-slate-800">
+           <DatePicker
             selected={startDate}
             onChange={handleDateChange}
             dateFormat="dd/MM/yyyy"
             minDate={new Date()}
             required
-            className="w-fit p-2 rounded-lg text-left mt-3 border-slate-800 border-2 outline-none text-slate-800 bg-gray-100"
+            className="w-fit p-2 rounded-lg text-left m-1 border-slate-800 border-2 outline-none text-slate-800 z-10"
           />
           
-         <img src={calendarioMain} alt="" className="absolute bottom-[23.7vh] right-20 mr-6 text-slate-800"/>
-
+           <img src={calendarioMain} alt="" className=" text-slate-800 -translate-x-10 z-0"/>
+         </div>
          {/* Botão da seta, para passar a próx etapa*/}
           <button onClick={SetaAvançarEtapa1}>
           <img src={seta} alt="" className="w-16 h-16 text-slate-800 ml-1 relative transform -translate-y-1/5 transition-transform duration-300 -rotate-90"/>

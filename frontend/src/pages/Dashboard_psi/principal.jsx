@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Camp_Dash } from "./sections/Center.jsx";
 import { Footer } from "../../components/footer.jsx";
-import { HeaderLog } from "../../components/headerLog.jsx";
+import { HeaderLog_psi } from "../../components/headerLog_psi.jsx";
 import axios from "axios";
 
 export function Dashboard_psi(){
@@ -42,12 +42,12 @@ export function Dashboard_psi(){
     }, []);
 
     return (
-        <div className="w-screen h-[120vh] bg-primary-300 justify-between flex items-center flex-col font-poppins overflow-x-hidden scrollbar-thin">
+        <div className="w-full h-[120vh] bg-primary-300 justify-between flex items-center flex-col font-poppins overflow-x-hidden scrollbar-thin">
             <div className="w-screen h-fit flex justify-center items-center">
                 {loading ? (
                     <p>Carregando...</p> // Exibe uma mensagem de carregamento
                 ) : (
-                    <HeaderLog /> // Renderiza HeaderLog apenas quando não está carregando
+                    <HeaderLog_psi /> // Renderiza HeaderLog apenas quando não está carregando
                 )}
             </div>
             <div className="w-screen h-[70vh] flex justify-center items-center">

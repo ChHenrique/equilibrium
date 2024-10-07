@@ -13,8 +13,6 @@ export function Chats() {
     const chatRef = useRef(null)
     
 
-    const bobo = useRef(null)
-
 
 
     useEffect(() => {
@@ -105,7 +103,6 @@ export function Chats() {
                                 </h1>
                             </div>
 
-                            <div ref={bobo}></div>
                         </div>
                     ))}
 
@@ -117,7 +114,7 @@ export function Chats() {
 
                 <div className="w-full justify-center items-center flex h-fit bg-white mt-auto m-8" >
                      {/* Input do chat */}
-                    <input type="text" className=" w-9/12 h-fit p-2 wrap break-words overflow-y-auto rounded-2xl bg-secondary-100 mr-2 placeholder:text-primary-700 placeholder:p-2 border-2 border-slate-300 outline-1 outline-slate-400 p-2 m-8" placeholder="Mensagem" value={value} onChange={pegavalor} id='chatinput' onKeyDown={(e=>{
+                    <input type="text" className=" w-9/12 h-fit p-2 wrap break-words overflow-y-auto rounded-2xl bg-secondary-100 mr-2 placeholder:text-primary-700 placeholder:p-2 border-2 border-slate-300 outline-1 outline-slate-400  m-8" placeholder="Mensagem" value={value} onChange={pegavalor} id='chatinput' onKeyDown={(e=>{
                         if(e.key == 13 ||e.key == "Enter" ){
                             aplicaMensagens();
                         }

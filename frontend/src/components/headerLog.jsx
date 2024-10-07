@@ -2,7 +2,7 @@ import { HeaderLink } from './header-link';
 import { Logo } from './logo';
 import User_null from '../assets/images/user_null.svg';
 import { useState } from 'react';
-import { FaYoutubeSquare } from 'react-icons/fa';
+
 
 const LINKS = [
     { name: 'Sobre nós', href: '/sobre' },
@@ -46,13 +46,13 @@ function Visibilidade(){
             draggable="false"
         >
             <Logo draggable="false" />
-            <div className="flex justify-end items-center gap-8" draggable="false">
+            <div className="flex justify-end items-center gap-8 " draggable="false">
                 {LINKS.map((link) => (
                     <HeaderLink key={link.name} href={link.href}>
                         {link.name}
                     </HeaderLink>
                 ))}
-                <div className='h-20 w-2/12 justify-end items-center flex m-4' onClick={Visibilidade}>
+                <div className='h-20 w-2/12 justify-end items-center flex m-4 '  onClick={Visibilidade}>
                     <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-7'>
                         {nome}
                     </h1>
