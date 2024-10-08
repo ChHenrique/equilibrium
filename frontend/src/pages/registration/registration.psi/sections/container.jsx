@@ -3,7 +3,7 @@ import { Header } from './header';
 import { Balls } from '../storage/balls';
 import { Form } from './form';
 import logo from "../../../../assets/images/logo-title.svg";
-import { Footer } from "./footer";
+
 
 export function Container() {
     const formRef = useRef(null);
@@ -14,12 +14,11 @@ export function Container() {
 
             <Header />
 
-            <Form ref={formRef} errors={errors}/>
+            <Form ref={formRef} errors={errors} setErrors={setErrors}/>
 
             <Balls /> 
             <div className='m-4'>
 
-            <Footer formRef={formRef} setErros={setErrors} />
             </div>
             <a href="./">
             <img

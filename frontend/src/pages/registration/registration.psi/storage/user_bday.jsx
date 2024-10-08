@@ -9,6 +9,7 @@ export function User_Bday({ usernameError, birthdayError }) {
                 </label>
                 <input
                     id="username"
+                    name="nome_social"
                     type="text"
                     className={`border-b border-black w-full focus:outline-none ${usernameError ? 'border-red-500' : ''}`}
                     autoComplete="username"
@@ -21,6 +22,7 @@ export function User_Bday({ usernameError, birthdayError }) {
                 <input
                     id="birthday"
                     type="date"
+                    nome="data_nasc"
                     className={`border-b border-black w-full focus:outline-none ${birthdayError ? 'border-red-500' : ''}`}
                     autoComplete="bday"
                 />
