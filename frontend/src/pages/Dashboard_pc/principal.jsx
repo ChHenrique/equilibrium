@@ -47,12 +47,12 @@ export function Dashboard() {
         <div className="w-full h-[120vh] bg-primary-300 justify-between flex items-center flex-col font-poppins overflow-x-hidden scrollbar-thin">
             <div className="w-full h-fit flex justify-center items-center m-0">
                 {loading ? (
-                    <p>Carregando...</p> // Exibe uma mensagem de carregamento
+                    <p className="mt-8 text-xl font-poppins text-slate-700">Carregando...</p> // Exibe uma mensagem de carregamento
                 ) : (
-                    <HeaderLog className="overflow-hidden" /> // Renderiza HeaderLog apenas quando não está carregando
+                    <HeaderLog className="overflow-hidden w-full" /> // Renderiza HeaderLog apenas quando não está carregando
                 )}
             </div>
-            <div className="w-full h-[70vh] flex justify-center items-center">
+            <div className="w-10/12 h-[70vh] flex justify-center items-center">
                 <Camp_Dash className="overflow-hidden"/>
             </div>
             <div className="w-10/12 h-fit flex justify-center items-center overflow-hidden">

@@ -43,17 +43,17 @@ export function Dashboard_psi(){
 
     return (
         <div className="w-full h-[120vh] bg-primary-300 justify-between flex items-center flex-col font-poppins overflow-x-hidden scrollbar-thin">
-            <div className="w-screen h-fit flex justify-center items-center">
+            <div className="w-full h-fit flex justify-center items-center">
                 {loading ? (
-                    <p>Carregando...</p> // Exibe uma mensagem de carregamento
+                    <p className="mt-8 text-xl font-poppins text-slate-700">Carregando...</p> // Exibe uma mensagem de carregamento
                 ) : (
                     <HeaderLog_psi /> // Renderiza HeaderLog apenas quando não está carregando
                 )}
             </div>
-            <div className="w-screen h-[70vh] flex justify-center items-center">
+            <div className="w-10/12 h-[70vh] flex justify-center items-center">
                 <Camp_Dash />
             </div>
-            <div className="w-screen h-fit flex justify-center items-center">
+            <div className="w-10/12 h-fit flex justify-center items-center">
                 <Footer />
             </div>
         </div>
