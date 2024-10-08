@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 const LINKS = [
     { name: 'Sobre nós', href: '/sobre' },
-    { name: 'Acessar consultas', href: '/homepage-pc' },
+    { name: 'Acessar consultas', href: '/homepage-psi' },
 ];
 
 const LINKSUser = [
