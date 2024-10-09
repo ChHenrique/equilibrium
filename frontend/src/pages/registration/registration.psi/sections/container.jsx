@@ -25,7 +25,7 @@ export function Container() {
             <img
                 src={logo}
                 alt="Logo"
-                className="absolute bottom-3 -right-14 h-[17vh] w-[17vw]"
+                className="absolute bottom-3 right-3 h-[8em] w-fit"
             />
             </a>
         </div>
