@@ -14,6 +14,7 @@ export function Password({ passwordError, confirmPasswordError }) {
                 <input
                     type="password"
                     id="senha"
+                    name="senha"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={`border-b border-black w-full focus:outline-none ${passwordError ? 'border-red-500' : ''}`}

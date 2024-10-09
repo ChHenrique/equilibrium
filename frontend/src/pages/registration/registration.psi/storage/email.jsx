@@ -7,6 +7,7 @@ export function Email({ emailError }) {
             <input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="usuário@gmail.com"
                 className={`border-b border-black w-full focus:outline-none ${emailError ? 'border-red-500' : ''}`}
                 autoComplete="email"

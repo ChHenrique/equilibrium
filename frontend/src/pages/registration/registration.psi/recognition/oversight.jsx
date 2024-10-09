@@ -22,64 +22,27 @@ export function oversight(formRef) {
     // Função para obter o valor do campo
     const getInputValue = (input) => (input ? input.value.trim() : '');
 
-    const nameValue = getInputValue(inputs.name);
-    if (nameValue === '') {
-        errors.name = 'Campo obrigatório';
-    } else if (/[^a-zA-Z\s]/.test(nameValue)) {
-        errors.name = 'Nome não pode conter símbolos ou números';
-    }
+    // Validação dos campos
+    const validations = [
+        { field: 'name', message: 'Campo obrigatório', condition: value => value === '', regex: /[^a-zA-Z\s]/ },
+        { field: 'surname', message: 'Campo obrigatório', condition: value => value === '', regex: /[^a-zA-Z\s]/ },
+        { field: 'username', message: 'Campo obrigatório', condition: value => value === '' },
+        { field: 'birthday', message: 'Campo obrigatório', condition: value => value === '' },
+        { field: 'email', message: 'Email inválido', condition: value => value === '' || !/@/.test(value) || !/\.com/.test(value) },
+        { field: 'password', message: 'Campo obrigatório', condition: value => value === '' || value.length < 8 },
+        { field: 'confirmPassword', message: 'Campo obrigatório', condition: value => value === '' || value !== getInputValue(inputs.password) },
+        { field: 'cpf', message: 'Campo obrigatório', condition: value => value === '' || value.replace(/\D/g, '').length !== 11 },
+        { field: 'crp', message: 'Campo obrigatório', condition: value => value === '' || value.replace(/\D/g, '').length !== 6 }
+    ];
 
-    const surnameValue = getInputValue(inputs.surname);
-    if (surnameValue === '') {
-        errors.surname = 'Campo obrigatório';
-    } else if (/[^a-zA-Z\s]/.test(surnameValue)) {
-        errors.surname = 'Sobrenome não pode conter símbolos ou números';
-    }
-
-    const usernameValue = getInputValue(inputs.username);
-    if (usernameValue === '') {
-        errors.username = 'Campo obrigatório';
-    }
-
-    const birthdayValue = getInputValue(inputs.birthday);
-    if (birthdayValue === '') {
-        errors.birthday = 'Campo obrigatório';
-    }
-
-    const emailValue = getInputValue(inputs.email);
-    if (emailValue === '') {
-        errors.email = 'Email inválido';
-    } else if (!/@/.test(emailValue) || !/\.com/.test(emailValue)) {
-        errors.email = 'Email inválido';
-    }
-
-    const passwordValue = getInputValue(inputs.password);
-    if (passwordValue === '') {
-        errors.password = 'Campo obrigatório';
-    } else if (passwordValue.length < 8) {
-        errors.password = 'A senha deve ter pelo menos 8 caracteres';
-    }
-
-    const confirmPasswordValue = getInputValue(inputs.confirmPassword);
-    if (confirmPasswordValue === '') {
-        errors.confirmPassword = 'Campo obrigatório';
-    } else if (confirmPasswordValue !== passwordValue) {
-        errors.confirmPassword = 'As senhas não coincidem';
-    }
-
-    const cpfValue = getInputValue(inputs.cpf).replace(/\D/g, '');
-    if (cpfValue === '') {
-        errors.cpf = 'Campo obrigatório';
-    } else if (cpfValue.length !== 11) {
-        errors.cpf = 'CPF inválido';
-    }
-
-    const crpValue = getInputValue(inputs.crp).replace(/\D/g, '');
-    if (crpValue === '') {
-        errors.crp = 'Campo obrigatório';
-    } else if (crpValue.length !== 6) {
-        errors.crp = 'CRP inválido';
-    }
+    validations.forEach(({ field, message, condition, regex }) => {
+        const value = getInputValue(inputs[field]);
+        if (condition(value)) {
+            errors[field] = message;
+        } else if (regex && regex.test(value)) {
+            errors[field] = `${field.charAt(0).toUpperCase() + field.slice(1)} não pode conter símbolos ou números`;
+        }
+    });
 
     return errors;
 }

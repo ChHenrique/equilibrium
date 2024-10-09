@@ -6,8 +6,7 @@ import { useState } from 'react';
 
 const LINKS = [
     { name: 'Sobre nós', href: '/sobre' },
-    { name: 'Procurar Psicólogos', href: '/search' },
-    { name: 'Acessar consultas', href: '/homepage-pc' },
+    { name: 'Acessar consultas', href: '/homepage-psi' },
 ];
 
 const LINKSUser = [
@@ -21,7 +20,7 @@ const LINKSUser = [
 ];
 
 
-export function HeaderLog() {
+export function HeaderLog_psi() {
     const [userinfo,setinfo] = useState(false);
       
 function Visibilidade(){
@@ -48,11 +47,11 @@ function Visibilidade(){
             <Logo draggable="false" />
             <div className="flex justify-end items-center gap-8 " draggable="false">
                 {LINKS.map((link) => (
-                    <HeaderLink key={link.name} href={link.href}>
+                    <HeaderLink key={link.name} href={link.href} >
                         {link.name}
                     </HeaderLink>
                 ))}
-                <div className='h-20 w-2/12 justify-end items-center flex m-4 '  onClick={Visibilidade}>
+                <div className='h-20 w-2/12 justify-end items-center flex m-4 ml-12' onClick={Visibilidade}>
                     <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-7'>
                         {nome}
                     </h1>

@@ -37,6 +37,42 @@ export const registerUser = async (req, res) => {
     }
 };
 
+export const registerPs = async (req, res) => {
+    const { nome, sobrenome, nome_social, data_nasc, email, senha, confirmarsenha, cpf, crp } = req.body;
+
+    // Verificação dos campos
+    if (!nome || !sobrenome || !nome_social || !data_nasc || !email || !senha || !confirmarsenha || !cpf || !crp) {
+        return res.status(400).json({ message: 'Por favor, preencha todos os campos' });
+    }
+
+    // Verificação se as senhas são iguais
+    if (senha !== confirmarsenha) {
+        return res.status(400).json({ message: 'As senhas não coincidem' });
+    }
+
+    try {
+        // Checa se o email já está sendo usado
+        const [results] = await db.query('SELECT email FROM psicologos WHERE email = ?', [email]);
+
+        if (results.length > 0) {
+            return res.status(400).json({ message: 'Esse email já está em uso' });
+        }
+
+        // Se o email for único ele continua com a criação do usuário
+        let hashedsenha = await bcrypt.hash(senha, 8);
+
+        // Inserir o novo usuário no banco de dados
+        await db.query('INSERT INTO psicologos (nome, sobrenome, nome_social, data_nasc, email, senha, cpf, crp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', 
+            [nome, sobrenome, nome_social, data_nasc, email, hashedsenha, cpf, crp]);
+
+
+        return res.status(201).json({ message: 'Usuário registrado com sucesso' });
+    } catch (error) {
+        console.error('Erro no registro do usuário:', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+};
+
 export const loginUser = async (req, res) => {
     const { email, senha } = req.body;
 

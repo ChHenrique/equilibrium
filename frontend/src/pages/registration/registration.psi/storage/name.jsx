@@ -10,6 +10,7 @@ export function Name({ nameError, surnameError }) {
                 <input
                     id="name"
                     type="text"
+                    name="nome"
                     className={`border-b border-black w-full focus:outline-none ${nameError ? 'border-red-500' : ''}`}
                     autoComplete="given-name"
                 />
@@ -20,6 +21,7 @@ export function Name({ nameError, surnameError }) {
                 </label>
                 <input
                     id="surname"
+                    name="sobrenome"
                     type="text"
                     className={`border-b border-black w-full focus:outline-none ${surnameError ? 'border-red-500' : ''}`}
                     autoComplete="family-name"
