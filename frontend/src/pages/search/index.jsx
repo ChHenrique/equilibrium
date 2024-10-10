@@ -1,4 +1,3 @@
-
 import { Pesquisar } from "./sections/pesquisar";
 import { Seach_psicologos } from "./sections/psicologos";
 import { Footer } from "../../components/footer";
