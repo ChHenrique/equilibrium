@@ -1,0 +1,88 @@
+@keyframes roda1 {
+  0% {
+    transform: rotate(0deg) translate(0px,0px);
+  }
+
+  100%{
+    transform: rotate(-2deg) translate(10px,-30px);
+  }
+}
+
+@keyframes roda2 {
+  0% {
+    transform: rotate(0deg) translate(0px,0px);
+  }
+
+  100%{
+    transform: rotate(-2deg) translate(15px,-40px);
+  }
+}
+
+@keyframes roda3 {
+  0% {
+    transform: rotate(0deg) translate(0px,0px);
+  }
+
+  100%{
+    transform: rotate(-2deg) translate(20px,-50px);
+  }
+}
+
+
+@keyframes roda4 {
+  0% {
+    transform: rotate(180deg) translate(0px,0px);
+  }
+
+  100%{
+    transform: rotate(182deg) translate(10px,-30px);
+  }
+}
+
+@keyframes roda5 {
+  0% {
+    transform: rotate(180deg) translate(0px,0px);
+  }
+
+  100%{
+    transform: rotate(182deg) translate(15px,-40px);
+  }
+}
+
+@keyframes roda6 {
+  0% {
+    transform: rotate(180deg) translate(0px,0px);
+  }
+
+  100%{
+    transform: rotate(182deg) translate(20px,-50px);
+  }
+}
+
+body{
+  overflow: hidden;
+}
+
+
+#l1{
+  animation: roda1 5s  ease-in-out 0s infinite alternate;
+}
+
+#l2{
+  animation: roda2 5s  ease-in-out 0s infinite alternate;
+}
+#l3{
+  animation: roda3 5s  ease-in-out 0s infinite alternate;
+}
+
+
+#l4{
+  animation: roda4 5s  ease-in-out 1.5s infinite alternate;
+}
+
+#l5{
+  animation: roda5 5s  ease-in-out 1.5s infinite alternate;
+}
+#l6{
+  animation: roda6 5s  ease-in-out 1.5s infinite alternate;
+}
