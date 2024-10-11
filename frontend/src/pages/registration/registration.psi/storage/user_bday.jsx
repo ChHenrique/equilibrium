@@ -22,7 +22,7 @@ export function User_Bday({ usernameError, birthdayError }) {
                 <input
                     id="birthday"
                     type="date"
-                    nome="data_nasc"
+                    name="data_nasc"
                     className={`border-b border-black w-full focus:outline-none ${birthdayError ? 'border-red-500' : ''}`}
                     autoComplete="bday"
                 />

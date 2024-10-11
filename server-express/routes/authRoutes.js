@@ -1,15 +1,15 @@
 import express from 'express';
-import { registerUser, loginUser, registerPs } from '../controllers/authController.js'; // Certifique-se de importar corretamente
+import { registerUser, loginUser, registerPs, loginPs } from '../controllers/authController.js'; 
 
 const router = express.Router();
 
-// Definir a rota de registro de usuário
-router.post('/register', registerUser);
-
+// Definir as rotas de registro
+router.post('/registerpc', registerUser);
 router.post('/registerps', registerPs);
 
-// Definir a rota de login de usuário
-router.post('/login', loginUser);
-router.post('/loginps', loginUser);
+// Definir a rotas de login
+router.post('/loginpc', loginUser);
+router.post('/loginps', loginPs);
+
 
 export default router;

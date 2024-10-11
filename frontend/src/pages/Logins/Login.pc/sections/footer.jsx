@@ -17,7 +17,7 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
         const formData = new FormData(formRef.current);
         const data = Object.fromEntries(formData.entries());
 
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:3000/loginpc', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
             setLoggedIn(true);
 
             // Redireciona o usuário para a página desejada, como por exemplo "/dashboard"
-            navigate('/homepage');
+            navigate('/homepage-pc');
         })
         .catch(error => {
             console.error('Erro:', error.message);
@@ -58,6 +58,20 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
                 className="bg-[#3B82F6] text-white border border-[#3B82F6] w-[350px] h-[35px] rounded-[10px] font-satoshi font-extrabold text-[17px] mt-[30px] hover:bg-[#1c3b79] transition-all duration-200 hover:rounded-[15px] mr-1">
                 Entrar
             </button>
+
+            <div className="grid place-items-center w-full max-w-[600px] mt-[20px]">
+                <h2 className='text-[#535252] font-satoshi-bold text-[17px] text-center mb-[10px]'>– Ou entre com –</h2>
+                <div className="flex justify-center items-center space-x-4">
+
+                    <a href="">
+                        <img src={Email} alt="Email Icon" className="w-12 h-12 border border-gray-400 rounded-[6px] mt-2" />
+                    </a>
+
+                    <a href="">
+                    <img src={Gov} alt="Gov Icon" className="w-12 h-12 border border-gray-400 rounded-[6px] mt-2" /> 
+                    </a>
+                    </div>
+                </div>
         </footer>
     );
 }

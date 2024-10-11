@@ -9,7 +9,7 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
         const formData = new FormData(ref.current);
         const data = Object.fromEntries(formData.entries());
 
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:3000/loginpc', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
