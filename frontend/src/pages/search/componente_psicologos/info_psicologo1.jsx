@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState} from "react";
 
 export function Psicologo({ nome, foto, tempConsulta, formação_psicologo}) {
 

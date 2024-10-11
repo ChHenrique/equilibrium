@@ -31,6 +31,7 @@ export function CPF_CRP({ cpfError, crpError }) {
                     ref={cpfRef}
                     type="text" 
                     id="cpf"
+                    name="cpf"
                     maxLength="14"
                     className={`border-b border-black w-full focus:outline-none ${cpfError ? 'border-red-500' : ''}`}
                     autoComplete="off"
@@ -47,6 +48,7 @@ export function CPF_CRP({ cpfError, crpError }) {
                 ref={crpRef}
                 type="text"
                 id="crp"
+                name="crp"
                 maxLength="7"
                 className={`border-b border-black w-full focus:outline-none ${crpError ? 'border-red-500' : ''}`}
                 placeholder='0000/00'
