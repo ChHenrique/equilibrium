@@ -9,7 +9,7 @@ export const Form = forwardRef(({ errors = {} },ref) => {
     return (
         <article className="flex flex-col justify-center items-center pb-0 w-full max-w-4xl h-auto font-satoshi-Regular -mb-8 -mt-5">
 
-            <form ref={ref} method = "post" className="w-4/6 max-w-1xl h-auto mt-14 ml-5">
+            <form ref={ref} method = "post" className="w-4/6 max-w-1xl h-auto mt-14 ml-5 translate-y-10">
 
                 <Name 
                     nameError={errors.name} 
