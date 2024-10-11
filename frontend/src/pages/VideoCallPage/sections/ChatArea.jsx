@@ -79,7 +79,7 @@ export function Chats() {
         <div className="bg-white h-full max-h-full w-full font-satoshi-medium flex flex-row rounded-2xl">
 
             {/* Aba do chat */}
-            <div   className="bg-white h-full w-8/12 flex-col flex justify-start items-center rounded-r-2xl overflow-hidden m-0" id='chat'>
+            <div   className="bg-white h-full w-full flex-col flex justify-start items-center rounded-2xl overflow-hidden m-0" id='chat'>
                 {/* Chat */}
                 <div ref={chatRef} className="h-fit w-full bg-white flex flex-col items-end overflow-y-scroll overflow-x-hidden max-h-screen">
                     {mensagens.map((mensagem, index) => (
