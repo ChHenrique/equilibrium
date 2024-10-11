@@ -17,7 +17,7 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
         const formData = new FormData(formRef.current);
         const data = Object.fromEntries(formData.entries());
 
-        fetch('http://localhost:3000/login', {
+        fetch('http://localhost:3000/loginpc', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
             setLoggedIn(true);
 
             // Redireciona o usuário para a página desejada, como por exemplo "/dashboard"
-            navigate('/homepage');
+            navigate('/homepage-pc');
         })
         .catch(error => {
             console.error('Erro:', error.message);

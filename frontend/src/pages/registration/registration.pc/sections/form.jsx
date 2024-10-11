@@ -14,7 +14,7 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
         
         console.log(data)
 
-        fetch('http://localhost:3000/register', {
+        fetch('http://localhost:3000/registerpc', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
