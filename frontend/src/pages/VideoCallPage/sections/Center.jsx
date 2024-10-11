@@ -1,11 +1,19 @@
+import { Chats } from "./ChatArea"
+import { CamsEButtons } from "./CamArea"
 
-
-function Center(){
+export function Center(){
 
 return(
-    <div className="flex w-full h-fit">
+    <div className="flex w-full h-full"> 
 
+    <div className="flex w-3/4 h-full mr-4">
+    <CamsEButtons/>
+    </div>
 
+    <div className="flex w-1/4 h-full">
+    <Chats/>
+    </div>
+ 
     </div>
 )
 

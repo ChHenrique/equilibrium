@@ -12,6 +12,7 @@ import { Login_psi } from "./pages/Logins/Login.psi/index.jsx";
 import { Search } from "./pages/search/index.jsx";
 import { Informations_pc } from './pages/informations/infomations.pc/index.jsx';
 import { Calendario } from './pages/search/calendario/index.jsx'
+import { VideoPage } from './pages/VideoCallPage/principal.jsx';
 
 export const routes = createBrowserRouter([
   {
@@ -62,6 +63,9 @@ export const routes = createBrowserRouter([
       {
         path: '/calendario',
         element: <Calendario />
+      },{
+        path: '/videopage',
+        element: <VideoPage/>
       }
     ]
   },
