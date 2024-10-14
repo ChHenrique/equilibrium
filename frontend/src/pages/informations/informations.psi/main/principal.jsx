@@ -1,6 +1,7 @@
 import { Segurança } from "./sections/segurança.jsx"
 import { Info } from "./sections/info.jsx"
 import React, { useState } from 'react';
+
 export function Principal() {
     const [imagem, setImagem] = useState(null);
 

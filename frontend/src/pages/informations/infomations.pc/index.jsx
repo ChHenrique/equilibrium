@@ -1,5 +1,3 @@
-
-
 import {Principal} from "./mid/principal.jsx"
 import { FooterInfo } from "../../../components/footer_info.jsx"
 import { HeaderLog } from "../../../components/headerLog.jsx"
