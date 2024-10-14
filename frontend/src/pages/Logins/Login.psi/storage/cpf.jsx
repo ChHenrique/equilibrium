@@ -17,6 +17,7 @@ export function Cpf({ cpferror }) {
             <input
                 type="text"
                 id="cpf_loginpsi"
+                name="cpf"
                 onInput={formatCPF}
                 maxLength={14}
 
