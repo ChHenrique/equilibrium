@@ -5,9 +5,10 @@ import Webcam from "react-webcam"
 
 export function CamsEButtons(){
 const webRef = useRef(null)
-const ImgdaWebcam = () => {
-  let img = webRef.current.getScreenshot();
-} 
+
+const webCam = () =>(<Webcam/>);
+
+
 
 
 
