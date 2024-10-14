@@ -8,7 +8,7 @@ export function Search() {
     return(
         
     <div className="bg-primary-300  h-screen w-screen flex flex-col items-center overflow-x-auto scrollbar-thin">
-        <HeaderLog nome="Usuario" foto={foto ? foto : User_null}/>
+        <HeaderLog />
         <Pesquisar/>
         <Seach_psicologos/>
         <Footer/>
