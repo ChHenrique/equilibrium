@@ -71,7 +71,7 @@ export const routes = createBrowserRouter([
         element: <VideoPage/>
       },
       {
-        path: '/info_psi',
+        path: '/Info_psi',
         element: <Informations_psi/>
       }
     ]

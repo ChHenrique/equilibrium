@@ -10,10 +10,10 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
   };
 
   return (
-    <div className="w-[90vw] h-[80vh] bg-white rounded-lg flex items-center">
+    <div className="w-[40%] h-[80vh] bg-white rounded-2xl flex items-center">
 
       {/* Div que contém a imagem e o input de arquivo */}
-      <div className='w-[25vw] h-full bg-white flex flex-col items-center border-r-2 border-[#6b6b6b]'>
+      <div className='w-[100%] h-full bg-white flex flex-col items-center border-r-2 border-[#6b6b6b] rounded-tl-2xl rounded-bl-2xl'>
 
         {/* Div que contém a imagem */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
@@ -61,8 +61,6 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
         </a>
 
       </div>
-
-      <Alterações/>
     </div>
   )
 }

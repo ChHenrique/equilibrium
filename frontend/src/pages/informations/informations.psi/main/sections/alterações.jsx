@@ -19,13 +19,13 @@ export function Alterações() {
 
     return (
         // Div do componente das alterções
-        <div className="w-full h-full flex items-center font-poppins font-medium relative">
+        <div className="w-full h-full flex items-center font-poppins font-medium relative rounded-tl-2xl">
             <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700">
                 Altere e salve suas Alterações!
             </h1>
 
            {/* // Div do Componente das alterações nome, estado, senha e email */}
-            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5">
+            <div className="h-[90%] w-1/2 bg-white flex flex-col items-center pt-5">
 
                 {/* Form dos inputs e labels*/}
 
@@ -102,7 +102,7 @@ export function Alterações() {
 
 
             {/* Form2 */}
-            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5">
+            <div className="h-[90%] w-1/2 bg-white flex flex-col items-center pt-5">
                 <form
                     id="form2"
                     method="post"
@@ -175,3 +175,7 @@ export function Alterações() {
         </div>
     )
 }
+
+
+
+
