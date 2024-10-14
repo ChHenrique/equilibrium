@@ -21,7 +21,7 @@ const LINKSUser = [
 ];
 
 
-export function HeaderLog() {
+export function HeaderLog({foto}) {
     const [userinfo,setinfo] = useState(false);
       
 function Visibilidade(){
@@ -56,7 +56,7 @@ function Visibilidade(){
                     <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-7'>
                         {nome}
                     </h1>
-                    <img src={User_null} alt="Foto de Perfil" className='h-8' />
+                    <img src={foto} alt="Foto de Perfil" className='h-8' />
                 </div>
 
 
