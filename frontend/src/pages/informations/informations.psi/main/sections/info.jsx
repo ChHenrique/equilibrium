@@ -10,10 +10,10 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
   };
 
   return (
-    <div className="w-[40%] h-[80vh] bg-white rounded-2xl flex items-center">
+    <div className="w-[40%] h-[80vh] bg-white rounded-2xl flex items-center ">
 
       {/* Div que contém a imagem e o input de arquivo */}
-      <div className='w-[100%] h-full bg-white flex flex-col items-center border-r-2 border-[#6b6b6b] rounded-tl-2xl rounded-bl-2xl'>
+      <div className='w-[100%] h-full bg-white flex flex-col items-center border-r-2 border-[#6b6b6b] rounded-tl-2xl rounded-bl-2xl p-4'>
 
         {/* Div que contém a imagem */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
@@ -55,7 +55,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
 
         <a href='/homepage-pc' className='w-full flex justify-center'>
           <button
-            className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl">
+            className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl whitespace-nowrap">
             Ver Histórico
           </button>
         </a>

@@ -30,7 +30,7 @@ export function Principal() {
     const renderContent = () => {
         switch (idAtivado) {
             case "1":
-                return <Alterações />;
+                return <Info imagem={imagem} onChange={handleImageChange} nome={"Pedro Lucas"} id_pc={"#0202030202"} diaConta={"12/12/12"} />;
             case "2":
                 return <Chats />;
             default:
@@ -58,9 +58,7 @@ export function Principal() {
                 <div className="mt-2 text-2xl font-poppins text-[#465A7F] font-medium" draggable="true">Segurança</div>
             </div>
 
-            <Info imagem={imagem} onChange={handleImageChange} nome={"Pedro Lucas"} id_pc={"#0202030202"} diaConta={"12/12/12"} />
-
-            <div className="h-full w-full bg-white rounded-tr-2xl rounded-br-2xl relative right-5">
+            <div className="h-full w-[80%] bg-white rounded-2xl relative right-5 flex items-center">
                 {renderContent()}
             </div>
         </div>
