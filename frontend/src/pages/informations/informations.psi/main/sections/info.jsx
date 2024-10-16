@@ -61,6 +61,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
         </a>
 
       </div>
+      <Alterações/>
     </div>
   )
 }
