@@ -1,12 +1,11 @@
 import { oversight } from './oversight';
 
 export function Verification(e, formRef, setErrors) {
-    e.preventDefault();
-    
-    const validationErrors = oversight(formRef);
-    setErrors(validationErrors);
+    e.preventDefault(); // Impede o envio do formulário padrão
 
-    if (Object.keys(validationErrors).length === 0) {
-        console.log('Enviado!');
-    }
+    const validationErrors = oversight(formRef); // Realiza a validação
+    setErrors(validationErrors); // Atualiza o estado de erros
+
+    // Retorna true se houver erros, false caso contrário
+    return Object.keys(validationErrors).length > 0;
 }

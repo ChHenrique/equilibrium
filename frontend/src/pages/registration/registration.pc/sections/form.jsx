@@ -3,17 +3,26 @@ import { Name } from "../storage/name";
 import { User_Bday } from "../storage/user_bday";
 import { Email } from "../storage/email";
 import { Password } from "../storage/password";
+import { Verification } from '../recognition/verification'; // Ajuste o caminho conforme necessário
 
 
-export const Form = forwardRef(({ errors = {}, setErrors }, ref) => { 
+
+export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
+
     const handleSubmit = (event) => {
-        event.preventDefault();
-
+        // Verifica e armazena erros
+        const hasErrors = Verification(event, ref, setErrors);
+    
+        if (hasErrors) {
+            // Se houver erros, não envie o formulário
+            return;
+        }
+    
         const formData = new FormData(ref.current);
         const data = Object.fromEntries(formData.entries());
-        
-        console.log(data)
-
+    
+        console.log(data);
+    
         fetch('http://localhost:3000/registerpc', {
             method: 'POST',
             headers: {
@@ -21,24 +30,23 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
             },
             body: JSON.stringify(data),
         })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => { // Captura o corpo da resposta
-                    throw new Error(text || 'Erro ao registrar usuário'); // Usa o texto da resposta ou um erro padrão
-                });
-            }
-            return response.json();
-        })
-        .then(data => {
-            window.location.href = '/login_pc'
-            // Aqui você pode adicionar lógica adicional, como redirecionar ou mostrar uma mensagem
-        })
-        .catch(error => {
-            console.error('Erro:'); // Você pode manter ou remover este log, conforme necessário
-            setErrors({ general: error.message }); // Sete o erro aqui
-        });
-        
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        throw new Error(text || 'Erro ao registrar psicologo');
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                window.location.href = '/login_pc';
+            })
+            .catch(error => {
+                console.error('Erro:');
+                setErrors({ general: error.message });
+            });
     };
+    
 
     return (
         <article className="flex flex-col justify-center items-center p-5 w-full max-w-4xl h-auto font-satoshi-Regular">
