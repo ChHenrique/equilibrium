@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Alterações } from '../alterações';
+import { Alterações_Pessoais } from './informações_pessoais';
 
-export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
+export function InfoPsi({ imagem, onChange, nome, id_pc }) {
   const [selectedImage, setSelectedImage] = useState(imagem);
 
   const handleImageChange = (e) => {
@@ -10,7 +10,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
   };
 
   return (
-    <div className="w-[90vw] h-[80vh] bg-white rounded-lg flex items-center">
+    <div className="w-[100%] h-[80vh] bg-white rounded-lg flex items-center">
 
       {/* Div que contém a imagem e o input de arquivo */}
       <div className='w-[25vw] h-full bg-white flex flex-col items-center border-r-2 border-[#6b6b6b]'>
@@ -54,7 +54,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
 
       </div>
 
-      <Alterações/>
+      <Alterações_Pessoais />
     </div>
   )
 }

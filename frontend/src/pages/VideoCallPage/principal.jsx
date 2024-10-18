@@ -3,6 +3,8 @@ import { Center } from "./sections/Center.jsx"
 
 export function VideoPage(){
 
+   console.log()
+
 return(
  <div className="bg-primary-300 w-full h-[140vh] flex flex-col justify-between items-center">
     <div className="w-5/6 h-4/6 mt-10">

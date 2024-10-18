@@ -1,7 +1,7 @@
 import { Info } from "./sections/info.jsx";
 import React, { useState } from 'react';
 import { Chats } from "../../../Dashboard_psi/sections/Chats.jsx";
-import { Alterações } from "./sections/alterações.jsx";
+import { InfoPsi } from "./sections/id2_infopsi/segurança_id_2.jsx";
 
 const button = [
     {
@@ -25,14 +25,14 @@ const button = [
 ];
 
 export function Principal() {
-    const [idAtivado, SetIdAtivado] = useState("1"); // Alterado para string
+    const [idAtivado, SetIdAtivado] = useState(1); // Alterado para string
 
     const renderContent = () => {
         switch (idAtivado) {
-            case "1":
-                return <Alterações />;
-            case "2":
-                return <Chats />;
+            case 1:
+                return <Info imagem={imagem} onChange={handleImageChange} nome={"Pedro Lucas"} id_pc={"#0202030202"} diaConta={"12/12/12"} />;
+            case 2:
+                return <InfoPsi imagem={imagem} onChange={handleImageChange} nome={"Dhamyla Ivina"} id_pc={"#DF352HE6D"}/>;
             default:
                 return null;
         }
@@ -58,9 +58,7 @@ export function Principal() {
                 <div className="mt-2 text-2xl font-poppins text-[#465A7F] font-medium" draggable="true">Segurança</div>
             </div>
 
-            <Info imagem={imagem} onChange={handleImageChange} nome={"Pedro Lucas"} id_pc={"#0202030202"} diaConta={"12/12/12"} />
-
-            <div className="h-full w-full bg-white rounded-tr-2xl rounded-br-2xl relative right-5">
+            <div className="h-full w-[100%] bg-white rounded-2xl flex items-center">
                 {renderContent()}
             </div>
         </div>

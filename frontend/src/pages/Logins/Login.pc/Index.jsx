@@ -13,8 +13,8 @@ export function Login_pc(){
             <img id='l3' src={linha3} alt="" className='absolute right-0 -top-20'/>
 
             <img id='l4' src={linha1} alt="" className='absolute left-0 bottom-0 transition-translate rotate-180'/>
-            <img id='l5'src={linha2} alt="" className='absolute left-0 -bottom-20 transition-translate rotate-180 '/>
-            <img id='l6'src={linha3} alt="" className='absolute left-0 -bottom-20 transition-translate rotate-180'/>
+            <img id='l5'src={linha2} alt="" className='absolute left-0 bottom-0 transition-translate rotate-180 '/>
+            <img id='l6'src={linha3} alt="" className='absolute left-0 -bottom-2 transition-translate rotate-180'/>
             <Container/>
             
         </div>

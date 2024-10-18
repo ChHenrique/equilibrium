@@ -129,8 +129,7 @@ export function Alterações() {
                             value={telefone}
                             type="number"
                             id="input_email_alterações"
-                            className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"
-                            placeholder="Obs: Opcional" />
+                            className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"/>
                     </div>
 
                     {/* Div Cidade */}
