@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "../../mid/style.css"
+import "../../../infomations.pc/mid/style.css"
 
 export function Alterações() {
 
@@ -174,3 +174,7 @@ export function Alterações() {
         </div>
     )
 }
+
+
+
+

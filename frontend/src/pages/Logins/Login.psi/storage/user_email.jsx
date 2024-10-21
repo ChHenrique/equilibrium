@@ -7,6 +7,7 @@ export function Email({ user_emailpsierror }) {
             <input
                 type="text"
                 id="user_email_psi"
+                name="email"
                 className={`border-b border-black w-full focus:outline-none font-satoshi-medium text-gray-600 ${user_emailpsierror ? 'border-red-500' : ''}`}
             />
         </div>

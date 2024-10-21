@@ -1,8 +1,51 @@
 import { Verification } from '../recognition/verification';
+import { useNavigate } from 'react-router-dom';
 
 export function Footer({ formRef, setErrors, setLoggedIn }) {
+    const navigate = useNavigate(); // Hook para redirecionar
+
     const handleClick = (e) => {
-        Verification(e, { formRef, setErrors, setLoggedIn });
+        e.preventDefault(); // Impede o comportamento padrão do botão
+
+        if (!formRef.current) {
+            console.error('formRef não está definido');
+            return;
+        }
+
+        const formData = new FormData(formRef.current);
+        const data = Object.fromEntries(formData.entries());
+
+        fetch('http://localhost:3000/loginps', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(text || 'Erro no login');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            const token = data.token;
+
+            // Armazena o token no localStorage
+            localStorage.setItem('token', token);
+
+            // Atualiza o estado de login
+            setLoggedIn(true);
+
+            // Redireciona o usuário para a página desejada, como por exemplo "/dashboard"
+            navigate('/homepage-pc');
+        })
+        .catch(error => {
+            console.error('Erro:', error.message);
+            setErrors({ general: error.message });
+        });
     }
     return (
         <footer>

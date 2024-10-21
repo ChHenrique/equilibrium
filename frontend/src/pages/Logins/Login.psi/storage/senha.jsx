@@ -10,6 +10,7 @@ export function Password({ passwordError }) {
                 <input
                     type="password"
                     id="senha"
+                    name="senha"
                     minLength={8}
                     className={`border-b border-black w-full focus:outline-none ${passwordError ? 'border-red-500' : ''}`}
                 />
