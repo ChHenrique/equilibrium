@@ -2,11 +2,18 @@ import React from "react";
 import { useState } from "react";
 import { Bolas } from "./bolas"
 import DatePicker from 'react-datepicker';
+import { registerLocale } from "react-datepicker";
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR'; // Importa a localidade brasileira
+
 import '../index.css'
 import 'react-datepicker/dist/react-datepicker.css';
 
 
 export function Main (){
+
+registerLocale('pt-BR', ptBR);
+
   const [page,setPage] = useState(1);
   const [startDate, setStartDate] = useState(new Date());
 
@@ -18,12 +25,12 @@ export function Main (){
                <div className="flex flex-row justify-center items-center">
                <DatePicker
                open={true}
-               minDate={new Date() }
-
+               minDate={new Date() +1}
                showTimeSelect
-               timeIntervals={30}
-               timeFormat="hh:mm"
-               
+               timeIntervals={15}
+               timeFormat="HH:mm"
+               locale="pt-BR"
+               dateFormat="d/MM/y"
 
 
                className="items-center flex w-full p-1 font-poppins text-xl border-primary-700 border-b-2 text-primary-700 outline-1 outline-primary-700"
@@ -57,7 +64,7 @@ export function Main (){
 <path d="M28 2V10M12 2V10M2 18H38M6 6H34C36.2091 6 38 7.79086 38 10V38C38 40.2091 36.2091 42 34 42H6C3.79086 42 2 40.2091 2 38V10C2 7.79086 3.79086 6 6 6Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </h1>
-                        <h1 className="font-satoshi-Regular text-2xl font-bold text-primary-700 p-2 border-2 border-primary-800 rounded-[16px] m-2 flex flex-row justify-center items-center">Hora: {startDate.getHours()} : {startDate.getUTCMinutes()}
+                        <h1 className="font-satoshi-Regular text-2xl font-bold text-primary-700 p-2 border-2 border-primary-800 rounded-[16px] m-2 flex flex-row justify-center items-center">Hora: {startDate.getHours() } : {startDate.getUTCMinutes()}
 
                         <svg width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4">
 <path d="M24 12V24L32 28M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>

@@ -12,11 +12,13 @@
   margin-left: 20px  !important;
   margin-right: 20px  !important;
   font-size: 15px;
+  width: 30px;
 }
 
 .react-datepicker__day{
   font-size:  20px;
   padding: 2px !important;
+  width: 32px !important;
 
   margin: 15px !important;
 color: #355081!important;
