@@ -13,7 +13,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center ">
 
       {/* Div que contém a imagem e o input de arquivo */}
-      <div className='w-[40%] h-full bg-white flex flex-col items-center border-r-2 border-[#6b6b6b] rounded-tl-2xl rounded-bl-2xl p-4'>
+      <div className='w-[40%] h-full bg-white flex flex-col items-center rounded-bl-2xl rounded-tl-2xl p-4 relative'>
 
         {/* Div que contém a imagem */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
@@ -59,7 +59,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
             Ver Histórico
           </button>
         </a>
-
+        <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10'></div>
       </div>
       <Alterações/>
     </div>

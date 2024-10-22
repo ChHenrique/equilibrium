@@ -1,11 +1,11 @@
 import { Info } from "./sections/info.jsx";
 import React, { useState } from 'react';
 import { Chats } from "../../../Dashboard_psi/sections/Chats.jsx";
-import { InfoPsi } from "./sections/id2_infopsi/segurança_id_2.jsx";
+import { InfoPsi } from "./sections/id2_infopsi/info_id_2.jsx"
 
 const button = [
     {
-        id: "1",
+        id: 1,
         nome: "Informações Pessoais",
         img: (
             <svg width="24" height="30" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,7 +14,7 @@ const button = [
         )
     },
     {
-        id: "2",
+        id: 2,
         nome: "Informações Psicólogo",
         img: (
             <svg width="24" height="30" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
@@ -25,7 +25,7 @@ const button = [
 ];
 
 export function Principal() {
-    const [idAtivado, SetIdAtivado] = useState(1); // Alterado para string
+    const [idAtivado, SetIdAtivado] = useState(1);
 
     const renderContent = () => {
         switch (idAtivado) {
