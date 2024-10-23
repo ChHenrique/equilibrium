@@ -2,7 +2,6 @@ import { Header } from './header';
 import { Balls } from '../storage/balls';
 import { Form } from './form';
 import logo from "../../../../assets/images/logo-title.svg";
-import { Footer } from "./footer";
 import React, { useRef } from 'react';
 
 export function Container() {
@@ -14,7 +13,6 @@ export function Container() {
             <Header />
             <Form ref = {formRef} errors = {errors}/>
             <Balls /> 
-            <Footer formRef = {formRef} setErrors = {setErrors}/>
 
             <a href="./">
             <img

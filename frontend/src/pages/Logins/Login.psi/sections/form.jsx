@@ -1,57 +1,79 @@
-import { Email } from "../storage/user_email"
+import { Email } from "../storage/user_email";
 import { Password } from "../storage/senha";
-import { Cpf } from "../storage/cpf"
-import React, { forwardRef } from 'react';
+import { Cpf } from "../storage/cpf";
+import React, { forwardRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Verification } from '../recognition/verification';
 
-export const Form = forwardRef(({ errors = {}, setErrors }, ref) => { 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+export const Form = forwardRef(({ setLoggedIn }, ref) => {
+    const [errors, setErrors] = useState({}); // Inicializa com um estado vazio para armazenar erros
+    const navigate = useNavigate(); // Hook para redirecionar
+
+    const handleClick = async (e) => {
+        e.preventDefault(); // Impede o comportamento padrão do botão
+
+        // Realiza a verificação e validação dos erros
+        await Verification(e, { formRef: ref, setErrors });
+
+        // Se houver erros de frontend, não prosseguir para a submissão ao backend
+        if (Object.keys(errors).length > 0) {
+            return; // Se houver erros, parar aqui
+        }
+
+        if (!ref.current) {
+            console.error("formRef não está definido");
+            return;
+        }
 
         const formData = new FormData(ref.current);
         const data = Object.fromEntries(formData.entries());
 
-        fetch('http://localhost:3000/loginps', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => {
+        // Se não houver erros, faz o fetch para o backend
+        try {
+            const response = await fetch("http://localhost:3000/loginps", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
             if (!response.ok) {
-                return response.text().then(text => {
-                    throw new Error(text || 'Erro ao fazer login');
-                });
+                // Caso o backend retorne um erro, não queremos exibir a mensagem detalhada
+                throw new Error("Falha ao realizar login. Tente novamente.");
             }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Login bem-sucedido:', data); 
-            // Aqui você pode chamar setLoggedIn se você passar como prop
-        })
-        .catch(error => {
-            console.error('Erro:');
-            setErrors({ general: error.message });
-        });
+
+            const result = await response.json();
+            const token = result.token;
+
+            // Armazena o token no localStorage
+            localStorage.setItem("token", token);
+
+            // Redireciona o usuário para a página desejada, como por exemplo "/dashboard"
+            navigate("/homepage-psi");
+        } catch (error) {
+            console.error("");
+            setErrors({ general: "" });
+        }
     };
 
     return (
         <article className="flex flex-col justify-center items-center p-5 w-full max-w-4xl h-3/5 font-satoshi-bold">
-
             <form ref={ref} method="post" className="w-4/6 max-w-1xl h-auto mt-2 ml-5 justify-center items-center ">
+                <Email user_emailpsierror={errors.user_emailpsi} />
+                <Cpf cpferror={errors.cpf_loginpsi} />
+                <Password passwordError={errors.password} />
 
-                <Email 
-                    user_emailpsierror = {errors.user_emailpsi}
-                />
-                <Cpf 
-                    cpferror = {errors.cpf_loginpsi}
-                />
-
-                <Password 
-                    passwordError={errors.password}/>
+                {/* Botão de Entrar adicionado diretamente no formulário */}
+                <button
+                    type="button"
+                    onClick={handleClick}
+                    className="bg-[#3B82F6] p-0.5 text-white border border-[#3B82F6] w-80 h-auto rounded-[10px] max-w-sm font-satoshi font-extrabold text-lg mt-0.5 hover:bg-[#1c3b79] transition-all duration-200 hover:rounded-[15px] mr-1"
+                >
+                    Entrar
+                </button>
 
             </form>
-
         </article>
     );
-})
+});
