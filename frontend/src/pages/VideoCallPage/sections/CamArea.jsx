@@ -5,8 +5,8 @@ import { MicrophoneAccess } from "./audio.jsx"
 
 
 export function CamsEButtons(){
-const [audio,setAudio] = useState(1)
-const [Cam,setCam] = useState(1)
+const [audio,setAudio] = useState(0)
+const [Cam,setCam] = useState(0)
 
 
 
