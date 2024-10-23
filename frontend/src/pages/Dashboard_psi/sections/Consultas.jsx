@@ -41,7 +41,7 @@ export function Consultas() {
       </div>
       <div className="flex justify-start items-start w-full h-full p-8">
 
-        <ConsultasPacientes nome="Psi.Pedro Lucas" date="20/07" horario="13:20"/>
+        <ConsultasPacientes nome="Claudio" date="20/07" horario="13:20"/>
 
         
       </div>

@@ -39,7 +39,8 @@ export function Consultas() {
       <div className="flex justify-start items-start w-full h-full p-8">
 
 
-        <ConsultasPsicologos nome="Psi.Pedro Lucas" date="20/07" horario="13:20"></ConsultasPsicologos>
+        <ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20"></ConsultasPsicologos>
+        
 {
 
   /* 

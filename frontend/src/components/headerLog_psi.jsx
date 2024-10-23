@@ -38,6 +38,15 @@ function Visibilidade(){
     // Recupera o nome do localStorage
     const nome = localStorage.getItem('usuarioNome') || "Usuário"; // "Usuário" é o fallback caso não tenha nome
 
+    // Função para lidar com logout
+    function handleLogout() {
+        // Remove o token do localStorage
+        localStorage.removeItem('token'); // Ajuste 'token' para o nome correto do seu token
+        localStorage.removeItem('usuarioNome'); 
+        // Redireciona ou atualiza a página
+        window.location.href = '/'; // Ajuste para a rota desejada
+    }
+
     return (
         <div
             id="Header"
@@ -83,7 +92,7 @@ function Visibilidade(){
 
 
         {/*botao de logout*/}
-        <button className='w-full h-fit m-1 bg-white hover:bg-slate-500 transition-all duration-200 hover:text-white flex justify-start items-end rounded-[8px] font-poppins'>
+        <button className='w-full h-fit m-1 bg-white hover:bg-slate-500 transition-all duration-200 hover:text-white flex justify-start items-end rounded-[8px] font-poppins' onClick={handleLogout}>
             {/* Imagem do logout */}
             <svg 
                 width="32" 
