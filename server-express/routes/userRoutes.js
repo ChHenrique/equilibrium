@@ -25,6 +25,27 @@ router.get('/me', authenticateToken, async (req, res) => {
     }
 });
 
+// Rota para buscar o nome social do psicólogo logado
+router.get('/psi', authenticateToken, async (req, res) => {
+    const userId = req.user.id_psi;  // O 'id_psi' vem do token JWT para o psicólogo
+
+    try {
+        // Busca o nome social do psicólogo no banco de dados
+        const [results] = await db.query('SELECT nome_social FROM psicologos WHERE id_psi = ?', [userId]);
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Psicólogo não encontrado' });
+        }
+
+        // Retorna o nome social do psicólogo
+        const user = results[0];
+        res.json({ nome_social: user.nome_social });
+    } catch (error) {
+        console.error('Erro ao buscar dados do psicólogo:', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+});
+
 router.get('/pacientes/:id', async (req, res) => {
     const userId = req.params.id;
 

@@ -36,11 +36,9 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
             // Armazena o token no localStorage
             localStorage.setItem('token', token);
 
-            // Atualiza o estado de login
-            setLoggedIn(true);
 
             // Redireciona o usuário para a página desejada, como por exemplo "/dashboard"
-            navigate('/homepage-pc');
+            navigate('/homepage-psi');
         })
         .catch(error => {
             console.error('Erro:', error.message);
