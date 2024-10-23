@@ -1,0 +1,109 @@
+.react-datepicker__triangle {
+  display: none;
+}
+
+.react-datepicker{
+  height: fit-content;
+  width: 100%;
+  box-shadow: none;
+}
+
+.react-datepicker__day-name{
+  margin-left: 20px  !important;
+  margin-right: 20px  !important;
+  font-size: 15px;
+  width: 30px;
+}
+
+.react-datepicker__day{
+  font-size:  20px;
+  padding: 2px !important;
+  width: 32px !important;
+
+  margin: 15px !important;
+color: #355081!important;
+margin-left: 20px  !important;
+margin-right: 20px  !important;
+}
+
+.react-datepicker__day--disabled{
+  color: rgb(189, 189, 189) !important;
+}
+
+
+
+.react-datepicker__week{
+  padding: 2px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: fit-content;
+}
+
+.react-datepicker__day.react-datepicker__day--keyboard-selected {
+  border: none;
+  border-radius: 1000px;
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+.react-datepicker__day.react-datepicker__day--keyboard-selected:hover {
+  border: none;
+  border-radius: 7px;
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+.react-datepicker-popper .react-datepicker__navigation {
+  padding-top: 12px;
+  color: #000;
+}
+
+.react-datepicker {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.189);
+  border: none !important;
+  font-family: "Satoshi" !important;
+}
+
+.react-datepicker__header {
+  border-bottom: solid 5px var(--light) !important;
+  background: white !important;
+}
+
+.react-datepicker__current-month {
+  color: var(--dark) !important;
+}
+
+.react-datepicker__day.react-datepicker__day--today {
+  border-radius: 1000px;
+  border: solid 2px var(--brand) !important;
+  background-color: white !important;
+  color: var(--dark) !important;
+  width: 30px;
+  height: 30px;
+}
+
+.react-datepicker__day.react-datepicker__day--selected {
+  border: none;
+  border-radius: 1000px;
+  background-color: #98b4e9;
+  
+  color: white;
+}
+
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--in-selecting-range:hover,
+.react-datepicker__day--in-range:hover,
+.react-datepicker__month-text--selected:hover,
+.react-datepicker__month-text--in-selecting-range:hover,
+.react-datepicker__month-text--in-range:hover,
+.react-datepicker__quarter-text--selected:hover,
+.react-datepicker__quarter-text--in-selecting-range:hover,
+.react-datepicker__quarter-text--in-range:hover,
+.react-datepicker__year-text--selected:hover,
+.react-datepicker__year-text--in-selecting-range:hover,
+.react-datepicker__year-text--in-range:hover {
+  border: none;
+  border-radius: 7px !important;
+  background-color: var(--brand) !important;
+  color: var(--dark) !important;
+}

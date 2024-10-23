@@ -10,7 +10,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
   };
 
   return (
-    <div className="w-[90vw] h-[80vh] bg-white rounded-lg flex items-center">
+    <div className="w-[90vw] h-[80vh] bg-white rounded-lg flex items-center relative">
 
       {/* Div que contém a imagem e o input de arquivo */}
       <div className='w-[25vw] h-full bg-white flex flex-col items-center border-r-2 border-[#6b6b6b]'>
@@ -59,7 +59,6 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
             Ver Histórico
           </button>
         </a>
-
       </div>
 
       <Alterações/>

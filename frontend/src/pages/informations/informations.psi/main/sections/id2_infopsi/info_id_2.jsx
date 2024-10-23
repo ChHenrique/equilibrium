@@ -10,10 +10,10 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
   };
 
   return (
-    <div className="w-[100%] h-[80vh] bg-white rounded-lg flex items-center">
+    <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center">
 
       {/* Div que contém a imagem e o input de arquivo */}
-      <div className='w-[25vw] h-full bg-white flex flex-col items-center border-r-2 border-[#6b6b6b]'>
+      <div className='w-[25vw] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b]'>
 
         {/* Div que contém a imagem */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
@@ -45,12 +45,13 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         </h2>
         <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_pc}</h3>
 
-        <a href='/homepage-pc' className='w-full flex justify-center'>
+        <a href='/homepage-pc' className='w-fit h-fit flex justify-center mt-7'>
           <button
-            className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl">
+            className=" w-fit bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl ">
             Ver Histórico
           </button>
         </a>
+        <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10'></div>
 
       </div>
 
