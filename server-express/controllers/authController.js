@@ -112,7 +112,7 @@ export const loginPs = async (req, res) => {
     const { email, cpf, senha } = req.body;
 
     // Verifica os campos obrigatórios
-    if (!email || !senha|| !cpf) {
+    if (!email || !senha || !cpf) {
         return res.status(400).json({ message: 'Por favor, preencha todos os campos' });
     }
 
@@ -132,8 +132,8 @@ export const loginPs = async (req, res) => {
             return res.status(401).json({ message: 'Credenciais inválidas' });
         }
 
-        // Gera um token JWT usando a chave secreta do .env
-        const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        // Gera um token JWT usando a chave secreta do .env e o campo id_psi
+        const token = jwt.sign({ id_psi: user.id_psi, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // Envia o token para o frontend
         return res.status(200).json({ message: 'Login realizado com sucesso', token });

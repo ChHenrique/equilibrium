@@ -17,7 +17,7 @@ export function Dashboard_psi(){
         }
 
         try {
-            const response = await axios.get('http://localhost:3000/user/me', {
+            const response = await axios.get('http://localhost:3000/user/psi', {
                 headers: {
                     Authorization: `Bearer ${token}` // Adiciona o token no cabeçalho
                 }
