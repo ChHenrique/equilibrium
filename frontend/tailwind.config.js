@@ -33,6 +33,7 @@ export default {
           600: '#708FCC', // hover
           700: '#46597F', // hoverb
           800: '#355081',
+          900: '#FD8686',
         },
         secondary:{
           100: '#F1F5F9',
