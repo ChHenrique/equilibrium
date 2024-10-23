@@ -66,4 +66,40 @@ router.get('/pacientes/:id', async (req, res) => {
     }
 });
 
+router.get('/psicologos/:id_psi', async (req, res) => {
+    const psicologoId = req.params.id_psi;
+
+    try {
+        // Busca as informações do psicólogo no banco de dados usando "id_psi"
+        const [results] = await db.query('SELECT * FROM psicologos WHERE id_psi = ?', [psicologoId]);
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Psicólogo não encontrado' });
+        }
+
+        // Retorna todas as informações do psicólogo
+        const psicologo = results[0];
+        res.json(psicologo);
+    } catch (error) {
+        console.error('Erro ao buscar dados do psicólogo:', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+});
+
+
+
+router.get('/psicologos', async (req, res) => {
+    try {
+        // Busca todos os psicólogos cadastrados no banco de dados
+        const [results] = await db.query('SELECT * FROM psicologos');
+
+        // Retorna a lista de psicólogos
+        res.json(results);
+    } catch (error) {
+        console.error('Erro ao buscar psicólogos:', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+});
+
+
 export default router;
