@@ -55,7 +55,6 @@ export function Principal() {
                         </div>
                     </button>
                 ))}
-                <div className="mt-2 text-2xl font-poppins text-[#465A7F] font-medium" draggable="true">Segurança</div>
             </div>
 
             <div className="h-full w-[100%] bg-white rounded-2xl flex items-center">

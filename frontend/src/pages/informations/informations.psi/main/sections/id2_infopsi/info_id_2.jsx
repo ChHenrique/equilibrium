@@ -13,7 +13,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center">
 
       {/* Div que contém a imagem e o input de arquivo */}
-      <div className='w-[25vw] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b]'>
+      <div className='w-[35%] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b]'>
 
         {/* Div que contém a imagem */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
