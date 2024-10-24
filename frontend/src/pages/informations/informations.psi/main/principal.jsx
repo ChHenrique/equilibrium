@@ -33,6 +33,7 @@ export function Principal() {
         switch (idAtivado) {
             case 1:
                 return <Info imagem={imagem} onChange={handleImageChange} nome={nome} id_psi={"#0202030202"} diaConta={"12/12/12"} />;
+                return <Info imagem={imagem} onChange={handleImageChange} nome={"Dhamyla Ivina"} id_pc={"#0202030202"} diaConta={"12/12/12"} />;
             case 2:
                 return <InfoPsi imagem={imagem} onChange={handleImageChange} nome={nome} id_p={"#DF352HE6D"}/>;
             default:
@@ -57,7 +58,6 @@ export function Principal() {
                         </div>
                     </button>
                 ))}
-                <div className="mt-2 text-2xl font-poppins text-[#465A7F] font-medium" draggable="true">Segurança</div>
             </div>
 
             <div className="h-full w-[100%] bg-white rounded-2xl flex items-center">
