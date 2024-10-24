@@ -55,11 +55,11 @@ export function Alterações_Pessoais() {
 
         <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2'>Tópicos</h1>
 
-        <div className='w-full h-full relative'>
-          <div className='absolute top-2 left-3 flex space-x-6'>
+        <div className='w-full h-full relative '>
+          <div className='absolute flex w-full h-full bg-[#C9D4E9] whitespace-nowrap'>
 
             {Array.map((item, index) => (
-              <div key={index} className='flex items-center space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2  rounded-lg'>
+              <div key={index} className='flex items-center h-fit w-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg whitespace-nowrap m-1'>
                 <h3 className='font-poppins text-[#121926]'>{item}</h3>
                 <div onClick={() => ExcluirArray(index)}>
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className='mt-0.5 text-[#121926] hover:text-red-600 duration-300'>
@@ -71,7 +71,7 @@ export function Alterações_Pessoais() {
             ))}
           </div>
 
-          <textarea name="" id="" className='w-full h-full bg-[#C9D4E9] rounded-2xl p-2 pl-4 outline-none resize-none' onChange={PegarValorTextArea} value={TextArea} onKeyDown={(e) => {
+          <textarea name="" className='w-full h-full  rounded-2xl p-2 pl-4 outline-none resize-none' onChange={PegarValorTextArea} value={TextArea} onKeyDown={(e) => {
             if (e.key === "Enter") {
               ValorArray();
               e.preventDefault();
@@ -94,7 +94,7 @@ export function Alterações_Pessoais() {
       <div className='flex flex-col w-[95%] h-[37%] relative'>
         <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2'>Formação</h1>
 
-        <textarea name="" id="" className='w-full h-full bg-[#C9D4E9] rounded-2xl p-2 pl-4 outline-none resize-none'>
+        <textarea name="" id="" className='w-full h-full bg-[#C9D4E9] rounded-2xl p-2 pl-4 outline-none resize-none z-20'>
         </textarea>
 
         <button className='absolute right-6 bottom-4'>
