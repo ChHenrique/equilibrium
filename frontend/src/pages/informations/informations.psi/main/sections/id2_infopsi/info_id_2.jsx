@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alterações_Pessoais } from './informações_pessoais';
 
-export function InfoPsi({ imagem, onChange, nome, id_pc }) {
+export function InfoPsi({ imagem, onChange, nome, id_psi }) {
   const [selectedImage, setSelectedImage] = useState(imagem);
 
   const handleImageChange = (e) => {
@@ -43,7 +43,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         <h3 className='mt-3 font-poppins text-[#465A7F] text-sm font-medium'>Escolher foto</h3>
         <h2 className="mt-1 font-poppins text-[#000000] text-xl font-medium whitespace-break-spaces break-all text-center">{nome}
         </h2>
-        <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_pc}</h3>
+        <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_psi}</h3>
 
         <a href='/homepage-pc' className='w-fit h-fit flex justify-center mt-7'>
           <button
