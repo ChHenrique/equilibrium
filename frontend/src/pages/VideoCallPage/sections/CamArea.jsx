@@ -103,7 +103,7 @@ function renderCam(){
                                <path d="M30 20V24C30 27.713 28.525 31.274 25.8995 33.8995C23.274 36.525 19.713 38 16 38M16 38C12.287 38 8.72601 36.525 6.1005 33.8995C3.475 31.274 2 27.713 2 24V20M16 38V46M8 46H24M16 2C14.4087 2 12.8826 2.63214 11.7574 3.75736C10.6321 4.88258 10 6.4087 10 8V24C10 25.5913 10.6321 27.1174 11.7574 28.2426C12.8826 29.3679 14.4087 30 16 30C17.5913 30 19.1174 29.3679 20.2426 28.2426C21.3679 27.1174 22 25.5913 22 24V8C22 6.4087 21.3679 4.88258 20.2426 3.75736C19.1174 2.63214 17.5913 2 16 2Z" stroke="#355081" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                      </svg>
                      :
-                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <svg className=" w-full h-full"  viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_864_932)">
 <path d="M38 20V24C38 27.713 36.525 31.274 33.8995 33.8995C31.274 36.525 27.713 38 24 38M24 38C20.287 38 16.726 36.525 14.1005 33.8995C11.475 31.274 10 27.713 10 24V20M24 38V46M16 46H32M24 2C22.4087 2 20.8826 2.63214 19.7574 3.75736C18.6321 4.88258 18 6.4087 18 8V24C18 25.5913 18.6321 27.1174 19.7574 28.2426C20.8826 29.3679 22.4087 30 24 30C25.5913 30 27.1174 29.3679 28.2426 28.2426C29.3679 27.1174 30 25.5913 30 24V8C30 6.4087 29.3679 4.88258 28.2426 3.75736C27.1174 2.63214 25.5913 2 24 2Z" stroke="#355081" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <line x1="1.58579" y1="46.5858" x2="46.5858" y2="1.58579" stroke="#FD8686" stroke-width="4"/>
@@ -139,7 +139,7 @@ function renderCam(){
 
 : 
 
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg className=" w-full h-full" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_865_941)">
 <path d="M46 14L32 24L46 34V14Z" stroke="#355081" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M28 10H6C3.79086 10 2 11.7909 2 14V34C2 36.2091 3.79086 38 6 38H28C30.2091 38 32 36.2091 32 34V14C32 11.7909 30.2091 10 28 10Z" stroke="#355081" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
