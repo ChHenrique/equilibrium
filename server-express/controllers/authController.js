@@ -27,9 +27,9 @@ export const registerUser = async (req, res) => {
         let hashedsenha = await bcrypt.hash(senha, 8);
 
         // Inserir o novo usuário no banco de dados
-        await db.query('INSERT INTO pacientes (nome, sobrenome, nome_social, data_nasc, email, senha) VALUES (?, ?, ?, ?, ?, ?)', 
+        await db.query('INSERT INTO pacientes (nome, sobrenome, nome_social, data_nasc, email, senha, data_criacao) VALUES (?, ?, ?, ?, ?, ?, NOW())', 
             [nome, sobrenome, nome_social, data_nasc, email, hashedsenha]);
-
+        
         return res.status(201).json({ message: 'Usuário registrado com sucesso' });
     } catch (error) {
         console.error('Erro no registro do usuário:', error);
@@ -62,8 +62,9 @@ export const registerPs = async (req, res) => {
         let hashedsenha = await bcrypt.hash(senha, 8);
 
         // Inserir o novo usuário no banco de dados
-        await db.query('INSERT INTO psicologos (nome, sobrenome, nome_social, data_nasc, email, senha, cpf, crp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', 
+        await db.query('INSERT INTO psicologos (nome, sobrenome, nome_social, data_nasc, email, senha, cpf, crp, data_criacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())', 
             [nome, sobrenome, nome_social, data_nasc, email, hashedsenha, cpf, crp]);
+        
 
 
         return res.status(201).json({ message: 'Usuário registrado com sucesso' });
@@ -101,7 +102,8 @@ export const loginUser = async (req, res) => {
         const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // Envia o token para o frontend
-        return res.status(200).json({ message: 'Login realizado com sucesso', token });
+        return res.status(200).json({ message: 'Login realizado com sucesso', token, data_criacao: user.data_criacao });
+
     } catch (error) {
         console.error('Erro no login do usuário:', error);
         return res.status(500).json({ message: 'Erro no servidor' });
@@ -136,7 +138,8 @@ export const loginPs = async (req, res) => {
         const token = jwt.sign({ id_psi: user.id_psi, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // Envia o token para o frontend
-        return res.status(200).json({ message: 'Login realizado com sucesso', token });
+        return res.status(200).json({ message: 'Login realizado com sucesso', token, data_criacao: user.data_criacao });
+
     } catch (error) {
         console.error('Erro no login do psicologo:', error);
         return res.status(500).json({ message: 'Erro no servidor' });

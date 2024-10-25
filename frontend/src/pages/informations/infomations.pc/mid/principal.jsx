@@ -1,6 +1,19 @@
 import { Segurança } from "./sections/segurança.jsx"
 import { Info } from "./sections/info.jsx"
 import React, { useState } from 'react';
+
+const nome = localStorage.getItem('usuarioNome') || "Usuário";
+
+
+
+
+
+
+
+
+
+
+
 export function Principal() {
     const [imagem, setImagem] = useState(null);
 
@@ -9,7 +22,7 @@ export function Principal() {
     <div className="w-[90vw] h-[80v] flex justify-center items-center space-x-5 mt-2"> 
 
     <Segurança /> 
-    <Info imagem={imagem} onChange={handleImageChange} nome={"Pedro Lucas"} id_pc={"#0202030202"} diaConta={"12/12/12"}/> 
+    <Info imagem={imagem} onChange={handleImageChange} nome={nome} id_pc={"#0202030202"} diaConta={"12/12/12"}/> 
     
     </div>
     )

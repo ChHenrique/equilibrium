@@ -24,15 +24,18 @@ const button = [
     }
 ];
 
+const nome = localStorage.getItem('usuarioNome') || "Usuário";
+
 export function Principal() {
     const [idAtivado, SetIdAtivado] = useState(1);
 
     const renderContent = () => {
         switch (idAtivado) {
             case 1:
+                return <Info imagem={imagem} onChange={handleImageChange} nome={nome} id_psi={"#0202030202"} diaConta={"12/12/12"} />;
                 return <Info imagem={imagem} onChange={handleImageChange} nome={"Dhamyla Ivina"} id_pc={"#0202030202"} diaConta={"12/12/12"} />;
             case 2:
-                return <InfoPsi imagem={imagem} onChange={handleImageChange} nome={"Dhamyla Ivina"} id_pc={"#DF352HE6D"}/>;
+                return <InfoPsi imagem={imagem} onChange={handleImageChange} nome={nome} id_p={"#DF352HE6D"}/>;
             default:
                 return null;
         }
