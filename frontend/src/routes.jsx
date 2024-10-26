@@ -30,28 +30,28 @@ export const routes = createBrowserRouter([
         element: <About />
       },
       {
-        path: '/homepage-pc',
+        path: '/home/paciente',
         element: <Dashboard />
       },
       {
-        path: '/homepage-psi',
+        path: '/home/psicologo',
         element: <Dashboard_psi />
 
       },
       {
-        path: '/registro_pc',
+        path: '/registro/paciente',
         element: <Registration_pc />
       },
       {
-        path: '/registro_psi',
+        path: '/registro/psicologo',
         element: <Registration_psi />
       },
       {
-        path: '/login_pc',
+        path: 'login/paciente',
         element: <Login_pc />
       },
       {
-        path: '/login_psi',
+        path: '/login/psicologo',
         element: <Login_psi />
       },
       {
@@ -59,19 +59,19 @@ export const routes = createBrowserRouter([
         element: <Search />
       },
       {
-        path: '/info_pc',
+        path: '/info/paciente',
         element: <Informations_pc />
       },
       {
-        path: '/calendario',
+        path: '/consulta',
         element: <Calendario />
       },
       {
-        path: '/videopage',
+        path: '/chat',
         element: <VideoPage/>
       },
       {
-        path: '/Info_psi',
+        path: '/info/psicologo',
         element: <Informations_psi/>
       }
     ]

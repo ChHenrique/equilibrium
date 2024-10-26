@@ -1,7 +1,7 @@
 import { HeaderLink } from './header-link';
 import { Button } from './button';
 import { Logo } from './logo';
-import { jwtDecode } from 'jwt-decode';  // Corrigido para importação padrão
+import { jwtDecode } from 'jwt-decode';  
 import { useNavigate } from 'react-router-dom';
 
 const LINKS = [
@@ -14,7 +14,7 @@ export function Header() {
 
   const handleLoginClick = () => {
     try {
-      // Verificar se há um token no localStorage
+      // Pega o token do localstorage
       const token = localStorage.getItem('token');
 
       if (token) {
@@ -23,16 +23,16 @@ export function Header() {
 
         // Verificar se é um psicólogo ou paciente e redirecionar para a dashboard adequada
         if (decodedToken.id_psi) {
-          navigate('/homepage-psi');
+          navigate('/home/psicologo');
         } else if (decodedToken.id) {
-          navigate('/homepage-pc');
+          navigate('/home/paciente');
         } else {
           // Caso o token não contenha nem id de paciente nem de psicólogo, redireciona para o login de paciente
-          navigate('/login_pc');
+          navigate('/login/paciente');
         }
       } else {
         // Se não houver token, redirecionar para a página de login de paciente
-        navigate('/login_pc');
+        navigate('/login/paciente');
       }
     } catch (error) {
       console.error('Erro ao decodificar o token ou redirecionar:', error);
