@@ -36,6 +36,8 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
         .then(data => {
             const token = data.token;
             localStorage.setItem('token', token);
+            const id = data.id
+            localStorage.setItem('id', id);
             setLoggedIn(true);
             navigate('/homepage-pc');
         })
