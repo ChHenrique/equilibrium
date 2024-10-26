@@ -55,7 +55,7 @@ export const routes = createBrowserRouter([
         element: <Login_psi />
       },
       {
-        path: '/search',
+        path: '/psicologos',
         element: <Search />
       },
       {

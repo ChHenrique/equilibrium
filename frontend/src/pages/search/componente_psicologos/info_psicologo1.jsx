@@ -99,7 +99,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo}) {
             
             {/* Botão acessar consultas */}
             <aside className="flex-shrink-0 flex items-center flex-col h-full">
-                <a href="/calendario" className="mt-auto relativo">
+                <a href="/consulta" className="mt-auto relativo">
                 <button
                     className="bg-[#355081] hover:bg-[#19376d] text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto relativo"
                     id="button_acessar_consulta"

@@ -39,7 +39,7 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
             const id = data.id
             localStorage.setItem('id', id);
             setLoggedIn(true);
-            navigate('/homepage-pc');
+            navigate('/home/paciente');
         })
         .catch(error => {
             console.error('Erro:', error.message);
