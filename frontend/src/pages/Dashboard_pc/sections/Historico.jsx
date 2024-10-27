@@ -31,7 +31,7 @@ export function Historico() {
         </button>
       </div>
       <div className="flex justify-start items-start w-full h-full p-8">
-        <ConsultasPsicologos nome="Psi.Nadyson" date="12/03" horario="1:20"></ConsultasPsicologos>
+        <ConsultasPsicologos nome="Psi.Nadyson" date="12/03" horario="1:20" duracao="01:15"></ConsultasPsicologos>
       </div>
     </div>
   )
