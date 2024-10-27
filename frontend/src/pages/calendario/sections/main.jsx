@@ -13,6 +13,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 export function Main (){
 
 registerLocale('pt-BR', ptBR);
+const [hour,setHour] = useState("")
+const [fdate,setfDate] = useState("")
+
 
   const [page,setPage] = useState(1);
   const [startDate, setStartDate] = useState(new Date());
@@ -73,7 +76,19 @@ registerLocale('pt-BR', ptBR);
 
 
                         </h1>
-                       <button className="w-1/4 h-fit text-2xl bg-primary-500 text-white p-2 rounded-[16px] m-12 font-bold hover:bg-primary-800 duration-300">Confirmar</button>
+                       <button className="w-1/4 h-fit text-2xl bg-primary-500 text-white p-2 rounded-[16px] m-12 font-bold hover:bg-primary-800 duration-300"
+                       onClick={()=>{
+                      setfDate(`${startDate.getDate()}-${startDate.getMonth() +1}-${startDate.getFullYear()} `);
+                      setHour(`${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}`);
+
+                            if(fdate != "" && hour != ""){
+                              console.log(fdate)
+                              console.log(hour)
+                            }
+                       }}
+                       
+                       
+                       >Confirmar</button>
                    </div>
                 )
               }

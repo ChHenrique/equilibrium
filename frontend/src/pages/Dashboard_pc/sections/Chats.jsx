@@ -85,7 +85,7 @@ export function Chats() {
                     <input type="text"run placeholder=" Pesquisar..." className="w-11/12 m-4 h-9 bg-gray-200 rounded-xl placeholder:text-primary-700 outline-2 outline-slate-400" />
                 </div>
            {/* Chats.map((nome,foto)=>{
-            <ChatUsers nome={nome} foto={foto}/>
+            <ChatUsers nome={nome} foto={foto} id={id}/>
             
             })*/}
 
