@@ -14,9 +14,9 @@ export function Seach_psicologos() {
                     throw new Error("Erro ao buscar psicólogos");
                 }
                 const data = await response.json();
-                setPsicologos(data); // rmazena os dados
+                setPsicologos(data); // armazena os dados
             } catch (err) {
-                setError(err.message); // rmazena a mensagem de erro
+                setError(err.message); // armazena a mensagem de erro
             } finally {
                 setLoading(false); // remove o carregamento
             }

@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 
 const LINKS = [
-  { name: 'Sou Psicólogo', href: '/login_psi' },
+  { name: 'Sou Psicólogo', href: '/login/psicologo' },
   { name: 'Sobre nós', href: '/sobre' },
 ];
 
