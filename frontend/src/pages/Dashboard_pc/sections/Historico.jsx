@@ -30,7 +30,7 @@ export function Historico() {
           </svg>
         </button>
       </div>
-      <div className="flex justify-start items-start w-full h-full p-8">
+      <div className="grid justify-start items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-3 grid-flow-row">
         <ConsultasPsicologos nome="Psi.Nadyson" date="12/03" horario="1:20" duracao="01:15"></ConsultasPsicologos>
       </div>
     </div>

@@ -1,12 +1,15 @@
 import React from "react";
 import nullimg from '../../../../assets/images/user_null.svg'
-
+import { useState } from "react";
 
 export function ConsultasPsicologos({ nome, date, horario, duracao }) {
+    const [able, setAble] = useState(1) //Se =1 e entravel na secçao, se 0 não
+
+
     return (
 
-        <div className="w-min-content pr-4 h-32 flex bg-slate-200 font-poppins justify-center items-center rounded-2xl m-2">
-            <img src={nullimg} alt="" className="h-24 w-24 rounded-full m-2" />
+        <div className="min-w-fit pr-4 h-32 flex bg-slate-200 font-poppins justify-center items-center rounded-2xl m-2 max-w-fit ">
+            <img src={nullimg} alt="" className="w-24 rounded-full m-2" />
             <div className="flex flex-col text-2xl justify-center items-start h-32 w-auto">
                 <h1 className=" text-primary-700 text-2xl font-medium">{nome}</h1>
                 <div className="flex flex-row justify-center items-center">
@@ -44,6 +47,15 @@ export function ConsultasPsicologos({ nome, date, horario, duracao }) {
 
                         { duracao}</h2>
                 </div>
+
+                {
+                    able ?
+                        <a href="#" className="">
+                            <button className="w-full h-fit bg-primary-200 text-white text-base rounded-2xl p-2 mt-2 cursor-pointer duration-150 hover:bg-primary-500"> Juntar-se a chamada</button>
+                        </a>
+                        :
+                        <div></div>
+                }
             </div>
         </div>
     )

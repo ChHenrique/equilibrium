@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './animate.css'
 
 
-export function Alterações_Pessoais() {
+export function Alterações_Piscologo() {
   const [TextArea, SetTextArea] = useState("");
   const [Topicos, SetTopicos] = useState([]);
 

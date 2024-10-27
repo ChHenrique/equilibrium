@@ -36,11 +36,11 @@ export function Consultas() {
           </svg>
         </button>
       </div>
-      <div className="flex justify-start items-start w-full h-full p-8">
+      <div className="grid justify-start items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-3 grid-flow-row">
 
 
         <ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos>
-        
+        <ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos>
 {
 
   /* 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alterações_Pessoais } from './informações_pessoais';
+import { Alterações_Piscologo } from './informações_psicologo';
 
 export function InfoPsi({ imagem, onChange, nome, id_psi }) {
   const [selectedImage, setSelectedImage] = useState(imagem);
@@ -55,7 +55,7 @@ export function InfoPsi({ imagem, onChange, nome, id_psi }) {
 
       </div>
 
-      <Alterações_Pessoais />
+      <Alterações_Piscologo />
     </div>
   )
 }
