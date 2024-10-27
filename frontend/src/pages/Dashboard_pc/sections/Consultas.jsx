@@ -40,7 +40,7 @@ export function Consultas() {
 
 
         <ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos>
-        <ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos><ConsultasPsicologos nome="Psi. Dhamyla Ivina" date="20/07" horario="13:20" duracao="00:50"></ConsultasPsicologos>
+        
 {
 
   /* 

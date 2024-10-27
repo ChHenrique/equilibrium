@@ -43,6 +43,7 @@ function Visibilidade(){
         // Remove o token do localStorage
         localStorage.removeItem('token'); // Ajuste 'token' para o nome correto do seu token
         localStorage.removeItem('usuarioNome'); 
+        localStorage.removeItem('id'); 
         // Redireciona ou atualiza a página
         window.location.href = '/'; // Ajuste para a rota desejada
     }

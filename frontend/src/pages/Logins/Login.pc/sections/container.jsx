@@ -19,7 +19,7 @@ export function Container() {
             <Footer errors={errors} setErrors={setErrors} setLoggedIn={setLoggedIn} formRef={formRef} />
 
 
-            <a href="./">
+            <a href="/">
                 <img
                     src={logo}
                     alt="Logo"

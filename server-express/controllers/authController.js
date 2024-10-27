@@ -138,7 +138,7 @@ export const loginPs = async (req, res) => {
         const token = jwt.sign({ id_psi: user.id_psi, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // Envia o token para o frontend
-        return res.status(200).json({ message: 'Login realizado com sucesso', token, data_criacao: user.data_criacao });
+        return res.status(200).json({ message: 'Login realizado com sucesso', token, data_criacao: user.data_criacao, id: user.id_psi });
 
     } catch (error) {
         console.error('Erro no login do psicologo:', error);

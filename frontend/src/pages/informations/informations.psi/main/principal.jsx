@@ -1,8 +1,8 @@
+import React, { useState, useEffect } from 'react';
 import { Info } from "./sections/info.jsx";
-import React, { useState } from 'react';
-import { Chats } from "../../../Dashboard_psi/sections/Chats.jsx";
-import { InfoPsi } from "./sections/id2_infopsi/info_id_2.jsx"
+import { InfoPsi } from "./sections/id2_infopsi/info_id_2.jsx";
 
+// Array de botões com ícones SVG
 const button = [
     {
         id: 1,
@@ -25,25 +25,56 @@ const button = [
 ];
 
 const nome = localStorage.getItem('usuarioNome') || "Usuário";
+const id = localStorage.getItem('id');
 
 export function Principal() {
     const [idAtivado, SetIdAtivado] = useState(1);
+    const [imagem, setImagem] = useState(null);
+    const [dataCriacaoConta, setDataCriacaoConta] = useState('');
+
+    // Função para formatar a data em dd/mm/yyyy
+    const formatarData = (dataString) => {
+        const data = new Date(dataString);
+        const dia = String(data.getDate()).padStart(2, '0');
+        const mes = String(data.getMonth() + 1).padStart(2, '0'); // Os meses começam em 0
+        const ano = data.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    };
+
+    // Função para buscar dados do psicólogo
+    useEffect(() => {
+        const fetchDadosPsicologo = async () => {
+            try {
+                const response = await fetch(`http://localhost:3000/user/psicologos/${id}`);
+                const data = await response.json();
+
+                // Verifica se a data_criacao existe e é um valor válido
+                if (data.data_criacao) {
+                    const dataFormatada = formatarData(data.data_criacao);
+                    setDataCriacaoConta(dataFormatada);
+                } else {
+                    console.error("Campo data_criacao não encontrado na resposta da API.");
+                }
+            } catch (error) {
+                console.error("Erro ao buscar dados do psicólogo:", error);
+            }
+        };
+
+        fetchDadosPsicologo();
+    }, []);
+
+    const handleImageChange = (e) => { setImagem(e.target.files[0]); };
 
     const renderContent = () => {
         switch (idAtivado) {
             case 1:
-                return <Info imagem={imagem} onChange={handleImageChange} nome={nome} id_psi={"#0202030202"} diaConta={"12/12/12"} />;
-                return <Info imagem={imagem} onChange={handleImageChange} nome={"Dhamyla Ivina"} id_pc={"#0202030202"} diaConta={"12/12/12"} />;
+                return <Info imagem={imagem} onChange={handleImageChange} nome={nome} id_psi={` ${id}`} diaConta={dataCriacaoConta} />;
             case 2:
-                return <InfoPsi imagem={imagem} onChange={handleImageChange} nome={nome} id_p={"#DF352HE6D"}/>;
+                return <InfoPsi imagem={imagem} onChange={handleImageChange} nome={nome} id_psi={` ${id}`}/>; 
             default:
                 return null;
         }
     };
-
-    const [imagem, setImagem] = useState(null);
-
-    const handleImageChange = (e) => { setImagem(e.target.files[0]); };
 
     return (
         <div className="w-[90%] h-[80%] flex justify-center items-center space-x-5 mt-2">
