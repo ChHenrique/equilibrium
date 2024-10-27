@@ -50,7 +50,7 @@ export const Form = forwardRef(({ setLoggedIn }, ref) => {
             localStorage.setItem("token", token);
 
             // Redireciona o usuário para a página desejada, como por exemplo "/dashboard"
-            navigate("/homepage-psi");
+            navigate("/home/psicologo");
         } catch (error) {
             console.error("");
             setErrors({ general: "" });
