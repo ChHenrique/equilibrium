@@ -95,7 +95,7 @@ export function InfoPsi({ onChange, nome}) {
           <div className='w-full h-full relative whitespace-normal'>
             <div className='absolute top-3 left-3 flex flex-wrap space-x-2 w-full h-fit max-w-[98%]'>
               {Topicos.map((item, index) => (
-                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2'>
+                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2 hover:bg-[#94aae4] duration-150'>
                   <h3 id='letra' className='font-poppins text-[#121926] break-words'>{item}</h3>
                   <div onClick={() => ExcluirTopicos(index)} className='xis h-full justify-center items-center'>
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className='mt-0.5 text-[#121926] scale-125 duration-300 cursor-pointer'>
