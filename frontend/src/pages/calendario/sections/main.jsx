@@ -14,8 +14,13 @@ export function Main() {
   const [fdate, setfDate] = useState("");
   const id = localStorage.getItem('id');
 
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
   const [page, setPage] = useState(1);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(tomorrow);
+
+
 
   const location = useLocation(); // Obtém a localização atual
   const queryParams = new URLSearchParams(location.search);
@@ -67,10 +72,11 @@ export function Main() {
           <div className="flex flex-row justify-center items-center">
             <DatePicker
               open={true}
-              minDate={new Date() + 1}
+              minDate={tomorrow}
               showTimeSelect
               timeIntervals={15}
               timeFormat="HH:mm"
+              
               locale="pt-BR"
               dateFormat="d/MM/y"
               className="items-center flex w-full p-1 font-poppins text-xl border-primary-700 border-b-2 text-primary-700 outline-1 outline-primary-700"
@@ -80,7 +86,13 @@ export function Main() {
             <svg className="w-7 p-0 -translate-x-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path className="w-full h-full p-0 m-0" d="M32 4V12M16 4V12M6 20H42M10 8H38C40.2091 8 42 9.79086 42 12V40C42 42.2091 40.2091 44 38 44H10C7.79086 44 6 42.2091 6 40V12C6 9.79086 7.79086 8 10 8Z" stroke="#46597f" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <button onClick={() => setPage(2)}>
+            <button onClick={() => {
+    if (startDate.getTime() > new Date().getTime()) {
+      setPage(2);
+    } else {
+      alert("Por favor, selecione um horário futuro.");
+    }
+  }}>
               <svg width="17" height="25" viewBox="0 0 17 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.4142 16.4142C17.1953 15.6332 17.1953 14.3668 16.4142 13.5858L3.68629 0.857864C2.90524 0.0768158 1.63891 0.0768158 0.857864 0.857864C0.0768158 1.63891 0.0768158 2.90524 0.857864 3.68629L12.1716 15L0.857864 26.3137C0.0768158 27.0948 0.0768158 28.3611 0.857864 29.1421C1.63891 29.9232 2.90524 29.9232 3.68629 29.1421L16.4142 16.4142ZM13 17H15V13H13V17Z" fill="black" />
               </svg>
