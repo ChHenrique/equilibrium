@@ -26,7 +26,7 @@ export function Consultas() {
       <div className="w-[95%] h-16 flex justify-end  m-4">
 
 
-        <input type="text" className="w-1/3 h-12 rounded-xl  bg-secondary-100 placeholder: text-primary-700 placeholder:p-2  border-none outline-1 outline-slate-300 p-2" placeholder="Pesquisar..." value={value} onChange={pegavalor} />
+        <input type="text" className="w-1/3 h-12 rounded-xl  bg-secondary-100 placeholder: text-primary-700 placeholder:p-2 placeholder-primary-700  border-none outline-1 outline-slate-300 p-2" placeholder="Pesquisar..." value={value} onChange={pegavalor} />
         <button className=" h-12 w-12 rounded-xl bg-secondary-100 items-center justify-center flex ml-2 text-primary-700 hover:bg-slate-300 duration-300 transition">
 
           <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">

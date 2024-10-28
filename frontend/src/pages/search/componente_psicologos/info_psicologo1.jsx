@@ -1,9 +1,18 @@
 
 import React, { useState } from "react";
 
-export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topicos=[] }) {
-    const [mouseFora, setMouseDentro] = useState(false);
-    const [mouseDentroTopico, setMouseDentro_topico] = useState(false);
+export function Psicologo({ nome, foto, tempConsulta, formação_psicologo}) {
+
+    const [mouseFora, setMouseDentro] = useState(false)
+
+    const [mouseDentroTopico, setMouseDentro_topico] = useState(false)
+
+    const [topico, setTopico] = useState([])
+
+    const Valor_Topico = (e) => {
+        setTopico((prevTopico) => [...prevTopico, e.target.value]);
+      };
+
 
     return (
         <div className="w-[75vw] h-auto bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row items-center p-4 md:p-6" draggable="false">
@@ -74,13 +83,13 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
 
             {/* Botão acessar consultas */}
             <aside className="flex-shrink-0 flex items-center flex-col h-full">
-                <a href="/consulta" className="mt-auto">
-                    <button
-                        className="bg-[#355081] hover:bg-[#19376d] text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto"
-                        id="button_acessar_consulta"
-                    >
-                        Agendar Consulta
-                    </button>
+                <a href="/consulta" className="mt-auto relativo">
+                <button
+                    className="bg-[#355081] hover:bg-[#19376d] text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto relativo"
+                    id="button_acessar_consulta"
+                >
+                    Agendar Consulta
+                </button>
                 </a>
             </aside>
         </div>

@@ -20,7 +20,7 @@ export function ConsultasPacientes({ nome, date, horario, duracao }) {
             <div className="flex flex-col text-2xl justify-center items-start h-32 w-auto p-2">
                 <h1 className=" text-primary-700 text-2xl font-medium">{nome}</h1>
                 <div className="flex flex-row justify-center items-center">
-                    <h2 className=" text-primary-700 text-base font-light bg-primary-300  whitespace-nowrap  flex text-nowrap items-center justify-center p-[2px]rounded-lg">
+                    <h2 className=" text-primary-700 text-base font-light bg-primary-300  whitespace-nowrap  flex text-nowrap items-center justify-center p-[2px] rounded-lg">
                         <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">
                             <path d="M32 4V12M16 4V12M6 20H42M10 8H38C40.2091 8 42 9.79086 42 12V40C42 42.2091 40.2091 44 38 44H10C7.79086 44 6 42.2091 6 40V12C6 9.79086 7.79086 8 10 8Z"
                                 stroke="currentColor"
