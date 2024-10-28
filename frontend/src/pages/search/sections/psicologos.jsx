@@ -16,6 +16,7 @@ export function Seach_psicologos() {
                     throw new Error("Erro ao buscar psicólogos");
                 }
                 const data = await response.json();
+                console.log(data); // Adicione isto para verificar o que está sendo retornado
                 setPsicologos(data);
             } catch (err) {
                 setError(err.message);
@@ -23,6 +24,7 @@ export function Seach_psicologos() {
                 setLoading(false);
             }
         };
+        
 
         fetchPsicologos();
     }, []);
@@ -36,7 +38,15 @@ export function Seach_psicologos() {
     }
 
     const formatarDuracao = (duracao) => {
+        if (!duracao || typeof duracao !== 'string') {
+            return 'Duração não disponível'; // ou algum valor padrão
+        }
+        
         const [horas, minutos] = duracao.split(':').map(Number);
+        
+        if (isNaN(horas) || isNaN(minutos)) {
+            return 'Duração inválida';
+        }
         
         if (horas > 0) {
             return minutos > 0 
@@ -47,32 +57,29 @@ export function Seach_psicologos() {
         }
     };
     
+    
 
 
     return (
         <section className="flex flex-col items-center space-y-10 w-[75vw] h-[80vh] mt-10 px-4 md:px-8">
             
             {psicologos.map(psicologo => {
+    const formattedFotoUrl = psicologo.foto ? `http://localhost:3000/${psicologo.foto.replace(/\\/g, '/')}` : '';
+    const duracaoFormatada = formatarDuracao(psicologo.duracao || '0:0'); // Usar '0:0' como padrão se duracao não estiver presente
+    
+    return (
+        <Psicologo
+            id={psicologo.id_psi}
+            key={psicologo.id_psi}
+            nome={psicologo.nome}
+            foto={formattedFotoUrl}
+            tempConsulta={duracaoFormatada}
+            formação_psicologo={psicologo.formacao}
+            topicos={psicologo.topicos} // Corrigido para 'topicos'
+        />
+    );
+})}
 
-                const formattedFotoUrl = psicologo.foto ? `http://localhost:3000/${psicologo.foto.replace(/\\/g, '/')}` : '';
-                const duracaoFormatada = formatarDuracao(psicologo.duracao); // Formata a duração
-                
-                return (
-                        <Psicologo
-                        id={psicologo.id_psi}
-                        key={psicologo.id_psi}
-                        nome={psicologo.nome}
-                        foto={formattedFotoUrl}
-                        tempConsulta={duracaoFormatada}
-                        formação_psicologo={psicologo.formacao}
-                        topicos={psicologo.topicos} // Corrigido para 'topicos'
-                        />
-            
-
-
-                );
-                
-            })}
         </section>
     );
     
