@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import io from 'socket.io-client';
-
+import { ChatsUsers } from './Components/chat_users';
 
 export function Chats() {
     const [mensagens, setmensagens] = useState([]);
@@ -88,6 +88,7 @@ export function Chats() {
             <ChatUsers nome={nome} foto={foto} id={id}/>
             
             })*/}
+            <ChatsUsers nome="Psi.Nadysoin" lastmsg={"safadinha"} />
 
             </div>
 
