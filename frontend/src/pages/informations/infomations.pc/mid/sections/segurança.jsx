@@ -7,7 +7,7 @@ export function Segurança(){
                 <img src= {user_null_sem_bola} alt="user_null" className="h-7"/>
                 Informações Pessoais
             </div>
-            <div className="mt-2 text-2xl font-poppins text-[#465A7F] font-medium font-">Segurança</div>
+
         </div>
     )
 }
