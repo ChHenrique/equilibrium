@@ -42,6 +42,7 @@ export function Consultas() {
       <div className="grid justify-start items-start w-full h-full p-8  overflow-y-scroll grid-cols-3 grid-flow-row">
 
         <ConsultasPacientes nome="Claudio" date="20/07" horario="13:20" duracao="02:00"/>
+        
       </div>
     </div>
   )
