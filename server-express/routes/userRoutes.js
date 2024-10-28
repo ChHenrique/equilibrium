@@ -156,8 +156,16 @@ router.get('/psicologos', async (req, res) => {
         // Busca todos os psicólogos cadastrados no banco de dados
         const [results] = await db.query('SELECT * FROM psicologos');
 
+        // Converte o campo 'topicos' de string JSON para array
+        const psicologos = results.map(psicologo => {
+            return {
+                ...psicologo,
+                topicos: JSON.parse(psicologo.topicos) // Converte de string JSON para array
+            };
+        });
+
         // Retorna a lista de psicólogos
-        res.json(results);
+        res.json(psicologos);
     } catch (error) {
         console.error('Erro ao buscar psicólogos:', error);
         return res.status(500).json({ message: 'Erro no servidor' });
