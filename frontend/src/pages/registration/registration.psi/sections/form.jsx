@@ -38,7 +38,7 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
                 return response.json();
             })
             .then(data => {
-                window.location.href = '/login_psi';
+                window.location.href = '/login/psicologo';
             })
             .catch(error => {
                 console.error('Erro:');
