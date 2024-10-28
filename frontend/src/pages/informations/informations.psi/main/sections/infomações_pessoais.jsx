@@ -32,14 +32,16 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
 
           {/* Input de arquivo para selecionar a imagem */}
-          <input
+
+          <div className='flex relative flex-col'>
+            <input
             type="file"
             id="image-input"
             accept="imagem/*"
             onChange={handleImageChange}
-            className="absolute top-1/3 ml-4 mt-3 opacity-0 z-10"
-          />
-
+            className="flex flex-col translate-y-16 cursor-pointer h-[80%] opacity-0"
+           />
+          </div>
           {/* Label que contém a imagem ou o símbolo de adição */}
           <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
 
@@ -48,7 +50,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
               <img src={URL.createObjectURL(selectedImage)} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
             ) : (
               // Se a imagem não foi selecionada, não exibimos a imagem
-              <span className="text-5xl text-white items-center flex mb-2" draggable="true">+</span>
+              <span className="text-5xl text-white items-center flex mb-[40%]" draggable="true">+</span>
             )}
           </label>
         </div>
