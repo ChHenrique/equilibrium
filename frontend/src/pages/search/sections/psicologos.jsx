@@ -59,6 +59,7 @@ export function Seach_psicologos() {
                 
                 return (
                         <Psicologo
+                        id={psicologo.id_psi}
                         key={psicologo.id_psi}
                         nome={psicologo.nome}
                         foto={formattedFotoUrl}
