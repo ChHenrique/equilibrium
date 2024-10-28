@@ -1,10 +1,12 @@
-import { useState,useEffect,useRef } from "react"
+import { useState,useEffect,useRef, createContext } from "react"
 import Webcam from "react-webcam"
 import { MicrophoneAccess } from "./audio.jsx"
 import { useContext } from "react"
+import { ProverContext } from "./Center"; 
 
 
-export function CamsEButtons({call}){
+export function CamsEButtons(){
+  const { call, setCall } = useContext(ProverContext); // Usando o contexto
 
 
 const [audio,setAudio] = useState(0)
@@ -158,8 +160,7 @@ function renderCam(){
 {/*Botao de desligar */}
 <button className=" h-1/2 bg-primary-900 rounded-full flex justify-center items-center p-4 m-2" 
 style={{aspectRatio: "4/4"}}
-onClick={() =>{ call =1
-console.log(call)
+onClick={() =>{setCall(1)
 }
 }
 >
