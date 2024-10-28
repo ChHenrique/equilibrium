@@ -5,7 +5,7 @@ import nullimg from '../../../../assets/images/user_null.svg'
 
 
 export function ChatsUsers({nome,foto,lastmsg}){
-const [active,setActive] = useState
+const [active,setActive] = useState(0)
 
 return(
         <div className="w-full h-24 flex bg-primary-300 p-3 font-satoshi ">
