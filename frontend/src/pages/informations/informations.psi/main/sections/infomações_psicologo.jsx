@@ -10,12 +10,13 @@ export function InfoPsi({ onChange, nome}) {
 
   // Função para atualizar o estado da TextArea
   function PegarValorTextArea(e) {
+    if(TextArea.length <= 32){
     SetTextArea(e.target.value);
-  }
+  }}
 
   // Adiciona o valor da TextArea a Topicos
   function ValorTopicos() {
-    if (TextArea.trim() !== "" && TextArea.length <= 32 && Topicos.length <= 10) {
+    if (TextArea.trim() !== ""  && Topicos.length <= 10) {
       SetTopicos([...Topicos, TextArea]);
     }
     SetTextArea('');
