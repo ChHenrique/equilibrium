@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Info } from "./sections/info.jsx";
-import { InfoPsi } from "./sections/id2_infopsi/info_id_2.jsx";
+import { Info } from "./sections/infomações_pessoais.jsx";
+import { InfoPsi } from "./sections/infomações_psicologo.jsx";
 
 // Array de botões com ícones SVG
 const button = [
