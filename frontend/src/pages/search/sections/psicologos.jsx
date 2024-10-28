@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Psicologo } from "../componente_psicologos/info_psicologo1";
 
 export function Seach_psicologos() {
-    const [psicologos, setPsicologos] = useState([]); // armazenar os psicólogos
-    const [loading, setLoading] = useState(true); // controle no carregamento
-    const [error, setError] = useState(null); // erros
+    const [psicologos, setPsicologos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
 
     useEffect(() => {
         const fetchPsicologos = async () => {
@@ -14,38 +16,64 @@ export function Seach_psicologos() {
                     throw new Error("Erro ao buscar psicólogos");
                 }
                 const data = await response.json();
-                setPsicologos(data); // armazena os dados
+                setPsicologos(data);
             } catch (err) {
-                setError(err.message); // armazena a mensagem de erro
+                setError(err.message);
             } finally {
-                setLoading(false); // remove o carregamento
+                setLoading(false);
             }
         };
 
         fetchPsicologos();
-    }, []); // chama a função uma vez quando o componente for montado
+    }, []);
 
     if (loading) {
-        return <div>Carregando psicólogos...</div>; // mensagem de carregamento
+        return <div>Carregando psicólogos...</div>;
     }
 
     if (error) {
-        return <div>Erro: {error}</div>; // mensagem de erro
+        return <div>Erro: {error}</div>;
     }
+
+    const formatarDuracao = (duracao) => {
+        const [horas, minutos] = duracao.split(':').map(Number);
+        
+        if (horas > 0) {
+            return minutos > 0 
+                ? `${horas} hora${horas > 1 ? 's' : ''} e ${minutos} minuto${minutos > 1 ? 's' : ''}` 
+                : `${horas} hora${horas > 1 ? 's' : ''}`;
+        } else {
+            return `${minutos} minuto${minutos > 1 ? 's' : ''}`;
+        }
+    };
+    
+
 
     return (
         <section className="flex flex-col items-center space-y-10 w-[75vw] h-[80vh] mt-10 px-4 md:px-8">
-            {psicologos.map(psicologo => (
-                <Psicologo
-                    key={psicologo.id_psi} 
-                    nome={psicologo.nome} 
-                    foto={psicologo.foto} 
-                    tempConsulta={psicologo.tempConsulta} 
-                    formação_psicologo={psicologo.formação} 
-                    topico1={psicologo.topico1}
-                    topico2={psicologo.topico2}
-                />
-            ))}
+            
+            {psicologos.map(psicologo => {
+
+                const formattedFotoUrl = psicologo.foto ? `http://localhost:3000/${psicologo.foto.replace(/\\/g, '/')}` : '';
+                const duracaoFormatada = formatarDuracao(psicologo.duracao); // Formata a duração
+                
+                return (
+                        <Psicologo
+                        id={psicologo.id_psi}
+                        key={psicologo.id_psi}
+                        nome={psicologo.nome}
+                        foto={formattedFotoUrl}
+                        tempConsulta={duracaoFormatada}
+                        formação_psicologo={psicologo.formacao}
+                        topicos={psicologo.topicos} // Corrigido para 'topicos'
+                        />
+            
+
+
+                );
+                
+            })}
         </section>
     );
+    
 }

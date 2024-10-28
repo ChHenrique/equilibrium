@@ -20,7 +20,7 @@ export function Banner() {
           Todo mundo merece um espaço para ser ouvido e compreendido. A terapia
           oferece essa oportunidade em um ambiente de apoio
         </h2>
-        <Button link={'/login_pc'}>
+        <Button link={'/login/paciente'}>
           Agende sua consulta
         </Button>
       </div>      

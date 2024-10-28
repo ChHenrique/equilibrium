@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) {
   const [selectedImage, setSelectedImage] = useState(imagem);
@@ -21,6 +21,25 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
     setSelectedImage(e.target.files[0]);
     onChange(e);
   };
+
+    // useEffect para buscar a imagem do psicólogo
+    useEffect(() => {
+      const idPsi = localStorage.getItem("id"); // Recupera o ID do psicólogo
+    
+      if (idPsi) {
+        fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`) // Requisição para obter a imagem
+          .then(response => {
+            if (!response.ok) throw new Error("Erro ao buscar a imagem");
+            return response.json();
+          })
+          .then(data => {
+            const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`; // Formata a URL
+            setSelectedImage(imageUrl); // Armazena a URL da imagem no estado
+            console.log(imageUrl); // Log da URL formatada
+          })
+          .catch(error => console.error("Erro:", error));
+      }
+    }, []);
 
   return (
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center ">
@@ -47,11 +66,11 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
 
             {/* Se a imagem foi selecionada, exibimos a imagem */}
             {selectedImage ? (
-              <img src={URL.createObjectURL(selectedImage)} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
-            ) : (
-              // Se a imagem não foi selecionada, não exibimos a imagem
-              <span className="text-5xl text-white items-center flex mb-[40%]" draggable="true">+</span>
-            )}
+    <img src={selectedImage} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
+) : (
+    <span className="text-5xl text-white items-center flex mb-2" draggable="true">+</span>
+)}
+
           </label>
         </div>
 
@@ -68,7 +87,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
         </h3>
         <hr className='w-60 h-[0.1px] border border-[#1c283d]' />
 
-        <a href='/homepage-pc' className='w-full flex justify-center'>
+        <a href='/home/psicologo' className='w-full flex justify-center'>
           <button
             className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl whitespace-nowrap">
             Ver Histórico

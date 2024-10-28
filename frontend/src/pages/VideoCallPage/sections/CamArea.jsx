@@ -1,10 +1,14 @@
-import { useState,useEffect,useRef } from "react"
+import { useState,useEffect,useRef, createContext } from "react"
 import Webcam from "react-webcam"
 import { MicrophoneAccess } from "./audio.jsx"
-
+import { useContext } from "react"
+import { ProverContext } from "./Center"; 
 
 
 export function CamsEButtons(){
+  const { call, setCall } = useContext(ProverContext); // Usando o contexto
+
+
 const [audio,setAudio] = useState(0)
 const [Cam,setCam] = useState(0)
 
@@ -156,7 +160,9 @@ function renderCam(){
 {/*Botao de desligar */}
 <button className=" h-1/2 bg-primary-900 rounded-full flex justify-center items-center p-4 m-2" 
 style={{aspectRatio: "4/4"}}
-
+onClick={() =>{setCall(1)
+}
+}
 >
 
 <svg className="w-full h-full" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
