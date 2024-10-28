@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 
-export function Psicologo({ nome, foto, tempConsulta, formação_psicologo}) {
+export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, id}) {
 
     const [mouseFora, setMouseDentro] = useState(false)
 
@@ -99,8 +99,8 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo}) {
             
             {/* Botão acessar consultas */}
             <aside className="flex-shrink-0 flex items-center flex-col h-full">
-                <a href="/consulta" className="mt-auto relativo">
-                <button
+                <a href={`/consulta?id=${id}`} className="mt-auto relativo">
+                <button key={key}
                     className="bg-[#355081] hover:bg-[#19376d] text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto relativo"
                     id="button_acessar_consulta"
                 >
