@@ -5,41 +5,41 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
 
   const [abriu, abrir] = useState(false)
 
-    const handleToggle1 = () => abrir(!abriu)
+  const handleToggle1 = () => abrir(!abriu)
 
-    const [abriu_pais, abrir_pais] = useState(false)
+  const [abriu_pais, abrir_pais] = useState(false)
 
-    const [Estado, setEstado] = useState()
+  const [Estado, setEstado] = useState()
 
-    const [selecionar_sexo, setselecionar_sexo] = useState()
+  const [selecionar_sexo, setselecionar_sexo] = useState()
 
-    const handleToggle2 = () => abrir_pais(!abriu_pais)
+  const handleToggle2 = () => abrir_pais(!abriu_pais)
 
-    const [telefone, setTelefone] = useState()
+  const [telefone, setTelefone] = useState()
 
   const handleImageChange = (e) => {
     setSelectedImage(e.target.files[0]);
     onChange(e);
   };
 
-    // useEffect para buscar a imagem do psicólogo
-    useEffect(() => {
-      const idPsi = localStorage.getItem("id"); // Recupera o ID do psicólogo
-    
-      if (idPsi) {
-        fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`) // Requisição para obter a imagem
-          .then(response => {
-            if (!response.ok) throw new Error("Erro ao buscar a imagem");
-            return response.json();
-          })
-          .then(data => {
-            const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`; // Formata a URL
-            setSelectedImage(imageUrl); // Armazena a URL da imagem no estado
-            console.log(imageUrl); // Log da URL formatada
-          })
-          .catch(error => console.error("Erro:", error));
-      }
-    }, []);
+  // useEffect para buscar a imagem do psicólogo
+  useEffect(() => {
+    const idPsi = localStorage.getItem("id"); // Recupera o ID do psicólogo
+
+    if (idPsi) {
+      fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`) // Requisição para obter a imagem
+        .then(response => {
+          if (!response.ok) throw new Error("Erro ao buscar a imagem");
+          return response.json();
+        })
+        .then(data => {
+          const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`; // Formata a URL
+          setSelectedImage(imageUrl); // Armazena a URL da imagem no estado
+          console.log(imageUrl); // Log da URL formatada
+        })
+        .catch(error => console.error("Erro:", error));
+    }
+  }, []);
 
   return (
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center ">
@@ -54,22 +54,22 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
 
           <div className='flex relative flex-col'>
             <input
-            type="file"
-            id="image-input"
-            accept="imagem/*"
-            onChange={handleImageChange}
-            className="flex flex-col translate-y-16 cursor-pointer h-[80%] opacity-0"
-           />
+              type="file"
+              id="image-input"
+              accept="imagem/*"
+              onChange={handleImageChange}
+              className="flex flex-col translate-y-16 cursor-pointer h-[80%] opacity-0"
+            />
           </div>
           {/* Label que contém a imagem ou o símbolo de adição */}
           <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
 
             {/* Se a imagem foi selecionada, exibimos a imagem */}
             {selectedImage ? (
-    <img src={selectedImage} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
-) : (
-    <span className="text-5xl text-white items-center flex mb-2" draggable="true">+</span>
-)}
+              <img src={selectedImage} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
+            ) : (
+              <span className="text-5xl text-white items-center flex mb-2 -translate-y-7" draggable="true">+</span>
+            )}
 
           </label>
         </div>
