@@ -10,22 +10,23 @@ export function InfoPsi({ onChange, nome}) {
 
   // Função para atualizar o estado da TextArea
   function PegarValorTextArea(e) {
+    if(TextArea.length <= 32){
     SetTextArea(e.target.value);
-  }
+  }}
 
   // Adiciona o valor da TextArea a Topicos
   function ValorTopicos() {
-    if (TextArea.trim() !== "" && TextArea.length <= 32 && Topicos.length <= 10) {
+    if (TextArea.trim() !== ""  && Topicos.length <= 10) {
       SetTopicos([...Topicos, TextArea]);
     }
     SetTextArea('');
-  }
+  };
 
   // Função que exclui um tópico
   function ExcluirTopicos(index) {
     const ValorTopicosNew = Topicos.filter((_, i) => i !== index);
     SetTopicos(ValorTopicosNew);
-  }
+  };
 
   const idPsi = localStorage.getItem("id"); 
 
@@ -91,10 +92,11 @@ export function InfoPsi({ onChange, nome}) {
 
         <div className='flex flex-col w-[95%] h-[37%] relative'>
           <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2'>Tópicos</h1>
+
           <div className='w-full h-full relative whitespace-normal'>
             <div className='absolute top-3 left-3 flex flex-wrap space-x-2 w-full h-fit max-w-[98%]'>
               {Topicos.map((item, index) => (
-                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2'>
+                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2 hover:bg-[#94aae4] duration-150'>
                   <h3 id='letra' className='font-poppins text-[#121926] break-words'>{item}</h3>
                   <div onClick={() => ExcluirTopicos(index)} className='xis h-full justify-center items-center'>
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className='mt-0.5 text-[#121926] scale-125 duration-300 cursor-pointer'>
@@ -111,7 +113,7 @@ export function InfoPsi({ onChange, nome}) {
               onChange={PegarValorTextArea}
               value={TextArea}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key == 13) {
+                if (e.key === "Enter" || e.key === 13) {
                   ValorTopicos();
                   e.preventDefault();
                 }
@@ -120,30 +122,24 @@ export function InfoPsi({ onChange, nome}) {
 
             <button className='absolute right-6 bottom-4' onClick={ValorTopicos}>
               <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d=" M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
-
           </div>
-
         </div>
 
         <div className='flex flex-col w-[95%] h-[37%] relative'>
           <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2'>Formação</h1>
 
-          <textarea className='w-full h-full bg-[#C9D4E9] rounded-2xl p-2 pl-4 outline-none resize-none'>
-          </textarea>
+          <textarea className='w-full h-full bg-[#C9D4E9] rounded-2xl p-2 pl-4 outline-none resize-none'></textarea>
 
           <button className='absolute right-6 bottom-4'>
-            <svg
-              width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-
           </button>
         </div>
       </div>
-
     </div>
-  )
+  );
 }
