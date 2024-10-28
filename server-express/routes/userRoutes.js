@@ -6,6 +6,8 @@ import path from 'path';
 
 const router = express.Router();
 
+
+
 // Configuração do multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -41,27 +43,6 @@ router.post('/upload-foto', authenticateToken, upload.single('foto'), async (req
     }
 });
 
-// Rota para obter a foto do psicólogo
-router.get('/psicologos/:id_psi/foto', async (req, res) => {
-    const psicologoId = req.params.id_psi;
-
-    try {
-        // Busca a foto do psicólogo no banco de dados
-        const [results] = await db.query('SELECT foto FROM psicologos WHERE id_psi = ?', [psicologoId]);
-
-        if (results.length === 0) {
-            return res.status(404).json({ message: 'Psicólogo não encontrado' });
-        }
-
-        const psicologo = results[0];
-
-        // Retorna a URL da foto
-        res.json({ foto: psicologo.foto });
-    } catch (error) {
-        console.error('Erro ao buscar a foto do psicólogo:', error);
-        return res.status(500).json({ message: 'Erro no servidor' });
-    }
-});
 // Rota para obter a foto do psicólogo
 router.get('/psicologos/:id_psi/foto', async (req, res) => {
     const psicologoId = req.params.id_psi;

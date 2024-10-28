@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import "../sections/animate.css"
+import "../sections/animate.css";
 
-export function InfoPsi({ imagem, onChange, nome, id_pc }) {
-
+export function InfoPsi({ onChange, nome}) {
   const [TextArea, SetTextArea] = useState("");
   const [Topicos, SetTopicos] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+ 
 
   // Função para atualizar o estado da TextArea
   function PegarValorTextArea(e) {
-    const inputText = e.target.value;
-
-    SetTextArea(inputText);
-
+    SetTextArea(e.target.value);
   }
 
-  // adiciona o valor da TextArea a Topicos
-
+  // Adiciona o valor da TextArea a Topicos
   function ValorTopicos() {
     if (TextArea.trim() !== "" && TextArea.length <= 32 && Topicos.length <= 10) {
       SetTopicos([...Topicos, TextArea]);
@@ -23,19 +21,33 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     SetTextArea('');
   }
 
-  // Função que excluir o elemento que clicou com x
-
+  // Função que exclui um tópico
   function ExcluirTopicos(index) {
     const ValorTopicosNew = Topicos.filter((_, i) => i !== index);
     SetTopicos(ValorTopicosNew);
   }
 
-  // useEffect para ver a mudança da Topicos, e atualizar ela
-  useEffect(() => {
-    console.log("Topicos de valores atualizada:", Topicos);
-  }, [Topicos]);
+  const idPsi = localStorage.getItem("id"); 
 
-  const [selectedImage, setSelectedImage] = useState(imagem);
+  // useEffect para buscar a imagem do psicólogo
+  useEffect(() => {
+// Recupera o ID do psicólogo
+  
+    if (idPsi) {
+      fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`) // Requisição para obter a imagem
+        .then(response => {
+          if (!response.ok) throw new Error("Erro ao buscar a imagem");
+          return response.json();
+        })
+        .then(data => {
+          const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`; // Formata a URL
+          setSelectedImage(imageUrl); // Armazena a URL da imagem no estado
+          console.log(imageUrl); // Log da URL formatada
+        })
+        .catch(error => console.error("Erro:", error));
+    }
+  }, []);
+  
 
   const handleImageChange = (e) => {
     setSelectedImage(e.target.files[0]);
@@ -44,50 +56,35 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
   return (
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center">
-
       {/* Div que contém a imagem e o input de arquivo */}
       <div className='w-[35%] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b]'>
-
         {/* Div que contém a imagem */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
-
-          {/* Input de arquivo para selecionar a imagem */}
           <input
             type="file"
             id="image-input"
-            accept="imagem/*"
+            accept="image/*"
             onChange={handleImageChange}
             className="absolute top-1/3 ml-4 mt-3 opacity-0 z-10"
           />
-
-          {/* Label que contém a imagem ou o símbolo de adição */}
           <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
-
-            {/* Se a imagem foi selecionada, exibimos a imagem */}
             {selectedImage ? (
-              <img src={URL.createObjectURL(selectedImage)} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
+              <img src={selectedImage} alt="Imagem do psicólogo" className="h-full w-full rounded-full object-cover" />
             ) : (
-              // Se a imagem não foi selecionada, não exibimos a imagem
               <span className="text-5xl text-white items-center flex mb-2" draggable="true">+</span>
             )}
           </label>
         </div>
-
         <h3 className='mt-3 font-poppins text-[#465A7F] text-sm font-medium'>Escolher foto</h3>
-        <h2 className="mt-1 font-poppins text-[#000000] text-xl font-medium whitespace-break-spaces break-all text-center">{nome}
-        </h2>
-        <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_pc}</h3>
-
+        <h2 className="mt-1 font-poppins text-[#000000] text-xl font-medium whitespace-break-spaces break-all text-center">{nome}</h2>
+        <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID:{` ${idPsi}`}</h3>
         <a href='/homepage-pc' className='w-fit h-fit flex justify-center mt-7'>
-          <button
-            className=" w-fit bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl ">
+          <button className="w-fit bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl ">
             Ver Histórico
           </button>
         </a>
         <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10'></div>
-
       </div>
-
       {/* Div do componente das alterações */}
       <div className="w-full h-full flex items-center justify-center flex-col font-poppins font-medium relative rounded-tl-2xl p-6 space-y-10">
         <h1 className='absolute top-10 font-poppins font-semibold text-[25px] text-primary-700'>Defina seus tópicos e suas formações</h1>
