@@ -20,7 +20,7 @@ export function Container() {
             <div className='m-4'>
 
             </div>
-            <a href="./">
+            <a href="/">
             <img
                 src={logo}
                 alt="Logo"
