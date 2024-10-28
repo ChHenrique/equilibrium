@@ -27,12 +27,13 @@ export function Main() {
   const id_psicologo = queryParams.get('id'); // Obtém o id do psicólogo da URL
 
   async function handleConfirm() {
-    const formattedDate = `${startDate.getDate()}-${startDate.getMonth() + 1}-${startDate.getFullYear()}`;
+    const formattedDate = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`;
     const formattedHour = `${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}`;
 
     if (formattedDate !== "" && formattedHour !== "" && id_psicologo) {
       const id_paciente = localStorage.getItem('id'); // Pegando o id do paciente do localStorage
-
+      console.log(formattedDate )
+      console.log(formattedHour)
       const consultaData = {
         id_paciente,
         data: formattedDate,
