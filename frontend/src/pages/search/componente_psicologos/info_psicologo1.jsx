@@ -1,7 +1,8 @@
 
 import React, { useState } from "react";
 
-export function Psicologo({ nome, foto, tempConsulta, formação_psicologo}) {
+export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topicos }) {
+
 
     const [mouseFora, setMouseDentro] = useState(false)
 

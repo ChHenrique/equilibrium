@@ -53,6 +53,7 @@ export function Seach_psicologos() {
         <section className="flex flex-col items-center space-y-10 w-[75vw] h-[80vh] mt-10 px-4 md:px-8">
             
             {psicologos.map(psicologo => {
+
                 const formattedFotoUrl = psicologo.foto ? `http://localhost:3000/${psicologo.foto.replace(/\\/g, '/')}` : '';
                 const duracaoFormatada = formatarDuracao(psicologo.duracao); // Formata a duração
                 
@@ -65,8 +66,11 @@ export function Seach_psicologos() {
                         formação_psicologo={psicologo.formacao}
                         topicos={psicologo.topicos} // Corrigido para 'topicos'
                         />
+            
+
 
                 );
+                
             })}
         </section>
     );
