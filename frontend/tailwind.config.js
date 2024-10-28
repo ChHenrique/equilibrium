@@ -37,7 +37,7 @@ export default {
           1000: '#88E5AD',
         },
         secondary:{
-          100: '#F1F5F9',
+          100: '#DCE5EE',
           200: '#EEF2FB'//Cards Participantes
         }
       },
