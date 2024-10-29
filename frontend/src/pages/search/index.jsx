@@ -1,18 +1,21 @@
+// Search.js
 import { Pesquisar } from "./sections/pesquisar";
 import { Seach_psicologos } from "./sections/psicologos";
 import { Footer } from "../../components/footer";
-import  User_null from '../../assets/images/user_null.svg'
 import { HeaderLog } from "../../components/headerLog";
+import { SearchProvider } from "./sections/seach_provider"; // Corrigido o caminho se necessário
 
 export function Search() {
-    return(
-        
-    <div className="bg-primary-300  h-screen w-screen flex flex-col items-center overflow-x-auto scrollbar-thin">
-        <HeaderLog />
-        <Pesquisar/>
-        <Seach_psicologos/>
-        <Footer/>
-    </div>
+    return (
+        <div className="bg-primary-300 h-screen w-screen flex flex-col items-center overflow-x-auto scrollbar-thin">
+            <HeaderLog />
 
-    )
+            <SearchProvider>
+                <Pesquisar />
+                <Seach_psicologos />
+            </SearchProvider>
+            
+            <Footer />
+        </div>
+    );
 }

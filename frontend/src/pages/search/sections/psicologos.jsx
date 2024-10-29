@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { Psicologo } from "../componente_psicologos/info_psicologo1";
+import { SearchContext } from "./seach_provider"
+export const Search = createContext()
 
 export function Seach_psicologos() {
-    const [psicologos, setPsicologos] = useState([]);
+    const { psicologos } = useContext(SearchContext);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-
-
+    
     useEffect(() => {
         const fetchPsicologos = async () => {
             try {
