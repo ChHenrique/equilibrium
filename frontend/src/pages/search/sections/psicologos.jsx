@@ -1,13 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Psicologo } from "../componente_psicologos/info_psicologo1";
 import { SearchContext } from "./seach_provider";
+import Pesquisar_logo from "../../../assets/images/pesquisar.svg"; // Certifique-se de que o caminho está correto
 
 export function Seach_psicologos() {
     const { psicologos, loading, error } = useContext(SearchContext);
     const [inputSearch, setInputSearch] = useState('');
     const [selected, setSelected] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
 
-    // Aplicando o filtro com base no input e seleção
+    // Filtrando psicólogos com base na pesquisa e na seleção
     const filteredPsicologos = psicologos.filter(psicologo => {
         const matchesNome = psicologo.nome.toLowerCase().includes(inputSearch.toLowerCase());
         
@@ -17,7 +19,8 @@ export function Seach_psicologos() {
                 topico.toLowerCase().includes(inputSearch.toLowerCase())
             );
         } else if (selected === "tempo") {
-            matchesFiltro = psicologo.tempConsulta;
+            // Coloque a lógica correta para filtrar por tempo de consulta
+            matchesFiltro = psicologo.tempConsulta; // Ajuste conforme necessário
         } else if (selected === "formação") {
             matchesFiltro = psicologo.formacao.toLowerCase() === inputSearch.toLowerCase();
         }
@@ -25,52 +28,106 @@ export function Seach_psicologos() {
         return matchesNome && matchesFiltro;
     });
 
-    const formatarDuracao = (duracao) => {
-        const [horas, minutos] = duracao ? duracao.split(':').map(Number) : [0, 0];
-        if (horas > 0) {
-            return minutos > 0 
-                ? `${horas} hora${horas > 1 ? 's' : ''} e ${minutos} minuto${minutos > 1 ? 's' : ''}` 
-                : `${horas} hora${horas > 1 ? 's' : ''}`;
-        }
-        return `${minutos} minuto${minutos > 1 ? 's' : ''}`;
-    };
+    useEffect(() => {
+        const fetchPsicologos = async () => {
+            try {
+                const response = await fetch("http://localhost:3000/user/psicologos");
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar psicólogos");
+                }
+                const data = await response.json();
+                console.log(data);
+                setPsicologos(data);
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        fetchPsicologos();
+    }, []);
 
     if (loading) return <div>Carregando psicólogos...</div>;
     if (error) return <div>Erro: {error}</div>;
 
+    const formatarDuracao = (duracao) => {
+        if (!duracao || typeof duracao !== 'string') {
+            return 'Duração não disponível';
+        }
+        
+        const [horas, minutos] = duracao.split(':').map(Number);
+        
+        if (isNaN(horas) || isNaN(minutos)) {
+            return 'Duração inválida';
+        }
+    
+        if (horas > 0) {
+            return minutos > 0 
+                ? `${horas} hora${horas > 1 ? 's' : ''} e ${minutos} minuto${minutos > 1 ? 's' : ''}` 
+                : `${horas} hora${horas > 1 ? 's' : ''}`;
+        } else {
+            return `${minutos} minuto${minutos > 1 ? 's' : ''}`;
+        }
+        };
+
     return (
         <section className="flex flex-col items-center space-y-10 w-[75vw] h-[80vh] mt-10 px-4 md:px-8">
-            {/* Campo de pesquisa e dropdown */}
-            <div className="w-full h-auto flex justify-center items-center space-x-4 mb-5">
-                <input
-                    type="text"
-                    placeholder="Pesquisar..."
-                    className="border bg-[#F1F5F9] w-full rounded-[6px] h-[4vh] pl-2 text-[#0c1859ea]"
-                    onChange={(e) => setInputSearch(e.target.value)}
-                />
-                <select
-                    onChange={(e) => setSelected(e.target.value)}
-                    className="border border-[#F1F5F9] text-slate-600 h-[4vh] w-[10vw] bg-[#F1F5F9] rounded-[6px] pl-3"
-                >
-                    <option value="">Filtrar por...</option>
-                    <option value="tópicos">Tópicos</option>
-                    <option value="tempo">Tempo de Consulta</option>
-                    <option value="formação">Formação</option>
-                </select>
-            </div>
+            <div className="flex items-center justify-center flex-col">
+                <div className="w-full h-auto flex justify-center items-center space-x-4">
+                    <div className="flex items-center bg-[#F1F5F9] rounded-[6px] w-[125vh] h-[4vh] p-1">
+                        <input
+                            type="text"
+                            placeholder="Pesquisar..."
+                            className="border-none bg-[#F1F5F9] w-full rounded-l-[2xl] text-[#0c1859ea] font-poppins-200 text-xs placeholder:text-[#0c1859ea] placeholder:font-medium focus:outline-none pl-2 font-poppins font-semibold"
+                            onChange={(e) => setInputSearch(e.target.value)}
+                        />
+                        <img
+                            src={Pesquisar_logo}
+                            alt="logo_pesquisar"
+                            className="w-5 h-5 ml-2"
+                        />
+                    </div>
 
-            {/* Renderização dos componentes Psicologo filtrados */}
-            {filteredPsicologos.map(psicologo => (
-                <Psicologo
-                    key={psicologo.id_psi}
-                    id={psicologo.id_psi}
-                    nome={psicologo.nome}
-                    foto={`http://localhost:3000/${psicologo.foto.replace(/\\/g, '/')}`}
-                    tempConsulta={formatarDuracao(psicologo.duracao || '0:0')}
-                    formação_psicologo={psicologo.formacao}
-                    topicos={psicologo.topicos}
-                />
-            ))}
+                    <div className="relative flex items-center">
+                        <select
+                            onClick={() => setIsOpen(!isOpen)}
+                            onChange={(e) => setSelected(e.target.value)}
+                            className="appearance-none border border-[#F1F5F9] text-slate-600 text-xs h-[4vh] w-[10vw] bg-[#F1F5F9] rounded-[6px] pl-3 pr-10 focus:outline-none"
+                        >
+                            <option value="">Filtrar por...</option>
+                            <option value="tópicos">Tópicos</option>
+                            <option value="tempo">Tempo de Consulta</option>
+                            <option value="formação">Formação</option>
+                        </select>
+                        <svg
+                            className={`absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-600 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div className="space-y-6 mt-5 ">
+                    {filteredPsicologos.length > 0 ? (
+                        filteredPsicologos.map(psicologo => (
+                            <Psicologo
+                                key={psicologo.id_psi}
+                                id={psicologo.id_psi}
+                                nome={psicologo.nome}
+                                foto={`http://localhost:3000/${psicologo.foto.replace(/\\/g, '/')}`}
+                                tempConsulta={formatarDuracao(psicologo.duracao || '0:0')}
+                                formação_psicologo={psicologo.formacao}
+                                topicos={psicologo.topicos}
+                            />
+                        ))
+                    ) : (
+                        <div className="text-sm text-gray-600">Nenhum psicólogo encontrado.</div>
+                    )}
+                </div>
+            </div>
         </section>
     );
 }
