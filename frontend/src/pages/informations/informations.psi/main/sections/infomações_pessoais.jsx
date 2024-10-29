@@ -11,26 +11,48 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
   const handleToggle1 = () => abrir(!abriu);
   const handleToggle2 = () => abrir_pais(!abriu_pais);
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      setSelectedImage(URL.createObjectURL(file)); // Cria um URL para o arquivo e atualiza o estado
+      setSelectedImage(URL.createObjectURL(file)); // Atualiza a imagem localmente para visualização prévia
       onChange(e);
+
+      // Prepara o arquivo para o upload
+      const formData = new FormData();
+      formData.append("foto", file);
+
+      const token = localStorage.getItem("token"); // Pega o token de autenticação do localStorage
+
+      try {
+        const response = await fetch("http://localhost:3000/user/upload-foto", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}` // Passa o token no cabeçalho
+          },
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error("Erro ao fazer o upload da imagem");
+        }
+        console.log("Imagem enviada com sucesso!");
+      } catch (error) {
+        console.error("Erro ao enviar imagem:", error);
+      }
     }
   };
 
-  // useEffect para buscar a imagem do psicólogo
   useEffect(() => {
     const idPsi = localStorage.getItem("id"); // Recupera o ID do psicólogo
     if (idPsi) {
-      fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`) // Requisição para obter a imagem
+      fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`)
         .then(response => {
           if (!response.ok) throw new Error("Erro ao buscar a imagem");
           return response.json();
         })
         .then(data => {
-          const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`; // Formata a URL
-          setSelectedImage(imageUrl); // Armazena a URL da imagem no estado
+          const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`;
+          setSelectedImage(imageUrl);
         })
         .catch(error => console.error("Erro:", error));
     }
@@ -38,20 +60,17 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
 
   return (
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center">
-      {/* Div que contém a imagem e o input de arquivo */}
       <div className='w-[40%] h-full bg-white flex flex-col items-center rounded-bl-2xl rounded-tl-2xl p-4 relative'>
-        {/* Div que contém a imagem */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
           <div className='flex relative flex-col'>
             <input
               type="file"
               id="image-input"
-              accept="image/*" // Corrigido para "image/*"
+              accept="image/*"
               onChange={handleImageChange}
               className="flex flex-col translate-y-16 cursor-pointer h-[80%] opacity-0"
             />
           </div>
-          {/* Label que contém a imagem ou o símbolo de adição */}
           <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
             {selectedImage ? (
               <img src={selectedImage} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover -translate-y-7" />
@@ -73,6 +92,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
         </a>
         <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10'></div>
       </div>
+
 
       {/* Div do componente das alterações */}
       <div className="w-full h-full flex items-center font-poppins font-medium relative">
