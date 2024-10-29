@@ -48,7 +48,7 @@ export function Pesquisar() {
                     <input
                         type="text"
                         placeholder="Pesquisar..."
-                        className="border-none bg-[#F1F5F9] w-full rounded-l-[2xl] text-slate-600 font-poppins-200 text-xs placeholder:text-[#0c1859ea] focus:outline-none"
+                        className="border-none bg-[#F1F5F9] w-full rounded-l-[2xl] text-[#0c1859ea] font-poppins-200 text-xs placeholder:text-[#0c1859ea] placeholder:font-medium focus:outline-none pl-2 font-poppins font-semibold "
                         onChange={(e) => setInputSearch(e.target.value)}
                     />
                     {/* Ícone do logo de pesquisa */}

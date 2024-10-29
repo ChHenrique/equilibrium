@@ -5,7 +5,7 @@ import { SearchContext } from "./seach_provider";
 export const Search = createContext();
 
 export function Seach_psicologos() {
-    const { psicologos, setPsicologos } = useContext(SearchContext); // Acessando psicólogos do contexto
+    const [psicologos, setPsicologos] = useState([]); // Acessando psicólogos do contexto
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
