@@ -57,13 +57,13 @@ export function ConsultasPacientes({ nome, date, horario, duracao }) {
 
 
                 {accept ?
-                    <div className="h-1/2 w-full flex-row  flex mt-2">
-                        <button className="h-fit w-1/2 flex-row text-white  text-lg bg-primary-1000 rounded-2xl flex p-1 justify-center items-center cursor-pointer font-bold"
+                    <div className="h-1/2 w-full flex-row  flex mt-3 space-x-4">
+                        <button className="h-fit w-fit flex-row text-white text-lg bg-[#73d79b] rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold hover:bg-[#63c189] duration-500"
                         >
                             Aceitar
                         </button>
 
-                        <button className="ml-2 h-fit w-1/2 flex-row text-white  text-lg  bg-primary-900 rounded-2xl flex p-1 justify-center items-center cursor-pointer font-bold" >
+                        <button className="ml-1 h-fit w-fit flex-row text-white text-lg bg-primary-900 rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold mr-auto hover:bg-[#dc7070] duration-500" >
                             Recusar
                         </button>
 

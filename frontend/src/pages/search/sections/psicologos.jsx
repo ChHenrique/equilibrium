@@ -4,28 +4,21 @@ import { SearchContext } from "./seach_provider";
 import Pesquisar_logo from "../../../assets/images/pesquisar.svg"; // Certifique-se de que o caminho está correto
 
 export function Seach_psicologos() {
-    const { psicologos, loading, error } = useContext(SearchContext);
+    const { psicologos, loading, error, setPsicologos, setError } = useContext(SearchContext);
     const [inputSearch, setInputSearch] = useState('');
-    const [selected, setSelected] = useState('');
+    const [selected, setSelected] = useState('nome'); // Valor padrão para o filtro
     const [isOpen, setIsOpen] = useState(false);
 
     // Filtrando psicólogos com base na pesquisa e na seleção
     const filteredPsicologos = psicologos.filter(psicologo => {
-        const matchesNome = psicologo.nome.toLowerCase().includes(inputSearch.toLowerCase());
-        
-        let matchesFiltro = true;
-        if (selected === "tópicos") {
-            matchesFiltro = psicologo.topicos.some(topico => 
-                topico.toLowerCase().includes(inputSearch.toLowerCase())
-            );
-        } else if (selected === "tempo") {
-            // Coloque a lógica correta para filtrar por tempo de consulta
-            matchesFiltro = psicologo.tempConsulta; // Ajuste conforme necessário
-        } else if (selected === "formação") {
-            matchesFiltro = psicologo.formacao.toLowerCase() === inputSearch.toLowerCase();
+        if (inputSearch === '') {
+            return true; // Retorna todos se não houver pesquisa
         }
 
-        return matchesNome && matchesFiltro;
+        const valueToCheck = psicologo[selected.toLowerCase()];
+
+        // Verifica se o valor existe e se inclui a pesquisa
+        return valueToCheck && valueToCheck.toString().toLowerCase().includes(inputSearch.toLowerCase());
     });
 
     useEffect(() => {
@@ -36,7 +29,6 @@ export function Seach_psicologos() {
                     throw new Error("Erro ao buscar psicólogos");
                 }
                 const data = await response.json();
-                console.log(data);
                 setPsicologos(data);
             } catch (err) {
                 setError(err.message);
@@ -44,7 +36,7 @@ export function Seach_psicologos() {
         };
 
         fetchPsicologos();
-    }, []);
+    }, [setPsicologos, setError]);
 
     if (loading) return <div>Carregando psicólogos...</div>;
     if (error) return <div>Erro: {error}</div>;
@@ -67,7 +59,7 @@ export function Seach_psicologos() {
         } else {
             return `${minutos} minuto${minutos > 1 ? 's' : ''}`;
         }
-        };
+    };
 
     return (
         <section className="flex flex-col items-center space-y-10 w-[75vw] h-[80vh] mt-10 px-4 md:px-8">
@@ -90,13 +82,15 @@ export function Seach_psicologos() {
                     <div className="relative flex items-center">
                         <select
                             onClick={() => setIsOpen(!isOpen)}
-                            onChange={(e) => setSelected(e.target.value)}
+                            onChange={(e) => {
+                                setSelected(e.target.value);
+                                setInputSearch(''); // Limpa a pesquisa ao mudar o filtro
+                            }}
                             className="appearance-none border border-[#F1F5F9] text-slate-600 text-xs h-[4vh] w-[10vw] bg-[#F1F5F9] rounded-[6px] pl-3 pr-10 focus:outline-none"
                         >
-                            <option value="">Filtrar por...</option>
-                            <option value="tópicos">Tópicos</option>
-                            <option value="tempo">Tempo de Consulta</option>
-                            <option value="formação">Formação</option>
+                            <option value="nome">Filtrar por...</option>
+                            <option value="topicos">Tópicos</option>
+                            <option value="formacao">Formação</option>
                         </select>
                         <svg
                             className={`absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-600 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
@@ -110,7 +104,7 @@ export function Seach_psicologos() {
                     </div>
                 </div>
 
-                <div className="space-y-6 mt-5 ">
+                <div className="space-y-6 mt-5">
                     {filteredPsicologos.length > 0 ? (
                         filteredPsicologos.map(psicologo => (
                             <Psicologo

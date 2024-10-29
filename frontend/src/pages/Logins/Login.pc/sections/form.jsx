@@ -44,11 +44,6 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
         });
     };
 
-    const handleKeyDown = (event) => {
-        if (event.key === "Enter") {
-            handleSubmit(event); // Chama o handleSubmit quando "Enter" é pressionado
-        }
-    };
 
     return (
         <article className="flex flex-col justify-center items-center p-5 w-full max-w-4xl h-1/2 font-satoshi-bold mt-4">
@@ -56,8 +51,7 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
                 ref={ref} 
                 method="post" 
                 className="w-4/6 max-w-1xl h-auto mt-3 ml-5 justify-center items-center" 
-                onSubmit={handleSubmit} 
-                onKeyDown={handleKeyDown} // Adiciona o evento de key down aqui
+                onSubmit={handleSubmit}
             >
                 <br />
                 <User_Email user_emailerror={errors.user_email} />
