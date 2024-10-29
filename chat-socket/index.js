@@ -15,6 +15,8 @@ io.on('connection', (socket) => {
     socket.on('joinChat', (route) => {
         if (route === CHAT_ROUTE) {
             socket.emit('message', 'Bem-vindo ao chat!'); // Mensagem de boas-vindas
+            // Notifica que um novo usuário entrou
+            socket.broadcast.emit('message', 'Um novo usuário entrou no chat!');
         } else {
             socket.disconnect(); // Desconectar se a rota estiver errada
             console.log('Usuário tentou acessar uma rota inválida!', socket.id);
@@ -23,13 +25,16 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', (reason) => {
         console.log('Usuário desconectado!', socket.id);
+        // Notifica os outros usuários que alguém saiu
+        socket.broadcast.emit('message', 'Um usuário saiu do chat.');
     });
 
     socket.on('message', (text) => {
+        // Envia a mensagem para todos os usuários conectados
         io.emit('receive_message', {
             text,
             authorId: socket.id,
-            author: socket.data.username
+            author: socket.data.username || 'Usuário' // Nome padrão se o username não estiver definido
         });
     });
 });
