@@ -82,10 +82,13 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
 
         <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_psi}</h3>
 
+<<<<<<< Updated upstream
 
 
 
 
+=======
+>>>>>>> Stashed changes
         <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium mr-2'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span></h3>
 
         <hr className='w-60 h-[0.1px] border border-[#1c283d]' />
