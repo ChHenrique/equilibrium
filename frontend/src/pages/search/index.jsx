@@ -1,5 +1,4 @@
 // Search.js
-import { Pesquisar } from "./sections/pesquisar";
 import { Seach_psicologos } from "./sections/psicologos";
 import { Footer } from "../../components/footer";
 import { HeaderLog } from "../../components/headerLog";
@@ -11,7 +10,6 @@ export function Search() {
             <HeaderLog />
 
             <SearchProvider>
-                <Pesquisar />
                 <Seach_psicologos />
             </SearchProvider>
             

@@ -86,7 +86,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
             <aside className="flex-shrink-0 flex items-center flex-col h-full">
                 <a href={`/consulta?id=${id}`} className="mt-auto relativo">
                 <button
-                    className="bg-[#355081] hover:bg-[#19376d] text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto relativo"
+                    className="bg-[#355081] hover:bg-[#19376d] text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto relativo translate-y-16"
                     id="button_acessar_consulta"
                 >
                     Agendar Consulta
