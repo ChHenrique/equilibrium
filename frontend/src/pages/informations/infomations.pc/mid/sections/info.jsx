@@ -45,15 +45,11 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
         </h2>
         <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_pc}</h3>
 
-        <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium mr-2'>Número de sessões: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{num_sesões}12</span>
-        </h3>
-        <hr className='w-60 h-[0.1px] border border-[#1c283d]' />
-
         <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium mr-2'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span>
         </h3>
         <hr className='w-60 h-[0.1px] border border-[#1c283d]' />
 
-        <a href='/homepage-pc' className='w-full flex justify-center'>
+        <a href='/home/paciente' className='w-full flex justify-center'>
           <button
             className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl">
             Ver Histórico

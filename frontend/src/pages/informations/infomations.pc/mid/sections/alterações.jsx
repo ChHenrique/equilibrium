@@ -32,7 +32,7 @@ export function Alterações() {
                 <form
                     id="form1"
                     method="post"
-                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 ">
+                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16">
 
                     {/* Div Nome */}
                     <div className="flex flex-col w-full ml-8">
@@ -67,35 +67,6 @@ export function Alterações() {
                             id="input_estado"
                             className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4" />
                     </div>
-
-                    {/* Div Senha */}
-                    <div className="flex flex-col w-full ml-8">
-                        <label className="text-[#807e7e]">Informar sexo:</label>
-
-                        <div className="relative flex items-center">
-
-                            <select
-                                name=""
-                                id="selecionar_sexo"
-                                value={selecionar_sexo}
-                                onClick={handleToggle1}
-                                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 mt-2 appearance-none">
-                                <option value="prefiro_não_informar">Prefiro não informar...</option>
-                                <option value="feminino">Feminino</option>
-                            </select>
-
-                            <svg
-                                className={`relative right-4 top-1/3 transform -translate-y-1/2 w-4 h-4 text-slate-600 transition-transform duration-300 ${abriu ? 'rotate-180' : ''}`}
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                    </div>
-
                 </form>
 
             </div>
@@ -106,7 +77,7 @@ export function Alterações() {
                 <form
                     id="form2"
                     method="post"
-                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 ">
+                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16">
 
                     {/* Div Sobrenome */}
                     <div className="flex flex-col w-full ml-8">
@@ -140,32 +111,6 @@ export function Alterações() {
                             id="input_cidade"
                             className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4" />
                     </div>
-
-                    {/* Div Pais */}
-                    <div className="flex flex-col w-full ml-8">
-                        <label className="text-[#807e7e]">País:</label>
-                        <div className="relative flex items-center">
-
-                            <select
-                                name=""
-                                id="seleção de país"
-                                onClick={handleToggle2}
-                                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 mt-2 appearance-none">
-                                <option value="">País</option>
-                                <option value="">Brasil</option>
-                            </select>
-                            <svg
-                                className={`relative right-4 top-1/3 transform -translate-y-1/2 w-4 h-4 text-slate-600 transition-transform duration-300 ${abriu_pais ? 'rotate-180' : ''}`}
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                    </div>
-
                 </form>
 
             </div>
