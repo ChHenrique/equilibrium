@@ -14,7 +14,7 @@ export function Container() {
             <Form ref={formRef} errors={errors} setErrors={setErrors}/>
             <Balls />
             
-            <a href="./">
+            <a href="/">
                 <img
                     src={logo}
                     alt="Logo"
