@@ -70,10 +70,6 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
   const [selectedImage, setSelectedImage] = useState(imagem);
 
-  const handleImageChange = (e) => {
-    setSelectedImage(e.target.files[0]);
-    onChange(e);
-  };
 
   return (
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center">

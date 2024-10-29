@@ -16,7 +16,7 @@ export function Container() {
             <Header />
             <Form ref={formRef} errors={errors} setErrors={setErrors} />
             <Balls /> 
-            <Footer errors={errors} setErrors={setErrors} setLoggedIn={setLoggedIn} formRef={formRef} />
+            <Footer errors={errors} setErrors={setErrors} setLoggedIn={setLoggedIn} formRef={formRef}/>
 
 
             <a href="/">
