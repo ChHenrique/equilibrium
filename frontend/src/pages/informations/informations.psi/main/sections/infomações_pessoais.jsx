@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) {
+export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, sobrenome, email }) {
 
+
+  const [sobrenome, setSobrenome] = useState('');
   const [selectedImage, setSelectedImage] = useState(imagem);
   const [Email, setEmail] = useState('')
   const [Estado, setEstado] = useState('');
@@ -39,7 +41,27 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
   };
 
   useEffect(() => {
-    const idPsi = localStorage.getItem("id"); // Recupera o ID do psicólogo
+    const fetchData = async () => {
+      const idPsi = localStorage.getItem("id");
+      if (idPsi) {
+        try {
+          const response = await fetch(`http://localhost:3000/user/psicologos/${idPsi}`);
+          if (!response.ok) throw new Error("Erro ao buscar os dados do psicólogo");
+          const data = await response.json();
+          setNome(data.nome); // Armazena o nome
+          setSobrenome(data.sobrenome); // Armazena o sobrenome
+          setEmail(data.email); // Armazena o email
+        } catch (error) {
+          console.error("Erro:", error);
+        }
+      }
+    };
+    fetchData();
+  }, []);
+  
+  const idPsi = localStorage.getItem("id"); // Recupera o ID do psicólogo
+  useEffect(() => {
+ 
     if (idPsi) {
       fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`)
         .then(response => {
@@ -53,6 +75,9 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
         .catch(error => console.error("Erro:", error));
     }
   }, []);
+
+
+
 
   return (
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center">
@@ -82,13 +107,10 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
 
         <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_psi}</h3>
 
-<<<<<<< Updated upstream
 
 
 
 
-=======
->>>>>>> Stashed changes
         <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium mr-2'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span></h3>
 
         <hr className='w-60 h-[0.1px] border border-[#1c283d]' />
@@ -125,6 +147,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
                             Nome:
                         </label>
                         <input
+                            placeholder={nome}
                             readOnly
                             type="text"
                             id="input_name_alterações"
@@ -136,7 +159,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
                     <div className="flex flex-col w-full ml-8">
                         <label className="text-[#807e7e]">Email:</label>
                         <input
-                            placeholder='COLOCAR O PLACEHOLDER BACKEND'
+                            placeholder={email}
                             type="email"
                             value={Email}
                             id="input_email_alterações"
@@ -147,7 +170,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
                     <div className="flex flex-col w-full ml-8">
                         <label className="text-[#807e7e]">Estado:</label>
                         <input
-                            value={Estado}
+                            placeholder=''
                             type="text"
                             id="input_estado"
                             className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4" />
@@ -171,6 +194,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
                             Sobrenome:
                         </label>
                         <input
+                            placeholder={sobrenome}
                             readOnly
                             type="text"
                             id="input_sobrenome_alterações"
@@ -182,8 +206,8 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
                     <div className="flex flex-col w-full ml-8">
                         <label className="text-[#807e7e]">Telefone:</label>
                         <input
-                            value={telefone}
-                            type="number"
+                            placeholder='(XX) 99999-9999'
+                            type="tel"
                             id="input_email_alterações"
                             className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"/>
                     </div>
@@ -192,6 +216,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) 
                     <div className="flex flex-col w-full ml-8">
                         <label className="text-[#807e7e]">Cidade:</label>
                         <input
+                            placeholder=''
                             type="text"
                             id="input_cidade"
                             className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4" />
