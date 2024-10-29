@@ -1,5 +1,4 @@
-// SearchProvider.js
-import React, { useEffect, useState, createContext } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const SearchContext = createContext();
 
@@ -28,9 +27,8 @@ export function SearchProvider({ children }) {
     }, []);
 
     return (
-        <SearchContext.Provider value={{ psicologos, loading, error }}>
+        <SearchContext.Provider value={{ psicologos, loading, error, setPsicologos }}>
             {children}
         </SearchContext.Provider>
     );
 }
-
