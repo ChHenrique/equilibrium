@@ -37,7 +37,7 @@ export function Consultas() {
       try {
         const response = await fetch(`http://localhost:3000/consulta/paciente/${idPaciente}`);
         if (!response.ok) {
-          throw new Error("Erro ao buscar consultas");
+          throw new Error("");
         }
 
         const data = await response.json();

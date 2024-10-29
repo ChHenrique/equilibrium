@@ -48,3 +48,27 @@ export const getConsultasPorPaciente = async (req, res) => {
     return res.status(500).json({ message: 'Erro no servidor' });
   }
 };
+
+export const getConsultasPorPsicologo = async (req, res) => {
+  const psicologoId = req.params.id;
+
+  try {
+    const query = `
+      SELECT consultas.*, pacientes.nome AS nome_paciente 
+      FROM consultas 
+      JOIN pacientes ON consultas.id_paciente = pacientes.id 
+      WHERE consultas.id_psicologo = ?
+    `;
+    const [results] = await db.query(query, [psicologoId]);
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'Consultas não encontradas para este psicólogo' });
+    }
+
+    res.json(results);
+  } catch (error) {
+    console.error('Erro ao buscar consultas do psicólogo:', error);
+    return res.status(500).json({ message: 'Erro no servidor' });
+  }
+};
+

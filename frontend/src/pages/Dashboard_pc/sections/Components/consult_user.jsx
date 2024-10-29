@@ -3,7 +3,7 @@ import nullimg from '../../../../assets/images/user_null.svg'
 import { useState } from "react";
 
 export function ConsultasPsicologos({ nome, date, horario, duracao }) {
-    const [able, setAble] = useState(1) //Se =1 e entravel na secçao, se 0 não
+    const [able, setAble] = useState(0) //Se =1 e entravel na secçao, se 0 não
 
 
     return (
