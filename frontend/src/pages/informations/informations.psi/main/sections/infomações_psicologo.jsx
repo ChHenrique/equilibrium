@@ -1,176 +1,288 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import "../sections/animate.css";
+import "../sections/scrollbar.css";
 
-export function InfoPsi({ imagem, onChange, num_sesões, diaConta, nome, id_psi }) {
+export function InfoPsi({ imagem, onChange, nome, id_pc }) {
+  const [TextArea, SetTextArea] = useState(""); // Valor da TextArea dos Tópicos
+  const [Topicos, SetTopicos] = useState([]); // Valor dos Tópicos
+  const [TextAreaFormação, SetTextAreaFormação] = useState(''); // Valor da TextArea da Formação
+  const [Formação, setFormação] = useState([]); // Valor da Formação
+  const [isOpen, setIsOpen] = useState(false); // Controla a visibilidade da lista
+  const [Duração, setDuração] = useState('00:00'); // Armazena a duração selecionada
+
+  const inputRef = useRef(null); // Referência para o campo de texto
+
+  const idPsi = localStorage.getItem("id");
+
+   // Efeito para buscar a imagem do banco de dados
+   useEffect(() => {
+    const fetchImage = async () => {
+
+      if (idPsi) {
+        try {
+          const response = await fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`);
+          if (!response.ok) throw new Error("Erro ao buscar a imagem");
+          const data = await response.json();
+          const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`; // Formata a URL
+          setSelectedImage(imageUrl); // Armazena a URL corretamente
+        } catch (error) {
+          console.error("Erro:", error);
+        }
+      }
+    };
+  
+    fetchImage();
+  }, []);
+
+  // Gera as opções de tempo
+  const generateTimeOptions = () => {
+    const options = [];
+    for (let hour = 0; hour <= 23; hour++) {
+      for (let minute = 0; minute < 60; minute += 5) {
+        const formattedTime = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+        options.push(formattedTime);
+      }
+    }
+    return options;
+  };
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const PegarValorTextArea = (e) => {
+    const inputText = e.target.value;
+    if (inputText.length < 32) {
+      SetTextArea(inputText);
+    }
+  };
+
+  const ValorTopicos = () => {
+    if (TextArea.trim() !== "" && Topicos.length < 12) {
+      SetTopicos([...Topicos, TextArea]);
+      SetTextArea(''); // Limpa a TextArea após adicionar
+      inputRef.current.focus(); // Mantém o foco no campo
+    }
+  };
+
+  const ExcluirTopicos = (index) => {
+    const ValorTopicosNew = Topicos.filter((_, i) => i !== index);
+    SetTopicos(ValorTopicosNew);
+  };
+
+  const PegarValorTextAreaDaFormação = (e) => {
+    SetTextAreaFormação(e.target.value);
+  };
+
+  const ValorFormação = () => {
+    if (TextAreaFormação.trim() !== "" && Formação.length <= 6) {
+      setFormação([...Formação, TextAreaFormação]); // Implementando os valores de textarea a formação
+      SetTextAreaFormação(''); // Limpa a TextArea após adicionar
+    }
+  };
+
+  const ExcluirFormação = (index) => {
+    const ValorFormaçãoNew = Formação.filter((_, i) => i !== index);
+    setFormação(ValorFormaçãoNew);
+  };
+
+  useEffect(() => {
+    console.log("Tópicos atualizados:", Topicos);
+  }, [Topicos]);
 
   const [selectedImage, setSelectedImage] = useState(imagem);
-  const [Estado, setEstado] = useState('');
-  const [Email, setEmail] = useState('')
-  const [telefone, setTelefone] = useState('');
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setSelectedImage(URL.createObjectURL(file)); // Cria um URL para o arquivo e atualiza o estado
+      setSelectedImage(URL.createObjectURL(file)); // Para visualizar a imagem localmente
       onChange(e);
     }
   };
 
-  // useEffect para buscar a imagem do psicólogo
-  useEffect(() => {
-    const idPsi = localStorage.getItem("id"); // Recupera o ID do psicólogo
-    if (idPsi) {
-      fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`) // Requisição para obter a imagem
-        .then(response => {
-          if (!response.ok) throw new Error("Erro ao buscar a imagem");
-          return response.json();
-        })
-        .then(data => {
-          const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`; // Formata a URL
-          setSelectedImage(imageUrl); // Armazena a URL da imagem no estado
-        })
-        .catch(error => console.error("Erro:", error));
-    }
-  }, []);
 
   return (
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center">
-      {/* Div que contém a imagem e o input de arquivo */}
-      <div className='w-[40%] h-full bg-white flex flex-col items-center rounded-bl-2xl rounded-tl-2xl p-4 relative'>
-        {/* Div que contém a imagem */}
+      <div className='w-[40%] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b]'>
+
+        {/* Imagem e Input de Arquivo */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
-          <div className='flex relative flex-col'>
-            <input
-              type="file"
-              id="image-input"
-              accept="image/*" // Corrigido para "image/*"
-              onChange={handleImageChange}
-              className="flex flex-col translate-y-16 cursor-pointer h-[80%] opacity-0"
-            />
-          </div>
-          {/* Label que contém a imagem ou o símbolo de adição */}
-          <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
-            {selectedImage ? (
-              <img src={selectedImage} alt="Imagem selecionada" className="h-[102%] w-[102%]  rounded-full object-cover -translate-y-[18.5%]" />
-            ) : (
-              <span className="text-5xl text-white items-center flex mb-2" draggable="true">+</span>
-            )}
-          </label>
+        <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
+  {selectedImage ? (
+    <img src={selectedImage} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
+  ) : (
+    <span className="text-5xl text-white items-center flex mb-2">+</span>
+  )}
+</label>
         </div>
 
-        <h3 className='mt-3 font-poppins text-[#465A7F] text-sm font-medium'>Escolher foto</h3>
-        <h2 className="mt-1 font-poppins text-[#000000] text-xl font-medium whitespace-break-spaces break-all text-center">{nome}</h2>
-        <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_psi}</h3>
-        <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium mr-2'>Número de sessões: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{num_sesões}</span></h3>
-        <hr className='w-60 h-[0.1px] border border-[#1c283d]' />
-        <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium mr-2'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span></h3>
-        <hr className='w-60 h-[0.1px] border border-[#1c283d]' />
-        <a href='/home/psicologo' className='w-full flex justify-center'>
-          <button className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl whitespace-nowrap">Ver Histórico</button>
-        </a>
+        <h3 className='mt-3 font-poppins text-[#465A7F] text-sm font-medium'>
+          Escolher foto
+        </h3>
+
+        <h2 className="mt-1 font-poppins text-[#000000] text-xl font-medium whitespace-break-spaces break-all text-center">
+          {nome}
+        </h2>
+
+        <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>
+          ID: {idPsi}
+        </h3>
+
+
+
+        <h1 className='mt-5 font-poppins font-semibold text-primary-700 text-[19px]'>
+          Duração da Consulta
+        </h1>
+
+        <div className="relative font-poppins font-semibold text-primary-200 w-36">
+          {/* Botão de selecionar a hora*/}
+          <button onClick={toggleDropdown} className="border-b border-primary-800 p-1 text-lg w-full text-[24px] mt-2 text-left">
+            {Duração}
+
+            <svg width="22" height="22" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className='translate-x-28 absolute -translate-y-6'>
+              <g clip-path="url(#clip0_910_964)">
+                <path d="M5.99902 3V6L7.99902 7M10.999 6C10.999 8.76142 8.76045 11 5.99902 11C3.2376 11 0.999023 8.76142 0.999023 6C0.999023 3.23858 3.2376 1 5.99902 1C8.76045 1 10.999 3.23858 10.999 6Z" stroke="#355081" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="2.64645" y1="2.85355" x2="1.64645" y2="1.85355" stroke="#355081" />
+                <line x1="2.35596" y1="0.851133" x2="0.443444" y2="2.78993" stroke="#355081" />
+              </g>
+              <defs>
+                <clipPath id="clip0_910_964">
+                  <rect width="12" height="12" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+
+          </button>
+          {isOpen && (
+            <div className="absolute z-10 mt-2 border bg-white shadow-lg max-h-60 w-full overflow-y-auto rounded-2xl rounded-tr-sm rounded-br-sm scrollable">
+              {generateTimeOptions().map((option) => (
+                <button
+                  type='submit'
+                  key={option}
+                  onClick={() => {
+                    setDuração(option);
+                    setIsOpen(false);
+                  }}
+                  className={`block w-full text-left p-2 text-lg transition-all duration-200 
+                    hover:bg-primary-300 ${Duração === option ? 'bg-primary-500 text-white' : 'text-gray-700'}`}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Botão Confirmar */}
+        <button type='submit' className="w-36 bg-primary-200 hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-md mt-5 duration-300">
+          Confirmar
+        </button>
+
         <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10'></div>
+
       </div>
 
-      {/* Div do componente das alterações */}
-      <div className="w-full h-full flex items-center font-poppins font-medium relative">
-            <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700">
-                Altere e salve suas Alterações!
-            </h1>
+      {/* Componente de Alterações */}
+      <div className="w-full h-full flex items-center justify-center flex-col font-poppins font-medium relative rounded-tl-2xl p-6 space-y-10">
 
-           {/* // Div do Componente das alterações nome, estado, senha e email */}
-            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5">
+        <h1 className='absolute top-10 font-poppins font-semibold text-[25px] text-primary-700'>Defina seus tópicos e suas formações</h1>
 
-                {/* Form dos inputs e labels */}
+        {/* Tópicos */}
+        <div className='flex flex-col w-[95%] h-[37%] relative'>
 
-                <form
-                    id="form1"
-                    method="post"
-                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-14">
+          <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2'>Tópicos</h1>
 
-                    {/* Div Nome */}
-                    <div className="flex flex-col w-full ml-8">
+          <div className='w-full h-full relative whitespace-normal'>
 
-                        <label className="text-[#807e7e]">
-                            Nome:
-                        </label>
-                        <input
-                            readOnly
-                            type="text"
-                            id="input_name_alterações"
-                            className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 " />
+            <div className='absolute top-3 left-3 flex flex-wrap space-x-2 w-full h-fit max-w-[98%]'>
 
-                    </div>
+              {Topicos.map((item, index) => (
+                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2'>
 
-                    {/* Div Email */}
-                    <div className="flex flex-col w-full ml-8">
-                        <label className="text-[#807e7e]">Email:</label>
-                        <input
-                            placeholder='COLOCAR O PLACEHOLDER BACKEND'
-                            type="email"
-                            value={Email}
-                            id="input_email_alterações"
-                            className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 " />
-                    </div>
+                  <h3 id='letra' className='font-poppins text-[#121926] break-words'>{item}</h3>
+                  <div onClick={() => ExcluirTopicos(index)} className='xis h-full justify-center items-center'>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className='mt-0.5 text-[#121926] scale-125 duration-300 cursor-pointer'>
+                      <path d="M1 9L9 1" stroke="currentColor" strokeWidth="2" />
+                      <path d="M9 9L1 1" stroke="currentColor" strokeWidth="2" />
+                    </svg>
+                  </div>
 
-                    {/* Div Estado */}
-                    <div className="flex flex-col w-full ml-8">
-                        <label className="text-[#807e7e]">Estado:</label>
-                        <input
-                            value={Estado}
-                            type="text"
-                            id="input_estado"
-                            className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4" />
-                    </div>
-                </form>
+                </div>
+
+              ))}
+            </div>
+
+            <textarea
+              ref={inputRef} // Adicionando referência aqui
+              spellCheck
+              className='w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9]'
+              onChange={PegarValorTextArea}
+              value={TextArea}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  ValorTopicos();
+                  e.preventDefault(); // Impede a quebra de linha
+                }
+              }}
+            />
+          
+            <button className='absolute right-6 bottom-4' onClick={ValorTopicos} type='submit'>
+              <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+          </div>
+        </div>
+
+        {/* Formação */}
+        <div className='flex flex-col w-[95%] h-[37%] relative'>
+
+          <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2'>Formação</h1>
+
+          <div className='w-full h-full relative whitespace-normal'>
+
+            <div className='absolute top-3 left-3 flex flex-wrap space-x-2 w-full h-fit max-w-[98%]'>
+
+              {Formação.map((item, index) => (
+
+                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2'>
+
+                  <h3 id='letra' className='font-poppins text-[#121926] break-words'>{item}</h3>
+                  <div onClick={() => ExcluirFormação(index)} className='xis h-full justify-center items-center'>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className='mt-0.5 text-[#121926] scale-125 duration-300 cursor-pointer'>
+                      <path d="M1 9L9 1" stroke="currentColor" strokeWidth="2" />
+                      <path d="M9 9L1 1" stroke="currentColor" strokeWidth="2" />
+                    </svg>
+                    
+                  </div>
+
+                </div>
+              ))}
 
             </div>
 
+            <textarea
+              className='w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9]'
+              onChange={PegarValorTextAreaDaFormação}
+              value={TextAreaFormação}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  ValorFormação();
+                  e.preventDefault(); // Impede a quebra de linha
+                }
+              }}
+            />
 
-            {/* Form2 */}
-            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5">
-                <form
-                    id="form2"
-                    method="post"
-                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16">
+            <button className='absolute right-6 bottom-4' onClick={ValorFormação}>
+              <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
 
-                    {/* Div Sobrenome */}
-                    <div className="flex flex-col w-full ml-8">
-
-                        <label className="text-[#807e7e]">
-                            Sobrenome:
-                        </label>
-                        <input
-                            readOnly
-                            type="text"
-                            id="input_sobrenome_alterações"
-                            className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4" />
-
-                    </div>
-
-                    {/* Div Telefone */}
-                    <div className="flex flex-col w-full ml-8">
-                        <label className="text-[#807e7e]">Telefone:</label>
-                        <input
-                            value={telefone}
-                            type="number"
-                            id="input_email_alterações"
-                            className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"/>
-                    </div>
-
-                    {/* Div Cidade */}
-                    <div className="flex flex-col w-full ml-8">
-                        <label className="text-[#807e7e]">Cidade:</label>
-                        <input
-                            type="text"
-                            id="input_cidade"
-                            className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4" />
-                    </div>
-                </form>
-
-            </div>
-
-            <button className="absolute bottom-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 mb-3">Salvar Alterações</button>
+          </div>
         </div>
-
-        </div>
+      </div>
+    </div>
   );
 }
