@@ -1,13 +1,11 @@
 import React from "react";
-import nullimg from '../../../../assets/images/user_null.svg'
+import nullimg from '../../../../assets/images/user_null.svg';
 import { useState } from "react";
 
 export function ConsultasPsicologos({ nome, date, horario, duracao }) {
-    const [able, setAble] = useState(0) //Se =1 e entravel na secçao, se 0 não
-
+    const [able, setAble] = useState(1); // Se =1 e entravel na secção, se 0 não
 
     return (
-
         <div className="min-w-fit pr-4 h-32 flex bg-slate-200 font-poppins justify-center items-center rounded-2xl m-2 max-w-fit ">
             <img src={nullimg} alt="" className="w-24 rounded-full m-2" />
             <div className="flex flex-col text-2xl justify-center items-start h-32 w-auto">
@@ -22,41 +20,36 @@ export function ConsultasPsicologos({ nome, date, horario, duracao }) {
                                 strokeLinejoin="round"
                             />
                         </svg>
-
-
-                        {date}</h2>
+                        {date}
+                    </h2>
 
                     <h2 className="ml-2 text-primary-700 text-base font-light bg-primary-300  whitespace-nowrap  flex text-nowrap items-center justify-center p-[2px] rounded-lg">
                         <svg className="h-5 w-5" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.99902 3.5V6.5L7.99902 7.5M10.999 6.5C10.999 9.26142 8.76045 11.5 5.99902 11.5C3.2376 11.5 0.999023 9.26142 0.999023 6.5C0.999023 3.73858 3.2376 1.5 5.99902 1.5C8.76045 1.5 10.999 3.73858 10.999 6.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M5.99902 3.5V6.5L7.99902 7.5M10.999 6.5C10.999 9.26142 8.76045 11.5 5.99902 11.5C3.2376 11.5 0.999023 9.26142 0.999023 6.5C0.999023 3.73858 3.2376 1.5 5.99902 1.5C8.76045 1.5 10.999 3.73858 10.999 6.5Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-
-
-
-                        {horario}</h2>
+                        {horario}
+                    </h2>
 
                     <h2 className="ml-2 text-primary-700 text-base font-light bg-primary-300  whitespace-nowrap  flex text-nowrap items-center justify-center p-[2px] rounded-lg">
                         <svg className="h-5 w-5" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.99902 3.5V6.5L7.99902 7.5M10.999 6.5C10.999 9.26142 8.76045 11.5 5.99902 11.5C3.2376 11.5 0.999023 9.26142 0.999023 6.5C0.999023 3.73858 3.2376 1.5 5.99902 1.5C8.76045 1.5 10.999 3.73858 10.999 6.5Z" stroke="#355081" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M5.99902 3.5V6.5L7.99902 7.5M10.999 6.5C10.999 9.26142 8.76045 11.5 5.99902 11.5C3.2376 11.5 0.999023 9.26142 0.999023 6.5C0.999023 3.73858 3.2376 1.5 5.99902 1.5C8.76045 1.5 10.999 3.73858 10.999 6.5Z" stroke="#355081" strokeLinecap="round" strokeLinejoin="round" />
                             <line x1="2.64645" y1="3.35355" x2="1.64645" y2="2.35355" stroke="#355081" />
                             <line x1="2.35596" y1="1.35113" x2="0.443444" y2="3.28993" stroke="#355081" />
                         </svg>
-
-
-
-
-                        { duracao}</h2>
+                        {duracao}
+                    </h2>
                 </div>
 
-                {
-                    able ?
-                        <a href="#" className="">
-                            <button className="w-full h-fit bg-primary-200 text-white text-base rounded-2xl p-2 mt-2 cursor-pointer duration-150 hover:bg-primary-500"> Juntar-se a chamada</button>
-                        </a>
-                        :
-                        <div></div>
-                }
+                {able ? (
+                    <a href="http://localhost:8888/chat?peer1" className="">
+                        <button className="w-full h-fit bg-primary-200 text-white text-base rounded-2xl p-2 mt-2 cursor-pointer duration-150 hover:bg-primary-500">
+                            Juntar-se a chamada
+                        </button>
+                    </a>
+                ) : (
+                    <div></div>
+                )}
             </div>
         </div>
-    )
+    );
 }

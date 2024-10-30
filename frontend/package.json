@@ -15,6 +15,7 @@
     "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-calendar": "^5.0.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-datepicker": "^7.5.0",
     "react-datetime": "^3.2.0",
     "react-dom": "^18.3.1",
@@ -22,11 +23,12 @@
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.26.2",
     "react-time-picker": "^7.0.0",
-    "react-timekeeper": "^2.2.1",
     "react-webcam": "^7.2.0",
+    "simple-peer": "^9.11.1",
     "socket.io-client": "^4.8.0",
     "swiper": "^11.1.12",
-    "tailwind-scrollbar": "^3.1.0"
+    "tailwind-scrollbar": "^3.1.0",
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
@@ -43,6 +45,7 @@
     "globals": "^15.9.0",
     "postcss": "^8.4.43",
     "tailwindcss": "^3.4.10",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-plugin-node-polyfills": "^0.22.0"
   }
 }

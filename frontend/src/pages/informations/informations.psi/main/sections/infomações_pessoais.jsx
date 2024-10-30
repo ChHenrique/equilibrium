@@ -5,6 +5,9 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
   const [Email, setEmail] = useState(email || ''); // Usar o email recebido como padrão
   const [Estado, setEstado] = useState('');
   const [telefone, setTelefone] = useState('');
+  const [cidade, setCidade ] = useState('')
+  const [Sobrenome, setSobrenome ] = useState()
+
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -47,6 +50,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
           setEmail(data.email || ''); // Atualiza o email
           setEstado(data.estado || ''); // Atualiza o estado se disponível
           setTelefone(data.telefone || ''); // Atualiza o telefone se disponível
+          setSobrenome(data.sobrenome || '')
         })
         .catch(error => console.error("Erro:", error));
     }
@@ -112,7 +116,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
           <form id="form1" method="post" className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-14">
             {/* Div Nome */}
             <div className="flex flex-col w-full ml-8">
-              <label className="text-[#807e7e]">Nome:</label>
+              <label className="text-[#807e7e] placeholder:font-poppins placeholder:font-semibold">Nome:</label>
               <input
                 placeholder={nome}
                 readOnly
@@ -142,6 +146,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                 placeholder={Estado}
                 type="text"
                 id="input_estado"
+                value={Estado}
                 onChange={(e) => setEstado(e.target.value)} // Atualiza o estado
                 className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"
               />
@@ -151,12 +156,12 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
 
         {/* Form2 */}
         <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5">
-          <form id="form2" method="post" className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16">
+          <form id="form2" method="post" className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-14">
             {/* Div Sobrenome */}
             <div className="flex flex-col w-full ml-8">
               <label className="text-[#807e7e]">Sobrenome:</label>
               <input
-                placeholder={sobrenome}
+                placeholder={Sobrenome}
                 readOnly
                 type="text"
                 id="input_sobrenome_alterações"
@@ -182,6 +187,10 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
               <label className="text-[#807e7e]">Cidade:</label>
               <input
                 placeholder=''
+                onChange={((e)=>{
+                  setCidade(e.target.value)
+                })}
+                value={cidade}
                 type="text"
                 id="input_cidade"
                 className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"
