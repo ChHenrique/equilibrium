@@ -1,5 +1,5 @@
 import { Chats } from "./ChatArea"
-import { CamsEButtons } from "./CamArea"
+import { VideoChat } from "./CamArea"
 import { useContext, useState, createContext } from "react"
 import { PostCall } from "./postCall"
 
@@ -18,7 +18,7 @@ export function Center() {
             :
                 <div className="flex h-full w-full">
                     <div className="flex w-2/4 h-full mr-4">
-                        <CamsEButtons  />
+                        <VideoChat  />
                     </div>
 
                     <div className="flex w-2/4 h-full">
