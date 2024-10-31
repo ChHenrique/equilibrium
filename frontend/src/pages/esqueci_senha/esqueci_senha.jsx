@@ -11,11 +11,14 @@ export function EsqueciSenha() {
             <img id='l2' src={linha2} alt="" className='absolute right-0 -top-20'/>
             <img id='l3' src={linha3} alt="" className='absolute right-0 -top-20'/>  
 
-            <div className = "bg-slate-50 w-[30%] aspect-square flex flex-col p-12 shadow-2xl rounded-md space-y-16 relative">
-              <Bolas/>
-              <h1 className="font-poppins text-[30px] text-primary-700 mt-16">Precisamos verificar sua <span>indentidade</span></h1>
+            <div className = "bg-slate-50 w-[30%] aspect-square flex flex-col p-8 shadow-2xl rounded-2xl space-y-16 relative max-w-xl">
+              <Bolas />
+              <h1 className="font-poppins text-[28px] font-medium text-primary-700 mt-16 tracking-wider">Precisamos verificar sua <span>indentidade</span></h1>
 
-              <h1>pepe</h1>
+              <div className="flex flex-col space-y-4">
+                <label className="font-poppins text-[14px] text-primary-700">Digite seu Email:</label>
+                <input/>
+              </div>
             </div>  
         </div>
   )
