@@ -14,7 +14,7 @@ import { Informations_pc } from './pages/informations/infomations.pc/index.jsx';
 import { Calendario } from './pages/calendario/index.jsx'
 import { VideoPage } from './pages/VideoCallPage/principal.jsx';
 import { Informations_psi } from './pages/informations/informations.psi/index.jsx';
-
+import { EsqueciSenha } from './pages/esqueci_senha/esqueci_senha.jsx'
 
 export const routes = createBrowserRouter([
   {
@@ -73,6 +73,10 @@ export const routes = createBrowserRouter([
       {
         path: '/info/psicologo',
         element: <Informations_psi/>
+      },
+      {
+        path: '/login/esquecisenha',
+        element: <EsqueciSenha/>
       }
     ]
   },

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom"; // Importa useLocation
 import { Bolas } from "./bolas";
