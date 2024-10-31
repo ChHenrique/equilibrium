@@ -57,6 +57,11 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
                 <CPF_CRP cpfError={errors.cpf} crpError={errors.crp} />
                 <div className="w-full flex justify-center items-center">
                 <button
+                    onClick={((e) => {
+                        if(e.key == "Enter"){
+                            Form()
+                        }
+                    })}
                     type="submit"
                     className="bg-[#3B82F6] p-0.5 text-white border border-[#3B82F6] w-80 h-auto rounded-[10px] 
         font-satoshi font-extrabold text-lg mt-11 hover:bg-[#1c3b79] 
