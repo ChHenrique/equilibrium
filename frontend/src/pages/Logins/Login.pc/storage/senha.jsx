@@ -17,7 +17,7 @@ export function Password({ passwordError }) {
                     <Link to="/registro/paciente" className="text-[#465A7F] font-satoshi-bold text-[15px] hover:text-[#8cb3ff]">
                         Não tenho conta
                     </Link>
-                    <a href="" className="text-[#465A7F] font-satoshi-bold text-[15px] hover:text-[#8cb3ff]">
+                    <a href="/login/esquecisenha" className="text-[#465A7F] font-satoshi-bold text-[15px] hover:text-[#8cb3ff]">
                         Esqueci minha senha
                     </a>
                 </div>
