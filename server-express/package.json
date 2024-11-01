@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "backend": "nodemon server.js",
+    "backend": "nodemon server.js --host --port 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

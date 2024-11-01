@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-   "webcam": "nodemon server.js --host --port 8888"
+   "webcam": "nodemon server.js --host --port 5000"
   },
   "keywords": [],
   "author": "",
