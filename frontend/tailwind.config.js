@@ -27,6 +27,7 @@ export default {
       },
       colors:{
         primary:  {
+          100: '#718FCD',
           200: '#8CB3FF',
           300: '#BFDBFE', // fundo
           500: '#3b82f6', // primary
