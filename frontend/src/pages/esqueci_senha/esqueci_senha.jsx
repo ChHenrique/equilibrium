@@ -73,7 +73,7 @@ export function EsqueciSenha({ ValorInputUsuário }) {
             <button 
               type="submit"
               onKeyDown={(e) => {
-                if (e.key === "Enter") {
+                if (e.key === "Enter" || e.key == 13) {
                   e.preventDefault();
                 }
               }}
