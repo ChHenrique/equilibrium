@@ -32,12 +32,14 @@ export function EsqueciSenha({ ValorInputUsuário }) {
       <img src={linha3} alt="" className='absolute right-0 -top-20 max-w-full h-auto' />
 
       <div className="bg-slate-50 w-full md:w-[90%] lg:w-[30%] aspect-square flex flex-col p-8 shadow-2xl rounded-2xl space-y-10 relative max-w-[600px] mx-auto">
-        <Bolas />
+
+        <Bolas className="max-md:hidden"/>
+
         <h1 className="font-poppins text-[24px] md:text-[26px] lg:text-[28px] font-medium text-primary-700 mt-4 tracking-wider">
-          Precisamos verificar sua identidade
+          Precisamos verificar sua <br/> identidade
         </h1>
 
-        <form className="flex flex-col translate-y-7" onSubmit={(e) => {
+        <form className="flex flex-col translate-y-7 max-xl:translate-y-14" onSubmit={(e) => {
           e.preventDefault();
         }}>
           <label className={`font-poppins text-[14px] md:text-[15px] text-primary-700 mb-2 ${ValorLabel === "Email inválido:" ? 'text-red-700' : 'text-primary-700'}`}>
@@ -58,7 +60,7 @@ export function EsqueciSenha({ ValorInputUsuário }) {
 
           {/* Adicione uma margem superior ao botão */}
           <div className="flex justify-center items-center w-full mt-[18%] mr-1">
-            <button 
+            <button
               type="submit"
               className="bg-primary-500 text-white rounded-lg font-poppins font-bold text-[16px] md:text-[18px] hover:bg-[#1c3b79] duration-500 p-2 w-full max-w-[260px]">
               Enviar Código
@@ -70,7 +72,7 @@ export function EsqueciSenha({ ValorInputUsuário }) {
           <img
             src={logo}
             alt="Logo"
-            className="absolute bottom-3 right-4 h-[5em] md:h-[6.5em] max-h-[8em] min-h-[5.5em]"
+            className="absolute bottom-3 right-4 h-[5em] md:h-[6.5em] max-h-[8em] min-h-[5.5em] max-md:hidden lg:hidden"
           />
         </a>
       </div>
