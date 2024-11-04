@@ -44,13 +44,15 @@ export function VideoChat() {
 
         return () => {
             socket.off('signal');
-            if (peerRef.current) {peerRef.current.destroy();
+            if (peerRef.current) {
+                peerRef.current.destroy();
             peerRef.current = null;}
         };
     }, []);
 
     useEffect(() => {
         if (peerStream && videoRef.current) {
+            console.log("esta streamando")
             videoRef.current.srcObject = peerStream;
         }
     }, [peerStream]);
