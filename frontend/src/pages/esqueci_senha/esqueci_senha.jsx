@@ -24,8 +24,9 @@ export function EsqueciSenha({ ValorInputUsuário }) {
     } else {
       SetValorLabel("Digite seu Email:");
     }
-  };
-  // Constante que o valor só vai aparecer no console se eu apertar enter
+  }
+
+  // Constante que o valor só vai aparecer no console se apertar enter
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!VerificacaoEmail(valorInput)) {
@@ -62,8 +63,8 @@ export function EsqueciSenha({ ValorInputUsuário }) {
             onChange={OnchangeValorInput}
           />
 
-          <a href="/login/paciente" className="mt-1 text-primary-100 font-satoshi-Regular hover:text-primary-200">
-            Voltar para a tela de login
+          <a href="/" className="mt-1 text-primary-100 font-satoshi-Regular hover:text-primary-200">
+            Voltar para a tela inicial
           </a>
 
           <div className="flex justify-center w-full mt-[28%]">
