@@ -13,22 +13,30 @@ export function CodigoEnviado() {
       <img src={linha2} alt="" className='absolute right-0 -top-20 max-w-full h-auto' />
       <img src={linha3} alt="" className='absolute right-0 -top-20 max-w-full h-auto' />
 
-      <div className="bg-slate-50 w-full md:w-[90%] lg:w-[30%] aspect-square flex flex-col p-8 shadow-2xl rounded-2xl space-y-16 relative max-w-[600px] mx-auto">
+      <div className="bg-slate-50 w-full md:w-[90%] lg:w-[30%] aspect-square flex flex-col p-8 shadow-2xl rounded-2xl space-y-16 relative max-w-[600px] mx-auto max-sm:space-y-8">
 
         <Bolas className="max-md:hidden"/>
 
         <div>
-        <h1 className="font-poppins text-[26px] md:text-[26px] max-sm:text-[22px] font-medium text-primary-700 tracking-wider">
-          O código foi enviado com sucesso
+        <h1 className="font-poppins text-[25px] md:text-[25px] max-sm:text-[23px] font-medium text-primary-700 tracking-wider">
+          O código foi enviado com <br/>sucesso
         </h1>
 
-        <h3 className="font-satoshi text-[15px] md:text-[15px] max-sm:text-[12px] text-primary-700">
+        <h3 className="font-satoshi text-[15px] md:text-[15px] max-sm:text-[13px] text-primary-700">
           O código não foi recebido? <button className="h-fit w-fit text-primary-200">Reenviar código</button>
         </h3>
         </div>
 
-        <label htmlFor="">Digite seu código </label>
+        <form className="flex flex-col translate-y-7 max-xl:translate-y-14 max-sm:translate-y-4">
 
+        <label htmlFor="" className="font-satoshi text-[15px] md:text-[15px] max-sm:text-[12px] text-primary-700">Digite seu código </label>
+        <input 
+        className="border-b border-primary-700 bg-slate-50 outline-none text-primary-800 font-satoshi-regular placeholder:text-black placeholder:font-satoshi-regular max-sm:placeholder:text-slate-500"
+        type="number"
+        placeholder="XXXX"
+        />
+
+        </form>
 
         <a href="/">
           <img
