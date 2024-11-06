@@ -15,6 +15,7 @@ import { Calendario } from './pages/calendario/index.jsx'
 import { VideoPage } from './pages/VideoCallPage/principal.jsx';
 import { Informations_psi } from './pages/informations/informations.psi/index.jsx';
 import { EsqueciSenha } from './pages/esqueci_senha/esqueci_senha.jsx'
+import { ErrorPage } from './pages/404/erro.jsx';
 
 export const routes = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ export const routes = createBrowserRouter([
       {
         path: '/login/esquecisenha',
         element: <EsqueciSenha/>
+      },
+      {
+      path: '*',
+      element: <ErrorPage/> 
       }
     ]
   },
