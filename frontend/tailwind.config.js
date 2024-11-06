@@ -6,8 +6,10 @@ export default {
   ],
   theme: {
     extend: {
-      
 
+      screens: {
+        'NetsHub': '1024px',
+      },
       boxShadow: {
         'custom-light': '4px 3px 8px rgba(0, 0, 0, 0.315)',
       },
@@ -36,6 +38,7 @@ export default {
           800: '#355081',
           900: '#FD8686',
           1000: '#88E5AD',
+          1100: '#04143f',
         },
         secondary:{
           100: '#DCE5EE',

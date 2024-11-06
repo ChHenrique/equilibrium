@@ -16,6 +16,9 @@ import { VideoPage } from './pages/VideoCallPage/principal.jsx';
 import { Informations_psi } from './pages/informations/informations.psi/index.jsx';
 import { EsqueciSenha } from './pages/esqueci_senha/esqueci_senha.jsx'
 import { ErrorPage } from './pages/404/erro.jsx';
+import { CodigoEnviado } from './pages/esqueci_senha/codigo_enviado.jsx';
+import { NovaSenha } from './pages/esqueci_senha/novaSenha.jsx'
+
 
 export const routes = createBrowserRouter([
   {
@@ -80,9 +83,18 @@ export const routes = createBrowserRouter([
         element: <EsqueciSenha/>
       },
       {
+
       path: '*',
       element: <ErrorPage/> 
-      }
+      },
+      {
+        path: '/login/codigoenviado',
+        element: <CodigoEnviado/>
+      },
+      {
+        path: '/login/novasenha',
+        element: <NovaSenha/>
+      },
     ]
   },
 ]);
