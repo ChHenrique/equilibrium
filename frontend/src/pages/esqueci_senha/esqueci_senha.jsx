@@ -50,7 +50,7 @@ export function EsqueciSenha({ ValorInputUsuário }) {
           Precisamos verificar sua <br/> identidade
         </h1>
 
-        <form className="flex flex-col translate-y-7 max-xl:translate-y-14" onSubmit={handleSubmit}>
+        <form className="flex flex-col translate-y-7 max-xl:translate-y-14" onSubmit={handleSubmit} method="get">
           <label className={`font-poppins text-[14px] md:text-[15px] text-primary-700 mb-2 ${ValorLabel === "Email inválido:" ? 'text-red-700' : 'text-primary-700'}`}>
             {ValorLabel}
           </label>

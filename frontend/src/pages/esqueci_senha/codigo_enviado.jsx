@@ -52,14 +52,14 @@ export function CodigoEnviado() {
             <button 
               className="h-fit w-fit text-primary-200 ml-1" 
               onClick={ResendButton} 
-              disabled={habilitar} // Desabilita o botão enquanto o tempo não acabar
+              disabled={habilitar} 
             >
               {habilitar ? `Espere ${timer}s para reenviar` : `Reenviar código`}
             </button>
           </h3>
         </div>
 
-        <form className="flex flex-col">
+        <form className="flex flex-col" method='get'>
           <label 
             htmlFor="" 
             className="font-satoshi text-[15px] md:text-[15px] max-sm:text-[12px] text-primary-700 mb-3"
