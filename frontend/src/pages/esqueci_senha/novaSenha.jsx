@@ -1,7 +1,6 @@
 import linha1 from "../../assets/images/decoraçãoLoginRegistro1.svg";
 import linha2 from "../../assets/images/decoraçãoLoginRegistro2.svg";
 import linha3 from "../../assets/images/decoraçãoLoginRegistro3.svg";
-import eyesenha from "../../assets/images/eyesenha.svg";
 import "../../log,reg.css";
 import { Bolas } from "./bolas";
 import React, { useState } from 'react';
@@ -77,7 +76,7 @@ export function NovaSenha() {
       console.log(novaSenha)
       console.log(confirmarSenha)
     } else {
-      console.log("nada")
+      e.preventDefault()
     }
   };
 
