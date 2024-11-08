@@ -11,7 +11,7 @@ export function Container() {
     const [loggedIn, setLoggedIn] = useState(false); // Estado para controle de login
 
     return (
-        <div className='bg-white flex-col flex items-center p-0 h-[84vh] w-[65vw] relative rounded-[10px] max-sm:w-[82vw] max-sm:h-[80vh] max-xl:h-[70vh]'>
+        <div className='bg-white flex-col flex items-center p-0 h-[84vh] w-[65vw] relative rounded-[10px] max-sm:w-[82vw] max-sm:h-[80vh] max-xl:h-[68vh]'>
 
             <Header />
             <Form ref={formRef} errors={errors} setErrors={setErrors} />
