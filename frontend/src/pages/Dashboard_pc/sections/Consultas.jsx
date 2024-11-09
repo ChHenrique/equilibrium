@@ -95,7 +95,9 @@ export function Consultas() {
           </svg>
         </button>
       </div>
-      <div className="grid justify-start items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-3 grid-flow-row">
+      <div className="grid justify-start items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-5 grid-flow-row">
+
+  
         {consultas.length === 0 ? (
           <p>Nenhuma consulta encontrada.</p>
         ) : (

@@ -3,14 +3,14 @@ import nullimg from '../../../../assets/images/user_null.svg';
 import { useState } from "react";
 
 export function ConsultasPsicologos({ nome, date, horario, duracao }) {
-    const [able, setAble] = useState(1); // Se =1 e entravel na secção, se 0 não
+    const [able, setAble] = useState(0); // Se =1 e entravel na secção, se 0 não
 
     return (
-        <div className="min-w-fit pr-4 h-32 flex bg-slate-200 font-poppins justify-center items-center rounded-2xl m-2 max-w-fit ">
+        <div className="min-w-fit  h-fit flex flex-col bg-[#F1F5F9] font-poppins justify-center items-center rounded-2xl m-2 max-w-fit ">
             <img src={nullimg} alt="" className="w-24 rounded-full m-2" />
-            <div className="flex flex-col text-2xl justify-center items-start h-32 w-auto">
-                <h1 className=" text-primary-700 text-2xl font-medium">{nome}</h1>
-                <div className="flex flex-row justify-center items-center">
+            <div className="flex flex-col text-2xl justify-center items-center h-full p-2 w-full ">
+                <h1 className=" text-primary-700 text-2xl font-medium mb-4">{nome}</h1>
+                <div className="flex flex-row justify-center items-center w-full h-fit">
                     <h2 className=" text-primary-700 text-base font-light bg-primary-300  whitespace-nowrap  flex text-nowrap items-center justify-center p-[2px] rounded-lg">
                         <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">
                             <path d="M32 4V12M16 4V12M6 20H42M10 8H38C40.2091 8 42 9.79086 42 12V40C42 42.2091 40.2091 44 38 44H10C7.79086 44 6 42.2091 6 40V12C6 9.79086 7.79086 8 10 8Z"
@@ -41,13 +41,18 @@ export function ConsultasPsicologos({ nome, date, horario, duracao }) {
                 </div>
 
                 {able ? (
-                    <a href="http://localhost:8888/chat?peer1" className="">
-                        <button className="w-full h-fit bg-primary-200 text-white text-base rounded-2xl p-2 mt-2 cursor-pointer duration-150 hover:bg-primary-500">
+                    <a href="http://localhost:8888/chat?peer1" className="w-fit">
+                        <button className="w-full h-fit mb-4 bg-primary-200 text-white text-base rounded-2xl p-2 mt-4 cursor-pointer duration-150 hover:bg-primary-500">
                             Juntar-se a chamada
                         </button>
                     </a>
                 ) : (
-                    <div></div>
+                    <div className="w-fit">
+                    <button className="w-full h-fit mb-4 bg-primary-300 text-slate-500 text-base rounded-2xl p-2 mt-4 cursor-default ">
+                        Juntar-se a chamada
+                    </button>
+                    </div>
+
                 )}
             </div>
         </div>
