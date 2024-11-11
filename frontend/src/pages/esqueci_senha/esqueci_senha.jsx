@@ -18,16 +18,11 @@ export function EsqueciSenha({ ValorInputUsuário }) {
     const email = e.target.value;
     setValorInput(email);
 
-<<<<<<< Updated upstream
+
     // Atualiza o label com base na validação do email
-    if (VerificacaoEmail(email)) {
-=======
-    const VerificacaoEmail = () => {
-      return email && !(email.includes('@') && email.endsWith('.com'));
-    };
 
     if (VerificacaoEmail(e)) {
->>>>>>> Stashed changes
+
       SetValorLabel("Email inválido:");
       e.preventDefault()
     } else {
