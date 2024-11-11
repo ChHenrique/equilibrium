@@ -79,10 +79,9 @@ export function Consultas() {
         </button>
       </div>
       </div>
-      <div className="grid justify-start items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-3 grid-flow-row">
 
-      </div>
-      <div className="grid justify-start items-start w-full h-full p-8 overflow-y-scroll grid-cols-5 grid-flow-row">
+      <div className="grid justify-center items-start w-full h-full p-8 overflow-y-scroll grid-cols-5 grid-flow-row">
+
 
         {consultas.map((consulta) => (
           <ConsultasPacientes
