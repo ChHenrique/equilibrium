@@ -11,7 +11,7 @@ export function Alterações() {
     const handleToggle1 = () => abrir(!abriu);
     const handleToggle2 = () => abrir_pais(!abriu_pais);
 
-    // Função para salvar as alterações
+
     const handleSaveChanges = async () => {
         const pacienteId = localStorage.getItem('id');
         
@@ -27,8 +27,6 @@ export function Alterações() {
             estado: Estado,
         };
     
-        // Log para verificar os dados que estão sendo enviados
-        console.log('Dados que serão enviados para o servidor:', dados);
     
         try {
             // Envia os dados para o backend
@@ -39,23 +37,12 @@ export function Alterações() {
                 },
                 body: JSON.stringify(dados),  // Os dados estão sendo passados aqui
             });
-    
-            // Verifica o status da resposta
-            console.log('Status da resposta:', response.status);
-            console.log('Cabeçalhos da resposta:', response.headers);
-    
-            // Tenta ler a resposta como texto para debug
-            const text = await response.text();
-            console.log('Corpo da resposta (raw):', text);
-    
-            // Agora tentamos parsear o corpo da resposta como JSON, se houver conteúdo
-            const result = text ? JSON.parse(text) : {};
-            console.log('Corpo da resposta (JSON):', result);
+
     
             // Se a resposta foi bem-sucedida, continue o processo
             if (response.ok) {
-                console.log('Informações atualizadas com sucesso:', result);
-                // Aqui você pode adicionar um alerta ou redirecionamento, por exemplo
+                console.log('Informações atualizadas com sucesso:');
+                // adicionar alguma mensagem de alteração depois
             } else {
                 console.error('Erro ao salvar as alterações:', result);
             }
