@@ -95,7 +95,7 @@ export function Consultas() {
           </svg>
         </button>
       </div>
-      <div className="grid justify-center items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-5 grid-flow-row ">
+      <div className="grid justify-center items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-4 grid-flow-row ">
 
 
         {consultas.length === 0 ? (

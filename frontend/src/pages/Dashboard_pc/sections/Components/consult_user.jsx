@@ -41,15 +41,15 @@ export function ConsultasPsicologos({ nome, date, horario, duracao }) {
                 </div>
 
                 {able ? (
-                    <a href="http://localhost:8888/chat?peer1" className="w-fit">
-                        <button className="w-full h-fit mb-4 bg-primary-200 text-white text-base rounded-2xl p-2 mt-4 cursor-pointer duration-150 hover:bg-primary-500">
+                    <a href="http://localhost:8888/chat?peer1" className="w-full flex justify-center items-center">
+                        <button className="w-fit h-fit mb-4 bg-primary-200 text-white text-base rounded-2xl p-2 mt-4 cursor-pointer duration-150 hover:bg-primary-500">
                             Juntar-se a chamada
                         </button>
                     </a>
                 ) : (
-                    <div className="w-fit">
-                    <button className="w-full h-fit mb-4 bg-primary-300 text-slate-500 text-base rounded-2xl p-2 mt-4 cursor-default ">
-                        Juntar-se a chamada
+                    <div className="w-full flex justify-center items-center">
+                    <button className="w-fit h-fit mb-4 bg-slate-200 text-slate-500 text-base rounded-2xl p-2 mt-4 cursor-default ">
+                        Indisponível
                     </button>
                     </div>
 
