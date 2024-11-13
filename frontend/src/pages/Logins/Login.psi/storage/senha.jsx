@@ -15,7 +15,7 @@ export function Password({ passwordError }) {
                     className={`border-b border-black w-full focus:outline-none ${passwordError ? 'border-red-500' : ''}`}
                 />
                <div className="w-full flex items-center justify-between mt-2">
-                    <Link to="/registro/paciente" className="text-[#465A7F] font-satoshi-bold text-[15px] hover:text-[#8cb3ff] max-sm:text-[11px]">
+                    <Link to="/registro/psicologo" className="text-[#465A7F] font-satoshi-bold text-[15px] hover:text-[#8cb3ff] max-sm:text-[11px]">
                         Não tenho conta
                     </Link>
                     <a href="/login/esquecisenha" className="text-[#465A7F] font-satoshi-bold text-[15px] hover:text-[#8cb3ff] max-sm:text-[11px]">

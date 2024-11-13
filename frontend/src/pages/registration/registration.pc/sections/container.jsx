@@ -5,11 +5,11 @@ import { Form } from './form';
 import logo from "../../../../assets/images/logo-title.svg";
 
 export function Container() {
-    const formRef = useRef(null);
-    const [errors, setErrors] = React.useState({ general: '' }); // Inicializa com um objeto que contém a propriedade 'general'
+    const formRef = useRef(null)
+    const [errors, setErrors] = React.useState({ general: '' })
 
     return (
-        <div className='bg-white flex-col flex items-center p-0 h-[85vh] w-[65vw] relative rounded-[10px]'>
+        <div className='bg-white flex-col flex items-center p-0 h-[85vh] w-[65vw] relative rounded-[10px] max-sm:h-[90vh] max-sm:w-[85vw]'>
             <Header />
             <Form ref={formRef} errors={errors} setErrors={setErrors}/>
             <Balls />
@@ -18,7 +18,7 @@ export function Container() {
                 <img
                     src={logo}
                     alt="Logo"
-                    className="absolute bottom-3 right-3 h-[8em] w-fit"
+                    className="absolute bottom-3 right-3 h-[8em] w-fit max-sm:hidden"
                 />
             </a>
         </div>

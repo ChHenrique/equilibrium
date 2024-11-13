@@ -5,9 +5,9 @@ export function Password({ passwordError, confirmPasswordError }) {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     return (
-        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between items-start">
+        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between items-start max-sm:mr-2 max-sm:flex-row max-sm:h-fit max-sm:w-full max-sm:p-0 max-sm:mt-10">
             <div className="flex flex-col sm:w-2/5">
-                <label htmlFor="senha" className={`text-gray-700 mb-2 ${passwordError ? 'text-red-500' : ''} whitespace-nowrap`}>
+                <label htmlFor="senha" className={`text-gray-700 mb-2 max-sm:mt-full${passwordError ? 'text-red-500' : ''} whitespace-nowrap`}>
                     {passwordError || 'Senha:'}
                 </label>
                 <input
@@ -21,7 +21,7 @@ export function Password({ passwordError, confirmPasswordError }) {
                 />
             </div>
             <div className="flex flex-col sm:w-2/5">
-                <label htmlFor="confirme_sua_senha" className={`text-gray-700 mb-2 ${confirmPasswordError ? 'text-red-500' : ''}`}>
+                <label htmlFor="confirme_sua_senha" className={`text-gray-700 ${confirmPasswordError ? 'text-red-500' : ''}`}>
                     {confirmPasswordError || 'Confirme sua senha:'}
                 </label>
                 <input

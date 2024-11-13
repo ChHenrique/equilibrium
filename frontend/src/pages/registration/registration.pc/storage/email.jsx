@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Email({ emailError }) {
     return (
-        <div className="flex flex-col flex-grow ml-1.9 p-4 mb-2">
+        <div className="flex flex-col flex-grow ml-1.9 p-4 mb-2 max-sm:w-full max-sm:p-0">
             <label htmlFor="email" className={`text-gray-700 mb-2 ${emailError ? 'text-red-500' : ''}`}>
                 {emailError ? emailError : 'Email:'}
             </label>
