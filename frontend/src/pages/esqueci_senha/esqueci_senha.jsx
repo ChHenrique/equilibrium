@@ -7,37 +7,33 @@ import React, { useState } from 'react';
 import logo from "../../assets/images/logo-title.svg";
 
 export function EsqueciSenha({ ValorInputUsuário }) {
+
   const [valorInput, setValorInput] = useState(ValorInputUsuário);
   const [ValorLabel, SetValorLabel] = useState("Digite seu Email:");
 
   const VerificacaoEmail = (email) => {
-    return email && !(email.includes('@') && email.endsWith('.com'));
+    return !(email && email.includes('@') && email.endsWith('.com'));
   };
 
   const OnchangeValorInput = (e) => {
     const email = e.target.value;
     setValorInput(email);
 
-
-    // Atualiza o label com base na validação do email
-
-    if (VerificacaoEmail(e)) {
-
+    if (VerificacaoEmail(email)) {
       SetValorLabel("Email inválido:");
-      e.preventDefault()
     } else {
       SetValorLabel("Digite seu Email:");
-      console.log("Email " + setValorInput)
     }
+    
   }
 
   // Constante que o valor só vai aparecer no console se apertar enter
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!VerificacaoEmail(valorInput)) {
-      console.log('rola');
+    if (VerificacaoEmail(valorInput)) {
+      SetValorLabel("Email inválido:")
     } else {
-      SetValorLabel("Email inválido:");
+      console.log('Enviando código para o e-mail:', valorInput);
     }
   };
 
