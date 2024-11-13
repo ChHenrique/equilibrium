@@ -38,6 +38,8 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
     }
   };
 
+
+  //pega os dados do psicologo
   useEffect(() => {
     const idPsi = localStorage.getItem("id");
     if (idPsi) {
@@ -56,6 +58,8 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
     }
   }, []);
 
+
+  //pega a foto do psicologo
   useEffect(() => {
     const idPsi = localStorage.getItem("id");
     if (idPsi) {

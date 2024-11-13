@@ -24,13 +24,9 @@ export function Consultas() {
 
         // Formatar a duração e horário para cada consulta
         const consultasFormatadas = data.map(consulta => {
-          // Formatar a duração
-          const [hours, minutes] = consulta.duracao.split(":").map(Number);
-          const duracaoFormatada =
-            hours > 0
-              ? `${hours} hora${hours > 1 ? "s" : ""} e ${minutes} minuto${minutes > 1 ? "s" : ""}`
-              : `${minutes} minuto${minutes > 1 ? "s" : ""}`;
-          
+          // Manter a duração no formato HH:MM
+          const duracaoFormatada = consulta.duracao.slice(0, 5);
+
           // Formatar o horário para exibir apenas horas e minutos
           const horarioFormatado = consulta.horario.slice(0, 5);
 
@@ -49,6 +45,7 @@ export function Consultas() {
 
     fetchConsultas();
   }, []);
+
 
   return (
     <div className="w-full h-full flex items-center flex-col">
