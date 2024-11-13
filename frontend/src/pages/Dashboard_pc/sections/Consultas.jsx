@@ -14,20 +14,18 @@ export function Consultas() {
   const formatarData = (dataString) => {
     const data = new Date(dataString);
     const dia = String(data.getUTCDate()).padStart(2, '0');
-    const mes = String(data.getUTCMonth() + 1).padStart(2, '0'); // Mês começa em 0
+    const mes = String(data.getUTCMonth() + 1).padStart(2, '0');
     const ano = data.getUTCFullYear();
-    return `${dia}/${mes}/${ano}`; // Modificado para usar '/' em vez de '-'
-};
-
+    return `${dia}/${mes}/${ano}`;
+  };
 
   const formatarHorario = (horarioString) => {
-    return horarioString.substring(0, 5); // Pega apenas hh:mm
+    return horarioString.substring(0, 5);
   };
 
   const formatarDuracao = (duracaoString) => {
-    const partes = duracaoString.split(':');
-    const minutos = parseInt(partes[0]) * 60 + parseInt(partes[1]);
-    return `${minutos} minutos`;
+    const [horas, minutos] = duracaoString.split(':').map(Number);
+    return `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
   };
 
   useEffect(() => {
@@ -41,7 +39,7 @@ export function Consultas() {
         }
 
         const data = await response.json();
-        // Agora vamos buscar os nomes dos psicólogos para cada consulta
+        
         const consultasComPsicologo = await Promise.all(data.map(async (consulta) => {
           const psicologoResponse = await fetch(`http://localhost:3000/user/psicologos/${consulta.id_psicologo}`);
           const psicologoData = await psicologoResponse.json();

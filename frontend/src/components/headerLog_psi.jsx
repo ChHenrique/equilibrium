@@ -79,7 +79,7 @@ function Visibilidade(){
                         {link.name}
                     </HeaderLink>
                 ))}
-                <div className='h-20 w-fit   justify-end items-center flex mr-2 ' onClick={Visibilidade}>
+                <div className='h-20 w-fit   justify-end items-center flex mr-4 ' onClick={Visibilidade}>
                     <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-2'>
                         {nome}
                     </h1>
@@ -92,7 +92,7 @@ function Visibilidade(){
 
                 <div className={`w-fit h-fit translate-y-24  flex-col justify-center items-end absolute z-custom shadow-lg ${userinfo? 'flex' : 'hidden'}    ` }>
     <div 
-        className='bg-white w-8 h-4 mr-4' 
+        className='bg-white w-8 h-4 mr-6' 
         style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
     ></div>
 
