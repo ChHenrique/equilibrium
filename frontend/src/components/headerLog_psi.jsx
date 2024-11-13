@@ -1,7 +1,7 @@
 import { HeaderLink } from './header-link';
 import { Logo } from './logo';
 import User_null from '../assets/images/user_null.svg';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 const LINKS = [
@@ -20,8 +20,9 @@ const LINKSUser = [
 ];
 
 
-export function HeaderLog_psi() {
+export function HeaderLog_psi(imagem) {
     const [userinfo,setinfo] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(User_null);
       
 function Visibilidade(){
 
@@ -41,12 +42,29 @@ function Visibilidade(){
     // Função para lidar com logout
     function handleLogout() {
         // Remove o token do localStorage
-        localStorage.removeItem('token'); // Ajuste 'token' para o nome correto do seu token
+        localStorage.removeItem('token');
         localStorage.removeItem('usuarioNome'); 
         localStorage.removeItem('id'); 
-        // Redireciona ou atualiza a página
-        window.location.href = '/'; // Ajuste para a rota desejada
+        // Redireciona a página
+        window.location.href = '/'; 
     }
+
+      //pega a foto do psicologo
+  useEffect(() => {
+    const idPsi = localStorage.getItem("id");
+    if (idPsi) {
+      fetch(`http://localhost:3000/user/psicologos/${idPsi}/foto`)
+        .then(response => {
+          if (!response.ok) throw new Error("Erro ao buscar a imagem");
+          return response.json();
+        })
+        .then(data => {
+          const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`;
+          setSelectedImage(imageUrl);
+        })
+        .catch(error => console.error("Erro:", error));
+    }
+  }, []);
 
     return (
         <div
@@ -61,13 +79,15 @@ function Visibilidade(){
                         {link.name}
                     </HeaderLink>
                 ))}
-                <div className='h-20 w-2/12 justify-end items-center flex m-4 ml-12' onClick={Visibilidade}>
-                    <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-7'>
+                <div className='h-20 w-fit   justify-end items-center flex mr-2 ' onClick={Visibilidade}>
+                    <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-2'>
                         {nome}
                     </h1>
-                    <img src={User_null} alt="Foto de Perfil" className='h-8' />
+                    <div 
+                        className="h-12 w-12 rounded-full cursor-pointer flex overflow-hidden bg-center bg-cover" 
+                        style={{ backgroundImage: `url(${selectedImage})` }}
+                    ></div>
                 </div>
-
 
 
                 <div className={`w-fit h-fit translate-y-24  flex-col justify-center items-end absolute z-custom shadow-lg ${userinfo? 'flex' : 'hidden'}    ` }>
