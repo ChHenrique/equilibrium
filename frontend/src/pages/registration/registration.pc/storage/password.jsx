@@ -21,7 +21,7 @@ export function Password({ passwordError, confirmPasswordError }) {
                 />
             </div>
             <div className="flex flex-col sm:w-2/5">
-                <label htmlFor="confirme_sua_senha" className={`text-gray-700 ${confirmPasswordError ? 'text-red-500' : ''}`}>
+                <label htmlFor="confirme_sua_senha" className={`text-gray-700 max-sm:whitespace-nowrap${confirmPasswordError ? 'text-red-500' : ''}`}>
                     {confirmPasswordError || 'Confirme sua senha:'}
                 </label>
                 <input
@@ -30,7 +30,7 @@ export function Password({ passwordError, confirmPasswordError }) {
                     name="confirmarsenha" 
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className={`border-b border-black w-full focus:outline-none ${confirmPasswordError ? 'border-red-500' : ''}`}
+                    className={`border-b border-black w-full focus:outline-none max-sm:mt-2${confirmPasswordError ? 'border-red-500' : ''}`}
                     autoComplete="new-password"
                 />
             </div>
