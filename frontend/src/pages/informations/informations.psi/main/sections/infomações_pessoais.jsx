@@ -91,7 +91,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
           </div>
           <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
             {selectedImage ? (
-              <img src={selectedImage} alt="Imagem selecionada" className="h-[102%] w-[102%] rounded-full object-cover -translate-y-[18.5%]" />
+              <img src={selectedImage} alt="Imagem selecionada" className="h-[102%] w-[102%] rounded-full object-cover -translate-y-[18.5%] cursor-pointer" />
             ) : (
               <span className="text-5xl text-white items-center flex mb-2" draggable="true">+</span>
             )}
