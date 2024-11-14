@@ -2,7 +2,7 @@ import React from 'react';
 
 export function User_Bday({ usernameError, birthdayError }) {
     return (
-        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between max-sm:p-0 max-sm:mr-2 max-sm:flex-row max-sm:w-full max-sm:mt-14">
+        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between max-sm:p-0 max-sm:mr-2 max-sm:flex-row max-sm:w-full max-sm:mt-10">
             <div className="flex flex-col sm:w-2/5">
                 <label htmlFor="username" className={`text-gray-700 mb-2 ${usernameError ? 'text-red-500' : ''}`}>
                     {usernameError || 'Nome social:'}
@@ -15,8 +15,8 @@ export function User_Bday({ usernameError, birthdayError }) {
                     autoComplete="username"
                 />
             </div>
-            <div className="flex flex-col sm:w-2/5 max-sm:-translate-y-[25px]">
-                <label htmlFor="birthday" className={`text-gray-700 mb-2 whitespace-wrap${birthdayError ? 'text-red-500' : ''}`}>
+            <div className="flex flex-col sm:w-2/5">
+                <label htmlFor="birthday" className={`text-gray-700 mb-2 whitespace-nowrap${birthdayError ? 'text-red-500' : ''}`}>
                     {birthdayError || 'Data de nascimento:'}
                 </label>
                 <input

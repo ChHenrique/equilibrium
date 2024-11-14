@@ -49,7 +49,7 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
     
 
     return (
-        <article className="flex flex-col justify-center items-center p-5 w-full max-w-4xl h-auto font-satoshi-Regular max-sm:-translate-y-7">
+        <article className="flex flex-col justify-center items-center p-5 w-full max-w-4xl h-auto font-satoshi-Regular max-sm:-translate-y-4">
             <form ref={ref} onSubmit={handleSubmit} className="w-4/6 max-w-1xl h-auto mt-12 ml-5 max-sm:w-full">
                 <Name 
                     nameError={errors.name} 
@@ -71,7 +71,7 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
                     <a href="/">
             <button
                 type="submit" // Modificado para ser um botão de envio
-                className="bg-[#3B82F6] p-0.5 text-white border border-[#3B82F6] w-96 h-auto rounded-[10px] max-w-sm font-satoshi font-extrabold text-lg hover:bg-[#1c3b79] transition-all duration-200 hover:rounded-[15px] mr-1 translate-y-6"
+                className="bg-[#3B82F6] p-0.5 text-white border border-[#3B82F6] w-96 h-auto rounded-[10px] max-w-sm font-satoshi font-extrabold text-lg hover:bg-[#1c3b79] transition-all duration-200 hover:rounded-[15px] mr-1 translate-y-6 max-sm:w-44"
             >
                 Registrar
             </button>
