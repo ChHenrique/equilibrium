@@ -150,10 +150,6 @@ export const infoPc = async (req, res) => {
     const { telefone, cidade, estado } = req.body;
     const { id } = req.params;  
 
-    // Verificação dos campos
-    if (!telefone || !cidade || !estado) {
-        return res.status(400).json({ message: 'Por favor, preencha todos os campos' });
-    }
 
     try {
         // Atualizar as informações do paciente com base no `id`
@@ -173,3 +169,28 @@ export const infoPc = async (req, res) => {
         return res.status(500).json({ message: 'Erro no servidor' });
     }
 };
+
+// Rota para atualizar a duração de um psicólogo
+export const updateDuracaoPsicologo = async (req, res) => {
+    const { duracao } = req.body;
+    const { id } = req.params;  
+
+    try {
+        // Atualizar a duração do psicólogo com base no `id`
+        const result = await db.query(
+            'UPDATE psicologos SET duracao = ? WHERE id_psi = ?',
+            [duracao, id]
+        );
+
+        // Verificar se algum registro foi alterado
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Psicólogo não encontrado' });
+        }
+
+        return res.status(200).json({ message: 'Duração atualizada com sucesso' });
+    } catch (error) {
+        console.error('Erro ao atualizar a duração', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+};
+

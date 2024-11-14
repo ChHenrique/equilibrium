@@ -34,6 +34,31 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     fetchImage();
   }, []);
 
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/updateduracaopsicologo/${idPsi}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ duracao: Duração }),
+      });
+
+      if (response.ok) {
+        const bosta = () => {
+          return "Porra"
+       }
+      } else {
+        console.error("Erro ao atualizar a duração");
+
+      }
+    } catch (error) {
+      console.error("Erro ao enviar a requisição", error);
+
+    }
+  };
+
   // Gera as opções de tempo
   const generateTimeOptions = () => {
     const options = [];
@@ -161,6 +186,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
                   key={option}
                   onClick={() => {
                     setDuração(option);
+                    
                     setIsOpen(false);
                   }}
                   className={`block w-full text-left p-2 text-lg transition-all duration-200 
@@ -174,7 +200,9 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         </div>
 
         {/* Botão Confirmar */}
-        <button type='submit' className="w-36 bg-primary-200 hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-md mt-5 duration-300">
+        <button type='submit' className="w-36 bg-primary-200 hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-md mt-5 duration-300"
+        onClick={handleSubmit}
+        >
           Confirmar
         </button>
 
