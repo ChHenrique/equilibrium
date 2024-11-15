@@ -2,8 +2,8 @@ import React from "react";
 import nullimg from '../../../../assets/images/user_null.svg';
 import { useState } from "react";
 
-export function ConsultasPsicologos({ nome, date, horario, duracao }) {
-    const [able, setAble] = useState(0); // Se =1 e entravel na secção, se 0 não
+export function ConsultasPsicologos({ able,nome, date, horario, duracao }) {
+   //const [able, setAble] = useState(0); Se =1 e entravel na secção, se 0 não
 
     return (
         <div className="min-w-fit  h-fit flex flex-col bg-[#F1F5F9] font-poppins justify-center items-center rounded-2xl m-2 max-w-fit ">
