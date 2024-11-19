@@ -4,8 +4,8 @@ import { useState } from "react";
 
 
 export function ConsultasPacientes({ nome, date, horario, duracao,able,accept }) {
-  //  const [able, setAble] = useState(1) 
-  //  const [accept, setacceptance] = useState(0) 
+    const [able, setAble] = useState(1) 
+    const [accept, setacceptance] = useState(0) 
 
     //quando accept = 1 e able = 0 mostra o aceitar/recusar
     //quando accept = 0 e able = 1 mostra o juntar-se a chamada
