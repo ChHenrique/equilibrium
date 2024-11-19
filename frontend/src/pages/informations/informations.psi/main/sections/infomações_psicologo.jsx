@@ -9,13 +9,14 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
   const [Formação, setFormação] = useState([]); // Valor da Formação
   const [isOpen, setIsOpen] = useState(false); // Controla a visibilidade da lista
   const [Duração, setDuração] = useState('00:00'); // Armazena a duração selecionada
+  const [Visible, setVisible] = useState(false)
 
   const inputRef = useRef(null); // Referência para o campo de texto
 
   const idPsi = localStorage.getItem("id");
 
-   // Efeito para buscar a imagem do banco de dados
-   useEffect(() => {
+  // Efeito para buscar a imagem do banco de dados
+  useEffect(() => {
     const fetchImage = async () => {
 
       if (idPsi) {
@@ -30,7 +31,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         }
       }
     };
-  
+
     fetchImage();
   }, []);
 
@@ -46,9 +47,10 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       });
 
       if (response.ok) {
-        const bosta = () => {
-          return "Porra"
-       }
+        setVisible(true)
+        setTimeout(() => {
+          setVisible(false)
+        }, 4000)
       } else {
         console.error("Erro ao atualizar a duração");
 
@@ -132,13 +134,13 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
         {/* Imagem e Input de Arquivo */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
-        <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
-  {selectedImage ? (
-    <img src={selectedImage} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
-  ) : (
-    <span className="text-5xl text-white items-center flex mb-2">+</span>
-  )}
-</label>
+          <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
+            {selectedImage ? (
+              <img src={selectedImage} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
+            ) : (
+              <span className="text-5xl text-white items-center flex mb-2">+</span>
+            )}
+          </label>
         </div>
 
         <h3 className='mt-3 font-poppins text-[#465A7F] text-sm font-medium'>
@@ -166,7 +168,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
             <svg width="22" height="22" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className='translate-x-28 absolute -translate-y-6'>
               <g clip-path="url(#clip0_910_964)">
-                <path d="M5.99902 3V6L7.99902 7M10.999 6C10.999 8.76142 8.76045 11 5.99902 11C3.2376 11 0.999023 8.76142 0.999023 6C0.999023 3.23858 3.2376 1 5.99902 1C8.76045 1 10.999 3.23858 10.999 6Z" stroke="#355081" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.99902 3V6L7.99902 7M10.999 6C10.999 8.76142 8.76045 11 5.99902 11C3.2376 11 0.999023 8.76142 0.999023 6C0.999023 3.23858 3.2376 1 5.99902 1C8.76045 1 10.999 3.23858 10.999 6Z" stroke="#355081" stroke-linecap="round" stroke-linejoin="round" />
                 <line x1="2.64645" y1="2.85355" x2="1.64645" y2="1.85355" stroke="#355081" />
                 <line x1="2.35596" y1="0.851133" x2="0.443444" y2="2.78993" stroke="#355081" />
               </g>
@@ -186,7 +188,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
                   key={option}
                   onClick={() => {
                     setDuração(option);
-                    
+
                     setIsOpen(false);
                   }}
                   className={`block w-full text-left p-2 text-lg transition-all duration-200 
@@ -201,10 +203,14 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
         {/* Botão Confirmar */}
         <button type='submit' className="w-36 bg-primary-200 hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-md mt-5 duration-300"
-        onClick={handleSubmit}
+          onClick={handleSubmit}
         >
           Confirmar
         </button>
+
+        <p draggable="true" className={`mt-6 font-poppins font-semibold text-primary-600 text-center duration-500 text-[18px] ${Visible ? "opacity-100" : "opacity-0"}`}>
+          Duração de consulta foi <span className='break-words inline-block w-full'> definida como: {Duração}</span>
+        </p>
 
         <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10'></div>
 
@@ -253,7 +259,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
                 }
               }}
             />
-          
+
             <button className='absolute right-6 bottom-4' onClick={ValorTopicos} type='submit'>
               <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
@@ -282,7 +288,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
                       <path d="M1 9L9 1" stroke="currentColor" strokeWidth="2" />
                       <path d="M9 9L1 1" stroke="currentColor" strokeWidth="2" />
                     </svg>
-                    
+
                   </div>
 
                 </div>
