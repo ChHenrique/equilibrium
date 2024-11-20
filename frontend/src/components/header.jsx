@@ -3,6 +3,9 @@ import { Button } from './button';
 import { Logo } from './logo';
 import { jwtDecode } from 'jwt-decode';  
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { HeaderLinkMobile } from './header-link-mobile';
+import { ButtonMob } from './buttonMob';
 
 const LINKS = [
   { name: 'Sou Psicólogo', href: '/login/psicologo' },
@@ -10,6 +13,17 @@ const LINKS = [
 ];
 
 export function Header() {
+  const [dropdown,setDrop] = useState(0)
+
+  function Toggle(){
+    if(dropdown == 0){
+      setDrop(1)
+    }else{
+      setDrop(0)
+    }
+  }
+
+
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -43,19 +57,36 @@ export function Header() {
   return (
     <div
       id="Header"
-      className="w-full min-w-[700px] min-h-20 flex flex-row items-center bg-white rounded-2xl m-4 justify-between"
+      className={`w-full min-w-fit min-h-20 flex flex-row items-center bg-white rounded-2xl m-4 justify-between ${dropdown ? "rounded-br-none" : "rounded-2xl"}`}
       draggable="false"
     >
       <Logo draggable="false" />
-      <div className="flex justify-end items-center gap-8" draggable="false">
+      <div className="flex justify-end items-center gap-8 " draggable="false">
         {LINKS.map((link) => (
           <HeaderLink key={link.name} href={link.href}>
             {link.name}
           </HeaderLink>
         ))}
 
+        <div className='h-16 p-2 aspect-square justify-evenly flex items-center flex-col md:hidden' onClick={Toggle}>
+          <div className={`w-full h-[15%] bg-primary-700 rounded-full  `}></div>
+          <div className='w-full h-[15%] bg-primary-700 rounded-full'></div>
+          <div className='w-full h-[15%] bg-primary-700 rounded-full'></div>
+        </div>
+        
+        <div className={`absolute w-fit p-2 translate-y-24 rounded-b-xl bg-white h-fit flex-col flex justify-center items-center ${dropdown ? 'flex' : "hidden"} `}>
+
+        {LINKS.map((link) => (
+          <HeaderLinkMobile key={link.name} href={link.href}>
+            {link.name}
+          </HeaderLinkMobile>
+        ))}
+        <ButtonMob onClick={handleLoginClick} children={"Entrar"} ></ButtonMob>
+        </div>
+
+
         {/* Lógica para o botão de "Entrar" */}
-        <Button onClick={handleLoginClick}>Entrar</Button>
+        <Button onClick={handleLoginClick} children={"Entrar"} ></Button>
       </div>
     </div>
   );

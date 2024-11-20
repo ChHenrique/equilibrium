@@ -1,5 +1,6 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
+import './swiper2.css'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Card } from '../../../components/card';
@@ -35,8 +36,21 @@ export function Services() {
   return (
     <section className='w-full h-[36rem] bg-primary-700 rounded-xl'>
       <Swiper
-        slidesPerView={3.5}
-        spaceBetween={30}
+         breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 3.5,
+            spaceBetween: 30,
+          },
+        }}
+        spaceBetween={50}
         centeredSlides={true}
         autoplay={{ delay: 7000, disableOnInteraction: false }}
         pagination={{
