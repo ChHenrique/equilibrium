@@ -58,7 +58,7 @@ export function Header() {
   return (
     <div
       id="Header"
-      className={`w-full min-w-fit min-h-20 flex flex-row items-center bg-white rounded-2xl m-4 justify-between duration-300 transition-all ${dropdown ? "rounded-br-none" : "rounded-2xl"}`}
+      className={`w-full min-w-[356px] min-h-20 flex flex-row items-center max-sm:mt-0 bg-white rounded-2xl max-sm:rounded-none m-4 justify-between duration-300 transition-all ${dropdown ? "rounded-br-none" : "rounded-2xl"}`}
       draggable="false"
     >
       <Logo draggable="false" />
