@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { HeaderLinkMobile } from './header-link-mobile';
 import { ButtonMob } from './buttonMob';
+import './animations.css'
 
 const LINKS = [
   { name: 'Sou Psicólogo', href: '/login/psicologo' },
@@ -57,7 +58,7 @@ export function Header() {
   return (
     <div
       id="Header"
-      className={`w-full min-w-fit min-h-20 flex flex-row items-center bg-white rounded-2xl m-4 justify-between ${dropdown ? "rounded-br-none" : "rounded-2xl"}`}
+      className={`w-full min-w-fit min-h-20 flex flex-row items-center bg-white rounded-2xl m-4 justify-between duration-300 transition-all ${dropdown ? "rounded-br-none" : "rounded-2xl"}`}
       draggable="false"
     >
       <Logo draggable="false" />
@@ -68,13 +69,13 @@ export function Header() {
           </HeaderLink>
         ))}
 
-        <div className='h-16 p-2 aspect-square justify-evenly flex items-center flex-col md:hidden' onClick={Toggle}>
-          <div className={`w-full h-[15%] bg-primary-700 rounded-full  `}></div>
-          <div className='w-full h-[15%] bg-primary-700 rounded-full'></div>
-          <div className='w-full h-[15%] bg-primary-700 rounded-full'></div>
+        <div className='relative h-16 p-2 aspect-square justify-evenly flex items-center flex-col md:hidden' onClick={Toggle}>
+          <div className={`w-full h-[15%] bg-primary-700 rounded-full duration-300 transition-all  ${dropdown ? "rotate-45 absolute scale-75": ""}  `}></div>
+          <div className={`w-full h-[15%] bg-primary-700 rounded-full  ${dropdown ? "hidden": " "}  `}></div>
+          <div className={`w-full h-[15%] bg-primary-700 rounded-full duration-300 transition-all ${dropdown ? "-rotate-45 absolute scale-75": ""}  `}></div>
         </div>
         
-        <div className={`absolute w-fit p-2 translate-y-24 rounded-b-xl bg-white h-fit flex-col flex justify-center items-center ${dropdown ? 'flex' : "hidden"} `}>
+        <div className={`absolute w-fit p-2  rounded-b-xl bg-white h-fit flex-col flex justify-center items-center z-0  ${dropdown ? 'POP translate-y-24' : "-translate-y-[150px] opacity-0"} `}>
 
         {LINKS.map((link) => (
           <HeaderLinkMobile key={link.name} href={link.href}>
