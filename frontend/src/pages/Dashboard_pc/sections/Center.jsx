@@ -8,7 +8,7 @@ const botoes = [
         id: 1,
         nome: "Consultas",
         img: (
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full aspect-square">
                 <path d="M32 4V12M16 4V12M6 20H42M10 8H38C40.2091 8 42 9.79086 42 12V40C42 42.2091 40.2091 44 38 44H10C7.79086 44 6 42.2091 6 40V12C6 9.79086 7.79086 8 10 8Z" 
                     stroke="currentColor" 
                     strokeWidth="4" 
@@ -22,7 +22,7 @@ const botoes = [
         id: 2,
         nome: "Chats",
         img: (
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full aspect-square">
                 <path d="M4 44V8C4 6.9 4.39167 5.95833 5.175 5.175C5.95833 4.39167 6.9 4 8 4H40C41.1 4 42.0417 4.39167 42.825 5.175C43.6083 5.95833 44 6.9 44 8V32C44 33.1 43.6083 34.0417 42.825 34.825C42.0417 35.6083 41.1 36 40 36H12L4 44ZM10.3 32H40V8H8V34.25L10.3 32Z" 
                     fill="currentColor" 
                 />
@@ -33,7 +33,7 @@ const botoes = [
         id: 3,
         nome: "Histórico",
         img: (
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full aspect-square">
                 <path d="M30.8835 10.5L32.2025 9.77739L32.1408 9.6677L32.0614 9.56971L30.8835 10.5ZM33.001 16.4329C33.8025 16.6599 34.6376 16.2024 34.8663 15.411L38.5924 2.5145C38.821 1.72311 38.3566 0.897536 37.5551 0.670533C36.7535 0.443531 35.9184 0.901061 35.6897 1.69246L32.3777 13.156L20.7671 9.86784C19.9656 9.64083 19.1304 10.0984 18.9018 10.8898C18.6731 11.6812 19.1376 12.5067 19.9391 12.7337L33.001 16.4329ZM28.8582 7.99972L30.0362 7.06943L29.9311 6.93978L29.7999 6.83608L28.8582 7.99972ZM29.5646 11.2226L32.096 15.7226L34.734 14.2774L32.2025 9.77739L29.5646 11.2226ZM25.3851 7.16343L27.9166 9.16336L29.7999 6.83608L27.2684 4.83615L25.3851 7.16343ZM27.6803 8.93001L29.7056 11.4303L32.0614 9.56971L30.0362 7.06943L27.6803 8.93001Z" 
                     fill="currentColor" 
                 />
@@ -65,9 +65,9 @@ export function Camp_Dash() {
     
 
     return (
-        <div className="w-full h-full flex justify-evenly flex-row items-center rounded-2xl mb-24">
+        <div className="w-full h-full flex justify-evenly flex-row items-center rounded-2xl mb-24 max-md:mb-0 max-md:flex-col-reverse max-md:justify-between">
             <div 
-                className="h-full w-fit bg-white rounded-2xl p-2 flex flex-col items-center transition-colors duration-300"
+                className="max-md:flex-row max-md:justify-evenly flex-col h-full max-md:rounded-none max-md:h-1/6  max-md:w-full w-fit bg-white rounded-2xl p-2 flex items-center transition-colors duration-300"
                 id="barra" 
                 onMouseEnter={() => setIsHovered(true)} 
                 onMouseLeave={() => setIsHovered(false)}
@@ -77,20 +77,20 @@ export function Camp_Dash() {
                         id="button"
                         key={botao.id} 
                         onClick={() => setActiveId(botao.id)}  
-                        className={`flex flex-row items-center border-none text-xl mt-1 h-10 p-1 w-full text-center rounded-xl transition-colors duration-300 ease-in-out transform ${
+                        className={`flex  items-center border-none text-xl mt-1 h-10 p-1 w-full max-md:w-fit text-center rounded-xl transition-colors duration-300 ease-in-out transform ${
                             activeId === botao.id
-                                ? "bg-primary-200 text-white"
-                                : "bg-white text-primary-700 hover:bg-primary-300 hover:text-white"
+                                ? "bg-primary-200 text-white max-md:bg-white max-md:text-primary-700"
+                                : "bg-white text-primary-700  hover:bg-primary-300 hover:text-white max-md:text-primary-200"
                         }`}
                     >
-                      <div className="h-10 w-8 flex justify-center items-center ">  {botao.img} </div>
-                      <span className="ml-4 hidden">{botao.nome}</span>
-                        {isHovered && <span className="ml-4">{botao.nome}</span>}
+                      <div className="h-10 w-8 max-md:h-14 max-md:w-10 aspect-square flex justify-center items-center ">  {botao.img} </div>
+                      <span className="ml-4 hidden max-md:hidden">{botao.nome}</span>
+                        {isHovered && <span className="ml-4 max-md:hidden">{botao.nome}</span>}
                     </button>
                 ))}
             </div>
 
-            <div className="h-full w-full bg-white rounded-2xl ml-2">
+            <div className="h-full max-md:h-5/6 w-full bg-white rounded-2xl m-2">
                 {renderContent()}
             </div>
         </div>
