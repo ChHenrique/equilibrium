@@ -30,7 +30,7 @@ export function Password({ passwordError, confirmPasswordError }) {
                     name="confirmarsenha" 
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className={`border-b border-black w-full focus:outline-none max-sm:mt-2${confirmPasswordError ? 'border-red-500' : ''}`}
+                    className={`border-b border-black w-full focus:outline-none max-sm:mt-2 max-md:whitespace-nowrap ${confirmPasswordError ? 'border-red-500' : ''}`}
                     autoComplete="new-password"
                 />
             </div>

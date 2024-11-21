@@ -1,0 +1,21 @@
+@keyframes popUp{
+    0%{
+        opacity: 0;
+        transform: translateY(150px);
+    }
+    1%{
+        opacity: 0;
+        transform: translateY(150px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(96px);
+    }
+}
+
+.POP{
+    animation-duration: 300ms;
+    animation-name: popUp;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+}
