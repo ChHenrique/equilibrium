@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import "../sections/animate.css";
 import "../sections/scrollbar.css";
 
+
 export function InfoPsi({ imagem, onChange, nome, id_pc }) {
+  const idPsi = localStorage.getItem("id");
+
   const [TextArea, SetTextArea] = useState(""); // Valor da TextArea dos Tópicos
   const [Topicos, SetTopicos] = useState([]); // Valor dos Tópicos
   const [TextAreaFormação, SetTextAreaFormação] = useState(''); // Valor da TextArea da Formação
@@ -13,7 +16,36 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
   const inputRef = useRef(null); // Referência para o campo de texto
 
-  const idPsi = localStorage.getItem("id");
+  useEffect(() => {
+    // Função para obter a duração do psicólogo via API
+    const fetchDuração = async () => {
+      if (idPsi) {
+        try {
+          const response = await fetch(`http://localhost:3000/user/psicologos/${idPsi}`);
+          const data = await response.json();
+  
+          if (response.ok) {
+            // Pega a duração da API e formata para o formato 00:00
+            let duracao = data.duracao || '00:00'; // Valor padrão '00:00' caso não tenha duração
+            
+            // Se a duração estiver no formato em minutos, converte para o formato 00:00
+            const [hours, minutes] = duracao.split(':').map(Number);
+            const formattedDuration = `${String(hours).padStart(2, '0')}:${String(minutes || 0).padStart(2, '0')}`;
+  
+            setDuração(formattedDuration); // Passa a duração formatada para o estado
+          } else {
+            console.error("Erro ao obter a duração");
+          }
+        } catch (error) {
+          console.error("Erro ao buscar dados:", error);
+        }
+      }
+    };
+  
+    fetchDuração();
+  }, [idPsi]); // Executa a requisição quando o idPsi mudar
+  
+
 
   // Efeito para buscar a imagem do banco de dados
   useEffect(() => {

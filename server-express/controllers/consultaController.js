@@ -76,7 +76,7 @@ export const getConsultasPorPsicologo = async (req, res) => {
 
 export const atualizarStatusConsulta = async (req, res) => {
   const consultaId = req.params.id;
-  const { status } = req.body; // O status será "confirmada" ou "cancelada"
+  const { status } = req.body; 
 
   try {
     // Atualiza o status da consulta no banco

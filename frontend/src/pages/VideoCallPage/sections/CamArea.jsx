@@ -234,20 +234,63 @@ export function VideoChat() {
 }
 </button>
 {/*Botao de desligar */}
-<button className=" h-1/2 bg-primary-900 rounded-full flex justify-center items-center p-4 m-2" 
-style={{aspectRatio: "4/4"}}
-onClick={() =>{setCall(1)
-}
-}
+
+<button
+  className=" h-1/2 bg-primary-900 rounded-full flex justify-center items-center p-4 m-2"
+  style={{ aspectRatio: "4/4" }}
+  onClick={() => {
+    // Exibe a mensagem de confirmação
+    const confirmEndCall = window.confirm("Tem certeza que deseja encerrar a chamada?");
+    
+    if (confirmEndCall) {
+      // Pega o ID do localStorage
+      const id = localStorage.getItem("id");
+
+      if (id) {
+        // Faz a requisição para atualizar o status da consulta
+        fetch(`http://localhost:3000/consultas/atualizarstatus/${id}`, {
+          method: "PUT", // Ajuste para o método apropriado (POST ou PUT)
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: "realizada" }), // Envia o status no corpo da requisição
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Chamada encerrada com sucesso!");
+              // Redirecionar ou fazer algo após encerrar
+              window.location.href = "/"; // Exemplo: Redirecionar para outra página
+            } else {
+              alert("Erro ao encerrar a chamada. Tente novamente.");
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao enviar a requisição:", error);
+            alert("Erro ao encerrar a chamada. Verifique sua conexão.");
+          });
+      } else {
+        alert("ID da consulta não encontrado no localStorage.");
+      }
+    }
+  }}
 >
-
-<svg className="w-full h-full" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M30.0999 10C32.0533 10.3811 33.8486 11.3365 35.256 12.7439C36.6634 14.1512 37.6187 15.9465 37.9999 17.9M30.0999 2C34.1584 2.45087 37.943 4.26835 40.8323 7.15402C43.7216 10.0397 45.5439 13.822 45.9999 17.88M43.9999 33.84V39.84C44.0021 40.397 43.888 40.9483 43.6649 41.4587C43.4417 41.9691 43.1145 42.4272 42.704 42.8037C42.2936 43.1803 41.809 43.467 41.2814 43.6454C40.7537 43.8239 40.1946 43.8901 39.6399 43.84C33.4855 43.1713 27.5739 41.0683 22.3799 37.7C17.5475 34.6293 13.4505 30.5323 10.3799 25.7C6.99982 20.4824 4.89635 14.542 4.23987 8.36C4.18989 7.80693 4.25562 7.24952 4.43287 6.72325C4.61012 6.19698 4.89501 5.71338 5.2694 5.30324C5.64379 4.89311 6.09948 4.56542 6.60745 4.34104C7.11542 4.11667 7.66455 4.00052 8.21987 4H14.2199C15.1905 3.99045 16.1314 4.33416 16.8674 4.96707C17.6033 5.59997 18.084 6.47889 18.2199 7.44C18.4731 9.36013 18.9428 11.2455 19.6199 13.06C19.889 13.7758 19.9472 14.5538 19.7877 15.3018C19.6282 16.0497 19.2576 16.7362 18.7199 17.28L16.1799 19.82C19.027 24.8271 23.1728 28.9729 28.1799 31.82L30.7199 29.28C31.2636 28.7423 31.9502 28.3717 32.6981 28.2122C33.446 28.0527 34.224 28.1109 34.9399 28.38C36.7544 29.0571 38.6397 29.5268 40.5599 29.78C41.5314 29.9171 42.4187 30.4064 43.0529 31.155C43.6872 31.9036 44.0242 32.8592 43.9999 33.84Z" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-
-
+  <svg
+    className="w-full h-full"
+    viewBox="0 0 48 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M30.0999 10C32.0533 10.3811 33.8486 11.3365 35.256 12.7439C36.6634 14.1512 37.6187 15.9465 37.9999 17.9M30.0999 2C34.1584 2.45087 37.943 4.26835 40.8323 7.15402C43.7216 10.0397 45.5439 13.822 45.9999 17.88M43.9999 33.84V39.84C44.0021 40.397 43.888 40.9483 43.6649 41.4587C43.4417 41.9691 43.1145 42.4272 42.704 42.8037C42.2936 43.1803 41.809 43.467 41.2814 43.6454C40.7537 43.8239 40.1946 43.8901 39.6399 43.84C33.4855 43.1713 27.5739 41.0683 22.3799 37.7C17.5475 34.6293 13.4505 30.5323 10.3799 25.7C6.99982 20.4824 4.89635 14.542 4.23987 8.36C4.18989 7.80693 4.25562 7.24952 4.43287 6.72325C4.61012 6.19698 4.89501 5.71338 5.2694 5.30324C5.64379 4.89311 6.09948 4.56542 6.60745 4.34104C7.11542 4.11667 7.66455 4.00052 8.21987 4H14.2199C15.1905 3.99045 16.1314 4.33416 16.8674 4.96707C17.6033 5.59997 18.084 6.47889 18.2199 7.44C18.4731 9.36013 18.9428 11.2455 19.6199 13.06C19.889 13.7758 19.9472 14.5538 19.7877 15.3018C19.6282 16.0497 19.2576 16.7362 18.7199 17.28L16.1799 19.82C19.027 24.8271 23.1728 28.9729 28.1799 31.82L30.7199 29.28C31.2636 28.7423 31.9502 28.3717 32.6981 28.2122C33.446 28.0527 34.224 28.1109 34.9399 28.38C36.7544 29.0571 38.6397 29.5268 40.5599 29.78C41.5314 29.9171 42.4187 30.4064 43.0529 31.155C43.6872 31.9036 44.0242 32.8592 43.9999 33.84Z"
+      stroke="white"
+      strokeWidth="4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
 </button>
+
+
 </div>
 
         </div>

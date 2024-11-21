@@ -4,7 +4,7 @@ import { ConsultasPacientes } from "./Components/consult_user";
 export function Consultas() {
   const [consultas, setConsultas] = useState([]);
   const [pesq, setPesq] = useState("");
-  const [confirmCancel, setConfirmCancel] = useState(null);  // Estado para controlar a confirmação de cancelamento
+  const [confirmCancel, setConfirmCancel] = useState(null); // Estado para controlar a confirmação de cancelamento
   const [consultaCancelada, setConsultaCancelada] = useState(null); // Consulta a ser cancelada
 
   function pegavalor(e) {
@@ -22,7 +22,6 @@ export function Consultas() {
       });
 
       if (response.ok) {
-        // Atualiza a consulta no estado local após a confirmação
         setConsultas((prevConsultas) =>
           prevConsultas.map((consulta) =>
             consulta.id === consultaId ? { ...consulta, status: "confirmada" } : consulta
@@ -47,7 +46,6 @@ export function Consultas() {
       });
 
       if (response.ok) {
-        // Atualiza a consulta no estado local após o cancelamento
         setConsultas((prevConsultas) =>
           prevConsultas.map((consulta) =>
             consulta.id === consultaId ? { ...consulta, status: "cancelada" } : consulta
@@ -64,13 +62,13 @@ export function Consultas() {
   const confirmarCancelamento = () => {
     if (consultaCancelada) {
       handleCancelarConsulta(consultaCancelada);
-      setConfirmCancel(null); // Reseta o estado de confirmação
+      setConfirmCancel(null);
     }
   };
 
   const cancelarCancelamento = () => {
-    setConfirmCancel(null); // Reseta o estado de confirmação
-    setConsultaCancelada(null); // Limpa a consulta a ser cancelada
+    setConfirmCancel(null);
+    setConsultaCancelada(null);
   };
 
   useEffect(() => {
@@ -86,7 +84,7 @@ export function Consultas() {
         const response = await fetch(`http://localhost:3000/consultas/psicologos/${idPsicologo}`);
         const data = await response.json();
 
-        const consultasFormatadas = data.map(consulta => {
+        const consultasFormatadas = data.map((consulta) => {
           const duracaoFormatada = consulta.duracao.slice(0, 5);
           const horarioFormatado = consulta.horario.slice(0, 5);
           const dataConsulta = new Date(consulta.data);
@@ -123,8 +121,7 @@ export function Consultas() {
           };
         });
 
-        // Filtra consultas com status diferente de "cancelada"
-        setConsultas(consultasFormatadas.filter(consulta => consulta.status !== "cancelada"));
+        setConsultas(consultasFormatadas);
       } catch (error) {
         console.error("Erro ao buscar consultas:", error);
       }
@@ -132,12 +129,20 @@ export function Consultas() {
 
     fetchConsultas();
 
-    // Atualiza as consultas a cada 30 segundos para verificar mudanças
-    const intervalId = setInterval(fetchConsultas, 500); // 30 segundos
+    const intervalId = setInterval(fetchConsultas, 30000);
 
-    // Limpeza do intervalo ao desmontar o componente
     return () => clearInterval(intervalId);
   }, []);
+
+
+// Filtro para o campo de pesquisa
+const consultasFiltradas = consultas.filter((consulta) => {
+  const nomePaciente = consulta.nome_paciente?.toLowerCase() || "";
+  const pesquisa = pesq.toLowerCase();
+  // Filtra consultas com status diferente de "cancelada" e "realizada"
+  return nomePaciente.includes(pesquisa) && !["cancelada", "realizada"].includes(consulta.status);
+});
+
 
   return (
     <div className="w-full h-full flex items-center flex-col">
@@ -152,33 +157,41 @@ export function Consultas() {
       </div>
 
       <div className="grid justify-center items-start w-full h-full p-8 overflow-y-scroll grid-cols-5 grid-flow-row">
-        {consultas.map((consulta) => (
+        {consultasFiltradas.map((consulta) => (
           <ConsultasPacientes
             key={consulta.id}
             nome={consulta.nome_paciente}
             date={new Date(consulta.data).toLocaleDateString("pt-BR")}
             horario={consulta.horario}
             duracao={consulta.duracao}
-            able={consulta.able}  // Passando able como prop
-            accept={consulta.accept}  // Passando accept como prop
-            onConfirm={() => handleConfirmarConsulta(consulta.id)} // Passando a função para o botão "Sim"
+            able={consulta.able}
+            accept={consulta.accept}
+            onConfirm={() => handleConfirmarConsulta(consulta.id)}
             onCancel={() => {
-              // Define a consulta a ser cancelada
               setConsultaCancelada(consulta.id);
-              setConfirmCancel(true); // Exibe o modal de confirmação
-            }}  // Passando a função para o botão "Não"
+              setConfirmCancel(true);
+            }}
           />
         ))}
       </div>
 
-      {/* Modal de confirmação para cancelar a consulta */}
       {confirmCancel && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg">
             <p>Tem certeza que deseja cancelar essa consulta?</p>
             <div className="flex justify-between mt-4">
-              <button onClick={confirmarCancelamento} className="px-4 py-2 bg-red-500 text-white rounded-lg">Sim</button>
-              <button onClick={cancelarCancelamento} className="px-4 py-2 bg-gray-500 text-white rounded-lg">Não</button>
+              <button
+                onClick={confirmarCancelamento}
+                className="px-4 py-2 bg-red-500 text-white rounded-lg"
+              >
+                Sim
+              </button>
+              <button
+                onClick={cancelarCancelamento}
+                className="px-4 py-2 bg-gray-500 text-white rounded-lg"
+              >
+                Não
+              </button>
             </div>
           </div>
         </div>
