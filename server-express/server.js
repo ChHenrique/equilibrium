@@ -14,7 +14,13 @@ dotenv.config(); // Carrega variáveis de ambiente do arquivo .env
 
 const app = express();
 app.use(express.json()); // Permite que o express leia json
-app.use(cors())
+
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 
+  };
+  
+  app.use(cors(corsOptions));
 
 
 // Obtém o diretório atual
