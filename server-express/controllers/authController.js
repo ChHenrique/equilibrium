@@ -194,3 +194,26 @@ export const updateDuracaoPsicologo = async (req, res) => {
     }
 };
 
+export const updateTopicosFormacaoPsicologo = async (req, res) => {
+    const { topicos, formacao } = req.body;
+    const { id } = req.params;  
+
+    try {
+        // Atualizar os campos `topicos` e `formacao` do psicólogo com base no `id`
+        const result = await db.query(
+            'UPDATE psicologos SET topicos = ?, formacao = ? WHERE id_psi = ?',
+            [topicos, formacao, id]
+        );
+
+        // Verificar se algum registro foi alterado
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Psicólogo não encontrado' });
+        }
+
+        return res.status(200).json({ message: 'Topicos e Formação atualizados com sucesso' });
+    } catch (error) {
+        console.error('Erro ao atualizar os tópicos e formação', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+};
+

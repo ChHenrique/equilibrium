@@ -72,3 +72,34 @@ export const getConsultasPorPsicologo = async (req, res) => {
   }
 };
 
+
+
+export const atualizarStatusConsulta = async (req, res) => {
+  const consultaId = req.params.id;
+  const { status } = req.body; // O status será "confirmada" ou "cancelada"
+
+  try {
+    // Atualiza o status da consulta no banco
+    const updateQuery = `UPDATE consultas SET status = ? WHERE id = ?`;
+    await db.query(updateQuery, [status, consultaId]);
+
+    if (status === 'cancelada') {
+      // Agendar o apagamento da consulta após 1 hora
+      setTimeout(async () => {
+        try {
+          // Apaga a consulta cancelada após 1 hora
+          const deleteQuery = `DELETE FROM consultas WHERE id = ?`;
+          await db.query(deleteQuery, [consultaId]);
+          console.log(`Consulta com ID ${consultaId} foi removida após ser cancelada.`);
+        } catch (deleteError) {
+          console.error('Erro ao apagar consulta:', deleteError);
+        }
+      }, 60 * 60 * 1000); // 1 hora (em milissegundos)
+    }
+
+    res.status(200).json({ message: 'Status atualizado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao atualizar status da consulta:', error);
+    res.status(500).json({ message: 'Erro ao atualizar status' });
+  }
+};

@@ -1,9 +1,9 @@
 import React from "react";
 import nullimg from '../../../../assets/images/user_null.svg'
-import { useState } from "react";
 
 
-export function ConsultasPacientes({ nome, date, horario, duracao,able,accept }) {
+
+export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,onConfirm,onCancel }) {
  //   const [able, setAble] = useState(1) 
  //   const [accept, setacceptance] = useState(0) 
 
@@ -54,12 +54,12 @@ export function ConsultasPacientes({ nome, date, horario, duracao,able,accept })
 
                 {accept ?
                     <div className="h-fit w-full justify-center items-center flex-row  flex mt-2 space-x-4">
-                        <button className="h-fit w-fit flex-row text-white text-lg bg-[#73d79b] rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold hover:bg-[#63c189] duration-500"
+                        <button onClick={onConfirm} className="h-fit w-fit flex-row text-white text-lg bg-[#73d79b] rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold hover:bg-[#63c189] duration-500"
                         >
                             Aceitar
                         </button>
 
-                        <button className="ml-1 h-fit w-fit flex-row text-white text-lg bg-primary-900 rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold mr-auto hover:bg-[#dc7070] duration-500" >
+                        <button onClick={onCancel} className="ml-1 h-fit w-fit flex-row text-white text-lg bg-primary-900 rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold mr-auto hover:bg-[#dc7070] duration-500" >
                             Recusar
                         </button>
 
