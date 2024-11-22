@@ -19,43 +19,67 @@ export function VideoChat() {
 
     useEffect(() => {
         const handleUserMedia = (stream) => {
-            console.log("Fluxo de mídia do usuário local recebido:", stream); // Log para verificar o fluxo local
-            peerRef.current = new SimplePeer({
-                initiator: window.location.href.includes('peer1'),
-                trickle: false,
-                stream: stream,
-            });
-
-        
-
+            console.log("Fluxo de mídia do usuário local recebido:", stream);
+            
+            // Cria o peer apenas uma vez
+            if (!peerRef.current) {
+                peerRef.current = new SimplePeer({
+                    initiator: window.location.href.includes('peer1'),
+                    trickle: false,
+                    stream: stream,
+                });
+    
+            // Evento de sinal para enviar
             peerRef.current.on('signal', (data) => {
                 socket.emit('signal', data);
             });
-
+    
+            // Quando receber stream do outro peer
             peerRef.current.on('stream', (stream) => {
                 console.log('Stream recebido do outro usuário:', stream);
                 setPeerStream(stream);
             });
-            
-            socket.on('signal', (data) => {
-                console.log("Sinal recebido do outro usuário:", data); // Log para verificar o sinal recebido
-                peerRef.current.signal(data);
+    
+            // Tratamento de erro no peer
+            peerRef.current.on('error', (err) => {
+                console.error('Erro no peer:', err);
             });
-            
         };
-
-        if (webcamRef.current && webcamRef.current.video) {
-            navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(handleUserMedia).catch(error => {
-                console.error("erro ao tentar acessar microfone e camera", error);
-                alert("nao da pra acessar microfone e camera");
-            });
         }
-
+        // Função para lidar com sinal recebido
+        const handleSignal = (data) => {
+            console.log("Sinal recebido do outro usuário:", data);
+            
+            if (peerRef.current && !peerRef.current.destroyed) {
+                peerRef.current.signal(data);
+            } else {
+                console.warn('Peer foi destruído. Não é possível sinalizar.');
+            }
+        };
+    
+        // Adiciona listener de sinal
+        socket.on('signal', handleSignal);
+    
+        // Solicitar permissão de mídia
+        if (webcamRef.current && webcamRef.current.video) {
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(handleUserMedia)
+                .catch(error => {
+                    console.error("Erro ao tentar acessar microfone e camera", error);
+                    alert("Não foi possível acessar microfone e camera");
+                });
+        }
+    
+        // Função de limpeza
         return () => {
-            socket.off('signal');
+            // Remove o listener de sinal
+            socket.off('signal', handleSignal);
+    
+            // Destruir peer se existir
             if (peerRef.current) {
                 peerRef.current.destroy();
-            peerRef.current = null;}
+                peerRef.current = null;
+            }
         };
     }, []);
 
