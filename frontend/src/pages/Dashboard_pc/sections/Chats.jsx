@@ -86,22 +86,26 @@ export function Chats() {
     }, []);
 
     return (
-        <div className="bg-white h-full max-h-full w-full font-satoshi-medium flex flex-row rounded-2xl">
+        <div className="bg-white h-full max-h-full max-md:bg-primary-300 w-full font-satoshi-medium flex flex-row rounded-2xl">
+            
 
             {/* Aba dos conversantes */}
-            <div className="h-full w-4/12 bg-slate-100 flex flex-col rounded-l-2xl border-r-2 border-slate-400">
-                <h1 className="text-2xl m-6 text-primary-700 font-medium">Chats</h1>
-                <div className="w-full h-2/12 bg-slate-100 justify-start items-end flex rounded-tl-2xl border-b-2 border-slate-400">
-                    <input type="text" run placeholder=" Pesquisar..." className="w-11/12 m-4 h-9 bg-gray-200 rounded-xl placeholder:text-primary-700 outline-2 outline-slate-400" />
+            <div className="h-full w-1/3 max-2xl:w-1/2 max-md:bg-primary-300 bg-slate-100 flex flex-col rounded-l-2xl border-r-2 border-slate-400 max-md:border-none">
+                <h1 className="text-2xl max-md:text-3xl max-md:font-bold m-6 text-primary-700 font-medium">Chats</h1>
+                <div className="w-full h-2/12 bg-slate-100 max-md:bg-primary-300 justify-start items-end flex rounded-tl-2xl border-b-2 border-slate-400 max-md:border-none">
+                    <input type="text" run placeholder=" Pesquisar..." className="w-11/12 max-md:w-1/2 m-4 h-10  max-md:bg-slate-200 bg-gray-200 rounded-xl placeholder:text-primary-700 outline-2 outline-slate-400" />
                 </div>
+                <div className='w-full h-full grid grid-cols-1 max-h-[55vh] overflow-y-scroll'>
                 {/* Renderizando psicólogos */}
                 {psicologos.map(psicologo => (
                     <ChatsUsers key={psicologo.id} nome={psicologo.nome} lastmsg={"Última mensagem aqui"} /> // Substitua "Última mensagem aqui" pelo dado real
                 ))}
+                <ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /> <ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} />  <ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /><ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /><ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /><ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /><ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /> <ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /><ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /><ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /><ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} /><ChatsUsers key={'psicologo'} nome={'psicologo.nome'} lastmsg={"Última mensagem aqui"} />
+                </div>
             </div>
 
             {/* Aba do chat */}
-            <div className="bg-white h-full w-8/12 flex-col flex justify-start items-center rounded-r-2xl overflow-hidden m-0" id='chat'>
+            <div  className="bg-white max-md:hidden h-full w-8/12 flex-col flex justify-start items-center rounded-r-2xl overflow-hidden m-0" id='chat'>
                 {/* Chat */}
                 <div ref={chatRef} className="h-fit w-full bg-white flex flex-col items-end overflow-y-scroll overflow-x-hidden max-h-screen">
                     {mensagens.map((mensagem, index) => (

@@ -62,12 +62,14 @@ export function Camp_Dash() {
                 return null;
         }
     };
-    
+
+
 
     return (
-        <div className="w-full h-full flex justify-evenly flex-row items-center rounded-2xl mb-24 max-md:mb-0 max-md:flex-col-reverse max-md:justify-between">
+        <div className="w-full h-full flex justify-evenly flex-row items-center rounded-2xl mb-24 max-md:mb-0 max-md:flex-col-reverse max-md:justify-start">
+            <h1></h1>
             <div 
-                className="max-md:flex-row max-md:justify-evenly flex-col h-full max-md:rounded-none max-md:h-1/6  max-md:w-full w-fit bg-white rounded-2xl p-2 flex items-center transition-colors duration-300"
+                className="max-md:flex-row max-md:justify-evenly flex-col h-full mb-0 max-md:mt-4 max-md:rounded-none max-md:h-[10%]  max-md:w-full w-fit bg-white rounded-2xl p-2 flex items-center transition-colors duration-300"
                 id="barra" 
                 onMouseEnter={() => setIsHovered(true)} 
                 onMouseLeave={() => setIsHovered(false)}
