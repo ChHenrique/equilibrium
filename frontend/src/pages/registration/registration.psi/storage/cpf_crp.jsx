@@ -22,7 +22,7 @@ export function CPF_CRP({ cpfError, crpError }) {
     };
 
     return (
-        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between">
+        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between max-xl:p-0">
             <div className="flex flex-col sm:w-2/5">
                 <label htmlFor="cpf" className={`text-gray-700 mb-2 ${cpfError ? 'text-red-500' : ''}`}>
                     {cpfError || 'CPF:'}

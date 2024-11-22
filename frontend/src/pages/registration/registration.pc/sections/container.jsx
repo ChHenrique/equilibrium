@@ -19,7 +19,7 @@ export function Container() {
                 <img
                     src={logo}
                     alt="Logo"
-                    className="absolute bottom-3 right-3 h-[8em] w-fit max-sm:hidden"
+                    className="absolute bottom-3 right-3 h-[8em] w-fit max-sm:hidden max-xl:h-[6em]"
                 />
             </a>
         </div>

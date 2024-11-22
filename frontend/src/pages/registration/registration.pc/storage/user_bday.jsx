@@ -2,7 +2,7 @@ import React from 'react';
 
 export function User_Bday({ usernameError, birthdayError }) {
     return (
-        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between max-sm:p-0 max-sm:mr-2 max-sm:flex-row max-sm:w-full max-sm:mt-10">
+        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between max-sm:p-0 max-sm:mr-2 max-sm:flex-row max-sm:w-full max-sm:mt-10 max-xl:p-0">
             <div className="flex flex-col sm:w-2/5">
                 <label htmlFor="username" className={`text-gray-700 mb-2 ${usernameError ? 'text-red-500' : ''}`}>
                     {usernameError || 'Nome social:'}

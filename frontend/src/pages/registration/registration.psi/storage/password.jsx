@@ -5,7 +5,7 @@ export function Password({ passwordError, confirmPasswordError }) {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     return (
-        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between items-start">
+        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between items-start max-xl:p-0">
             <div className="flex flex-col sm:w-2/5">
                 <label htmlFor="senha" className={`text-gray-700 mb-2 ${passwordError ? 'text-red-500' : ''} whitespace-nowrap`}>
                     {passwordError || 'Senha:'}

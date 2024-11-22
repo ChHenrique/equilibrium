@@ -50,7 +50,8 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
     return (
         <article className="flex flex-col justify-center items-center pb-0 w-full max-w-4xl h-auto font-satoshi-Regular -mb-8 -mt-5">
 
-            <form ref={ref} onSubmit={handleSubmit} className="w-4/6 max-w-1xl h-auto mt-14 ml-5 translate-y-12">                <Name nameError={errors.name} surnameError={errors.surname} />
+            <form ref={ref} onSubmit={handleSubmit} className="w-4/6 max-w-1xl h-auto mt-14 ml-5 translate-y-12 max-xl:translate-y-0 max-xl:mt-10 max-xl:space-y-6">                
+                <Name nameError={errors.name} surnameError={errors.surname} />
                 <User_Bday usernameError={errors.username} birthdayError={errors.birthday} />
                 <Email emailError={errors.email} />
                 <Password passwordError={errors.password} confirmPasswordError={errors.confirmPassword} />
@@ -65,7 +66,7 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
                     type="submit"
                     className="bg-[#3B82F6] p-0.5 text-white border border-[#3B82F6] w-80 h-auto rounded-[10px] 
         font-satoshi font-extrabold text-lg mt-11 hover:bg-[#1c3b79] 
-        transition-all duration-200 hover:rounded-[15px] mr-1 translate-y-2"
+        transition-all duration-200 hover:rounded-[15px] mr-1 translate-y-2 max-xl:translate-y-0 max-xl:mt-0"
                 >
                     Registrar
                 </button>
