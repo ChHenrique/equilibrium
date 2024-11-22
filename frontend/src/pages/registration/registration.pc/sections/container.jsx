@@ -10,7 +10,7 @@ export function Container() {
     const [errors, setErrors] = React.useState({ general: '' })
 
     return (
-        <div id = "conteiner" className= "bg-white flex-col flex items-center p-0 h-[85vh] w-[65vw] relative rounded-[10px] max-sm:h-[90vh] max-sm:w-[85vw]">
+        <div id = "conteiner" className= "bg-white flex-col flex items-center p-0 h-[85vh] w-[65vw] relative rounded-[10px] max-sm:h-[90vh] max-sm:w-[85vw] max-2xl:h-[90vh]">
             <Header />
             <Form ref={formRef} errors={errors} setErrors={setErrors}/>
             <Balls />

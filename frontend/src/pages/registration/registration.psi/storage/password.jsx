@@ -21,7 +21,7 @@ export function Password({ passwordError, confirmPasswordError }) {
                     autoComplete="new-password"
                 />
             </div>
-            <div className="flex flex-col sm:w-2/5">
+            <div className="flex flex-col sm:w-2/5 mt-5">
                 <label htmlFor="confirme_sua_senha" className={`text-gray-700 mb-2 ${confirmPasswordError ? 'text-red-500' : ''}`}>
                     {confirmPasswordError || 'Confirme sua senha:'}
                 </label>
