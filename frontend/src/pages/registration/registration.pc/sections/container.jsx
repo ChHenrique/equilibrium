@@ -10,7 +10,7 @@ export function Container() {
     const [errors, setErrors] = React.useState({ general: '' })
 
     return (
-        <div id = "conteiner" className= "bg-white flex-col flex items-center p-0 h-[85vh] w-[65vw] relative rounded-[10px] max-sm:h-[90vh] max-sm:w-[85vw] max-2xl:h-[90vh]">
+        <div id = "conteiner" className= "bg-white flex-col flex items-center p-0 h-[85vh] w-[65vw] relative rounded-[10px] max-sm:h-[80vh] max-sm:w-[95vw] max-2xl:h-[90vh] max-lg:h-[65vh] max-lg:w-[90vw] max-xl:h-[50vh] max-xl:w-[80vw]">
             <Header />
             <Form ref={formRef} errors={errors} setErrors={setErrors}/>
             <Balls />
@@ -19,7 +19,7 @@ export function Container() {
                 <img
                     src={logo}
                     alt="Logo"
-                    className="absolute bottom-3 right-3 h-[8em] w-fit max-sm:hidden max-xl:h-[6em]"
+                    className="absolute bottom-3 right-3 h-[8em] w-fit max-sm:hidden max-xl:h-[6em] max-2xl:h-[7em]"
                 />
             </a>
         </div>
