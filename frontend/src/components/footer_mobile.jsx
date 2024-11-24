@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const links = [
     {
         id: 0,
         img: (
             <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24.9964 27.8036C25.7716 28.5787 27.0284 28.5787 27.8036 27.8036C28.5787 27.0284 28.5787 25.7716 27.8036 24.9964L19.7118 16.9047C20.2215 16.1963 20.6323 15.4043 20.9456 14.5314C21.3162 13.499 21.5 12.404 21.5 11.25C21.5 8.39549 20.5057 5.96113 18.5223 3.9777C16.5389 1.99426 14.1045 1 11.25 1C8.39549 1 5.96113 1.99426 3.9777 3.9777C1.99426 5.96113 1 8.39549 1 11.25C1 14.1045 1.99426 16.5389 3.9777 18.5223C5.96113 20.5057 8.39549 21.5 11.25 21.5C12.404 21.5 13.499 21.3162 14.5314 20.9456C15.4043 20.6323 16.1963 20.2215 16.9047 19.7118L24.9964 27.8036ZM15.6777 15.6777C14.46 16.8954 12.9939 17.5 11.25 17.5C9.50609 17.5 8.03997 16.8954 6.8223 15.6777C5.60464 14.46 5 12.9939 5 11.25C5 9.50609 5.60464 8.03997 6.8223 6.8223C8.03997 5.60464 9.50609 5 11.25 5C12.9939 5 14.46 5.60464 15.6777 6.8223C16.8954 8.03997 17.5 9.50609 17.5 11.25C17.5 12.9939 16.8954 14.46 15.6777 15.6777Z" fill="#355081" stroke="#355081" />
+                <path d="M24.9964 27.8036C25.7716 28.5787 27.0284 28.5787 27.8036 27.8036C28.5787 27.0284 28.5787 25.7716 27.8036 24.9964L19.7118 16.9047C20.2215 16.1963 20.6323 15.4043 20.9456 14.5314C21.3162 13.499 21.5 12.404 21.5 11.25C21.5 8.39549 20.5057 5.96113 18.5223 3.9777C16.5389 1.99426 14.1045 1 11.25 1C8.39549 1 5.96113 1.99426 3.9777 3.9777C1.99426 5.96113 1 8.39549 1 11.25C1 14.1045 1.99426 16.5389 3.9777 18.5223C5.96113 20.5057 8.39549 21.5 11.25 21.5C12.404 21.5 13.499 21.3162 14.5314 20.9456C15.4043 20.6323 16.1963 20.2215 16.9047 19.7118L24.9964 27.8036ZM15.6777 15.6777C14.46 16.8954 12.9939 17.5 11.25 17.5C9.50609 17.5 8.03997 16.8954 6.8223 15.6777C5.60464 14.46 5 12.9939 5 11.25C5 9.50609 5.60464 8.03997 6.8223 6.8223C8.03997 5.60464 9.50609 5 11.25 5C12.9939 5 14.46 5.60464 15.6777 6.8223C16.8954 8.03997 17.5 9.50609 17.5 11.25C17.5 12.9939 16.8954 14.46 15.6777 15.6777Z" fill="#8CB3FF" />
             </svg>
         )
     },
@@ -54,11 +54,34 @@ const links = [
 export function Footer_Mobile() {
     const navigate = useNavigate()
     const [id, setId] = useState(0)
+    const location = useLocation();
 
-
+    useEffect(() => {
+        if (location.pathname === '/info/paciente') {
+            setId(4);
+        }
+        else if (location.pathname === '/home/paciente') {
+            if (location.state?.activeId === 3) {
+                setId(1);
+            } else if (location.state?.activeId === 1) {
+                setId(2);
+            } else if (location.state?.activeId === 2) {
+                setId(3);
+            }
+        }
+        else if (location.pathname === '/psicologos') {
+            setId(0);
+        }
+    }, [location.pathname, location.state]);
+    
+    
+    
     const EnviarLocal = (linkId) => {
         setId(linkId)
         switch (linkId) {
+
+            case 0:
+                return navigate('/psicologos')
             case 1: 
                 return navigate('/home/paciente', { state: { activeId: 3 } })
             case 2:
@@ -72,18 +95,18 @@ export function Footer_Mobile() {
     }
 
     return (
-        <div className="flex-col flex justify-center items-center w-[100vw] h-[100vh] bg-primary-200">
-
-            <div className="flex flex-col justify-center items-center space-y-2 bg-slate-50 w-[100%] rounded-tr-2xl rounded-tl-2xl p-2 absolute bottom-0">
+            <div className="flex flex-col justify-center items-center space-y-2 bg-slate-50 w-[100%] rounded-tr-2xl rounded-tl-2xl p-2 absolute bottom-0 sm:hidden">
 
                 <div className="flex justify-center items-center space-x-6">
                     {links.map((link => (
                         <button
                         id='link'
                         key={link.id}
-                        className='flex justify-center items-center hover:scale-125 duration-500'
+                        className={`flex justify-center items-center hover:scale-125 ease-in-out duration-500 ${
+                            id === link.id ? "bg-primary-800 rounded-full " : "hover:bg-primary-800 rounded-full"
+                        }`}
                         onClick={() => EnviarLocal(link.id)}>
-                            <div className='h-fit flex items-center'>
+                            <div className='h-fit flex items-center p-[5px]'>
                                 {link.img}
                             </div>
                         </button>
@@ -97,6 +120,5 @@ export function Footer_Mobile() {
                 </div>
 
             </div>
-        </div>
     )
 }

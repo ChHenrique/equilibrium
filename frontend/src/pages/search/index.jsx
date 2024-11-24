@@ -3,6 +3,7 @@ import { Seach_psicologos } from "./sections/psicologos";
 import { Footer } from "../../components/footer";
 import { HeaderLog } from "../../components/headerLog";
 import { SearchProvider } from "./sections/seach_provider"; // Corrigido o caminho se necessário
+import { Footer_Mobile } from "../../components/footer_mobile"
 
 export function Search() {
     return (
@@ -14,6 +15,7 @@ export function Search() {
             </SearchProvider>
             
             <Footer />
+            <Footer_Mobile />
         </div>
     );
 }

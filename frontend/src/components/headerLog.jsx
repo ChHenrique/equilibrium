@@ -42,7 +42,7 @@ export function HeaderLog() {
     return (
         <div
             id="Header"
-            className="w-[95%] h-16 flex flex-row items-center bg-white rounded-2xl m-4 justify-between"
+            className="w-[95%] h-16 flex flex-row items-center bg-white rounded-2xl m-4 justify-between max-sm:hidden"
             draggable="false"
         >
             <Logo draggable="false" />
