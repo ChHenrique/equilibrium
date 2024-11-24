@@ -18,7 +18,7 @@ import { EsqueciSenha } from './pages/esqueci_senha/esqueci_senha.jsx'
 import { ErrorPage } from './pages/404/erro.jsx';
 import { CodigoEnviado } from './pages/esqueci_senha/codigo_enviado.jsx';
 import { NovaSenha } from './pages/esqueci_senha/novaSenha.jsx'
-
+import { Footer_Mobile } from './components/footer_mobile.jsx'
 
 export const routes = createBrowserRouter([
   {
@@ -94,6 +94,10 @@ export const routes = createBrowserRouter([
       {
         path: '/login/novasenha',
         element: <NovaSenha/>
+      },
+      {
+        path: '/test',
+        element: <Footer_Mobile/>
       },
     ]
   },

@@ -6,7 +6,7 @@ const router = express.Router();
 // Definir as rotas de registro
 router.post('/registerpc', registerUser);
 router.post('/registerps', registerPs);
-router.post('/infopc/:id', infoPc);
+router.get('/infopc/:id', infoPc);
 
 // Definir a rotas de login
 router.post('/loginpc', loginUser);

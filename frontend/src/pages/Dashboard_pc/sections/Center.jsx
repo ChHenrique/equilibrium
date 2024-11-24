@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import { Chats } from './Chats.jsx';
 import { Consultas } from "./Consultas.jsx";
 import { Historico } from "./Historico.jsx";
@@ -47,9 +48,17 @@ const botoes = [
 ];
 
 export function Camp_Dash() {
+    const location = useLocation();
     const [activeId, setActiveId] = useState(1);
     const [isHovered, setIsHovered] = useState(false);
 
+    useEffect(() => {
+        // Verifica se há um estado passado na navegação
+        if (location.state && location.state.activeId) {
+            setActiveId(location.state.activeId); // Define o activeId com o valor do estado
+        }
+    }, [location.state]);
+    
     const renderContent = () => {
         switch (activeId) {
             case 1:

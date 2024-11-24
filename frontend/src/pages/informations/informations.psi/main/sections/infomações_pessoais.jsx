@@ -113,7 +113,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
         <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span></h3>
         <hr className='w-60 h-[0.1px] border border-[#1c283d]' />
         <a href='/home/psicologo' className='w-full flex justify-center'>
-          <button className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl whitespace-nowrap">Ver Histórico</button>
+          <button className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl whitespace-nowrap">Ver Consultas</button>
         </a>
         <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10'></div>
       </div>
