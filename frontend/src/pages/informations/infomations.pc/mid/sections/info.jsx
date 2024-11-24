@@ -52,7 +52,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
         <a href='/home/paciente' className='w-full flex justify-center'>
           <button
             className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl">
-            Ver Histórico
+            Ver Consultas
           </button>
         </a>
       </div>
