@@ -14,6 +14,14 @@ export function Main() {
   const [hour, setHour] = useState("");
   const [fdate, setfDate] = useState("");
   const id = localStorage.getItem('id');
+  const [alerta, setAlerta] = useState(false);
+
+  const mostrarAlerta = (mensagem, tipo) => {
+    setAlerta(true);
+    setTimeout(() => 
+      setAlerta(false), 3000); // Alerta desaparece em 3 segundos
+  };
+  
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -30,18 +38,16 @@ export function Main() {
   async function handleConfirm() {
     const formattedDate = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`;
     const formattedHour = `${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}`;
-
+  
     if (formattedDate !== "" && formattedHour !== "" && id_psicologo) {
-      const id_paciente = localStorage.getItem('id'); // Pegando o id do paciente do localStorage
-      console.log(formattedDate )
-      console.log(formattedHour)
+      const id_paciente = localStorage.getItem('id');
       const consultaData = {
         id_paciente,
         data: formattedDate,
         horario: formattedHour,
-        status: 'pendente'
+        status: 'pendente',
       };
-
+  
       try {
         const response = await fetch(`http://localhost:3000/consulta?id=${id_psicologo}`, {
           method: 'POST',
@@ -50,23 +56,25 @@ export function Main() {
           },
           body: JSON.stringify(consultaData),
         });
-
+  
         const result = await response.json();
         if (result.success) {
-          alert(result.message); // Mensagem de sucesso
+          mostrarAlerta(result.message, "sucesso"); // Exibe o alerta de sucesso
         } else {
-          alert(result.message); // Mensagem de erro
+          mostrarAlerta(result.message, "erro"); // Exibe o alerta de erro
         }
       } catch (error) {
         console.error('Erro ao agendar consulta:', error);
-        alert('Erro ao agendar consulta');
+        mostrarAlerta('Erro ao agendar consulta', "erro"); // Exibe o alerta de erro
       }
     } else {
-      alert('Por favor, preencha todos os campos e tente novamente.');
+      mostrarAlerta('Por favor, preencha todos os campos e tente novamente.', "erro"); // Exibe o alerta de erro
     }
   }
+  
 
   function Render() {
+    
     if (page === 1) {
       return (
         <div className="w-full h-full flex justify-center items-center flex-col pb-[40%]">
@@ -124,11 +132,21 @@ export function Main() {
           >
             Confirmar
           </button>
+          {alerta.visivel && (
+        <div
+          className={`p-2 rounded-lg transition-all duration-500 font-poppins  ${
+            alerta ? "bg-primary-800 text-white opacity-100" : "bg-red-500 text-white opacity-0"
+          }`}
+        >
+          {alerta.mensagem}
+        </div>
+      )}
         </div>
       );
     }
   }
 
+  
   return (
     <div className="w-full h-full bg-white rounded-2xl relative font-poppins">
       <Bolas />
@@ -140,8 +158,9 @@ export function Main() {
           <path d="M0.585787 13.5858C-0.195262 14.3668 -0.195262 15.6332 0.585786 16.4142L13.3137 29.1421C14.0948 29.9232 15.3611 29.9232 16.1421 29.1421C16.9232 28.3611 16.9232 27.0948 16.1421 26.3137L4.82843 15L16.1421 3.68629C16.9232 2.90524 16.9232 1.63891 16.1421 0.857865C15.3611 0.0768168 14.0948 0.0768167 13.3137 0.857865L0.585787 13.5858ZM4 13L2 13L2 17L4 17L4 13Z" fill="black" />
         </svg>
       </button>
-
+  
       {Render()}
     </div>
   );
+  
 }
