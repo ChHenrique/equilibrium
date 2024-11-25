@@ -57,10 +57,10 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
     };
 
     return (
-        <footer className="flex flex-col justify-center items-center mb-20">
+        <footer className="flex flex-col justify-center items-center mb-20 relative">
             {/* Exibe a mensagem de erro quando ela estiver configurada */}
             {errorMessage && (
-                <div className="text-red-600 text-center font-semibold h-fit transition-opacity duration-500 opacity-100">
+                <div draggable="true" className="text-red-600 text-center font-semibold h-fit transition-opacity duration-500 opacity-100 absolute top-0 sm:-translate-y-3 whitespace-nowrap font-poppins sm:text-[17px] text-[14px] translate-y-2">
                     {errorMessage} {/* Exibe a mensagem de erro */}
                 </div>
             )}

@@ -16,7 +16,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
 
 
     return (
-        <div className="w-[75vw] h-auto bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row items-center p-4 md:p-6" draggable="false">
+        <div className="w-[75vw] h-auto bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row max-sm:flex-row items-center p-4 md:p-6 max-sm:w-[90%] max-sm:h-[15%]" draggable="false">
             {/* Foto Psicólogo */}
             <div className="h-32 w-32 md:h-40 md:w-40 ml-0 md:-ml-2 mb-4 md:mb-0">
                 <img
@@ -86,7 +86,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
             <aside className="flex-shrink-0 flex items-center flex-col h-full">
                 <a href={`/consulta?id=${id}`} className="mt-auto relativo">
                 <button
-                    className="bg-[#355081] hover:bg-[#19376d] text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto relativo translate-y-16"
+                    className="bg-primary-500 hover:bg-[#19376d] text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto relativo translate-y-16 max-sm:w-[100%] max-sm:py-2 max-sm:px-2 whitespace-nowrap"
                     id="button_acessar_consulta"
                 >
                     Agendar Consulta

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Camp_Dash } from "./sections/Center.jsx";
 import { Footer } from "../../components/footer.jsx";
 import { HeaderLog } from "../../components/headerLog.jsx";
+import { Footer_Mobile } from "../../components/footer_mobile.jsx";
+
 import axios from "axios";
 
 
@@ -58,6 +60,7 @@ export function Dashboard() {
             <div className="w-10/12 h-fit flex justify-center items-center max-md:hidden">
                 <Footer className="overflow-hidden"/>
             </div>
+            <Footer_Mobile/>
         </div>
     );
 }

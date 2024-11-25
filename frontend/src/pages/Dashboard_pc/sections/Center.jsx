@@ -161,7 +161,7 @@ export function Camp_Dash() {
                         id="button"
                         key={botao.id} 
                         onClick={() => setActiveId(botao.id)}  
-                        className={`flex md:hidden  items-center border-none text-xl mt-1 h-10 p-1 w-full max-md:w-fit text-center rounded-xl transition-colors duration-300 ease-in-out transform ${
+                        className={`hidden md:hidden absolute items-center border-none text-xl mt-1 h-10 p-1 w-full max-md:w-fit text-center rounded-xl transition-colors duration-300 ease-in-out transform ${
                             activeId === botao.id
                                 ? "bg-primary-200 text-white max-md:bg-white max-md:text-primary-700"
                                 : "bg-white text-primary-700  hover:bg-primary-300 hover:text-white max-md:text-primary-200"

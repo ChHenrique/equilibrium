@@ -62,10 +62,10 @@ export function Seach_psicologos() {
     };
 
     return (
-        <section className="flex flex-col items-center space-y-10 w-[75vw] h-[80vh] mt-10 px-4 md:px-8">
-            <div className="flex items-center justify-center flex-col">
+        <section className="flex flex-col items-center space-y-10 w-[75vw] h-[80vh] mt-10 px-4 md:px-8 max-sm:w-[100vw]">
+            <div className="flex items-center justify-center flex-col w-full">
                 <div className="w-full h-auto flex justify-center items-center space-x-4">
-                    <div className="flex items-center bg-[#F1F5F9] rounded-[6px] w-[125vh] h-[4vh] p-1">
+                    <div className="flex items-center bg-[#F1F5F9] rounded-[6px] w-[125vh] h-[4vh] p-1 max-sm:w-full max-sm:h-9">
                         <input
                             type="text"
                             placeholder="Pesquisar..."
@@ -86,7 +86,7 @@ export function Seach_psicologos() {
                                 setSelected(e.target.value);
                                 setInputSearch(''); // Limpa a pesquisa ao mudar o filtro
                             }}
-                            className="appearance-none border border-[#F1F5F9] text-slate-600 text-xs h-[4vh] w-[10vw] bg-[#F1F5F9] rounded-[6px] pl-3 pr-10 focus:outline-none"
+                            className="appearance-none border border-[#F1F5F9] text-slate-600 text-xs h-[4vh] w-[10vw] bg-[#F1F5F9] rounded-[6px] pl-3 pr-10 focus:outline-none max-sm:w-28 max-sm:h-9"
                         >
                             <option value="nome">Filtrar por...</option>
                             <option value="topicos">Tópicos</option>
@@ -104,7 +104,7 @@ export function Seach_psicologos() {
                     </div>
                 </div>
 
-                <div className="space-y-6 mt-5">
+                <div className="space-y-6 mt-5 flex flex-col items-center">
                     {filteredPsicologos.length > 0 ? (
                         filteredPsicologos.map(psicologo => (
                             <Psicologo
