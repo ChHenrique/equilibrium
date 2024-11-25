@@ -5,7 +5,7 @@ import { LuMail } from 'react-icons/lu';
 
 export function Footer() {
   return (
-    <footer className='w-full h-fit bg-white flex flex-col justify-center items-center rounded-t-xl py-8 gap-6'>
+    <footer className='w-full h-fit bg-white flex flex-col justify-center items-center rounded-t-xl py-8 gap-6 max-sm:hidden'>
       <img src={logo} alt="Logo Equilibrium" className='h-16 w-auto' />
       <div className='flex justify-center items-center gap-4'>
         <FooterLink href='#'>
