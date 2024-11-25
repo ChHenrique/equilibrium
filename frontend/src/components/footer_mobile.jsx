@@ -53,7 +53,7 @@ const links = [
 ]
 export function Footer_Mobile() {
     const navigate = useNavigate()
-    const [id, setId] = useState(0)
+    const [id, setId] = useState(NaN)
     const location = useLocation();
 
     useEffect(() => {
@@ -95,7 +95,7 @@ export function Footer_Mobile() {
     }
 
     return (
-            <div className="flex flex-col justify-center items-center space-y-2 bg-slate-50 w-[100%] rounded-tr-2xl rounded-tl-2xl p-2 absolute bottom-0 sm:hidden">
+            <div className="flex flex-col justify-center items-center space-y-2 bg-slate-50 w-[100%] rounded-tr-2xl rounded-tl-2xl p-2 absolute bottom-0">
 
                 <div className="flex justify-center items-center space-x-6">
                     {links.map((link => (
