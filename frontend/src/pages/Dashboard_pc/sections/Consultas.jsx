@@ -67,16 +67,18 @@ export function Consultas() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="w-full h-full flex items-center flex-col">
-      <div className="w-[95%] h-16 flex justify-end m-4">
+    <div className="w-full h-full flex items-center flex-col bg-primary-300">
+      <div className="w-[95%] h-16 flex justify-between flex-col items-start m-6 ">
+        <h1 className="text-2xl ml-2 max-md:text-4xl max-md:font-bold  text-primary-700 font-medium mb-6">Consultas</h1>
+        <div className=" w-full flex-row flex justify-start items-end p-2">
         <input
           type="text"
-          className="w-1/3 h-12 rounded-xl bg-secondary-100 placeholder:text-primary-700 placeholder:p-2 border-none outline-1 outline-slate-300 p-2 placeholder-primary-700"
+          className="w-full h-12 max-md:h-10 rounded-xl bg-secondary-100 max-md:bg-white placeholder:text-primary-700 placeholder:p-2 border-none outline-1 outline-slate-300 p-2 placeholder-primary-700"
           placeholder="Pesquisar..."
           value={pesq}
           onChange={pegavalor}
         />
-        <button className="h-12 w-12 rounded-xl bg-secondary-100 items-center justify-center flex ml-2 text-primary-700 hover:bg-slate-300 duration-300 transition">
+        <button className="h-12 aspect-square max-md:h-10 rounded-xl max-md:bg-white  bg-secondary-100 items-center justify-center flex ml-2 text-primary-700 hover:bg-slate-300 duration-300 transition">
           <svg
             viewBox="0 0 48 48"
             fill="none"
@@ -92,8 +94,9 @@ export function Consultas() {
             />
           </svg>
         </button>
+        </div>
       </div>
-      <div className="grid justify-center items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-4 grid-flow-row ">
+      <div className="grid justify-center items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-4 max-lg:grid-cols-1 max-xl:grid-cols-2 max-md:grid-cols-1 grid-flow-row max-md:flex max-md:justify-start max-md:items-center max-md:flex-col">
 
 
         {consultas.length === 0 ? (
