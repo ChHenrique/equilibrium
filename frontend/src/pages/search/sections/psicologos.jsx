@@ -111,7 +111,7 @@ export function Seach_psicologos() {
                                 key={psicologo.id_psi}
                                 id={psicologo.id_psi}
                                 nome={psicologo.nome}
-                                foto={`http://localhost:3000/${psicologo.foto.replace(/\\/g, '/')}`}
+                                foto={`http://localhost:3000/${psicologo.foto ? psicologo.foto.replace(/\\/g, '/') : 'uploads/user_null.svg'}`}
                                 tempConsulta={formatarDuracao(psicologo.duracao || '0:0')}
                                 formação_psicologo={psicologo.formacao}
                                 topicos={psicologo.topicos}
