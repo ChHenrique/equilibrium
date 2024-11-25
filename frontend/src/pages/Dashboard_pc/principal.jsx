@@ -52,7 +52,7 @@ export function Dashboard() {
                     <HeaderLog className="overflow-hidden w-full" /> // Renderiza HeaderLog apenas quando não está carregando
                 )}
             </div>
-            <div className="w-10/12 max-md:w-full h-full flex justify-center items-center mt-8">
+            <div className="w-10/12 max-md:w-full h-[80vh] max-md:h-screen flex justify-center items-center mt-8 max-md:pt-0">
                 <Camp_Dash className="overflow-hidden"/>
             </div>
             <div className="w-10/12 h-fit flex justify-center items-center max-md:hidden">
