@@ -1,35 +1,33 @@
-
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom"; // Importa useLocation
+import { useLocation, useNavigate } from "react-router-dom";
 import { Bolas } from "./bolas";
 import DatePicker from 'react-datepicker';
 import { registerLocale } from "react-datepicker";
 import ptBR from 'date-fns/locale/pt-BR'; // Importa a localidade brasileira
+import { Navigate } from "react-router-dom";
 
 import '../index.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export function Main() {
   registerLocale('pt-BR', ptBR);
+  const Navigate = useNavigate()
   const [hour, setHour] = useState("");
   const [fdate, setfDate] = useState("");
   const id = localStorage.getItem('id');
-  const [alerta, setAlerta] = useState(false);
+  const [alerta, setAlerta] = useState({ visivel: false, mensagem: '' }); // Alterado para objeto
 
   const mostrarAlerta = (mensagem, tipo) => {
-    setAlerta(true);
+    setAlerta({ visivel: true, mensagem }); // Atualiza o estado com a mensagem
     setTimeout(() => 
-      setAlerta(false), 3000); // Alerta desaparece em 3 segundos
+      setAlerta({ visivel: false, mensagem: '' }, Navigate('/home/paciente')), 3000); // Esconde o alerta após 3 segundos
   };
-  
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
   const [page, setPage] = useState(1);
   const [startDate, setStartDate] = useState(tomorrow);
-
-
 
   const location = useLocation(); // Obtém a localização atual
   const queryParams = new URLSearchParams(location.search);
@@ -38,7 +36,7 @@ export function Main() {
   async function handleConfirm() {
     const formattedDate = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`;
     const formattedHour = `${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}`;
-  
+
     if (formattedDate !== "" && formattedHour !== "" && id_psicologo) {
       const id_paciente = localStorage.getItem('id');
       const consultaData = {
@@ -47,7 +45,7 @@ export function Main() {
         horario: formattedHour,
         status: 'pendente',
       };
-  
+
       try {
         const response = await fetch(`http://localhost:3000/consulta?id=${id_psicologo}`, {
           method: 'POST',
@@ -56,7 +54,7 @@ export function Main() {
           },
           body: JSON.stringify(consultaData),
         });
-  
+
         const result = await response.json();
         if (result.success) {
           mostrarAlerta(result.message, "sucesso"); // Exibe o alerta de sucesso
@@ -71,10 +69,8 @@ export function Main() {
       mostrarAlerta('Por favor, preencha todos os campos e tente novamente.', "erro"); // Exibe o alerta de erro
     }
   }
-  
 
   function Render() {
-    
     if (page === 1) {
       return (
         <div className="w-full h-full flex justify-center items-center flex-col pb-[40%]">
@@ -86,7 +82,6 @@ export function Main() {
               showTimeSelect
               timeIntervals={15}
               timeFormat="HH:mm"
-              
               locale="pt-BR"
               dateFormat="d/MM/y"
               className="items-center flex w-full p-1 font-poppins text-xl border-primary-700 border-b-2 text-primary-700 outline-1 outline-primary-700"
@@ -97,12 +92,12 @@ export function Main() {
               <path className="w-full h-full p-0 m-0" d="M32 4V12M16 4V12M6 20H42M10 8H38C40.2091 8 42 9.79086 42 12V40C42 42.2091 40.2091 44 38 44H10C7.79086 44 6 42.2091 6 40V12C6 9.79086 7.79086 8 10 8Z" stroke="#46597f" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <button onClick={() => {
-    if (startDate.getTime() > new Date().getTime()) {
-      setPage(2);
-    } else {
-      alert("Por favor, selecione um horário futuro.");
-    }
-  }}>
+              if (startDate.getTime() > new Date().getTime()) {
+                setPage(2);
+              } else {
+                alert("Por favor, selecione um horário futuro.");
+              }
+            }}>
               <svg width="17" height="25" viewBox="0 0 17 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.4142 16.4142C17.1953 15.6332 17.1953 14.3668 16.4142 13.5858L3.68629 0.857864C2.90524 0.0768158 1.63891 0.0768158 0.857864 0.857864C0.0768158 1.63891 0.0768158 2.90524 0.857864 3.68629L12.1716 15L0.857864 26.3137C0.0768158 27.0948 0.0768158 28.3611 0.857864 29.1421C1.63891 29.9232 2.90524 29.9232 3.68629 29.1421L16.4142 16.4142ZM13 17H15V13H13V17Z" fill="black" />
               </svg>
@@ -126,27 +121,28 @@ export function Main() {
               <path d="M24 12V24L32 28M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </h1>
-          <button 
+          <div className="w-full flex justify-center relative ">
+            <button 
             className="w-1/4 h-fit text-2xl bg-primary-500 text-white p-2 rounded-[16px] m-12 font-bold hover:bg-primary-800 duration-300"
             onClick={handleConfirm}
           >
             Confirmar
           </button>
+
+          {/* Exibição do alerta */}
           {alerta.visivel && (
-        <div
-          className={`p-2 rounded-lg transition-all duration-500 font-poppins  ${
-            alerta ? "bg-primary-800 text-white opacity-100" : "bg-red-500 text-white opacity-0"
-          }`}
-        >
-          {alerta.mensagem}
-        </div>
-      )}
+            <div
+              className={`p-2 rounded-lg transition-all duration-500 font-poppins absolute bottom-0 translate-y-5 ${alerta.visivel ? "bg-primary-200 text-white opacity-100" : "bg-red-500 text-white opacity-0"}`}
+            >
+              {alerta.mensagem}
+            </div>
+          )}
+          </div>
         </div>
       );
     }
   }
 
-  
   return (
     <div className="w-full h-full bg-white rounded-2xl relative font-poppins">
       <Bolas />
@@ -162,5 +158,4 @@ export function Main() {
       {Render()}
     </div>
   );
-  
 }

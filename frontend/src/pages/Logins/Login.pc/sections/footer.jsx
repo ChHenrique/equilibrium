@@ -4,18 +4,23 @@ import { useState } from 'react';
 
 export function Footer({ formRef, setErrors, setLoggedIn }) {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState(false); // Estado local para a mensagem de erro
+    const [errorMessage, setErrorMessage] = useState(''); // Usar string para mensagens de erro
 
     const handleClick = (e) => {
         e.preventDefault();
+
+        // Se houver uma mensagem de erro (indicando uma tentativa de login anterior falhada), limpá-la
+        if (errorMessage) {
+            setErrorMessage(''); // Limpa a mensagem de erro ao clicar novamente
+        }
 
         // Executar a função de verificação antes de enviar os dados
         const validationErrors = oversight(formRef);
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
-            setErrorMessage(''); // Limpar mensagem de erro geral ao validar novamente
-            return; // Impedir o envio caso tenha erros
+            setErrorMessage('Suas credenciais estão incorretas'); // Exibe a mensagem de erro
+            return; // Impede o envio caso tenha erros
         }
 
         const formData = new FormData(formRef.current);
@@ -47,15 +52,16 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
         .catch(error => {
             console.error('Erro:', error.message);
             setErrors({ general: error.message });
-            setErrorMessage(true); // Atualizar mensagem de erro
+            setErrorMessage('Suas credenciais estão incorretas'); // Exibe a mensagem de erro
         });
     };
 
     return (
         <footer className="flex flex-col justify-center items-center mb-20">
+            {/* Exibe a mensagem de erro quando ela estiver configurada */}
             {errorMessage && (
-                <div className="text-red-600 mb-4 text-center font-semibold">
-                    {errorMessage}
+                <div className="text-red-600 text-center font-semibold h-fit transition-opacity duration-500 opacity-100">
+                    {errorMessage} {/* Exibe a mensagem de erro */}
                 </div>
             )}
             <button
