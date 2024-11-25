@@ -1,8 +1,10 @@
 import { oversight } from '../recognition/oversight'; // Importar função de verificação
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export function Footer({ formRef, setErrors, setLoggedIn }) {
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState(false); // Estado local para a mensagem de erro
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -12,6 +14,7 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
+            setErrorMessage(''); // Limpar mensagem de erro geral ao validar novamente
             return; // Impedir o envio caso tenha erros
         }
 
@@ -36,7 +39,7 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
         .then(data => {
             const token = data.token;
             localStorage.setItem('token', token);
-            const id = data.id
+            const id = data.id;
             localStorage.setItem('id', id);
             setLoggedIn(true);
             navigate('/home/paciente');
@@ -44,11 +47,17 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
         .catch(error => {
             console.error('Erro:', error.message);
             setErrors({ general: error.message });
+            setErrorMessage(true); // Atualizar mensagem de erro
         });
     };
 
     return (
         <footer className="flex flex-col justify-center items-center mb-20">
+            {errorMessage && (
+                <div className="text-red-600 mb-4 text-center font-semibold">
+                    {errorMessage}
+                </div>
+            )}
             <button
                 type="button"
                 onClick={handleClick}
