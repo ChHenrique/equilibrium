@@ -13,27 +13,31 @@ export function Consultas() {
 
   const handleConfirmarConsulta = async (consultaId) => {
     try {
-      const response = await fetch(`http://localhost:3000/consultas/atualizarstatus/${consultaId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status: "confirmada" }),
-      });
+        const response = await fetch(`http://localhost:3000/consultas/atualizarstatus/${consultaId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ status: "confirmada" }),
+        });
 
-      if (response.ok) {
-        setConsultas((prevConsultas) =>
-          prevConsultas.map((consulta) =>
-            consulta.id === consultaId ? { ...consulta, status: "confirmada" } : consulta
-          )
-        );
-      } else {
-        console.error("Erro ao atualizar o status da consulta.");
-      }
+        if (response.ok) {
+            // Atualiza diretamente o estado sem necessidade de recarregar
+            setConsultas((prevConsultas) =>
+                prevConsultas.map((consulta) =>
+                    consulta.id === consultaId
+                        ? { ...consulta, status: "confirmada", accept: 0 } // Atualiza o status e remove a possibilidade de aceitar novamente
+                        : consulta
+                )
+            );
+        } else {
+            console.error("Erro ao atualizar o status da consulta.");
+        }
     } catch (error) {
-      console.error("Erro ao confirmar consulta:", error);
+        console.error("Erro ao confirmar consulta:", error);
     }
-  };
+};
+
 
   const handleCancelarConsulta = async (consultaId) => {
     try {
