@@ -1,4 +1,4 @@
-import { Footer } from '../../components/footer';
+import { Footer } from '../../components/footer_nasomemob';
 import { Header } from '../../components/header';
 import { Banner } from './sections/banner';
 import { Services } from './sections/services';
