@@ -16,21 +16,21 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
 
 
     return (
-        <div className="w-[75vw] h-auto bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row max-sm:flex-row items-center p-4 md:p-6 max-sm:w-[90%] max-sm:h-[15%]" draggable="false">
+        <div className="w-[75vw] h-auto bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row max-sm:flex-row items-center p-4 md:p-6 max-sm:w-[85%] max-sm:h-[30%] max-sm:p-5" draggable="false">
             {/* Foto Psicólogo */}
-            <div className="h-32 w-32 md:h-40 md:w-40 ml-0 md:-ml-2 mb-4 md:mb-0">
+            <div className="h-32 w-32 md:h-40 md:w-40 ml-0 md:-ml-2 mb-4 md:mb-0 max-sm:h-24 max-sm:w-24 max-sm:mr-0 flex-shrink-0">
                 <img
                     draggable="false"
                     src={foto}
-                    className="w-full h-full object-cover rounded-full"
+                    className="w-full h-full object-cover rounded-full max-sm:mt-2 max-sm:-translate-x-3"
                     alt="imagem_psicologo"
                 />
             </div>
 
             {/* Informações Psicólogos */}
-            <div className="flex flex-col flex-grow h-full ml-0 md:ml-4 p-2 md:p-1 mt-0">
+            <div className="flex flex-col flex-grow h-full ml-0 md:ml-4 p-2 md:p-1 mt-0 max-sm:ml-2 max-sm:p-0 max-sm:mb-5 max-sm:-translate-x-3">
                 <p className="text-xs md:text-sm font-poppins font-bold text-[#355081]">Nome</p>
-                <h1 className="text-[#355081] font-poppins font-semibold text-xl md:text-2xl underline">
+                <h1 className="text-[#355081] font-poppins font-semibold text-xl md:text-2xl underline max-sm:text-[17px] whitespace-nowrap">
                     Psi. {nome}
                 </h1>
 
@@ -53,7 +53,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                     )}
                 </h3>
 
-                <h3 className="mt-1 text-xs md:text-sm font-satoshi font-medium text-[#3c4961] relative">
+                <h3 className="mt-1 text-xs md:text-sm font-satoshi font-medium text-[#3c4961] relative whitespace-nowrap">
                     <a href="#" className="flex items-center cursor-pointer w-fit" onClick={() => setMouseDentro_topico(!mouseDentroTopico)}>
                         Tópicos Abordáveis <svg
                             className={`w-3 h-3 text-[#355081] ml-1 relative transform -translate-y-1/5 transition-transform duration-300 ${mouseDentroTopico ? 'rotate-180' : ''}`}
@@ -76,9 +76,9 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
 )}
                 </h3>
 
-                <div className="w-full max-w-xs md:w-[6vw] h-[4vh] bg-[#E0F3E4] mt-4 rounded-md flex flex-col">
-                    <h2 className="text-[#355081] text-xs font-satoshi font-semibold ml-1">Duração</h2>
-                    <h3 className="text-[#355081] text-xs font-satoshi font-extrabold underline ml-1">{tempConsulta}</h3>
+                <div className="w-full max-w-xs md:w-[6vw] h-[4vh] bg-[#E0F3E4] mt-4 rounded-md flex flex-col max-sm:h-7 max-sm:flex-row max-sm:space-x-0">
+                    <h2 className="text-[#355081] text-xs font-satoshi font-semibold ml-1 max-sm:p-1 ">Duração:</h2>
+                    <h3 className="text-[#355081] text-xs font-satoshi font-extrabold underline ml-1 max-sm:p-1 whitespace-nowrap">{tempConsulta}</h3>
                 </div>
             </div>
 

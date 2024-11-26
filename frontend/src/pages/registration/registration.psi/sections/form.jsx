@@ -50,7 +50,7 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
     return (
         <article className="flex flex-col justify-center items-center p-5 w-full max-w-4xl h-auto font-satoshi-Regular max-sm:-translate-y-4 max-2xl:p-0 max-xl:p-0">
 
-            <form ref={ref} onSubmit={handleSubmit} className="w-4/6 max-w-1xl h-auto mt-12 ml-5 max-sm:w-full space-y-6 max-xl:mt-8 max-2xl:mt-6 max-2xl:space-y-3 max-sm:space-y-4 max-sm:ml-9 max-lg:space-y-12 max-xl:space-y-6 max-sm:mt-8 max-lg:w-[90%]"> 
+            <form ref={ref} onSubmit={handleSubmit} className="w-4/6 max-w-1xl h-auto mt-12 ml-5 max-sm:w-full space-y-6 max-xl:mt-8 max-2xl:mt-6 max-sm:space-y-4 max-sm:ml-9 max-lg:space-y-12 max-xl:space-y-6 max-sm:mt-8 max-lg:w-[90%] max-2xl:space-y-2"> 
 
                 <Name nameError={errors.name} surnameError={errors.surname} />
                 <User_Bday usernameError={errors.username} birthdayError={errors.birthday} />
