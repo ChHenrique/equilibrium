@@ -1,6 +1,6 @@
 // Search.js
 import { Seach_psicologos } from "./sections/psicologos";
-import { Footer } from "../../components/footer";
+import { Footer_Search } from "../../components/footer_search";
 import { HeaderLog } from "../../components/headerLog";
 import { SearchProvider } from "./sections/seach_provider"; // Corrigido o caminho se necessário
 import { Footer_Mobile } from "../../components/footer_mobile"
@@ -14,7 +14,7 @@ export function Search() {
                 <Seach_psicologos />
             </SearchProvider>
             
-            <Footer />
+            <Footer_Search />
             <Footer_Mobile />
         </div>
     );
