@@ -67,13 +67,13 @@ export function Consultas() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="w-full h-full flex items-center flex-col bg-primary-300">
-      <div className="w-[95%] h-16 flex justify-between flex-col items-start m-6 ">
-        <h1 className="text-2xl ml-2 max-md:text-4xl max-md:font-bold  text-primary-700 font-medium mb-6">Consultas</h1>
-        <div className=" w-full flex-row flex justify-start items-end p-2">
+    <div className="w-full h-full flex items-center flex-col max-md:bg-primary-300 min-w-fit">
+      <div className="w-[95%] h-16 flex justify-between max-md:flex-col items-start m-6 ">
+        <h1 className="text-2xl ml-2 mt-2  max-md:text-4xl max-md:font-bold  text-primary-700 font-medium mb-6">Consultas</h1>
+        <div className=" w-full flex-row flex mac-md:justify-start justify-end items-end max-md:p-2">
         <input
           type="text"
-          className="w-full h-12 max-md:h-10 rounded-xl bg-secondary-100 max-md:bg-white placeholder:text-primary-700 placeholder:p-2 border-none outline-1 outline-slate-300 p-2 placeholder-primary-700"
+          className="max-md:w-full w-1/2 h-12 max-md:h-10 rounded-xl bg-secondary-100 max-md:bg-white placeholder:text-primary-700 placeholder:p-2 border-none outline-1 outline-slate-300 p-2 placeholder-primary-700"
           placeholder="Pesquisar..."
           value={pesq}
           onChange={pegavalor}

@@ -44,7 +44,16 @@ export function Participants() {
      <span className='text-primary-700 text-sm mt-2'>Desenvolvedores e colaboradores do Equilibrium</span>
      <div className='h-full w-full'>
         <Swiper
-        slidesPerView={2}
+                breakpoints={{
+                  768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                  },
+                  1024: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                  },
+                }}
         spaceBetween={0}
         centeredSlides={true}
         autoplay={{ delay: 8000, disableOnInteraction: true }}

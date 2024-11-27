@@ -98,11 +98,11 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
               className="flex flex-col translate-y-16 cursor-pointer h-[80%] opacity-0"
             />
           </div>
-          <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
+          <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center bsolute left-1/2 right-1/2">
             {selectedImage ? (
               <img src={selectedImage} alt="Imagem selecionada" className="h-[102%] w-[102%] rounded-full object-cover -translate-y-[18.5%] cursor-pointer" />
             ) : (
-              <span className="text-5xl text-white items-center flex mb-2" draggable="true">+</span>
+              <span className="text-5xl text-white items-center flex -translate-y-8" draggable="true">+</span>
             )}
           </label>
         </div>
