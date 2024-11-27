@@ -18,7 +18,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
 
 
     return (
-        <div className="w-[75vw] h-auto bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row max-sm:flex-row items-center p-4 md:p-6 max-sm:w-[87%] max-sm:h-[33%] justify-between max-sm:p-5 max-sm:space-x-4" draggable="false">
+        <div className="w-[75vw] h-auto overflow-y-auto bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row max-sm:flex-row items-center p-4 md:p-6 max-sm:w-[87%] max-sm:h-36 justify-between max-sm:p-5 max-sm:space-x-4" draggable="false">
 
             {/* Div Foto psicologo e info psi */}
             <div className="flex flex-row h-full items-center w-[50%] relative z-40">
@@ -34,7 +34,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
             </div>
 
             {/* Informações Psicólogos */}
-            <div className="flex flex-col h-full ml-0 md:ml-4 p-2 md:p-1 mt-0 max-sm:ml-2 max-sm:p-0 max-sm:mb-5 max-sm:-translate-x-3">
+            <div className="flex flex-col h-full ml-0 md:ml-4 p-2 md:p-1 mt-0 max-sm:ml-2 max-sm:p-0 max-sm:mb-0 max-sm:-translate-x-3">
                 <p className="text-xs md:text-sm font-poppins font-bold text-[#355081]">Nome</p>
                 <h1 className="text-[#355081] font-poppins font-semibold text-xl md:text-2xl underline max-sm:text-[17px] whitespace-nowrap">
                     Psi. {nomeFormatado}
@@ -72,19 +72,19 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                         </svg>
                     </a>
                     {mouseDentroTopico && (
-    <div className="w-96 h-28 overflow-y-scroll max-sm:max-h-16 max-sm:h-16 max-sm:overflow-y-scroll bg-slate-200 absolute text-[#3c4961] rounded-md p-1 pr-6 text-xs font-poppins z-50 grid gap-1 grid-cols-4 max-sm:w-[250px] max-sm:grid-cols-2 scrollable ">
-        {(Array.isArray(topicos) ? topicos : []).map((topico, index) => (
-            <div key={index} className="h-7 w-full border border-slate-600 rounded-xl p-1 text-center mx-3 my-1 max-sm:mx-1 max-sm:white whitespace-normal">
-                {topico}
-            </div>
+     <div className="w-96 max-h-40 overflow-y-auto bg-slate-200 absolute text-[#3c4961] rounded-md p-1 pr-6 text-xs font-poppins z-50 grid gap-1 grid-cols-4 max-sm:w-[250px] max-sm:grid-cols-2">
+     {(Array.isArray(topicos) ? topicos : []).map((topico, index) => (
+         <div key={index} className="h-7 w-full border border-slate-600 rounded-xl p-1 text-center mx-3 my-1 max-sm:mx-1 max-sm:white whitespace-normal">
+             {topico}
+         </div>
         ))}
     </div>
 )}
                 </h3>
 
-                <div className="w-full md:w-[6vw] h-[5vh] bg-[#E0F3E4] mt-3 rounded-md flex flex-col max-sm:h-fit max-sm:p-[0px] max-sm:flex-row max-sm:space-x-0 max-sm:-translate-y-3 max-sm:w-fit max-sm:mt-4">
-                    <h2 className="text-[#355081] text-xs font-satoshi font-semibold ml-1 max-sm:p-1 max-sm:text-[11px] max-sm:ml-0 ">Duração:</h2>
-                    <h3 className="text-[#355081] text-xs font-satoshi font-extrabold underline ml-1 max-sm:p-1 whitespace-nowrap max-sm:ml-0 max-sm:text-[11px]">{tempConsulta}</h3>
+                <div className="w-fit md:w-[6vw] h-[5vh] bg-[#E0F3E4] mt-3 rounded-md flex flex-col max-sm:h-11 max-sm:p-0.5 max-sm:flex-col max-sm:space-x-0 max-sm:-translate-y-3 max-sm:w-fit max-sm:mt-4">
+                    <h2 className="text-[#355081] text-xs font-satoshi font-semibold ml-1 max-sm:p-0 max-sm:text-[11px] max-sm:ml-0 ">Duração:</h2>
+                    <h3 className="text-[#355081] text-xs font-satoshi font-extrabold underline ml-1 max-sm:p-0 whitespace-break-spaces max-sm:ml-0 max-sm:text-[11px]">{tempConsulta}</h3>
                 </div>
             </div>
             </div>

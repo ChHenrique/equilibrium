@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Psicologo } from "../componente_psicologos/info_psicologo1";
 import { SearchContext } from "./seach_provider";
 import Pesquisar_logo from "../../../assets/images/pesquisar.svg"; // Certifique-se de que o caminho está correto
+import { Footer_Mobile } from "../../../components/footer_mobile"
 
 export function Seach_psicologos() {
     const { psicologos, loading, error, setPsicologos, setError } = useContext(SearchContext);
@@ -48,13 +49,13 @@ export function Seach_psicologos() {
         
         const [horas, minutos] = duracao.split(':').map(Number);
         
-        if (isNaN(horas) || isNaN(min)) {
+        if (isNaN(horas) || isNaN(minutos)) {
             return 'Duração inválida';
         }
     
         if (horas > 0) {
-            return min > 0 
-                ? `${horas} hora${horas > 1 ? 's' : ''} e ${minutos} min${minutos > 1 ? 's' : ''}` 
+            return minutos > 0 
+                ? `${horas} hora${horas > 1 ? 's' : ''} e ${minutos} min${minutos > 1 ? '' : ''}` 
                 : `${horas} hora${horas > 1 ? 's' : ''}`;
         } else {
             return `${minutos} min${minutos > 1 ? '' : ''}`;
@@ -62,7 +63,7 @@ export function Seach_psicologos() {
     };
 
     return (
-        <section className="flex flex-col items-center space-y-10 w-[75vw] h-[80vh] mt-10 px-4 md:px-8 max-sm:w-[100vw]">
+        <section className="flex flex-col items-center space-y-10 w-[75vw] h-[80vh] mt-10 px-4 md:px-8 max-sm:w-[100vw] relative">
             <div className="flex items-center justify-center flex-col w-full">
                 <div className="w-full h-auto flex justify-center items-center space-x-4">
                     <div className="flex items-center bg-[#F1F5F9] rounded-[6px] w-[125vh] h-[4vh] p-1 max-sm:w-full max-sm:h-9">
@@ -105,7 +106,7 @@ export function Seach_psicologos() {
                     </div>
                 </div>
 
-                <div className="space-y-6 mt-5 flex flex-col items-center">
+                <div className="space-y-6 mt-5 flex flex-col items-center overflow-y-hidden">
                     {filteredPsicologos.length > 0 ? (
                         filteredPsicologos.map(psicologo => (
                             <Psicologo
@@ -123,6 +124,8 @@ export function Seach_psicologos() {
                     )}
                 </div>
             </div>
+                    <div> " </div>
+                <Footer_Mobile/>
         </section>
     );
 }

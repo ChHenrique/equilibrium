@@ -95,7 +95,7 @@ export function Footer_Mobile() {
     }
 
     return (
-            <div className="flex flex-col justify-center items-center bg-slate-50 w-[100%] rounded-tr-2xl rounded-tl-2xl p-2 absolute bottom-0 md:hidden">
+            <div className="flex flex-col justify-center items-center bg-slate-50 w-[100%] rounded-tr-2xl rounded-tl-2xl p-2 md:hidden fixed bottom-0 z-50">
 
                 <div className="flex justify-center items-center space-x-6">
                     {links.map((link => (
