@@ -1,5 +1,5 @@
-
 import React, { useState } from "react";
+import "../../informations/informations.psi/main/sections/scrollbar.css"
 
 export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topicos,id }) {
 
@@ -21,7 +21,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
         <div className="w-[75vw] h-auto bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row max-sm:flex-row items-center p-4 md:p-6 max-sm:w-[87%] max-sm:h-[33%] justify-between max-sm:p-5 max-sm:space-x-4" draggable="false">
 
             {/* Div Foto psicologo e info psi */}
-            <div className="flex flex-row h-full items-center w-[50%]">
+            <div className="flex flex-row h-full items-center w-[50%] relative z-40">
                 
             {/* Foto Psicólogo */}
             <div className="h-32 w-32 md:h-40 md:w-40 ml-0 md:-ml-2 mb-4 md:mb-0 max-sm:h-24 max-sm:w-24 max-sm:mr-0 flex-shrink-0">
@@ -53,7 +53,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                         </svg>
                     </a>
                     {mouseFora && (
-                        <div className="w-fit h-fit bg-slate-200 absolute text-[#355081] rounded-lg p-1 text-xs font-poppins z-10">
+                        <div className="w-60 max-w-60 max-sm:w-fit h-fit max-sm:h-14 max-sm:max-h-16 max-sm:overflow-y-scroll scrollable bg-slate-200 absolute text-[#355081] rounded-md p-1 text-xs font-poppins z-10">
                             {formação_psicologo}
                         </div>
                     )}
@@ -72,9 +72,9 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                         </svg>
                     </a>
                     {mouseDentroTopico && (
-    <div className="w-fit h-fit  bg-slate-200 absolute text-[#3c4961] rounded-lg p-1 pr-6 text-xs font-poppins z-30 grid gap-1 grid-cols-4 max-sm:w-60">
+    <div className="w-96 h-28 overflow-y-scroll max-sm:max-h-16 max-sm:h-16 max-sm:overflow-y-scroll bg-slate-200 absolute text-[#3c4961] rounded-md p-1 pr-6 text-xs font-poppins z-50 grid gap-1 grid-cols-4 max-sm:w-[250px] max-sm:grid-cols-2 scrollable ">
         {(Array.isArray(topicos) ? topicos : []).map((topico, index) => (
-            <div key={index} className="h-7 w-full border border-slate-600 rounded-xl p-1 text-center mx-3 my-1">
+            <div key={index} className="h-7 w-full border border-slate-600 rounded-xl p-1 text-center mx-3 my-1 max-sm:mx-1 max-sm:white whitespace-normal">
                 {topico}
             </div>
         ))}
@@ -90,10 +90,10 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
             </div>
 
             {/* Botão acessar consultas */}
-            <aside className="flex-shrink-0 flex items-center h-full relativo">
-                <a href={`/consulta?id=${id}`} className="mt-auto relativo w-[100%] max-sm:translate-y-3 max-sm:translate-x-4 z-10">
+            <aside className="flex-shrink-0 flex items-center h-full">
+                <a href={`/consulta?id=${id}`} className="mt-auto w-[100%] max-sm:translate-y-3 max-sm:translate-x-4">
                 <button
-                    className="bg-primary-500 hover:bg-[#19376d] duration-500 text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto max-sm:w-[100%] max-sm:text-[14px] max-sm:py-[2px] max-sm:px-[3px] whitespace-nowrap min-w-full max-sm:overflow-hidden max-sm:rounded-lg"
+                    className="bg-primary-500 hover:bg-[#19376d] duration-500 text-white font-satoshi font-bold py-2 px-4 rounded-xl mt-auto max-sm:w-[100%] max-sm:text-[14px] max-sm:py-[2px] max-sm:px-[3px] whitespace-nowrap min-w-full max-sm:overflow-hidden max-sm:rounded-md"
                     id="button_acessar_consulta"
                 >
                    Agendar Consulta

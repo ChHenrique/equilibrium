@@ -48,16 +48,16 @@ export function Seach_psicologos() {
         
         const [horas, minutos] = duracao.split(':').map(Number);
         
-        if (isNaN(horas) || isNaN(minutos)) {
+        if (isNaN(horas) || isNaN(min)) {
             return 'Duração inválida';
         }
     
         if (horas > 0) {
-            return minutos > 0 
-                ? `${horas} hora${horas > 1 ? 's' : ''} e ${minutos} minuto${minutos > 1 ? 's' : ''}` 
+            return min > 0 
+                ? `${horas} hora${horas > 1 ? 's' : ''} e ${minutos} min${minutos > 1 ? 's' : ''}` 
                 : `${horas} hora${horas > 1 ? 's' : ''}`;
         } else {
-            return `${minutos} minuto${minutos > 1 ? 's' : ''}`;
+            return `${minutos} min${minutos > 1 ? '' : ''}`;
         }
     };
 
@@ -88,7 +88,8 @@ export function Seach_psicologos() {
                             }}
                             className="appearance-none border border-[#F1F5F9] text-slate-600 text-xs h-[4vh] w-[10vw] bg-[#F1F5F9] rounded-[6px] pl-3 pr-10 focus:outline-none max-sm:w-28 max-sm:h-9"
                         >
-                            <option value="nome">Filtrar por...</option>
+                            <option value="">Filtrar por...</option>
+                            <option value="nome">Nome</option>
                             <option value="topicos">Tópicos</option>
                             <option value="formacao">Formação</option>
                         </select>
