@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect, useContext , createContext } from 'react';
 import io from 'socket.io-client';
 import { ChatsUsers } from './Components/chat_users';
+import { Dashboard } from '../principal';
 
-
+export const Contextopag = createContext()
 
 export function Chats() {
     const [mensagens, setMensagens] = useState([]);
@@ -15,6 +16,8 @@ export function Chats() {
     const chatRef = useRef(null);
 
     const [pagstate,setPag] = useState(0)
+
+ 
 
 
     useEffect(() => {
@@ -100,7 +103,11 @@ export function Chats() {
 
     return (
         <div className="bg-white h-full max-h-full max-md:bg-primary-300 w-full font-satoshi-medium flex flex-row rounded-2xl">
-            
+            <div className='hidden h-0 w-0'>
+              <Contextopag.Provider value={pagstate} className="hidden">
+                        <Dashboard/>
+                 </Contextopag.Provider>
+                 </div>
 
             {/* Aba dos conversantes */}
             <div className={`h-full ${pagstate ? "hidden" : " "} w-1/3 max-md:w-full scrollbar-thin max-2xl:w-1/2 max-md:bg-primary-300 bg-slate-100 flex flex-col rounded-l-2xl border-r-2 border-slate-400 max-md:border-none overflow-hidden`}>

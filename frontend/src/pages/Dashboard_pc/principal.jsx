@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Camp_Dash } from "./sections/Center.jsx";
 import { Footer } from "../../components/footer.jsx";
 import { HeaderLog } from "../../components/headerLog.jsx";
 import { Footer_Mobile } from "../../components/footer_mobile.jsx";
+import { Contextopag } from "./sections/Chats.jsx";
 
 import axios from "axios";
 
 
 export function Dashboard() {
+
+    const pagstate = useContext(Contextopag)
     const [loading, setLoading] = useState(true); // Estado para controle de carregamento
 
     // Função para buscar o nome social do usuário
@@ -60,7 +63,9 @@ export function Dashboard() {
             <div className="w-10/12 h-fit flex justify-center items-center max-md:hidden">
                 <Footer className="overflow-hidden"/>
             </div>
+            <div className={`flex h-fit w-screen ${pagstate ? "hidden" : ""}`}>
             <Footer_Mobile/>
+            </div>
         </div>
     );
 }
