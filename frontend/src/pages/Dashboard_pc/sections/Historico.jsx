@@ -33,9 +33,9 @@ export function Historico() {
         </div>
       </div>
       <div className="grid justify-center items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-4 max-lg:grid-cols-1 max-xl:grid-cols-2 max-md:grid-cols-1 grid-flow-row max-md:flex max-md:justify-start max-md:items-center max-md:flex-col">
-        <ConsultasPsicologos nome="Psi.Nadyson" date="12/03" horario="1:20" duracao="01:15"></ConsultasPsicologos>
+        
       </div>
     </div>
   )
-
+//<ConsultasPsicologos nome="Psi.Nadyson" date="12/03" horario="1:20" duracao="01:15"></ConsultasPsicologos>
 }
