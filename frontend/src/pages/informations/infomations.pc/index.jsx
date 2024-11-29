@@ -5,7 +5,7 @@ import { Footer_Mobile } from "../../../components/footer_mobile.jsx"
 
 export function Informations_pc() {
     return(
-    <div className="bg-primary-300 h-screen w-screen flex flex-col items-center overflow-x-auto scrollbar-thin">
+    <div className="bg-primary-300 h-screen w-screen flex flex-col items-center scrollbar-thin max-md:overflow-hidden ">
         <HeaderLog nome={"Pedro"} />
         <Principal/>
         <Footer_Mobile/>

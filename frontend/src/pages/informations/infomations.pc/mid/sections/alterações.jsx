@@ -54,17 +54,17 @@ export function Alterações() {
     
 
     return (
-        <div className="w-full h-full flex items-center font-poppins font-medium relative">
-            <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700">
+        <div className="w-full h-full flex items-center font-poppins font-medium relative max-md:flex-col">
+            <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700 max-md:hidden">
                 Altere e salve suas Alterações!
             </h1>
 
             {/* Div do Componente das alterações nome, estado, senha e email */}
-            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5">
+            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5 max-md:w-full max-md:pt-0">
                 <form
                     id="form1"
                     method="post"
-                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16">
+                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16 max-md:space-y-8 max-md:translate-y-0 max-md:mt-4">
                     {/* Div Nome */}
                     <div className="flex flex-col w-full ml-8">
                         <label className="text-[#807e7e]">Nome:</label>
@@ -100,11 +100,11 @@ export function Alterações() {
             </div>
 
             {/* Form2 */}
-            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5">
+            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5 max-md:w-full max-md:pt-0">
                 <form
                     id="form2"
                     method="post"
-                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16">
+                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16 max-md:space-y-8 max-md:translate-y-0 max-md:mt-4">
                     {/* Div Sobrenome */}
                     <div className="flex flex-col w-full ml-8">
                         <label className="text-[#807e7e]">Sobrenome:</label>

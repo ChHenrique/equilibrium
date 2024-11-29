@@ -60,14 +60,14 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
         <footer className="flex flex-col justify-center items-center mb-20 relative">
             {/* Exibe a mensagem de erro quando ela estiver configurada */}
             {errorMessage && (
-                <div draggable="true" className="text-red-600 text-center font-semibold h-fit transition-opacity duration-500 opacity-100 absolute top-0 sm:-translate-y-3 whitespace-nowrap font-poppins sm:text-[17px] text-[14px] translate-y-2">
+                <div draggable="true" className="text-red-600 text-center font-semibold h-fit transition-opacity duration-500 opacity-100 absolute top-0 md:-translate-y-3 whitespace-nowrap font-poppins md:text-[17px] text-[14px] translate-y-2">
                     {errorMessage} {/* Exibe a mensagem de erro */}
                 </div>
             )}
             <button
                 type="button"
                 onClick={handleClick}
-                className="bg-[#3B82F6] text-white border border-[#3B82F6] w-[350px] h-[35px] rounded-[10px] font-satoshi font-extrabold text-[17px] mt-[30px] hover:bg-[#1c3b79] transition-all duration-200 hover:rounded-[15px] mr-1 max-sm:w-[180px] max-sm:mt-10 max-xl:mt-0"
+                className="bg-[#3B82F6] text-white border border-[#3B82F6] w-[350px] h-[35px] rounded-[10px] font-satoshi font-extrabold text-[17px] mt-[30px] hover:bg-[#1c3b79] transition-all duration-200 hover:rounded-[15px] mr-1 max-md:w-[180px] max-md:mt-10 max-xl:mt-0"
             >
                 Entrar
             </button>
