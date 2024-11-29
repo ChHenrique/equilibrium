@@ -67,6 +67,38 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     fetchImage();
   }, []);
 
+  const handleUpdateTopicosFormacao = async () => {
+    const idPsi = localStorage.getItem("id"); // Obtém o id do psicólogo
+  
+    if (idPsi) {
+      try {
+        // Monta o objeto com os tópicos e formações
+        const data = {
+          topicos: Topicos,
+          formacao: Formação
+        };
+  
+        // Envia a requisição POST com os dados
+        const response = await fetch(`http://localhost:3000/updatetopicosformacao/${idPsi}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data), // Envia os dados como JSON
+        });
+  
+        if (response.ok) {
+          console.log('Tópicos e formação atualizados com sucesso!');
+          // Aqui você pode adicionar um feedback visual, como um alerta ou mensagem de sucesso
+        } else {
+          console.error('Erro ao atualizar tópicos e formação');
+        }
+      } catch (error) {
+        console.error('Erro ao enviar dados:', error);
+      }
+    }
+  };
+  
 
   const handleSubmit = async () => {
     try {
