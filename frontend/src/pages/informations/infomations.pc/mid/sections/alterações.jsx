@@ -54,8 +54,8 @@ export function Alterações() {
     
 
     return (
-        <div className="w-full h-full flex items-center font-poppins font-medium relative max-md:flex-col">
-            <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700 max-md:hidden">
+        <div className="w-full h-full flex items-center font-poppins font-medium relative max-md:flex-col max-md:rounded-2xl">
+            <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700 max-md:hidden ">
                 Altere e salve suas Alterações!
             </h1>
 
@@ -100,13 +100,13 @@ export function Alterações() {
             </div>
 
             {/* Form2 */}
-            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5 max-md:w-full max-md:pt-0">
+            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5 max-md:w-full max-md:pt-0 max-md:rounded-br-2xl max-md:rounded-bl-2xl rounded-tr-2xl rounded-br-2xl">
                 <form
                     id="form2"
                     method="post"
-                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16 max-md:space-y-8 max-md:translate-y-0 max-md:mt-4">
+                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16 max-md:space-y-8 max-md:translate-y-0 max-md:mt-4 ">
                     {/* Div Sobrenome */}
-                    <div className="flex flex-col w-full ml-8">
+                    <div className="flex flex-col w-full ml-8 max-md:mt-5">
                         <label className="text-[#807e7e]">Sobrenome:</label>
                         <input
                             readOnly
@@ -139,11 +139,19 @@ export function Alterações() {
                             className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4" />
                     </div>
                 </form>
+
+                <div className='flex justify-center items-center w-full max-md:mt-11 md:hidden h-fit'>
+                <button
+                    onClick={handleSaveChanges}
+                    className="md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-md:w-1/2 max-md:py-2 max-md:-translate-y-3">
+                        Salvar Alterações
+                </button>
+                </div>
             </div>
 
             <button
                 onClick={handleSaveChanges}
-                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300">
+                className="md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-md:hidden">
                 Salvar Alterações
             </button>
         </div>
