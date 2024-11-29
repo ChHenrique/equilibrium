@@ -42,7 +42,7 @@ export function Principal() {
     };
 
     return (
-        <div className="w-[90vw] h-[80vh] flex justify-center items-center space-x-5 mt-2 max-md:overflow-x-hidden max-md:w-full max-md:scrollbar-thin max-md:h-full max-md:mr-[50%] max-md:ml-[45%] max-md:mt-8 ">
+        <div className="w-[90vw] h-[80vh] flex justify-center items-center space-x-5 mt-2 max-md:overflow-x-hidden max-md:w-full max-md:scrollbar-thin max-md:h-full max-md:mr-[50%] max-md:ml-[45%] max-md:mt-8">
             <Segurança />
             <Info imagem={imagem} onChange={handleImageChange} nome={nome} id_pc={` ${id}`} diaConta={date || "12/12/12"} />
             {errors && <p className="error">{errors}</p>}

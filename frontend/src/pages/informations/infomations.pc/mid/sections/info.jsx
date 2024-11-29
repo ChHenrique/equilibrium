@@ -10,7 +10,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
   };
 
   return (
-    <div className="w-[90vw] h-[80vh] bg-white rounded-lg flex items-center relative max-md:flex-col ">
+    <div className="w-[90vw] h-[80vh] bg-white rounded-lg flex items-center relative max-md:flex-col max-lg:h-[70%]">
 
       {/* Div que contém a imagem e o input de arquivo */}
       

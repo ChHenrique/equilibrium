@@ -54,17 +54,18 @@ export function Alterações() {
     
 
     return (
-        <div className="w-full h-full flex items-center font-poppins font-medium relative max-md:flex-col max-md:rounded-2xl">
-            <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700 max-md:hidden ">
+        <div className="w-full h-full flex items-center font-poppins font-medium relative max-sm:flex-col max-sm:rounded-2xl">
+            <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700 max-sm:hidden ">
                 Altere e salve suas Alterações!
             </h1>
 
             {/* Div do Componente das alterações nome, estado, senha e email */}
-            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5 max-md:w-full max-md:pt-0">
+            <div className=''>
+            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5 max-sm:w-full max-sm:pt-0">
                 <form
                     id="form1"
                     method="post"
-                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16 max-md:space-y-8 max-md:translate-y-0 max-md:mt-4">
+                    className="flex items-center flex-col mt-24 ml-4 w-full h-80% space-y-10 translate-y-0 max-sm:space-y-8 max-sm:translate-y-0 max-sm:mt-4 max-xl:mt-0 ">
                     {/* Div Nome */}
                     <div className="flex flex-col w-full ml-8">
                         <label className="text-[#807e7e]">Nome:</label>
@@ -100,13 +101,13 @@ export function Alterações() {
             </div>
 
             {/* Form2 */}
-            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5 max-md:w-full max-md:pt-0 max-md:rounded-br-2xl max-md:rounded-bl-2xl rounded-tr-2xl rounded-br-2xl">
+            <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5 max-sm:w-full max-sm:pt-0 max-sm:rounded-br-2xl max-sm:rounded-bl-2xl rounded-tr-2xl rounded-br-2xl">
                 <form
                     id="form2"
                     method="post"
-                    className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-16 max-md:space-y-8 max-md:translate-y-0 max-md:mt-4 ">
+                    className="flex items-center flex-col mt-24 w-full ml-4 h-80% space-y-10 translate-y-0 max-sm:space-y-8 max-sm:translate-y-0 max-sm:mt-4 max-xl:mt-0">
                     {/* Div Sobrenome */}
-                    <div className="flex flex-col w-full ml-8 max-md:mt-5">
+                    <div className="flex flex-col w-full ml-8 max-sm:mt-5">
                         <label className="text-[#807e7e]">Sobrenome:</label>
                         <input
                             readOnly
@@ -140,18 +141,18 @@ export function Alterações() {
                     </div>
                 </form>
 
-                <div className='flex justify-center items-center w-full max-md:mt-11 md:hidden h-fit'>
+                <div className='flex justify-center items-center w-full max-sm:mt-11 sm:hidden h-fit'>
                 <button
                     onClick={handleSaveChanges}
-                    className="md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-md:w-1/2 max-md:py-2 max-md:-translate-y-3">
+                    className="sm:absolute sm:bottom-4 sm:left-1/2 sm:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-sm:w-1/2 max-sm:py-2 max-sm:-translate-y-3">
                         Salvar Alterações
                 </button>
                 </div>
             </div>
-
+            </div>
             <button
                 onClick={handleSaveChanges}
-                className="md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-md:hidden">
+                className="sm:absolute sm:bottom-4 sm:left-1/2 sm:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-3/6 px-3 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-sm:hidden max-lg:w-full max-xl:w-3/">
                 Salvar Alterações
             </button>
         </div>
