@@ -182,12 +182,12 @@ export function VideoChat() {
     
 
     return (
-        <div className='h-full w-full flex justify-center items-center flex-col'>
-
-
-            {CamCam()}
+        <div className='h-full w-full flex justify-center items-center flex-col '>
 
             {RenderOtherCam()}
+            {CamCam()}
+
+            
 
 
             <div className="w-full h-[15%]  justify-center items-center flex">

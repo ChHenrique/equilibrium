@@ -4,7 +4,6 @@ import User_null from '../assets/images/user_null.svg';
 import { useState } from 'react';
 
 const LINKS = [
-    { name: 'Sobre nós', href: '/sobre' },
     { name: 'Procurar Psicólogos', href: '/psicologos' },
     { name: 'Acessar consultas', href: '/home/paciente' },
 ];
@@ -42,7 +41,7 @@ export function HeaderLog() {
     return (
         <div
             id="Header"
-            className="w-[95%] h-16 flex flex-row items-center bg-white rounded-2xl m-4 justify-between max-sm:hidden"
+            className="w-[95%] h-16 flex flex-row items-center bg-white rounded-2xl m-4 justify-between max-md:hidden"
             draggable="false"
         >
             <Logo draggable="false" />

@@ -105,7 +105,7 @@ export function Consultas() {
           consultas.map((consulta) => (
             <ConsultasPsicologos
               key={consulta.id}
-              nome={`Psi. ${consulta.psicologoNome}`}
+              nome={`${consulta.psicologoNome}`}
               date={consulta.dataFormatada} // Usando a data formatada
               horario={consulta.horarioFormatado} // Usando o horário formatado
               duracao={consulta.duracaoFormatada} // Usando a duração formatada
