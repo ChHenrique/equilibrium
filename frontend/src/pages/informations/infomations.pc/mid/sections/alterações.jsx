@@ -56,7 +56,7 @@ export function Alterações() {
             <form
                 id="form1"
                 method="post"
-                className="w-[100%] grid grid-cols-1 md:grid-cols-2 gap-8 mt-24 max-md:space-y-2 max-md:translate-y-0 max-md:mt-16 max-lg:mb-10 max-lg:-translate-y-6 max-lg:ml-0 max-lg:mr-4 place-items-center">
+                className="w-[100%] grid grid-cols-1 md:grid-cols-2 gap-8 mt-24 max-md:space-y-2 max-md:translate-y-0 max-md:mt-16 max-lg:mb-10 max-lg:-translate-y-6 max-lg:ml-4 max-lg:mr-4  max-2xl:mb-10 max-2xl:-translate-y-6 max-2xl:ml-4 max-2xl:mr-0 place-items-center max-lg:h-full max-lg:mt-[30%] max-xl:mt-0 relative">
                 
                 {/* Div Nome */}
                 <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
@@ -123,22 +123,26 @@ export function Alterações() {
                         id="input_cidade"
                         className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%]" />
                 </div>
-            </form>
-
-            {/* Botão de salvar */}
-            <div className='flex justify-center items-center w-full max-md:mt-11 md:hidden h-fit'>
+                <div className='flex justify-center items-center w-full max-md:mt-11 md:hidden h-fit translate-y-7'>
                 <button
                     onClick={handleSaveChanges}
-                    className="md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-md:w-1/2 max-md:py-2 max-md:-translate-y-3">
+                    className="md:absolute md:bottom-4 max-md:h-[7vh] md:left-1/2 md:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-md:w-1/2 max-md:py-2 max-md:-translate-y-3">
                     Salvar Alterações
                 </button>
             </div>
 
-            <button
-                onClick={handleSaveChanges}
-                className="md:absolute md:bottom-4 md:left-1/2  md:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-3/6 px-3 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/4 hover:rounded-xl transition-all duration-300 max-md:hidden max-lg:w-2/4 max-xl:w-3/">
-                Salvar Alterações
-            </button>
+            <div className='w-fit flex justify-center items-center 2xl:hidden'>
+                 <button
+                     onClick={handleSaveChanges}
+                     className=" absolute bottom-0 translate-x-[50%] translate-y-4 max-lg:px-1 whitespace-nowrap bg-[#3B82F6] w-3/6 px-3 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:rounded-xl transition-all duration-300 max-md:hidden max-lg:w-2/4 max-lg:translate-y-9 max-xl:translate-y-14 max-2xl:translate-y-24">
+                     Salvar Alterações
+                </button>
+            </div>
+
+            </form>
+
+            {/* Botão de salvar */}
+        
         </div>
     );
 }

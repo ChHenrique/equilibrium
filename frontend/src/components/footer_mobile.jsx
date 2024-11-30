@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { InfoLogOut } from './infolog_mobile';
 
 const links = [
     {
@@ -49,71 +50,84 @@ const links = [
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M33 17.9996C33 26.2839 26.2843 32.9996 18 32.9996C9.71573 32.9996 3 26.2839 3 17.9996C3 9.71536 9.71573 2.99963 18 2.99963C26.2843 2.99963 33 9.71536 33 17.9996ZM15.2318 14.2496C15.2318 12.7322 16.4642 11.4996 17.9871 11.4996C19.5103 11.4996 20.7425 12.7322 20.7425 14.2496C20.7425 15.7671 19.5103 16.9996 17.9871 16.9996C16.4642 16.9996 15.2318 15.7671 15.2318 14.2496ZM17.9871 9.49965C15.3623 9.49965 13.2318 11.625 13.2318 14.2496C13.2318 16.8743 15.3623 18.9996 17.9871 18.9996C20.6121 18.9996 22.7425 16.8743 22.7425 14.2496C22.7425 11.6249 20.6121 9.49965 17.9871 9.49965ZM11.9732 26.1902C15.0957 22.9197 20.8935 22.7909 24.0146 26.1774C24.3888 26.5835 25.0215 26.6093 25.4276 26.235C25.8337 25.8607 25.8595 25.2281 25.4852 24.8219C21.5359 20.5368 14.3992 20.753 10.5266 24.8091C10.1452 25.2085 10.1599 25.8415 10.5593 26.2229C10.9588 26.6043 11.5918 26.5897 11.9732 26.1902Z" fill="currentColor" />
             </svg>
         )
-    }
+    },
 ]
 export function Footer_Mobile() {
     const navigate = useNavigate()
     const [id, setId] = useState(NaN)
     const location = useLocation();
+    const [VisibleInfoLogOut, SetVisibleInfoLogOut] = useState(false)
 
     useEffect(() => {
         if (location.pathname === '/info/paciente') {
-            setId(4);
+            setId(4)
         }
         else if (location.pathname === '/home/paciente') {
             if (location.state?.activeId === 3) {
-                setId(1);
+                setId(1)
             } else if (location.state?.activeId === 1) {
-                setId(2);
+                setId(2)
             } else if (location.state?.activeId === 2) {
-                setId(3);
+                setId(3)
             }
         }
         else if (location.pathname === '/psicologos') {
-            setId(0);
+            setId(0)
         }
     }, [location.pathname, location.state]);
-    
-    
-    
+
+
+
     const EnviarLocal = (linkId) => {
         setId(linkId)
-        switch (linkId) {
+        if (linkId === 4) {
+            SetVisibleInfoLogOut(true)
+        } else {
+            SetVisibleInfoLogOut(false)
+        }
 
+        switch (linkId) {
             case 0:
                 return navigate('/psicologos')
-            case 1: 
+            case 1:
                 return navigate('/home/paciente', { state: { activeId: 3 } })
             case 2:
                 return navigate('/home/paciente', { state: { activeId: 1 } })
-            case 3: 
+            case 3:
                 return navigate('/home/paciente', { state: { activeId: 2 } })
-            case 4:
-                return navigate('/info/paciente')
-                break
         }
     }
 
     return (
-            <div className="flex flex-col justify-center items-center bg-slate-50 w-screen  p-2 md:hidden fixed bottom-0 z-50">
+        <div className="flex flex-col justify-center items-center bg-slate-50 w-screen md:hidden fixed bottom-0 p-2 z-50">
+            <div className="flex w-full justify-center items-center space-x-6">
 
-                <div className="flex w-full justify-center items-center space-x-6">
-                    {links.map((link => (
-                        <button
+                <div className='w-fit absolute bottom-20 translate-x-[140px]'>
+                    {VisibleInfoLogOut && (
+                        <div className=' bg-white rounded-2xl w-fit relative'>
+                            <InfoLogOut />
+                            <div
+                                className='bg-white w-7 h-3 rotate-180 absolute translate-x-[88%]'
+                                style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
+                            ></div>
+                        </div>
+                    )}
+
+                </div>
+                {links.map((link => (
+                    <button
                         id='link'
                         key={link.id}
-                        className={`flex justify-center items-center  ease-in-out duration-500 ${
-                            id === link.id ? " text-primary-700 max-md:bg-white max-md:text-primary-700 rounded-2xl"
-                                : "bg-white text-primary-200 hover:text-primary-700  max-md:text-primary-200 rounded-2xl"
-                        }`}
+                        className={`flex justify-center items-center  ease-in-out duration-500 ${id === link.id ? " text-primary-700 max-md:bg-white max-md:text-primary-700 rounded-2xl"
+                            : "bg-white text-primary-200 hover:text-primary-700  max-md:text-primary-200 rounded-2xl"
+                            }`}
                         onClick={() => EnviarLocal(link.id)}>
-                            <div className='h-fit flex items-center p-[5px]'>
-                                {link.img}
-                            </div>
-                        </button>
-                    )))}
-                </div>
-
+                        <div className='h-fit flex items-center p-[5px]'>
+                            {link.img}
+                        </div>
+                    </button>
+                )))}
             </div>
+        </div>
     )
 }

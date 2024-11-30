@@ -10,11 +10,11 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
   };
 
   return (
-    <div className="w-[90vw] h-[80vh] bg-white rounded-lg flex items-center relative max-md:flex-col max-lg:h-[70%]">
+    <div className="w-[90vw] h-[80vh] bg-white rounded-lg flex items-center relative max-md:flex-col max-lg:h-[70%] max-xl:h-[100%]">
 
       {/* Div que contém a imagem e o input de arquivo */}
       
-      <div className='w-[25vw] h-full max-md:h-fit max-md:p-2 bg-white flex flex-col items-center border-r-2 max-md:border-0 border-[#6b6b6b] max-md:w-full relative z-10 max-md:rounded-tr-2xl max-md:rounded-tl-2xl rounded-tl-2xl rounded-bl-2xl'>
+      <div className='w-[25vw] h-full max-md:h-fit max-md:p-0 bg-white flex flex-col items-center border-r-2 max-md:border-0 border-[#6b6b6b] max-md:w-full relative z-10 max-md:rounded-tr-2xl max-md:rounded-tl-2xl rounded-tl-2xl rounded-bl-2xl'>
 
       <h1 className=" max-md:mt-4 whitespace-nowrap font-poppins font-bold text-[23px] max-md:text-[20px] text-primary-700 md:hidden">
                 Altere e salve suas Alterações!
@@ -50,13 +50,13 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
         </h2>
         <h3 className='mt-1 max-md:mt-0 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_pc}</h3>
 
-        <h3 className='mt-7 max-md:mt-4 font-poppins max-md:border-b-1 max-md:border-b-primary-800 text-[#465A7F] text-sm font-medium mr-2 text-center'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span>
+        <h3 className='mt-7 max-md:mt-4 font-poppins max-md:border-b-1 max-md:border-b-primary-800 text-[#465A7F] text-sm font-medium mr-2 text-center max-xl:mt-3'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium '>{diaConta}</span>
         </h3>
-        <hr className='w-60 h-[0.1px] border border-[#1c283d] max-md:hidden max-lg:hidden' />
+        <hr className='w-60 h-[0.1px] border border-[#1c283d] max-md:hidden max-lg:hidden max-xl:hidden' />
 
         <a href='/home/paciente' className='w-fit flex justify-center'>
           <button
-            className="mt-10 w-full bg-[#8CB3FF] hover:bg-[#546481] max-md:hidden text-white font-bold py-2 px-4 rounded-xl">
+            className="mt-10 w-full bg-[#8CB3FF] hover:bg-[#546481] max-md:hidden text-white font-bold py-2 px-4 rounded-xl max-xl:-translate-y-4 max-xl:py-1 max-xl:mt-6 duration-500">
             Ver Consultas
           </button>
         </a>
