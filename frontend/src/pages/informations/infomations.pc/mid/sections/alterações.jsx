@@ -11,9 +11,9 @@ export function Alterações() {
     const handleToggle1 = () => abrir(!abriu);
     const handleToggle2 = () => abrir_pais(!abriu_pais);
 
-    const handleSaveChanges = async () => {
+    const handleSaveChanges = async (e) => {
         const pacienteId = localStorage.getItem('id');
-        
+        e.preventDefault()
         if (!pacienteId) {
             console.error('ID do paciente não encontrado no localStorage');
             return;
@@ -25,6 +25,8 @@ export function Alterações() {
             cidade,
             estado: Estado,
         };
+
+        console.log('Dados a serem enviados:', dados);
     
         try {
             // Envia os dados para o backend
@@ -55,6 +57,7 @@ export function Alterações() {
             {/* Formulário com Grid */}
             <form
                 id="form1"
+                onSubmit={handleSaveChanges}
                 method="post"
                 className="w-[100%] grid grid-cols-1 md:grid-cols-2 gap-8 mt-24 max-md:space-y-2 max-md:translate-y-0 max-md:mt-16 max-lg:mb-10 max-lg:-translate-y-6 max-lg:ml-4 max-lg:mr-4  max-2xl:mb-10 max-2xl:-translate-y-6 max-2xl:ml-4 max-2xl:mr-0 place-items-center max-lg:h-full max-lg:mt-[30%] max-xl:mt-0 relative">
                 
@@ -133,15 +136,13 @@ export function Alterações() {
 
             <div className='w-fit flex justify-center items-center 2xl:hidden'>
                  <button
-                     onClick={handleSaveChanges}
+                     type='submit'
                      className=" absolute bottom-0 translate-x-[50%] translate-y-4 max-lg:px-1 whitespace-nowrap bg-[#3B82F6] w-3/6 px-3 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:rounded-xl transition-all duration-300 max-md:hidden max-lg:w-2/4 max-lg:translate-y-9 max-xl:translate-y-14 max-2xl:translate-y-24">
                      Salvar Alterações
                 </button>
             </div>
 
             </form>
-
-            {/* Botão de salvar */}
         
         </div>
     );

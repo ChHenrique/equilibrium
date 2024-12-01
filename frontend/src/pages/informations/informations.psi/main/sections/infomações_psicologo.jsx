@@ -191,11 +191,11 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
 
   return (
-    <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center">
-      <div className='w-[40%] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b]'>
+    <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[85vh]">
+      <div className='w-[40%] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b] max-md:h-[80%]'>
 
         {/* Imagem e Input de Arquivo */}
-        <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
+        <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative max-md:h-32 max-md:w-32'>
           <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
             {selectedImage ? (
               <img src={selectedImage} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
@@ -219,7 +219,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
 
 
-        <h1 className='mt-5 font-poppins font-semibold text-primary-700 text-[19px]'>
+        <h1 className='mt-5 font-poppins font-semibold text-primary-700 text-[19px] max-md:text-center max-md:text-[17px]'>
           Duração da Consulta
         </h1>
 
@@ -270,32 +270,32 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
           Confirmar
         </button>
 
-        <p draggable="true" className={`mt-6 font-poppins font-semibold text-primary-600 text-center duration-500 text-[18px] ${Visible ? "opacity-100" : "opacity-0"}`}>
+        <p draggable="true" className={`mt-6 font-poppins font-semibold text-primary-600 text-center duration-500 text-[18px] max-md:mt-6 max-md:text-[13px] max-md:whitespace-nowrap ${Visible ? "opacity-100" : "opacity-0"}`}>
           Duração de consulta foi <span className='break-words inline-block w-full'> definida como: {Duração}</span>
         </p>
 
-        <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10'></div>
+        <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10 max-md:hidden'></div>
 
       </div>
 
       {/* Componente de Alterações */}
-      <div className="w-full h-full flex items-center justify-center flex-col font-poppins font-medium relative rounded-tl-2xl p-6 space-y-10">
+      <div className="w-full h-full flex items-center justify-center flex-col font-poppins font-medium relative rounded-tl-2xl p-6 space-y-10 max-md:p-3 max-md:space-y-8">
 
-        <h1 className='absolute top-10 font-poppins font-semibold text-[25px] text-primary-700'>Defina seus tópicos e suas formações</h1>
+        <h1 className='absolute top-10 font-poppins font-semibold text-[25px] text-primary-700 max-md:text-[17px] max-md:whitespace-nowrap max-md:top-3'>Defina seus tópicos e sua formação</h1>
 
         {/* Tópicos */}
-        <div className='flex flex-col w-[95%] h-[37%] relative'>
+        <div className='flex flex-col w-[95%] h-[37%] relative max-md:h-[100%]'>
 
-          <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2'>Tópicos</h1>
+          <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2 max-md:text-[18px]'>Tópicos</h1>
 
           <div className='w-full h-full relative whitespace-normal'>
 
-            <div className='absolute top-3 left-3 flex flex-wrap space-x-2 w-full h-fit max-w-[98%]'>
+            <div className='absolute top-3 left-3 flex flex-wrap space-x-2 w-full h-fit max-w-[98%] max-md:w-[70%]'>
 
               {Topicos.map((item, index) => (
-                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2'>
+                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2 max-md:pl-1 max-md:pr-1'>
 
-                  <h3 id='letra' className='font-poppins text-[#121926] break-words'>{item}</h3>
+                  <h3 id='letra' className='font-poppins text-[#121926] break-words max-md:text-[12px]'>{item}</h3>
                   <div onClick={() => ExcluirTopicos(index)} className='xis h-full justify-center items-center'>
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" className='mt-0.5 text-[#121926] scale-125 duration-300 cursor-pointer'>
                       <path d="M1 9L9 1" stroke="currentColor" strokeWidth="2" />
@@ -322,7 +322,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
               }}
             />
 
-            <button className='absolute right-6 bottom-4' onClick={ValorTopicos} type='submit'>
+            <button className='absolute right-6 bottom-4' onClick={ValorTopicos} type='submit' >
               <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
