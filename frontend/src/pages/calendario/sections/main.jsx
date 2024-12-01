@@ -73,8 +73,8 @@ export function Main() {
   function Render() {
     if (page === 1) {
       return (
-        <div className="w-full h-full flex justify-center items-center flex-col pb-[40%]">
-          <h1 className="font-satoshi-Regular text-3xl font-medium text-primary-700 pb-16">Escolha a data de sua consulta</h1>
+        <div className="w-full h-full flex justify-center items-center flex-col pb-[40%] max-md:pb-[60%]">
+          <h1 className="font-satoshi-Regular text-3xl font-semibold text-primary-700 pb-16 text-center">Escolha a data de sua consulta</h1>
           <div className="flex flex-row justify-center items-center">
             <DatePicker
               open={true}
@@ -84,7 +84,7 @@ export function Main() {
               timeFormat="HH:mm"
               locale="pt-BR"
               dateFormat="d/MM/y"
-              className="items-center flex w-full p-1 font-poppins text-xl border-primary-700 border-b-2 text-primary-700 outline-1 outline-primary-700"
+              className="items-center flex w-full rounded-xl max-md:bg-white p-1 font-poppins text-2xl border-primary-700 border-2 text-primary-700 outline-1 outline-primary-700"
               selected={startDate}
               onChange={(date) => setStartDate(date)}
             />
@@ -98,24 +98,25 @@ export function Main() {
                 alert("Por favor, selecione um horário futuro.");
               }
             }}>
-              <svg width="17" height="25" viewBox="0 0 17 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.4142 16.4142C17.1953 15.6332 17.1953 14.3668 16.4142 13.5858L3.68629 0.857864C2.90524 0.0768158 1.63891 0.0768158 0.857864 0.857864C0.0768158 1.63891 0.0768158 2.90524 0.857864 3.68629L12.1716 15L0.857864 26.3137C0.0768158 27.0948 0.0768158 28.3611 0.857864 29.1421C1.63891 29.9232 2.90524 29.9232 3.68629 29.1421L16.4142 16.4142ZM13 17H15V13H13V17Z" fill="black" />
-              </svg>
+              <svg className="w-8 max-md:bg-primary-200 text-primary-200 rounded-lg max-md:text-white aspect-square p-1" viewBox="0 0 28 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 41C5 41 23 27.7433 23 23C23 18.2564 5 5 5 5" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
             </button>
           </div>
         </div>
       );
-    } else {
+    } else if(page === 2){
       return (
         <div className="w-full h-full flex justify-center items-center flex-col">
-          <h1 className="font-satoshi-Regular text-3xl font-medium text-primary-700 pb-16">Você deseja solicitar essa consulta?</h1>
-          <h1 className="font-satoshi-Regular text-2xl font-bold text-primary-700 p-2 border-2 border-primary-800 rounded-[16px] m-2 flex-row flex justify-center items-center">
+          <h1 className="font-satoshi-Regular text-3xl font-semibold text-primary-700 pb-16 text-center">Você deseja solicitar essa consulta?</h1>
+          <h1 className="font-satoshi-Regular text-2xl font-bold text-primary-700 p-2 border-2 border-primary-800 max-md:bg-blue-50 rounded-[16px] m-2 flex-row flex justify-center items-center">
             Data: {startDate.getUTCDate()} / {startDate.getUTCMonth() + 1}
             <svg width="30" height="30" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4">
               <path d="M28 2V10M12 2V10M2 18H38M6 6H34C36.2091 6 38 7.79086 38 10V38C38 40.2091 36.2091 42 34 42H6C3.79086 42 2 40.2091 2 38V10C2 7.79086 3.79086 6 6 6Z" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </h1>
-          <h1 className="font-satoshi-Regular text-2xl font-bold text-primary-700 p-2 border-2 border-primary-800 rounded-[16px] m-2 flex flex-row justify-center items-center">
+          <h1 className="font-satoshi-Regular text-2xl max-md:bg-blue-50 font-bold text-primary-700 p-2 border-2 border-primary-800 rounded-[16px] m-2 flex flex-row justify-center items-center">
             Hora: {startDate.getHours()} : {startDate.getUTCMinutes()}
             <svg width="30" height="30" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-4">
               <path d="M24 12V24L32 28M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
@@ -123,7 +124,7 @@ export function Main() {
           </h1>
           <div className="w-full flex justify-center relative ">
             <button 
-            className="w-1/4 h-fit text-2xl bg-primary-500 text-white p-2 rounded-[16px] m-12 font-bold hover:bg-primary-800 duration-300"
+            className="h-fit text-2xl bg-primary-500 max-md:w-fit text-white p-2 rounded-[16px] m-12 font-bold hover:bg-primary-800 duration-300"
             onClick={handleConfirm}
           >
             Confirmar
@@ -140,19 +141,22 @@ export function Main() {
           </div>
         </div>
       );
+    }else if(page == 0){
+      window.location.href = '/psicologos'
     }
   }
 
   return (
-    <div className="w-full h-full bg-white rounded-2xl relative font-poppins">
+    <div className="w-full h-full bg-white  max-md:bg-primary-300 rounded-2xl relative font-poppins">
       <Bolas />
       <button 
         className="absolute m-4"
-        onClick={() => { if (page !== 1) setPage(page - 1); }}
+        onClick={() => { if (page !== 0) setPage(page - 1); }}
       >
-        <svg width="17" height="25" viewBox="0 0 17 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0.585787 13.5858C-0.195262 14.3668 -0.195262 15.6332 0.585786 16.4142L13.3137 29.1421C14.0948 29.9232 15.3611 29.9232 16.1421 29.1421C16.9232 28.3611 16.9232 27.0948 16.1421 26.3137L4.82843 15L16.1421 3.68629C16.9232 2.90524 16.9232 1.63891 16.1421 0.857865C15.3611 0.0768168 14.0948 0.0768167 13.3137 0.857865L0.585787 13.5858ZM4 13L2 13L2 17L4 17L4 13Z" fill="black" />
-        </svg>
+        <svg className="w-8 max-md:bg-primary-200 text-primary-200 rounded-lg max-md:text-white aspect-square p-1" viewBox="0 0 28 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M23 5C23 5 5.00003 18.2567 5 23C4.99997 27.7436 23 41 23 41" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
       </button>
   
       {Render()}

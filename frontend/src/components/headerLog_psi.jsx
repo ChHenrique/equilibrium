@@ -79,7 +79,7 @@ function Visibilidade(){
                         {link.name}
                     </HeaderLink>
                 ))}
-                <div className='h-20 w-fit   justify-end items-center flex mr-4 ' onClick={Visibilidade}>
+                <div className='h-20 w-fit justify-end items-center flex mr-4 ml-2  ' onClick={Visibilidade}>
                     <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-2'>
                         {nome}
                     </h1>
