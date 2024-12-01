@@ -1,11 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, createContext } from 'react';
 import io from 'socket.io-client';
 import SimplePeer from 'simple-peer';
 import Webcam from 'react-webcam';
 
+
 const socket = io('http://localhost:5000');
 
-export function VideoChat() {
+
+
+export function VideoChat({setChat , chat}) {
     const [Cam, setCam] = useState(1)
 
     const [audio,setAudio] = useState(1)
@@ -102,11 +105,11 @@ export function VideoChat() {
     function CamCam(){
         if(Cam == 1){
             return(
-            <div className='h-fit w-full relative mb-4 mt-4 flex justify-center items-center'>
+            <div className='h-fit w-full   relative mb-4 mt-4 flex justify-center items-center '>
                 <Webcam
                     className="rounded-[20px] w-full  bg-slate-800 max-w-[80%] flex justify-center items-center"
                     style={{aspectRatio: "16 / 9",}}
-                    audio={true}
+                    audio={audio ? true : false}
                     ref={webcamRef}
                     videoConstraints={{ width: 1280, height: 720, facingMode: 'user' }}
                 />
@@ -114,11 +117,9 @@ export function VideoChat() {
             </div>)
         }else{
             return(
-            <div className='h-fit w-full relative mb-4 mt-4 flex justify-center items-center'>
-                <div id="ex" className="rounded-[20px] w-full  bg-slate-800 max-w-[80%] flex justify-center items-center"
-                    style={{
-                        aspectRatio: "16 / 9",
-                    }}
+            <div className='h-fit w-full   relative mb-4 mt-4 flex justify-center items-center '>
+                <div id="ex" className="rounded-[20px] w-full h-full bg-slate-800 aspect-video  max-w-[80%] flex justify-center items-center"
+
                 > <h1 className='absolute bottom-[5%]  text-white font-poppins font-normal left-[12%]'>Você:</h1>
 
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,9 +143,9 @@ export function VideoChat() {
         console.log("Verificando peerStream:", peerStream); // Log para verificar o estado de peerStream
         if (peerStream != null) {
             return (
-                <div className='h-fit w-full relative mb-4 mt-4 flex justify-center items-center'>
+                <div className='h-fit w-full relative   mb-4 mt-4 flex justify-center items-center '>
                     <video
-                        className='rounded-[20px] w-full bg-slate-800 max-w-[80%] flex justify-center items-center aspect-video'
+                        className='rounded-[20px] max-w-[80%] w-full    bg-slate-800  flex justify-center items-center aspect-video'
                         playsInline
                         autoPlay
                         ref={videoRef}
@@ -156,9 +157,9 @@ export function VideoChat() {
             console.log("peerStream é null, renderizando estado alternativo");
             
             return (
-                <div className='h-fit w-full relative mb-4 mt-4 flex justify-center items-center'>
+                <div className='h-fit w-full relative    mb-4 mt-4 flex justify-center items-center max-w-[80%]'>
                     {/* Renderiza o conteúdo quando não há stream */}
-                    <div className="rounded-[20px] w-full bg-slate-800 max-w-[80%] flex justify-center items-center" style={{ aspectRatio: "16 / 9" }}>
+                    <div className="rounded-[20px] w-full bg-slate-800 aspect-video    flex justify-center items-center" >
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clipPath="url(#clip0_865_941)">
                                 <path d="M46 14L32 24L46 34V14Z" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
@@ -182,17 +183,20 @@ export function VideoChat() {
     
 
     return (
-        <div className='h-full w-full flex justify-center items-center flex-col '>
+        <div className='h-full w-full flex justify-center items-center flex-col max-md:h-2/3'>
+            <div className='h-0 hidden'>
+
+            </div>
 
             {RenderOtherCam()}
-            {CamCam()}
+            {chat ? <div></div> :CamCam()}
 
             
 
 
-            <div className="w-full h-[15%]  justify-center items-center flex">
+            <div className={`w-full h-[15%] max-md:h-[40%]  justify-center items-center flex ${chat ? "hidden" : ""}`}>
               {/*Botao de microfone */}
-               <button className=" h-1/2 bg-white rounded-full flex justify-center items-center p-4 m-2" style={{aspectRatio: "4/4"}}
+               <button className=" h-1/2 bg-white rounded-full flex justify-center items-center p-4 m-2 aspect-square" 
                
                onClick={() => {
                 if(audio == 0){setAudio(1)}
@@ -313,6 +317,18 @@ export function VideoChat() {
     />
   </svg>
 </button>
+<button className=" h-1/2 bg-white rounded-full flex justify-center items-center p-4 m-2 text-primary-700 md:hidden" style={{aspectRatio: "4/4"}} 
+onClick={() =>{
+    if(chat){setChat(0)}else{setChat(1)}
+}}
+>
+ <svg className='h-full aspect-square ' viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.13159 25.333C6.3981 25.1625 5.0995 24.6418 4.2286 23.7709C2.6665 22.2089 2.6665 19.6946 2.6665 14.6663V13.9997C2.6665 8.97135 2.6665 6.45721 4.2286 4.8951C5.7907 3.33301 8.30485 3.33301 13.3332 3.33301H18.6665C23.6948 3.33301 26.209 3.33301 27.771 4.8951C29.3332 6.45721 29.3332 8.97135 29.3332 13.9997V14.6663C29.3332 19.6946 29.3332 22.2089 27.771 23.7709C26.209 25.333 23.6948 25.333 18.6665 25.333C17.9192 25.3497 17.324 25.4065 16.7393 25.5397C15.1414 25.9075 13.6618 26.7251 12.1997 27.4382C10.1162 28.4541 9.07451 28.9621 8.42076 28.4865C7.17009 27.555 8.39256 24.6689 8.66651 23.333" fill="currentColor"/>
+</svg>
+
+
+ </button>
+ 
 
 
 </div>

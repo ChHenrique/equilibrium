@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 
 const CHAT_ROUTE = 'algumacoisaseilaoq'; // A mesma rota definida no backend
 
-export function Chats() {
+export function Chats({chat , setChat}) {
     const [mensagens, setMensagens] = useState([]);
     const [value, setValue] = useState('');
     const socketRef = useRef(null);
@@ -66,7 +66,21 @@ export function Chats() {
     }, [mensagens]);
 
     return (
-        <div className="bg-white h-full max-h-full w-full font-satoshi-medium flex flex-row rounded-2xl">
+        <div className="bg-white h-full max-h-full w-full font-satoshi-medium flex flex-row rounded-2xl max-md:relative max-md:pt-8 ">
+<svg className='w-8 h-8 md:hidden absolute left-2 top-2 text-primary-700 bg-white ' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() =>{
+    if(chat){setChat(0)}else{setChat(1)}
+}}>
+<g clip-path="url(#clip0_1272_2274)">
+<path d="M12 8L8 12M8 12L12 16M8 12H16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_1272_2274">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+
             <div className="bg-white h-full w-full flex-col flex justify-start items-center rounded-2xl overflow-hidden m-0" id='chat'>
                 <div ref={chatRef} className="h-fit w-full bg-white flex flex-col items-end overflow-y-scroll overflow-x-hidden max-h-screen">
                     {mensagens.map((mensagem, index) => (

@@ -3,32 +3,33 @@ import { VideoChat } from "./CamArea"
 import { useContext, useState, createContext } from "react"
 import { PostCall } from "./postCall"
 
-export const ProverContext = createContext();
+
+
 
 export function Center() {
    
-
+    const [chat , setChat] = useState(0);
     const [call, setCall] = useState(0);
 
     return (
-        <ProverContext.Provider value={{ call, setCall }}>
-        <div className="flex w-full h-full p-l">
+    
+        <div className="flex w-full h-full p-l ">
 
             {call?<PostCall/>
             :
-                <div className="flex h-full w-full">
-                    <div className="flex w-2/4 h-full mr-4">
-                        <VideoChat  />
+                <div className="flex h-full w-full  max-md:flex-col max-md:justify-center  max-md:mt-4 max-md:items-center">
+                    <div className="flex w-2/4 h-full max-md:h-1/2  mr-4 max-md:mr-0   max-lg:w-2/3 max-md:w-full justify-center items-center">
+                        <VideoChat chat={chat} setChat={setChat} />
                     </div>
 
-                    <div className="flex w-2/4 h-full">
-                        <Chats />
+                    <div className={`flex w-2/4 h-full max-lg:w-1/3 max-md:h-1/2 max-md:px-8 max-md:w-full   ${chat ? "flex" : " max-md:hidden"}`}>
+                        <Chats chat={chat} setChat={setChat} />
                     </div>
                 </div>
 }
           
         </div>
-        </ProverContext.Provider>
+
     )
 
 }
