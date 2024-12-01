@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "../sections/animate.css";
-import "../sections/scrollbar.css";
-
 
 export function InfoPsi({ imagem, onChange, nome, id_pc }) {
   const idPsi = localStorage.getItem("id");

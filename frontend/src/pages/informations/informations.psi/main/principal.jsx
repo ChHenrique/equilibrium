@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Info } from "./sections/infomações_pessoais.jsx";
 import { InfoPsi } from "./sections/infomações_psicologo.jsx";
+import { Footer_MobilePsi } from "../../../../components/Fotter_M_Psi.jsx"
+import { useLocation } from 'react-router-dom'
 
 // Array de botões com ícones SVG
 const button = [
@@ -31,6 +33,7 @@ export function Principal() {
     const [idAtivado, SetIdAtivado] = useState(1);
     const [imagem, setImagem] = useState(null);
     const [dataCriacaoConta, setDataCriacaoConta] = useState('');
+    const Location = useLocation()
 
     // Função para formatar a data em dd/mm/yyyy
     const formatarData = (dataString) => {
@@ -65,6 +68,12 @@ export function Principal() {
 
     const handleImageChange = (e) => { setImagem(e.target.files[0]); };
 
+    useEffect(() => {
+        if (Location.state && Location.state.idAtivado){
+            SetIdAtivado(Location.state.idAtivado)
+        }
+    }, [Location.state])
+
     const renderContent = () => {
         switch (idAtivado) {
             case 1:
@@ -77,8 +86,8 @@ export function Principal() {
     };
 
     return (
-        <div className="w-[90%] h-[80%] flex justify-center items-center space-x-5 mt-2">
-            <div className="w-fit h-full bg-white mr-auto rounded-2xl flex flex-col items-center p-1" id="barra">
+        <div className="w-[90vw] h-[80vh] flex justify-center items-center space-x-5 mt-2 max-md:w-full max-md:h-full max-md:mr-[50%] max-md:ml-[45%] max-md:mt-8">
+            <div className="w-fit h-full bg-white mr-auto rounded-2xl flex flex-col items-center max-md:hidden p-1" id="barra">
                 {button.map((botao) => (
                     <button key={botao.id} className="w-full ml-5" onClick={() => SetIdAtivado(botao.id)}>
                         <div className={`bg-[#8CB3FF] w-11/12 h-12 mt-3 rounded-xl flex justify-evenly items-center font-poppins text-[#465A7F] font-medium text-sm transition-colors duration-300 ease-in-out transform p-1 text-nowrap ${idAtivado === botao.id
@@ -94,6 +103,7 @@ export function Principal() {
             <div className="h-full w-[100%] bg-white rounded-2xl flex items-center">
                 {renderContent()}
             </div>
+            <Footer_MobilePsi />
         </div>
     );
 }

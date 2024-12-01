@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, sobrenome, email }) {
   const [selectedImage, setSelectedImage] = useState(imagem);
   const [Email, setEmail] = useState(email || ''); // Usar o email recebido como padrão
@@ -7,6 +8,8 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
   const [telefone, setTelefone] = useState('');
   const [cidade, setCidade] = useState('');
   const [Sobrenome, setSobrenome] = useState('');
+
+  const nomeFormartado = nome.charAt(0).toUpperCase() + nome.slice(1)
 
   // Função para formatar o telefone
   const formatarTelefone = (valor) => {
@@ -86,8 +89,13 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
   }, []);
 
   return (
-    <div className="w-full h-[80vh] bg-white rounded-2xl flex items-center">
-      <div className='w-[40%] h-full bg-white flex flex-col items-center rounded-bl-2xl rounded-tl-2xl p-4 relative'>
+    <div className="w-full h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[82vh]">
+
+      <h1 className=" max-md:mt-4 whitespace-nowrap font-poppins font-bold text-[23px] max-md:text-[20px] text-primary-700 md:hidden">
+                Altere e salve suas Alterações!
+            </h1>
+
+      <div className='w-[40%] h-full bg-white flex flex-col items-center rounded-bl-2xl rounded-2xl p-4 relative max-lg:h-[60%]'>
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative'>
           <div className='flex relative flex-col'>
             <input
@@ -108,83 +116,78 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
         </div>
 
         <h3 className='mt-3 font-poppins text-[#465A7F] text-sm font-medium'>Escolher foto</h3>
-        <h2 className="mt-1 font-poppins text-[#000000] text-xl font-medium text-center">{nome}</h2>
+        <h2 className="mt-1 font-poppins text-[#000000] text-xl font-medium text-center">{nomeFormartado}</h2>
         <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID: {id_psi}</h3>
-        <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span></h3>
-        <hr className='w-60 h-[0.1px] border border-[#1c283d]' />
+        <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium text-center'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span></h3>
+        <hr className='w-60 h-[0.1px] border border-[#1c283d] max-md:hidden' />
         <a href='/home/psicologo' className='w-full flex justify-center'>
-          <button className="mt-10 w-2/4 bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl whitespace-nowrap">Ver Consultas</button>
+          <button className="mt-10 w-2/4 h-fit bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl whitespace-nowrap max-md:hidden duration-500">Ver Consultas</button>
         </a>
-        <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10'></div>
+        <div className='w-[1px] h-[87%] bg-gray-500 absolute right-0 translate-y-10 max-md:hidden'></div>
       </div>
 
       {/* Div do componente das alterações */}
       <div className="w-full h-full flex items-center font-poppins font-medium relative">
-        <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700">
+
+        <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700 max-md:hidden">
           Altere e salve suas Alterações!
         </h1>
 
-        <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5">
           {/* Form dos inputs e labels */}
-          <form id="form1" method="post" className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-14">
+          <form id="form1" method="post" className="grid max-md:grid-cols-1 grid-cols-2 items-center flex-col  ml-12 w-full space-y-10 place-items-center -translate-y-8 max-md:ml-0 max-md:-translate-y-0 max-md:translate-y-7">
             {/* Div Nome */}
-            <div className="flex flex-col w-full ml-8">
-              <label className="text-[#807e7e] placeholder:font-poppins placeholder:font-semibold">Nome:</label>
+            
+            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center max-md:relative">
+              <label className="text-[#807e7e]">Nome:</label>
               <input
-                placeholder={nome}
+                placeholder={nomeFormartado}
                 readOnly
                 type="text"
                 id="input_name_alterações"
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"
+                className="border-b-2 border-[#807e7e] font-satoshi-Regular placeholder:font-poppins placeholder:font-medium outline-none w-3/4 max-md:text-center placeholder:text-slate-900"
               />
             </div>
 
             {/* Div Email */}
-            <div className="flex flex-col w-full ml-8">
+            <div className="flex flex-col w-full ml-8 -translate-y-[19px] max-md:-translate-y-[0px] max-md:ml-0 max-md:justify-center max-md:items-center">
               <label className="text-[#807e7e]">Email:</label>
               <input
-                placeholder={Email}
+                readOnly
+                placeholder={email}
                 type="email"
                 value={Email}
                 onChange={(e) => setEmail(e.target.value)} // Controlando o email
                 id="input_email_alterações"
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"
+                className="border-b-2 border-[#807e7e] placeholder:font-poppins placeholder:font-medium outline-none w-3/4 max-md:text-center placeholder:text-slate-900 font-satoshi-Regular"
               />
             </div>
 
             {/* Div Estado */}
-            <div className="flex flex-col w-full ml-8">
+            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
               <label className="text-[#807e7e]">Estado:</label>
               <input
-                placeholder={Estado}
                 type="text"
                 id="input_estado"
                 value={Estado}
                 onChange={(e) => setEstado(e.target.value)} // Atualiza o estado
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"
+                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 max-md:items-center"
               />
             </div>
-          </form>
-        </div>
-
-        {/* Form2 */}
-        <div className="h-full w-1/2 bg-white flex flex-col items-center pt-5">
-          <form id="form2" method="post" className="flex items-center flex-col mt-24 ml-12 w-full h-80% space-y-10 translate-y-14">
 
             {/* Div Sobrenome */}
-            <div className="flex flex-col w-full ml-8">
+            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
               <label className="text-[#807e7e]">Sobrenome:</label>
               <input
-                placeholder={Sobrenome}
+                placeholder={sobrenome}
                 readOnly
                 type="text"
                 id="input_sobrenome_alterações"
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"
+                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 placeholder:font-poppins placeholder:font-medium max-md:text-center placeholder:text-slate-900"
               />
             </div>
 
             {/* Div Telefone */}
-            <div className="flex flex-col w-full ml-8">
+            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
               <label className="text-[#807e7e]">Telefone:</label>
               <input
                 placeholder="(XX) 99999-9999"
@@ -193,12 +196,12 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                 value={telefone}
                 onChange={(e) => setTelefone(formatarTelefone(e.target.value))} // Formata o telefone
                 id="input_telefone"
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"
+                className="border-b-2 border-[#807e7e] font-satoshi-Regular placeholder:font-poppins placeholder:font-medium outline-none w-3/4 max-md:text-center placeholder:text-slate-900"
               />
             </div>
 
             {/* Div Cidade */}
-            <div className="flex flex-col w-full ml-8">
+            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
               <label className="text-[#807e7e]">Cidade:</label>
               <input
                 placeholder=""
@@ -206,14 +209,14 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                 value={cidade}
                 type="text"
                 id="input_cidade"
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4"
+                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 max-md:items-center"
               />
             </div>
+                <button className="md:absolute bottom-0 max-2xl:-translate-x-8 max-2xl:translate-y-32 whitespace-nowrap bg-[#3B82F6] w-1/3 px-2 py-1 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700  hover:rounded-xl transition-all duration-300 mb-3 max-md:h-fit max-md:-translate-y-2 max-md:translate-x-1 max-md:w-1/2 ">
+                  Salvar Alterações
+                </button>
           </form>
         </div>
-
-        <button className="absolute bottom-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 mb-3">Salvar Alterações</button>
       </div>
-    </div>
   );
 }

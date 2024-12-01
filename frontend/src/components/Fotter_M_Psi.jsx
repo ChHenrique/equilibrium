@@ -1,17 +1,8 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { InfoLogOut } from './infolog_mobile';
+import { InfoLogOutPsi } from './infologM_Psi';
 
 const links = [
-    {
-        id: 0,
-        img: (
-            <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24.9964 27.8036C25.7716 28.5787 27.0284 28.5787 27.8036 27.8036C28.5787 27.0284 28.5787 25.7716 27.8036 24.9964L19.7118 16.9047C20.2215 16.1963 20.6323 15.4043 20.9456 14.5314C21.3162 13.499 21.5 12.404 21.5 11.25C21.5 8.39549 20.5057 5.96113 18.5223 3.9777C16.5389 1.99426 14.1045 1 11.25 1C8.39549 1 5.96113 1.99426 3.9777 3.9777C1.99426 5.96113 1 8.39549 1 11.25C1 14.1045 1.99426 16.5389 3.9777 18.5223C5.96113 20.5057 8.39549 21.5 11.25 21.5C12.404 21.5 13.499 21.3162 14.5314 20.9456C15.4043 20.6323 16.1963 20.2215 16.9047 19.7118L24.9964 27.8036ZM15.6777 15.6777C14.46 16.8954 12.9939 17.5 11.25 17.5C9.50609 17.5 8.03997 16.8954 6.8223 15.6777C5.60464 14.46 5 12.9939 5 11.25C5 9.50609 5.60464 8.03997 6.8223 6.8223C8.03997 5.60464 9.50609 5 11.25 5C12.9939 5 14.46 5.60464 15.6777 6.8223C16.8954 8.03997 17.5 9.50609 17.5 11.25C17.5 12.9939 16.8954 14.46 15.6777 15.6777Z" fill="currentColor" stroke="currentColor" />
-            </svg>
-        )
-    },
-
     {
         id: 1,
         img: (
@@ -50,19 +41,29 @@ const links = [
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M33 17.9996C33 26.2839 26.2843 32.9996 18 32.9996C9.71573 32.9996 3 26.2839 3 17.9996C3 9.71536 9.71573 2.99963 18 2.99963C26.2843 2.99963 33 9.71536 33 17.9996ZM15.2318 14.2496C15.2318 12.7322 16.4642 11.4996 17.9871 11.4996C19.5103 11.4996 20.7425 12.7322 20.7425 14.2496C20.7425 15.7671 19.5103 16.9996 17.9871 16.9996C16.4642 16.9996 15.2318 15.7671 15.2318 14.2496ZM17.9871 9.49965C15.3623 9.49965 13.2318 11.625 13.2318 14.2496C13.2318 16.8743 15.3623 18.9996 17.9871 18.9996C20.6121 18.9996 22.7425 16.8743 22.7425 14.2496C22.7425 11.6249 20.6121 9.49965 17.9871 9.49965ZM11.9732 26.1902C15.0957 22.9197 20.8935 22.7909 24.0146 26.1774C24.3888 26.5835 25.0215 26.6093 25.4276 26.235C25.8337 25.8607 25.8595 25.2281 25.4852 24.8219C21.5359 20.5368 14.3992 20.753 10.5266 24.8091C10.1452 25.2085 10.1599 25.8415 10.5593 26.2229C10.9588 26.6043 11.5918 26.5897 11.9732 26.1902Z" fill="currentColor" />
             </svg>
         )
-    },
+    }, {
+        id: 5,
+        nome: "Informações Psicólogo",
+        img: (
+            <svg width="24" height="30" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
+                <path d="M22 36.6667L31.7778 26.8889L28.3556 23.4667L24.4444 27.3778V17.1111H19.5556V27.3778L15.6444 23.4667L12.2222 26.8889L22 36.6667ZM4.88889 12.2222V39.1111H39.1111V12.2222H4.88889ZM4.88889 44C3.54444 44 2.38333 43.5315 1.40556 42.5944C0.468519 41.6167 0 40.4556 0 39.1111V8.61667C0 8.0463 0.081482 7.4963 0.244445 6.96667C0.448149 6.43704 0.733334 5.94815 1.1 5.5L4.15556 1.77222C4.6037 1.20185 5.1537 0.774074 5.80555 0.488888C6.49815 0.162963 7.21111 0 7.94444 0H36.0556C36.7889 0 37.4815 0.162963 38.1333 0.488888C38.8259 0.774074 39.3963 1.20185 39.8444 1.77222L42.9 5.5C43.2667 5.94815 43.5315 6.43704 43.6944 6.96667C43.8981 7.4963 44 8.0463 44 8.61667V39.1111C44 40.4556 43.5111 41.6167 42.5333 42.5944C41.5963 43.5315 40.4556 44 39.1111 44H4.88889ZM5.86667 7.33333H38.1333L36.0556 4.88889H7.94444L5.86667 7.33333Z" stroke="currentColor" fill="currentColor" strokeWidth="0.5" />
+            </svg>
+        )
+    }
 ]
-export function Footer_Mobile() {
+export function Footer_MobilePsi() {
     const navigate = useNavigate()
     const [id, setId] = useState(NaN)
     const location = useLocation();
     const [VisibleInfoLogOut, SetVisibleInfoLogOut] = useState(false)
 
     useEffect(() => {
-        if (location.pathname === '/info/paciente') {
-            setId(4)
-        }
-        else if (location.pathname === '/home/paciente') {
+        if (location.pathname === '/info/psicologo') {
+            if (location.state?.idAtivado === 2)  {
+                setId(5)
+            }
+        } 
+        else if (location.pathname === '/home/psicologo') {
             if (location.state?.activeId === 3) {
                 setId(1)
             } else if (location.state?.activeId === 1) {
@@ -71,66 +72,60 @@ export function Footer_Mobile() {
                 setId(3)
             }
         }
-        else if (location.pathname === '/psicologos') {
-            setId(0)
-        }
     }, [location.pathname, location.state]);
 
 
 
     const EnviarLocal = (linkId) => {
+        setId(linkId)
         if (linkId === 4) {
-            SetVisibleInfoLogOut(estado => !estado);
+            SetVisibleInfoLogOut(estado => !estado)
         } else {
-            // Desativar o InfoLogOut se outro link for clicado
-            SetVisibleInfoLogOut(false);
+            SetVisibleInfoLogOut(false)
         }
-
-        // Atualizar o ID do link
-        setId(linkId);
-
+        console.log(linkId)
         switch (linkId) {
-            case 0:
-                return navigate('/psicologos');
             case 1:
-                return navigate('/home/paciente', { state: { activeId: 3 } });
+                return navigate('/home/psicologo', { state: { activeId: 3 } })
             case 2:
-                return navigate('/home/paciente', { state: { activeId: 1 } });
+                return navigate('/home/psicologo', { state: { activeId: 1 } })
             case 3:
-                return navigate('/home/paciente', { state: { activeId: 2 } });
-            default:
-                break;
+                return navigate('/home/psicologo', { state: { activeId: 2 } })
+            case 5:
+                return navigate('/info/psicologo', { state: { idAtivado: 2 } })
         }
     }
 
     return (
-            <div className="flex flex-col justify-center items-center bg-slate-50 w-screen md:hidden fixed bottom-0 p-2 z-50">
-                <div className="flex w-full justify-center items-center space-x-6">
-                    <div className='w-fit absolute bottom-20 translate-x-[140px]'>
-                        {VisibleInfoLogOut && (
-                            <div className='bg-white rounded-2xl w-fit relative'>
-                                <InfoLogOut />
-                                <div
-                                    className='bg-white w-7 h-3 rotate-180 absolute translate-x-[88%]'
-                                    style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
-                                ></div>
-                            </div>
-                        )}
-                    </div>
-                    {links.map(link => (
-                        <button
-                            id='link'
-                            key={link.id}
-                            className={`flex justify-center items-center ease-in-out duration-500 ${id === link.id ? "text-primary-700 max-md:bg-white max-md:text-primary-700 rounded-2xl"
-                                : "bg-white text-primary-200 hover:text-primary-700 max-md:text-primary-200 rounded-2xl"
-                                }`}
-                            onClick={() => EnviarLocal(link.id)}>
-                            <div className='h-fit flex items-center p-[5px]'>
-                                {link.img}
-                            </div>
-                        </button>
-                    ))}
+        <div className="flex flex-col justify-center items-center bg-slate-50 w-screen md:hidden fixed bottom-0 p-2 z-50">
+            <div className="flex w-full justify-center items-center space-x-9 mr-11">
+
+                <div className='w-fit absolute bottom-20 translate-x-[96px]'>
+                    {VisibleInfoLogOut && (
+                        <div className=' bg-white rounded-2xl w-fit relative'>
+                            <InfoLogOutPsi />
+                            <div
+                                className='bg-white w-7 h-3 rotate-180 absolute translate-x-[100%]'
+                                style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
+                            ></div>
+                        </div>
+                    )}
+
                 </div>
+                {links.map((link => (
+                    <button
+                        id='link'
+                        key={link.id}
+                        className={`flex justify-center items-center  ease-in-out duration-500 ${id === link.id ? " text-primary-700 max-md:bg-white max-md:text-primary-700 rounded-2xl"
+                            : "bg-white text-primary-200 hover:text-primary-700  max-md:text-primary-200 rounded-2xl"
+                            }`}
+                        onClick={() => EnviarLocal(link.id)}>
+                        <div className='h-fit flex items-center p-[5px]'>
+                            {link.img}
+                        </div>
+                    </button>
+                )))}
             </div>
+        </div>
     )
 }
