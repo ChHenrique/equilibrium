@@ -77,7 +77,10 @@ export function HeaderLog() {
                     <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-7'>
                         {nome}
                     </h1>
-                    <img src={selectedImage} alt="Foto de Perfil" className='h-8' />
+                    <div 
+                        className="h-12 w-12 rounded-full cursor-pointer flex overflow-hidden bg-center bg-cover" 
+                        style={{ backgroundImage: `url(${selectedImage})` }}
+                    ></div>
                 </div>
 
                 <div className={`w-fit h-fit translate-y-24 flex-col justify-center items-end absolute z-custom shadow-lg ${userinfo ? 'flex' : 'hidden'}`}>
