@@ -3,7 +3,7 @@ import nullimg from '../../../../assets/images/user_null.svg'
 
 
 
-export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,onConfirm,onCancel }) {
+export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,onConfirm,onCancel, foto }) {
  //   const [able, setAble] = useState(1) 
  //   const [accept, setacceptance] = useState(0) 
 
@@ -12,10 +12,10 @@ export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,on
 
 
 
-        <div className="min-w-fit  h-fit flex flex-col bg-[#F1F5F9] font-poppins justify-center items-center rounded-2xl m-2 max-w-fit ">
-        <img src={nullimg} alt="" className="w-24 rounded-full m-2" />
+        <div className="min-w-fit  h-fit flex flex-col max-md:w-full max-md:flex-row bg-[#F1F5F9] font-poppins justify-center items-center rounded-2xl m-2 max-w-fit max-md:max-w-[80%] ">
+        <img src={foto ? foto : nullimg} alt="" className="w-24 max-md:w-32 rounded-full m-2" />
         <div className="flex flex-col text-2xl justify-center items-center h-full p-2 w-full ">
-            <h1 className=" text-primary-700 text-2xl font-medium mb-4">{nome}</h1>
+            <h1 className=" text-primary-700 text-2xl font-medium mb-4 max-md:mb-0 max-md:text-3xl"> Psi {nome}</h1>
             <div className="flex flex-row justify-center items-center w-full h-fit">
                 <h2 className=" text-primary-700 text-base font-light bg-primary-300  whitespace-nowrap  flex text-nowrap items-center justify-center p-[2px] rounded-lg">
                     <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">
@@ -46,41 +46,41 @@ export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,on
                 </h2>
             </div>
 
+           
+{accept ?
+    <div className="h-fit w-full justify-center items-center flex-row  flex mt-2 space-x-4">
+        <button onClick={onConfirm} className="h-fit w-fit flex-row text-white text-lg bg-[#73d79b] rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold hover:bg-[#63c189] duration-500"
+        >
+            Aceitar
+        </button>
 
+        <button onClick={onCancel} className="ml-1 h-fit w-fit flex-row text-white text-lg bg-primary-900 rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold mr-auto hover:bg-[#dc7070] duration-500" >
+            Recusar
+        </button>
 
-
-                {accept ?
-                    <div className="h-fit w-full justify-center items-center flex-row  flex mt-2 space-x-4">
-                        <button onClick={onConfirm} className="h-fit w-fit flex-row text-white text-lg bg-[#73d79b] rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold hover:bg-[#63c189] duration-500"
-                        >
-                            Aceitar
-                        </button>
-
-                        <button onClick={onCancel} className="ml-1 h-fit w-fit flex-row text-white text-lg bg-primary-900 rounded-2xl flex p-1 pl-2 pr-2 justify-center items-center cursor-pointer font-bold mr-auto hover:bg-[#dc7070] duration-500" >
-                            Recusar
-                        </button>
-
-                    </div>
-                    :
-                    able ? (
-                        <a href="http://localhost:8888/chat?peer1" className="w-fit">
-                            <button className="w-full h-fit mb-4 bg-primary-200 text-white text-base rounded-2xl p-2 mt-4 cursor-pointer duration-150 hover:bg-primary-500">
-                                Juntar-se a chamada
-                            </button>
-                        </a>
-                    ) : (
-                        <div className="w-fit">
-                        <button className="w-full h-fit mb-4 bg-primary-300 text-slate-500 text-base rounded-2xl p-2 mt-4 cursor-default ">
-                            Juntar-se a chamada
-                        </button>
-                        </div>
-        
-                    )
-
-                }
-
-
-            </div>
+    </div>
+    :
+    able ? (
+        <a href="http://localhost:8888/chat?peer1" className="w-fit">
+            <button className="w-full h-fit mb-4 bg-primary-200 text-white text-base rounded-2xl p-2 mt-4 cursor-pointer duration-150 hover:bg-primary-500">
+                Juntar-se a chamada
+            </button>
+        </a>
+    ) : (
+        <div className="w-fit">
+        <button className="w-full h-fit mb-4 bg-primary-300 text-slate-500 text-base rounded-2xl p-2 mt-4 cursor-default ">
+            Juntar-se a chamada
+        </button>
         </div>
+
     )
+
 }
+        </div>
+    </div>
+);
+}
+
+
+
+

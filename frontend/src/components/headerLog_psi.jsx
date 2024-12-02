@@ -97,7 +97,7 @@ function Visibilidade(){
     ></div>
 
 
-    <div className='bg-white flex flex-col justify-center items-center h-full w-full p-1 rounded-[8px]'>
+    <div className='bg-white flex flex-col justify-center items-center z-50 h-full w-full p-1 rounded-[8px]'>
 
         {/* botoes do dropbox do user*/}
         {LINKSUser.map((link) => (

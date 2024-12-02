@@ -18,6 +18,7 @@ export function InfoLogOut() {
     const NavegarInfoPc = () => {
         return NavegarRotas('/info/paciente')
     }
+    
 
     return (
         <div className="flex flex-col h-fit rounded-2xl w-fit">
