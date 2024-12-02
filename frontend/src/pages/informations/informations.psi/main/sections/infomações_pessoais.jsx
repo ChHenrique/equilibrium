@@ -249,7 +249,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                 className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 max-md:items-center"
               />
             </div>
-                <button className="md:absolute bottom-0 max-2xl:-translate-x-8 max-2xl:translate-y-32 whitespace-nowrap bg-[#3B82F6] w-1/3 px-2 py-1 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700  hover:rounded-xl transition-all duration-300 mb-3 max-md:h-fit max-md:py-2 max-md:-translate-y-2 max-md:translate-x-1 max-md:w-1/2 max-lg:translate-x-0 max-lg:w-1/2 max-lg:py-1 max-lg:px-1 max-lg:h-fit max-xl:w-1/2 max-xl:-translate-x-1 max-xl:bottom-2">
+                <button className="md:absolute bottom-0 translate-y-16 max-2xl:-translate-x-4 max-2xl:translate-y-28 whitespace-nowrap bg-[#3B82F6] w-1/3 px-2 py-1 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700  hover:rounded-xl transition-all duration-300 mb-3 max-md:h-fit max-md:py-2 max-md:-translate-y-2 max-md:translate-x-1 max-md:w-1/2 max-lg:translate-x-0 max-lg:w-1/2 max-lg:py-1 max-lg:px-1 max-lg:h-fit max-xl:w-1/2 max-xl:-translate-x-1 max-xl:bottom-2">
                   Salvar Alterações
                 </button>
           </form>

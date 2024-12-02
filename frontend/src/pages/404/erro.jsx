@@ -6,7 +6,7 @@ export function ErrorPage() {
     return (
         <div className="h-[100vh] w-full bg-primary-300 flex justify-center items-center font-poppins">
 
-            <div className="w-1/2 aspect-video flex justify-center items-center flex-col bg-white rounded-[20px] relative max-md:h-[60%] max-md:w-[80%] max-md:max-h-[450px] max-md:max-w-[300px] max-lg:h-[60%] max-lg:w-[60%] max-lg:max-h-[600px]">
+            <div className="w-1/2 aspect-video flex justify-center items-center flex-col bg-white rounded-[20px] relative max-md:h-[60%] max-md:w-[80%] max-md:max-h-[450px] max-md:max-w-[300px] max-lg:h-[60%] max-lg:w-[60%] max-lg:max-h-[500px] max-2xl:h-[60%] max-2xl:max-h-[500px] max-xl:w-[55%] max-xl:max-h-[400px] max-2xl:max-w-[500px]">
             <Balls className='scale-0 flex'/>
                 <img src={LogoHori} alt="Logo Equilibrium" className='w-2/6 flex absolute top-[10%] max-md:w-[60%] ' />
                 <div className='w-full h-fit flex justify-center items-center mb-4'>
