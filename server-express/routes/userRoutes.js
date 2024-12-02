@@ -131,7 +131,7 @@ router.post('/psicologos/:id_psi/topicos', async (req, res) => {
 
         if (formacao) {
             query += 'formacao = ?, ';
-            values.push(formacao);
+            values.push(JSON.stringify(formacao)); // Converte o array para string JSON
         }
 
         // Remover a última vírgula e espaço
@@ -152,6 +152,49 @@ router.post('/psicologos/:id_psi/topicos', async (req, res) => {
         return res.status(500).json({ message: 'Erro no servidor.' });
     }
 });
+
+
+router.get('/psicologos/:id_psi/topicos-formacao', async (req, res) => {
+    const psicologoId = req.params.id_psi;
+
+    try {
+        // Executar a query para buscar os dados
+        const [rows] = await db.query(
+            'SELECT topicos, formacao FROM psicologos WHERE id_psi = ?',
+            [psicologoId]
+        );
+
+        // Verificar se o psicólogo foi encontrado
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'Psicólogo não encontrado.' });
+        }
+
+        // Parse do campo `topicos` para um array
+        const data = rows[0];
+        if (data.topicos) {
+            data.topicos = JSON.parse(data.topicos); // Converter para array
+        }
+
+        // Parse do campo `formacao` para um array, se necessário
+        if (data.formacao) {
+            try {
+                data.formacao = JSON.parse(data.formacao); // Converter para array
+            } catch (error) {
+                console.error('Erro ao parsear a formação:', error);
+                // Se a formação não for um JSON válido, deixamos o valor como está
+            }
+        }
+
+        // Retornar os dados
+        res.json(data);
+    } catch (error) {
+        console.error('Erro ao buscar os tópicos e formação do psicólogo:', error);
+        return res.status(500).json({ message: 'Erro no servidor.' });
+    }
+});
+
+
+
 
 
 

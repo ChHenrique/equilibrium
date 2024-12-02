@@ -66,6 +66,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
           setEstado(data.estado || ''); // Atualiza o estado se disponível
           setTelefone(data.telefone || ''); // Atualiza o telefone se disponível
           setSobrenome(data.sobrenome || '');
+          setCidade(data.cidade || '');
         })
         .catch(error => console.error("Erro:", error));
     }
@@ -215,7 +216,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
             <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
               <label className="text-[#807e7e]">Sobrenome:</label>
               <input
-                placeholder={sobrenome}
+                placeholder={Sobrenome}
                 readOnly
                 type="text"
                 id="input_sobrenome_alterações"
@@ -241,7 +242,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
             <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
               <label className="text-[#807e7e]">Cidade:</label>
               <input
-                placeholder=""
+                placeholder={cidade}
                 onChange={(e) => setCidade(e.target.value)}
                 value={cidade}
                 type="text"
