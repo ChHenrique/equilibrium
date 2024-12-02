@@ -31,37 +31,45 @@ export function Consultas() {
   useEffect(() => {
     const fetchConsultas = async () => {
       const idPaciente = localStorage.getItem("id");
-
+  
       try {
         const response = await fetch(`http://localhost:3000/consulta/paciente/${idPaciente}`);
         if (!response.ok) {
-          throw new Error("");
+          throw new Error("Erro ao buscar consultas.");
         }
-
+  
         const data = await response.json();
-        
-        const consultasComPsicologo = await Promise.all(data.map(async (consulta) => {
+  
+        const consultasComDetalhes = await Promise.all(data.map(async (consulta) => {
           const psicologoResponse = await fetch(`http://localhost:3000/user/psicologos/${consulta.id_psicologo}`);
           const psicologoData = await psicologoResponse.json();
+  
+          const fotoResponse = await fetch(`http://localhost:3000/user/psicologos/${consulta.id_psicologo}/foto`);
+          const fotoData = await fotoResponse.json(); // Obtem o objeto com a propriedade "foto"
+          const fotoPath = fotoData.foto.replace(/\\/g, "/"); // Substitui \ por /
+          
+  
           return {
             ...consulta,
             psicologoNome: psicologoData.nome,
+            fotoPsicologo: fotoPath,
             dataFormatada: formatarData(consulta.data),
             horarioFormatado: formatarHorario(consulta.horario),
             duracaoFormatada: formatarDuracao(consulta.duracao),
           };
         }));
-
-        setConsultas(consultasComPsicologo);
+  
+        setConsultas(consultasComDetalhes);
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchConsultas();
   }, []);
+  
 
   if (loading) return <div>Carregando...</div>;
   if (error) return <div>{error}</div>;
@@ -106,11 +114,14 @@ export function Consultas() {
             <ConsultasPsicologos
               key={consulta.id}
               nome={`${consulta.psicologoNome}`}
-              date={consulta.dataFormatada} // Usando a data formatada
-              horario={consulta.horarioFormatado} // Usando o horário formatado
-              duracao={consulta.duracaoFormatada} // Usando a duração formatada
+              date={consulta.dataFormatada}
+              horario={consulta.horarioFormatado}
+              duracao={consulta.duracaoFormatada}
+              foto={`http://localhost:3000/${consulta.fotoPsicologo}`} // Caminho correto
             />
           ))
+          
+          
         )}
       </div>
     </div>

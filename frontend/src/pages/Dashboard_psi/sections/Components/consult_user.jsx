@@ -61,7 +61,7 @@ export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,on
     </div>
     :
     able ? (
-        <a href="http://localhost:8888/chat?peer1" className="w-fit">
+        <a href="https://localhost:8888/chat?peer1" className="w-fit">
             <button className="w-full h-fit mb-4 bg-primary-200 text-white text-base rounded-2xl p-2 mt-4 cursor-pointer duration-150 hover:bg-primary-500">
                 Juntar-se a chamada
             </button>

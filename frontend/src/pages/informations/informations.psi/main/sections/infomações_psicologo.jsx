@@ -16,6 +16,119 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
   const inputRef = useRef(null); // Referência para o campo de texto
 
+  const [isDataLoaded, setIsDataLoaded] = useState(false); // Novo estado para verificar se os dados foram carregados
+
+  useEffect(() => {
+    // Carregar os tópicos e formação do backend quando a página for carregada
+    const fetchData = async () => {
+      try {
+        const idPsi = localStorage.getItem('id');
+        if (!idPsi) {
+          throw new Error('ID do psicólogo não encontrado no localStorage.');
+        }
+  
+        // Buscar os dados de tópicos e formação do backend
+        const response = await fetch(`http://localhost:3000/user/psicologos/${idPsi}/topicos-formacao`);
+        if (!response.ok) {
+          throw new Error('Erro ao buscar dados de tópicos e formação');
+        }
+        const data = await response.json();
+  
+        // Atualizar os estados com os dados carregados
+        if (data.topicos) {
+          SetTopicos(data.topicos);
+        }
+        if (data.formacao) {
+          setFormação(data.formacao); // Remover o JSON.parse aqui, pois já é um array
+        }
+
+        // Marcar os dados como carregados
+        setIsDataLoaded(true);
+
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+      }
+    };
+  
+    fetchData(); // Executa a função para carregar os dados
+  }, []); // Este useEffect só será executado uma vez, ao carregar a página
+  
+  useEffect(() => {
+    // Só chama a função de envio quando os dados estiverem carregados
+    if (isDataLoaded) {
+      // Envia os tópicos ao backend, incluindo quando estiver vazio
+      enviarTopicos(); 
+    }
+  }, [Topicos, isDataLoaded]); // Este useEffect será executado sempre que Topicos mudar ou os dados forem carregados
+  
+  useEffect(() => {
+    // Só chama a função de envio quando os dados estiverem carregados
+    if (isDataLoaded) {
+      // Envia a formação ao backend, incluindo quando estiver vazio
+      enviarFormacao();
+    }
+  }, [Formação, isDataLoaded]); // Este useEffect será executado sempre que Formação mudar ou os dados forem carregados
+
+  // Função de envio dos tópicos
+  const enviarTopicos = async () => {
+    try {
+      const idPsi = localStorage.getItem('id');
+      if (!idPsi) {
+        throw new Error('ID do psicólogo não encontrado no localStorage.');
+      }
+  
+      // Configura a URL da API
+      const url = `http://localhost:3000/user/psicologos/${idPsi}/topicos`;
+  
+      // Envia os tópicos (mesmo que esteja vazio)
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ topicos: Topicos }), // Envia o array de tópicos, que pode estar vazio
+      });
+  
+      if (response.ok) {
+        console.log('Tópicos enviados com sucesso!');
+      } else {
+        console.error('Erro ao enviar tópicos:', await response.json());
+      }
+    } catch (error) {
+      console.error('Erro ao enviar tópicos:', error.message);
+    }
+  };
+
+  // Função de envio da formação
+  const enviarFormacao = async () => {
+    try {
+      const idPsi = localStorage.getItem('id');
+      if (!idPsi) {
+        throw new Error('ID do psicólogo não encontrado no localStorage.');
+      }
+  
+      // Configura a URL da API
+      const url = `http://localhost:3000/user/psicologos/${idPsi}/topicos`;
+  
+      // Envia a formação (mesmo que esteja vazia)
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ formacao: Formação }), // Envia o array de formação, que pode estar vazio
+      });
+  
+      if (response.ok) {
+        console.log('Formação enviada com sucesso!');
+      } else {
+        console.error('Erro ao enviar formação:', await response.json());
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formação:', error.message);
+    }
+  };
+
   useEffect(() => {
     // Função para obter a duração do psicólogo via API
     const fetchDuração = async () => {
@@ -66,38 +179,6 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
     fetchImage();
   }, []);
-
-  const handleUpdateTopicosFormacao = async () => {
-    const idPsi = localStorage.getItem("id"); // Obtém o id do psicólogo
-
-    if (idPsi) {
-      try {
-        // Monta o objeto com os tópicos e formações
-        const data = {
-          topicos: Topicos,
-          formacao: Formação
-        };
-
-        // Envia a requisição POST com os dados
-        const response = await fetch(`http://localhost:3000/updatetopicosformacao/${idPsi}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data), // Envia os dados como JSON
-        });
-
-        if (response.ok) {
-          console.log('Tópicos e formação atualizados com sucesso!');
-          // Aqui você pode adicionar um feedback visual, como um alerta ou mensagem de sucesso
-        } else {
-          console.error('Erro ao atualizar tópicos e formação');
-        }
-      } catch (error) {
-        console.error('Erro ao enviar dados:', error);
-      }
-    }
-  };
 
 
   const handleSubmit = async () => {
@@ -159,14 +240,6 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     }
   };
 
-  // UseEffect que vai disparar quando o estado de Topicos for alterado
-  useEffect(() => {
-    if (Topicos.length > 0) {
-      // Chama a função para enviar os tópicos ao backend
-      enviarTopicos(Topicos);
-    }
-  }, [Topicos]);
-
   const ExcluirTopicos = (index) => {
     const ValorTopicosNew = Topicos.filter((_, i) => i !== index);
     SetTopicos(ValorTopicosNew);
@@ -199,6 +272,10 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     console.log("Tópicos atualizados:", Topicos);
   }, [Topicos]);
 
+  useEffect(() => {
+    console.log("Formação atualizada:", Formação);
+  }, [Formação]);
+
   const [selectedImage, setSelectedImage] = useState(imagem);
 
   const handleImageChange = (e) => {
@@ -208,45 +285,6 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       onChange(e);
     }
   };
-
-  const enviarTopicos = async () => {
-    try {
-      // Obtém o ID do psicólogo do localStorage
-      const idPsi = localStorage.getItem('id');
-      if (!idPsi) {
-        throw new Error('ID do psicólogo não encontrado no localStorage.');
-      }
-
-      // Verifica se os tópicos existem
-      if (!Topicos || Topicos.length === 0) {
-        throw new Error('Não há tópicos para enviar.');
-      }
-
-      // Configura a URL da API
-      const url = `http://localhost:3000/user/psicologos/${idPsi}/topicos`;
-
-      // Faz a requisição POST com os tópicos
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ topicos: Topicos }), // Envia os tópicos armazenados
-      });
-
-      if (response.ok) {
-        console.log('Tópicos enviados com sucesso!');
-        // Você pode adicionar mais lógica aqui, como limpar os tópicos ou atualizar a UI
-      } else {
-        console.error('Erro ao enviar tópicos:', await response.json());
-      }
-    } catch (error) {
-      console.error('Erro ao enviar tópicos:', error.message);
-    }
-  };
-
-
-
 
   return (
     <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[120vh] max-lg:max-h-[560px] max-xl:h-[83.9vh]  max-2xl:max-h-[500px] max-2xl:h-full max-md:max-h-[800px]">
