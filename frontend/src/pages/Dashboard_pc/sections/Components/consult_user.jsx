@@ -2,12 +2,12 @@ import React from "react";
 import nullimg from '../../../../assets/images/user_null.svg';
 import { useState } from "react";
 
-export function ConsultasPsicologos({ able,nome, date, horario, duracao }) {
+export function ConsultasPsicologos({ able,nome, date, horario, duracao, foto }) {
    //const [able, setAble] = useState(0); Se =1 e entravel na secção, se 0 não
 
     return (
         <div className="min-w-fit  h-fit flex flex-col max-md:w-full max-md:flex-row bg-[#F1F5F9] font-poppins justify-center items-center rounded-2xl m-2 max-w-fit max-md:max-w-[80%] ">
-            <img src={nullimg} alt="" className="w-24 max-md:w-32 rounded-full m-2" />
+            <img src={foto} alt="" className="w-24 max-md:w-32 rounded-full m-2" />
             <div className="flex flex-col text-2xl justify-center items-center h-full p-2 w-full ">
                 <h1 className=" text-primary-700 text-2xl font-medium mb-4 max-md:mb-0 max-md:text-3xl"> Psi {nome}</h1>
                 <div className="flex flex-row justify-center items-center w-full h-fit">
