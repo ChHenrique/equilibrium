@@ -1,11 +1,17 @@
 const app = require('express')();
-const http = require('http');
+const https = require('https');
 const socketIo = require('socket.io');
+const fs = require('fs');
+
 
 const PORT = 3001;
 const CHAT_ROUTE = 'algumacoisaseilaoq'; // Defina aqui sua string aleatória ou fixa
 
-const server = http.createServer(app);
+const server = https.createServer({
+    key: fs.readFileSync('../frontend/ssl/key-no-pass.pem'),
+    cert: fs.readFileSync('../frontend/ssl/cert.pem'),
+  }, app);
+
 const io = socketIo(server, { cors: { origin: '*' } });
 
 io.on('connection', (socket) => {
