@@ -61,16 +61,18 @@ export function Historico() {
   }
 
   return (
-    <div className="w-full h-full flex items-center flex-col">
-      <div className="w-[95%] h-16 flex justify-end m-4">
+    <div className="w-full h-full flex items-center flex-col max-md:bg-primary-300">
+      <div className="w-[95%] h-16 flex justify-between max-md:flex-col items-start m-6 ">
+      <h1 className="text-2xl ml-2 max-md:text-4xl mt-2 max-md:font-bold  text-primary-700 font-medium mb-6">Histórico</h1>
+        <div className=" w-full flex-row flex max-md:justify-start justify-end items-end max-md:p-2">
         <input
           type="text"
-          className="w-1/3 h-12 rounded-xl bg-secondary-100 placeholder:text-primary-700 placeholder:p-2 border-none outline-1 outline-slate-300 p-2 placeholder-primary-700"
+          className="w-1/3 max-md:w-full h-12 max-md:h-10 rounded-xl max-md:bg-white bg-secondary-100 placeholder: text-primary-700 placeholder:p-2  border-none outline-1 outline-slate-300 p-2 placeholder-primary-700"
           placeholder="Pesquisar..."
           value={pesq}
           onChange={handleSearch}
         />
-        <button className="h-12 w-12 rounded-xl bg-secondary-100 items-center justify-center flex ml-2 text-primary-700 duration-300 transition hover:bg-slate-300">
+        <button className=" h-12 max-md:h-10 aspect-square rounded-xl max-md:bg-white bg-secondary-100 items-center justify-center flex ml-2 text-primary-700 duration-300 transition hover:bg-slate-300">
           <svg
             viewBox="0 0 48 48"
             fill="none"
@@ -86,8 +88,9 @@ export function Historico() {
             />
           </svg>
         </button>
+        </div>
       </div>
-      <div className="grid justify-start items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-3 grid-flow-row">
+      <div className="grid justify-center items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-4 max-lg:grid-cols-1 max-xl:grid-cols-2 max-md:grid-cols-1 grid-flow-row max-md:flex max-md:justify-start max-md:items-center max-md:flex-col">
         {filteredConsultas.map((consulta) => (
           <ConsultasPacientes
             key={consulta.id}

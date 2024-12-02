@@ -287,7 +287,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
   };
 
   return (
-    <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[100vh] max-lg:h-[50.8vh] max-xl:h-[83.9vh]  max-2xl:max-h-[500px]]">
+    <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[100vh] max-lg:h-[50.8vh] max-xl:h-[83.9vh]  max-2xl:max-h-[500px] max-2xl:h-full">
       <div className='w-[40%] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b] max-md:h-[80%]'>
 
         {/* Imagem e Input de Arquivo */}
@@ -366,7 +366,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
           Confirmar
         </button>
 
-        <p draggable="true" className={`mt-6 font-poppins font-semibold text-primary-600 text-center duration-500 text-[18px] max-md:mt-6 max-md:text-[13px] max-md:whitespace-nowrap ${Visible ? "opacity-100" : "opacity-0"}`}>
+        <p draggable="true" className={`mt-6 font-poppins font-semibold text-primary-600 text-center duration-500 text-[18px] max-md:mt-6 max-2xl:mt-1 max-md:text-[13px] max-md:whitespace-nowrap ${Visible ? "opacity-100" : "opacity-0"}`}>
           Duração de consulta foi <span className='break-words inline-block w-full'> definida como: {Duração}</span>
         </p>
 
@@ -377,7 +377,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       {/* Componente de Alterações */}
       <div className="w-full h-full flex items-center justify-center flex-col font-poppins font-medium relative rounded-tl-2xl p-6 space-y-10 max-md:p-3 max-md:space-y-5">
 
-        <h1 className='absolute top-10 font-poppins font-semibold text-[25px] text-primary-700 max-md:text-[17px] max-md:whitespace-nowrap max-md:top-3 max-lg:text-[20px] max-lg:text-center max-lg:top-5 max-xl:text-[22px] max-xl:top-5'>Defina seus tópicos e sua formação</h1>
+        <h1 className='absolute top-10 font-poppins font-semibold text-[25px] text-primary-700 max-md:text-[17px] max-md:whitespace-nowrap max-md:top-3 max-lg:text-[20px] max-lg:text-center max-lg:top-5 max-xl:text-[22px] max-xl:top-5 max-2xl:top-4'>Defina seus tópicos e sua formação</h1>
 
         {/* Tópicos */}
         <div className='flex flex-col w-[95%] h-[37%] relative max-md:h-[100%] max-md:w-[100%] max-md:translate-y-4 max-lg:w-[105%] max-xl:w-[105%] max-xl:h-[42%]'>
