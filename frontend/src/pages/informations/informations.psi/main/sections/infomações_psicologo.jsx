@@ -154,6 +154,14 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     }
   };
 
+    // UseEffect que vai disparar quando o estado de Topicos for alterado
+    useEffect(() => {
+      if (Topicos.length > 0) {
+        // Chama a função para enviar os tópicos ao backend
+        enviarTopicos(Topicos);
+      }
+    }, [Topicos]); 
+
   const ExcluirTopicos = (index) => {
     const ValorTopicosNew = Topicos.filter((_, i) => i !== index);
     SetTopicos(ValorTopicosNew);
@@ -188,6 +196,44 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       onChange(e);
     }
   };
+
+  const enviarTopicos = async () => {
+    try {
+      // Obtém o ID do psicólogo do localStorage
+      const idPsi = localStorage.getItem('id');
+      if (!idPsi) {
+        throw new Error('ID do psicólogo não encontrado no localStorage.');
+      }
+  
+      // Verifica se os tópicos existem
+      if (!Topicos || Topicos.length === 0) {
+        throw new Error('Não há tópicos para enviar.');
+      }
+  
+      // Configura a URL da API
+      const url = `http://localhost:3000/user/psicologos/${idPsi}/topicos`;
+  
+      // Faz a requisição POST com os tópicos
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ topicos: Topicos }), // Envia os tópicos armazenados
+      });
+  
+      if (response.ok) {
+        console.log('Tópicos enviados com sucesso!');
+        // Você pode adicionar mais lógica aqui, como limpar os tópicos ou atualizar a UI
+      } else {
+        console.error('Erro ao enviar tópicos:', await response.json());
+      }
+    } catch (error) {
+      console.error('Erro ao enviar tópicos:', error.message);
+    }
+  };
+  
+  
 
 
   return (
@@ -322,11 +368,24 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
               }}
             />
 
-            <button className='absolute right-6 bottom-4' onClick={ValorTopicos} type='submit' >
-              <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+<button
+  className="absolute right-6 bottom-4"
+  onClick={() => {
+    ValorTopicos(); // Primeiro chama a função que manipula os tópicos
+  }}
+  type="submit"
+>
+  <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167"
+      stroke="#1E1E1E"
+      strokeWidth="4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+</button>
+
 
           </div>
         </div>

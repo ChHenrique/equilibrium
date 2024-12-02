@@ -170,6 +170,30 @@ export const infoPc = async (req, res) => {
     }
 };
 
+export const infoPsi = async (req, res) => {
+    const { telefone, cidade, estado } = req.body;
+    const { id } = req.params;  
+
+
+    try {
+        // Atualizar as informações do paciente com base no `id`
+        const result = await db.query(
+            'UPDATE psicologos SET telefone = ?, cidade = ?, estado = ? WHERE id_psi = ?',
+            [telefone, cidade, estado, id]
+        );
+
+        // Verificar se algum registro foi alterado
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Paciente não encontrado' });
+        }
+
+        return res.status(200).json({ message: 'Informações alteradas com sucesso' });
+    } catch (error) {
+        console.error('Erro ao atualizar as informações', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+};
+
 // Rota para atualizar a duração de um psicólogo
 export const updateDuracaoPsicologo = async (req, res) => {
     const { duracao } = req.body;
