@@ -4,7 +4,7 @@ import User_null from '../assets/images/user_null.svg';
 import { useState, useEffect } from 'react';
 
 const LINKS = [
-    { name: 'Procurar Pacientecólogos', href: '/Pacientecologos' },
+    { name: 'Procurar Psicólogos', href: '/psicologos' },
     { name: 'Acessar consultas', href: '/home/paciente' },
 ];
 
