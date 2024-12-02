@@ -59,10 +59,10 @@ export function Alterações() {
                 id="form1"
                 onSubmit={handleSaveChanges}
                 method="post"
-                className="w-[100%] grid grid-cols-1 md:grid-cols-2 gap-8 mt-24 max-md:space-y-2 max-md:translate-y-0 max-md:mt-16 max-lg:mb-10 max-lg:-translate-y-6 max-lg:ml-4 max-lg:mr-4  max-2xl:mb-10 max-2xl:-translate-y-6 max-2xl:ml-4 max-2xl:mr-0 place-items-center max-lg:h-full max-lg:mt-[30%] max-xl:mt-0 relative">
+                className="w-[100%] grid grid-cols-1 md:grid-cols-2 gap-8 mt-24 max-md:space-y-2 max-md:translate-y-0 max-md:mt-16 max-lg:mb-10 max-lg:-translate-y-6 max-lg:ml-4 max-lg:mr-4  max-2xl:mb-10 max-2xl:-translate-y-6 max-2xl:ml-4 max-2xl:mr-0 place-items-center max-lg:h-full max-lg:mt-[30%] max-xl:mt-0 relative ">
                 
                 {/* Div Nome */}
-                <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
+                <div className="flex flex-col w-full max-md:ml-16 md:ml-8 ">
                     <label className="text-[#807e7e]">Nome:</label>
                     <input
                         readOnly
@@ -129,7 +129,7 @@ export function Alterações() {
                 <div className='flex justify-center items-center w-full max-md:mt-11 md:hidden h-fit translate-y-7'>
                 <button
                     onClick={handleSaveChanges}
-                    className="md:absolute md:bottom-4 max-md:h-[7vh] md:left-1/2 md:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-md:w-1/2 max-md:py-2 max-md:-translate-y-3">
+                    className="md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2 whitespace-nowrap bg-[#3B82F6] w-2/6 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:w-2/5 hover:rounded-xl transition-all duration-300 max-md:w-1/2 max-md:py-2 max-md:-translate-y-3 max-md:h-[3vh]">
                     Salvar Alterações
                 </button>
             </div>

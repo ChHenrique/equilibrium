@@ -11,6 +11,8 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
   const [isOpen, setIsOpen] = useState(false); // Controla a visibilidade da lista
   const [Duração, setDuração] = useState('00:00'); // Armazena a duração selecionada
   const [Visible, setVisible] = useState(false)
+  const [LimiteChar, SetLimiteChar] = useState(false)
+  const [LimiteCharFormação, SetLimiteCharFormação] = useState(false)
 
   const inputRef = useRef(null); // Referência para o campo de texto
 
@@ -143,6 +145,9 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     const inputText = e.target.value;
     if (inputText.length < 32) {
       SetTextArea(inputText);
+      SetLimiteChar(false)
+    }else {
+      SetLimiteChar(true)
     }
   };
 
@@ -151,7 +156,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       SetTopicos([...Topicos, TextArea]);
       SetTextArea(''); // Limpa a TextArea após adicionar
       inputRef.current.focus(); // Mantém o foco no campo
-    }
+    } 
   };
 
   const ExcluirTopicos = (index) => {
@@ -160,16 +165,23 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
   };
 
   const PegarValorTextAreaDaFormação = (e) => {
-    SetTextAreaFormação(e.target.value);
-  };
+    const inputTextFormação = e.target.value
 
-  const ValorFormação = () => {
-    if (TextAreaFormação.trim() !== "" && Formação.length <= 6) {
-      setFormação([...Formação, TextAreaFormação]); // Implementando os valores de textarea a formação
-      SetTextAreaFormação(''); // Limpa a TextArea após adicionar
+    if (inputTextFormação.length < 32) {
+        SetTextAreaFormação(inputTextFormação);
+        SetLimiteCharFormação(false)
+    } else {
+        SetLimiteCharFormação(true)
     }
-  };
+};
 
+const ValorFormação = () => {
+    if (TextAreaFormação.trim() !== "" && Formação.length < 6) {
+        setFormação([...Formação, TextAreaFormação])
+        SetTextAreaFormação('')
+        SetLimiteCharFormação(false)
+    }
+};
   const ExcluirFormação = (index) => {
     const ValorFormaçãoNew = Formação.filter((_, i) => i !== index);
     setFormação(ValorFormaçãoNew);
@@ -191,11 +203,11 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
 
   return (
-    <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[85vh]">
+    <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[100vh] max-lg:h-[50.8vh] max-xl:h-[83.9vh] ">
       <div className='w-[40%] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b] max-md:h-[80%]'>
 
         {/* Imagem e Input de Arquivo */}
-        <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative max-md:h-32 max-md:w-32'>
+        <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative max-md:h-32 max-md:w-32 max-lg:h-32 max-lg:w-32'>
           <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
             {selectedImage ? (
               <img src={selectedImage} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
@@ -219,13 +231,13 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
 
 
-        <h1 className='mt-5 font-poppins font-semibold text-primary-700 text-[19px] max-md:text-center max-md:text-[17px]'>
+        <h1 className='mt-5 font-poppins font-semibold text-primary-700 text-[19px] max-md:text-center max-md:text-[17px] max-lg:text-center max-xl:text-center'>
           Duração da Consulta
         </h1>
 
         <div className="relative font-poppins font-semibold text-primary-200 w-36">
           {/* Botão de selecionar a hora*/}
-          <button onClick={toggleDropdown} className="border-b border-primary-800 p-1 text-lg w-full text-[24px] mt-2 text-left">
+          <button onClick={toggleDropdown} className="border-b border-primary-800 p-1 w-full text-[24px] mt-2 text-left">
             {Duração}
 
             <svg width="22" height="22" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className='translate-x-28 absolute -translate-y-6'>
@@ -264,7 +276,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         </div>
 
         {/* Botão Confirmar */}
-        <button type='submit' className="w-36 bg-primary-200 hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-md mt-5 duration-300"
+        <button type='submit' className="w-36 bg-primary-200 hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-md mt-5 duration-300 max-lg:w-3/4"
           onClick={handleSubmit}
         >
           Confirmar
@@ -279,18 +291,18 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       </div>
 
       {/* Componente de Alterações */}
-      <div className="w-full h-full flex items-center justify-center flex-col font-poppins font-medium relative rounded-tl-2xl p-6 space-y-10 max-md:p-3 max-md:space-y-8">
+      <div className="w-full h-full flex items-center justify-center flex-col font-poppins font-medium relative rounded-tl-2xl p-6 space-y-10 max-md:p-3 max-md:space-y-5">
 
-        <h1 className='absolute top-10 font-poppins font-semibold text-[25px] text-primary-700 max-md:text-[17px] max-md:whitespace-nowrap max-md:top-3'>Defina seus tópicos e sua formação</h1>
+        <h1 className='absolute top-10 font-poppins font-semibold text-[25px] text-primary-700 max-md:text-[17px] max-md:whitespace-nowrap max-md:top-3 max-lg:text-[20px] max-lg:text-center max-lg:top-5 max-xl:text-[22px] max-xl:top-5'>Defina seus tópicos e sua formação</h1>
 
         {/* Tópicos */}
-        <div className='flex flex-col w-[95%] h-[37%] relative max-md:h-[100%]'>
+        <div className='flex flex-col w-[95%] h-[37%] relative max-md:h-[100%] max-md:w-[100%] max-md:translate-y-4 max-lg:w-[105%] max-xl:w-[105%] max-xl:h-[42%]'>
 
           <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2 max-md:text-[18px]'>Tópicos</h1>
 
-          <div className='w-full h-full relative whitespace-normal'>
+          <div className='w-full h-full relative whitespace-normal max-md:h-[30vh] '>
 
-            <div className='absolute top-3 left-3 flex flex-wrap space-x-2 w-full h-fit max-w-[98%] max-md:w-[70%]'>
+            <div className='absolute top-3 left-3 flex flex-wrap space-x-2 w-full h-fit max-w-[98%] max-md:w-[98%]'>
 
               {Topicos.map((item, index) => (
                 <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2 max-md:pl-1 max-md:pr-1'>
@@ -311,7 +323,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
             <textarea
               ref={inputRef} // Adicionando referência aqui
               spellCheck
-              className='w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9]'
+              className='w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9] max-md:text-[14px]'
               onChange={PegarValorTextArea}
               value={TextArea}
               onKeyDown={(e) => {
@@ -321,8 +333,9 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
                 }
               }}
             />
+            <p className={`w-full text-center text-red-600 text-[16px] font-poppins duration-500 max-xl:text-[18px] ${LimiteChar ? 'opacity-100' : 'hidden'}`}>Limite de caracteres excedido</p>
 
-            <button className='absolute right-6 bottom-4' onClick={ValorTopicos} type='submit' >
+            <button className='absolute right-6 bottom-4 max-md:h-6 max-md:w-6' onClick={ValorTopicos} type='submit' >
               <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -332,17 +345,17 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         </div>
 
         {/* Formação */}
-        <div className='flex flex-col w-[95%] h-[37%] relative'>
+        <div className='flex flex-col w-[95%] h-[37%] relative max-md:w-[100%] max-lg:w-[105%] max-xl:w-[105%]'>
 
-          <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2'>Formação</h1>
+          <h1 className='font-poppins font-bold text-[23px] text-primary-700 ml-2 mb-2 max-md:text-[18px]'>Formação</h1>
 
-          <div className='w-full h-full relative whitespace-normal'>
+          <div className='w-full h-full relative whitespace-normal max-md:h-[30vh]'>
 
             <div className='absolute top-3 left-3 flex flex-wrap space-x-2 w-full h-fit max-w-[98%]'>
 
               {Formação.map((item, index) => (
 
-                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2'>
+                <div key={index} className='canela flex items-center h-fit space-x-3 bg-[#9FB9EB] pl-2 p-1 pr-2 rounded-lg mb-2 max-md:pl-1 max-md:pr-1'>
 
                   <h3 id='letra' className='font-poppins text-[#121926] break-words'>{item}</h3>
                   <div onClick={() => ExcluirFormação(index)} className='xis h-full justify-center items-center'>
@@ -359,7 +372,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
             </div>
 
             <textarea
-              className='w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9]'
+              className='w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9]  max-md:text-[14px]'
               onChange={PegarValorTextAreaDaFormação}
               value={TextAreaFormação}
               onKeyDown={(e) => {
@@ -369,6 +382,8 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
                 }
               }}
             />
+
+            <p className={`w-full text-center text-red-600 text-[16px] font-poppins duration-500 max-xl:text-[18px] max-xl:mb-1 ${LimiteCharFormação ? 'opacity-100' : 'hidden'}`}>Limite de caracteres excedido</p>
 
             <button className='absolute right-6 bottom-4' onClick={ValorFormação}>
               <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
