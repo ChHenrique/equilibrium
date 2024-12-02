@@ -249,8 +249,8 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
 
   return (
-    <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[100vh] max-lg:h-[50.8vh] max-xl:h-[83.9vh]  max-2xl:max-h-[500px] max-2xl:h-full">
-      <div className='w-[40%] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b] max-md:h-[80%]'>
+    <div className="w-[100%] h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[120vh] max-lg:max-h-[560px] max-xl:h-[83.9vh]  max-2xl:max-h-[500px] max-2xl:h-full max-md:max-h-[800px]">
+      <div className='w-[40%] h-full bg-white flex flex-col items-center relative rounded-bl-2xl rounded-tl-2xl border-[#6b6b6b] max-md:h-[105%] max-md:max-h-[460px]'>
 
         {/* Imagem e Input de Arquivo */}
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative max-md:h-32 max-md:w-32 max-lg:h-32 max-lg:w-32'>

@@ -87,7 +87,7 @@ export function Principal() {
 
     return (
         <div className="w-[90vw] h-[80vh] flex justify-center items-center space-x-5 mt-2 max-md:w-full max-md:h-full max-md:mr-[50%] max-md:ml-[45%] max-md:mt-8 max-lg:w-[97vw] max-2xl:h-[560px]">
-            <div className="w-fit h-full bg-white mr-auto rounded-2xl flex flex-col items-center max-md:hidden p-1 max-lg:h-[80%] max-xl:h-full " id="barra">
+            <div className="w-fit h-full bg-white mr-auto rounded-2xl flex flex-col items-center max-md:hidden p-1 max-lg:h-full max-xl:h-full " id="barra">
                 {button.map((botao) => (
                     <button key={botao.id} className="w-full ml-5" onClick={() => SetIdAtivado(botao.id)}>
                         <div className={`bg-[#8CB3FF] w-11/12 h-12 mt-3 rounded-xl flex justify-evenly items-center font-poppins text-[#465A7F] font-medium text-sm transition-colors duration-300 ease-in-out transform p-1 text-nowrap ${idAtivado === botao.id
