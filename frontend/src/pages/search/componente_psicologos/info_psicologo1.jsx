@@ -16,6 +16,16 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
         setTopico((prevTopico) => [...prevTopico, e.target.value]);
       };
 
+    const MouseDentro = (e) => {
+        e.preventDefault()
+        setMouseDentro_topico(!mouseDentroTopico)
+    }
+
+    const MouseDentroFormação = (e) => {
+        e.preventDefault()
+        setMouseDentro(!mouseFora)
+    }
+
 
     return (
         <div className="w-[75vw] h-auto overflow-y-visible bg-[#F1F5F9] rounded-2xl flex flex-col md:flex-row max-md:flex-row items-center p-4 md:p-6 max-md:w-[87%] max-md:h-36 justify-between max-md:p-5 max-md:space-x-4" draggable="false">
@@ -41,7 +51,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                 </h1>
 
                 <h3 className="mt-1 text-xs md:text-md font-satoshi font-medium text-[#355081] relative max-md:mt-0 ">
-                    <a href="#" className="flex items-center cursor-pointer w-fit" onClick={() => setMouseDentro(!mouseFora)}>
+                    <a href="#" className="flex items-center cursor-pointer w-fit" onClick={MouseDentroFormação}>
                         Formação <svg
                             className={`w-3 h-3 text-[#355081] ml-1 relative transform -translate-y-1/5 transition-transform duration-300 ${mouseFora ? 'rotate-180' : ''}`}
                             fill="none"
@@ -60,7 +70,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                 </h3>
 
                 <h3 className="mt-1 text-xs md:text-md font-satoshi font-medium text-[#3c4961] relative whitespace-nowrap">
-                    <a href="#" className="flex items-center cursor-pointer w-fit" onClick={() => setMouseDentro_topico(!mouseDentroTopico)}>
+                    <a href="#" className="flex items-center cursor-pointer w-fit" onClick={MouseDentro}>
                         Tópicos Abordáveis <svg
                             className={`w-3 h-3 text-[#355081] ml-1 relative transform -translate-y-1/5 transition-transform duration-300 ${mouseDentroTopico ? 'rotate-180' : ''}`}
                             fill="none"
@@ -72,7 +82,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                         </svg>
                     </a>
                     {mouseDentroTopico && (
-     <div className="w-96 max-h-40 overflow-x-hidden max-md:max-h-20 overflow-y-auto bg-slate-200 absolute text-[#3c4961] rounded-md p-1 pr-6 text-xs font-poppins z-50 grid gap-1 grid-cols-4 max-md:w-[250px] max-md:grid-cols-2 overflow-scroll ">
+     <div className="w-96 max-h-20 overflow-x-hidden max-md:max-h-20 overflow-y-auto bg-slate-200 absolute text-[#3c4961] rounded-md p-1 pr-6 text-xs font-poppins z-50 grid gap-1 grid-cols-4 max-md:w-[250px] max-md:grid-cols-2  scrollbar-thin">
      {(Array.isArray(topicos) ? topicos : []).map((topico, index) => (
          <div key={index} className="h-7 w-full border border-slate-600 rounded-xl p-1 text-center mx-3 my-1 max-md:mx-1 max-md:white whitespace-normal">
              {topico}

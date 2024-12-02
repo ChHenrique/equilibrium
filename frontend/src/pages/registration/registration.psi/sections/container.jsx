@@ -10,7 +10,7 @@ export function Container() {
     const [errors, setErrors] = React.useState({})
 
     return (
-        <div className='bg-white flex-col flex items-center -p-2 h-[94vh] w-[65vw] relative rounded-[10px] max-2xl:h-[95vh] max-sm:h-[80vh] max-sm:w-[95vw] max-lg:h-[75vh] max-lg:w-[85vw] max-xl:h-[95vh] max-xl:w-[80vw] max-md:h-[80vh]'>
+        <div className='bg-white flex-col flex items-center -p-2 h-[94vh] w-[65vw] relative rounded-[10px] max-2xl:h-[95vh] max-md:h-[80vh] max-md:w-[95vw] max-lg:h-[75vh] max-lg:w-[85vw] max-xl:h-[95vh] max-xl:w-[80vw]  max-md:max-h-[570px] max-lg:max-h-[790px] max-2xl:max-h-[650px]'>
 
             <Header />
 
@@ -24,7 +24,7 @@ export function Container() {
             <img
                 src={logo}
                 alt="Logo"
-                className="absolute bottom-3 right-3 h-[8em] w-fit max-xl:h-[5em] max-2xl:h-[7em] max-sm:hidden"
+                className="absolute bottom-3 right-3 h-[8em] w-fit max-xl:h-[5em] max-2xl:h-[7em] max-md:hidden"
             />
             </a>
         </div>

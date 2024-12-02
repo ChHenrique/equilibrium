@@ -6,13 +6,12 @@ import { SearchProvider } from "./sections/seach_provider"; // Corrigido o camin
 
 export function Search() {
     return (
-        <div className="bg-primary-300 h-full w-screen flex flex-col items-center scrollbar-thin">
+        <div className="bg-primary-300 h-full w-screen flex flex-col items-center scrollbar-thin overflow-x-hidden">
             <HeaderLog />
 
             <SearchProvider>
                 <Seach_psicologos />
             </SearchProvider>
-            
             <Footer_Search />
         </div>
     );

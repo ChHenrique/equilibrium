@@ -3,7 +3,7 @@ export function Bolas() {
   return (
   <div>
       
-  <div className="absolute top-[0] right-[0] w-[100px] h-[100px] bg-[#465A7F] rounded-bl-[100px] rounded-tr-[16px] max-md:w-[75px] max-md:h-[75px]"></div>
+  <div className="absolute top-[0] right-[0] w-[100px] h-[100px] bg-[#465A7F] rounded-bl-[100px] rounded-tr-[16px] max-md:w-[75px] max-md:h-[75px] "></div>
 
   <div className="absolute w-[100px] h-[100px] bg-[#465A7F] left-[0px] bottom-[0px] rounded-tr-[100px] rounded-bl-[16px] max-md:hidden max-xl:hidden max-2xl:hidden"></div>
 

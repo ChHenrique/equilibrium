@@ -126,7 +126,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
 };
 
   return (
-    <div className="w-full h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[82vh] max-lg:h-[50vh]">
+    <div className="w-full h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[82vh] max-lg:h-[50vh] max-2xl:max-h-[500px]">
 
       <h1 className=" max-md:mt-4 whitespace-nowrap font-poppins font-bold text-[23px] max-md:text-[20px] text-primary-700 md:hidden">
                 Altere e salve suas Alterações!
@@ -171,7 +171,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
         </h1>
 
           {/* Form dos inputs e labels */}
-          <form id="form1" method="post" onSubmit={handleSaveChanges} className="grid max-md:grid-cols-1 grid-cols-2 items-center flex-col  ml-12 w-full space-y-10 place-items-center -translate-y-8 max-md:ml-0 max-md:-translate-y-0 max-md:translate-y-7 max-lg:ml-0 max-xl:ml-3">
+          <form id="form1" method="post" onSubmit={handleSaveChanges} className="grid max-md:grid-cols-1 grid-cols-2 items-center flex-col  ml-12 w-full space-y-10 place-items-center -translate-y-8 max-md:ml-0 max-md:-translate-y-0 max-md:translate-y-7 max-lg:ml-0 max-xl:ml-3 ">
             {/* Div Nome */}
             
             <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center max-md:relative">
@@ -249,7 +249,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                 className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 max-md:items-center"
               />
             </div>
-                <button className="md:absolute bottom-0 max-2xl:-translate-x-8 max-2xl:translate-y-32 whitespace-nowrap bg-[#3B82F6] w-1/3 px-2 py-1 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700  hover:rounded-xl transition-all duration-300 mb-3 max-md:h-fit max-md:-translate-y-2 max-md:translate-x-1 max-md:w-1/2 max-lg:translate-x-0 max-lg:w-1/2 max-lg:py-1 max-lg:px-1 max-lg:h-fit max-xl:w-1/2 max-xl:-translate-x-1 max-xl:bottom-4">
+                <button className="md:absolute bottom-0 max-2xl:-translate-x-8 max-2xl:translate-y-32 whitespace-nowrap bg-[#3B82F6] w-1/3 px-2 py-1 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700  hover:rounded-xl transition-all duration-300 mb-3 max-md:h-fit max-md:py-2 max-md:-translate-y-2 max-md:translate-x-1 max-md:w-1/2 max-lg:translate-x-0 max-lg:w-1/2 max-lg:py-1 max-lg:px-1 max-lg:h-fit max-xl:w-1/2 max-xl:-translate-x-1 max-xl:bottom-2">
                   Salvar Alterações
                 </button>
           </form>

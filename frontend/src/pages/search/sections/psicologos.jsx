@@ -66,7 +66,7 @@ export function Seach_psicologos() {
         <section className="flex flex-col items-center space-y-10 w-[85vw] h-[80vh] mt-10 px-4 md:px-8 max-md:w-[100vw] relative">
             <div className="flex items-center justify-center flex-col w-full">
                 <div className="w-full h-auto flex justify-center items-center space-x-4">
-                    <div className="flex items-center bg-[#F1F5F9] rounded-[6px] w-[68vw] h-[4vh] p-1 max-xl:w-[60vw]  max-2xl:w-[80%] max-md:h-9 ">
+                    <div className="flex items-center bg-[#F1F5F9] rounded-[6px] w-[68vw] h-[4vh] p-1 max-xl:w-[60vw]  max-2xl:w-[80%] max-md:h-9 max-2xl:h-9 max-2xl:max-h-[36px]">
                         <input
                             type="text"
                             placeholder="Pesquisar..."
@@ -87,7 +87,7 @@ export function Seach_psicologos() {
                                 setSelected(e.target.value);
                                 setInputSearch(''); // Limpa a pesquisa ao mudar o filtro
                             }}
-                            className="appearance-none border w-full border-[#F1F5F9] text-slate-600 text-xs h-[4vh]  bg-[#F1F5F9] rounded-[6px] pl-3 pr-10 focus:outline-none max-md:w-28 max-md:mr-1  max-lg: max-md:h-9"
+                            className="appearance-none border w-full border-[#F1F5F9] text-slate-600 text-xs h-[4vh]  bg-[#F1F5F9] rounded-[6px] pl-3 pr-10 focus:outline-none max-md:w-28 max-md:mr-1  max-lg: max-md:h-9 max-2xl:h-9 max-2xl:max-h-9"
                         >
                             <option value="">Filtrar por...</option>
                             <option value="nome">Nome</option>
@@ -126,7 +126,6 @@ export function Seach_psicologos() {
                 </div>
                 <div className="h-[10vh]"></div>
             </div>
-                    
                 <Footer_Mobile className="fixed"/>
         </section>
     );

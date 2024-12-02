@@ -48,9 +48,9 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
     
 
     return (
-        <article className="flex flex-col justify-center items-center p-5 w-full max-w-4xl h-auto font-satoshi-Regular max-sm:-translate-y-4 max-2xl:p-0 max-xl:p-0">
+        <article className="flex flex-col justify-center items-center p-5 w-full max-w-4xl h-auto font-satoshi-Regular max-md:-translate-y-4 max-2xl:p-0 max-xl:p-0">
 
-            <form ref={ref} onSubmit={handleSubmit} className="w-4/6 max-w-1xl h-auto mt-12 ml-5 max-sm:w-full space-y-6 max-xl:mt-8 max-2xl:mt-6 max-sm:space-y-4 max-sm:ml-9 max-lg:space-y-12 max-xl:space-y-6 max-sm:mt-8 max-lg:w-[90%] max-2xl:space-y-2"> 
+            <form ref={ref} onSubmit={handleSubmit} className="w-4/6 max-w-1xl h-auto mt-12 ml-5 max-md:w-full space-y-6 max-xl:mt-8 max-2xl:mt-6 max-md:space-y-4 max-md:ml-9 max-lg:space-y-10 max-xl:space-y-6 max-md:mt-6 max-lg:w-[90%] max-2xl:space-y-0"> 
 
                 <Name nameError={errors.name} surnameError={errors.surname} />
                 <User_Bday usernameError={errors.username} birthdayError={errors.birthday} />
@@ -67,7 +67,7 @@ export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
                     type="submit"
                     className="bg-[#3B82F6] p-0.5 text-white border border-[#3B82F6] w-80 h-auto rounded-[10px] 
         font-satoshi font-extrabold text-lg mt-11 hover:bg-[#1c3b79] 
-        transition-all duration-200 hover:rounded-[15px] -translate-y-10 max-xl:mt-0 max-2xl:translate-y-0 max-2xl:mt-0 max-sm:w-44 max-xl:translate-y-0 max-sm:translate-y-0 max-sm:mr-8"
+        transition-all duration-200 hover:rounded-[15px] -translate-y-10 max-xl:mt-0 max-2xl:translate-y-0 max-2xl:mt-0 max-md:w-44 max-xl:translate-y-0 max-md:translate-y-0 max-md:mr-8"
                 >
                     Registrar
                 </button>

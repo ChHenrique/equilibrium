@@ -22,8 +22,8 @@ export function CPF_CRP({ cpfError, crpError }) {
     };
 
     return (
-        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between max-sm:mr-2 max-sm:flex-row max-sm:h-fit max-sm:p-0 max-sm:mt-10 max-xl:p-0 max-sm:w-[90%]">
-            <div className="flex flex-col sm:w-2/5">
+        <div className="flex flex-col md:flex-row gap-5 p-4 justify-between max-md:mr-2 max-md:flex-row max-md:h-fit max-md:p-0 max-md:mt-10 max-xl:p-0 max-md:w-[90%]">
+            <div className="flex flex-col md:w-2/5">
                 <label htmlFor="cpf" className={`text-gray-700 mb-2 ${cpfError ? 'text-red-500' : ''}`}>
                     {cpfError || 'CPF:'}
                 </label>
@@ -40,7 +40,7 @@ export function CPF_CRP({ cpfError, crpError }) {
                 />
             </div>
 
-            <div className="flex flex-col sm:w-2/5">
+            <div className="flex flex-col md:w-2/5">
             <label htmlFor="crp" className={`text-gray-700 mb-2 ${crpError ? 'text-red-500' : ''}`}>
                 {crpError || 'CRP:'}
             </label>

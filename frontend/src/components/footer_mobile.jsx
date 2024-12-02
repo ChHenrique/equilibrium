@@ -105,8 +105,8 @@ export function Footer_Mobile() {
 
     return (
             <div className="flex flex-col justify-center items-center bg-slate-50 w-screen md:hidden fixed bottom-0 p-2 z-50">
-                <div className="flex w-full justify-center items-center space-x-6">
-                    <div className='w-fit absolute bottom-20 translate-x-[140px]'>
+                <div className="flex w-full justify-center items-center space-x-7 mr-9">
+                    <div className='w-fit absolute bottom-20 translate-x-[149.5px]'>
                         {VisibleInfoLogOut && (
                             <div className='bg-white rounded-2xl w-fit relative'>
                                 <InfoLogOut />

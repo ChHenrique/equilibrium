@@ -6,7 +6,7 @@ import "../../../log,reg.css"
 
 export function Login_pc(){
     return(
-        <div className = 'bg-primary-300 flex-col flex justify-center items-center w-full h-[100vh]  overflow-hidden'>
+        <div className = 'bg-primary-300 flex-col flex justify-center items-center w-full h-[100vh]  overflow-hidden overflow-x-hidden'>
 
             <img id='l1' src={linha1} alt="" className='absolute right-0 top-0'/>
             <img id='l2' src={linha2} alt="" className='absolute right-0 -top-20'/>

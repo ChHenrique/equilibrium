@@ -2,8 +2,8 @@ import React from 'react';
 
 export function Name({ nameError, surnameError }) {
     return (
-        <div className="flex flex-col sm:flex-row gap-5 p-4 justify-between max-sm:p-0 max-sm:mr-2 max-sm:flex-row max-xl:p-0 max-sm:w-[90%]">
-        <div className="flex flex-col sm:w-2/5">
+        <div className="flex flex-col md:flex-row gap-5 p-4 justify-between max-md:p-0 max-md:mr-2 max-md:flex-row max-xl:p-0 max-md:w-[90%]">
+        <div className="flex flex-col md:w-2/5">
             <label htmlFor="name" className={`text-gray-700 mb-2 ${nameError ? 'text-red-500' : ''}`}>
                 {nameError || 'Nome:'}
             </label>
@@ -15,7 +15,7 @@ export function Name({ nameError, surnameError }) {
                 autoComplete="given-name"
             />
         </div>
-        <div className="flex flex-col sm:w-2/5">
+        <div className="flex flex-col md:w-2/5">
             <label htmlFor="surname" className={`text-gray-700 mb-2 ${surnameError ? 'text-red-500' : ''}`}>
                 {surnameError || 'Sobrenome:'}
             </label>
