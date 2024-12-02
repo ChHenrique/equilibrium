@@ -149,8 +149,8 @@ const consultasFiltradas = consultas.filter((consulta) => {
 
 
   return (
-    <div className="w-full h-full flex items-center flex-col max-md:bg-primary-300 min-w-fit">
-      <div className="w-[95%] h-16 flex justify-between max-md:flex-col items-start m-6 ">
+    <div className="w-full h-full flex items-center flex-col max-md:bg-primary-300 min-w-fit ">
+      <div className="w-[95%] h-16 flex justify-between max-md:flex-col items-start m-6 max-md:bg-primary-300 ">
         <h1 className="text-2xl ml-2 mt-2  max-md:text-4xl max-md:font-bold  text-primary-700 font-medium mb-6">Consultas</h1>
         <div className=" w-full flex-row flex mac-md:justify-start justify-end items-end max-md:p-2">
         <input
@@ -178,7 +178,7 @@ const consultasFiltradas = consultas.filter((consulta) => {
         </button>
         </div>
       </div>
-      <div className="grid justify-center items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-4 max-lg:grid-cols-1 max-xl:grid-cols-2 max-md:grid-cols-1 grid-flow-row max-md:flex max-md:justify-start max-md:items-center max-md:flex-col">
+      <div className="grid justify-center translate-y-10 items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-4 max-lg:grid-cols-1 max-xl:grid-cols-2 max-md:grid-cols-1 grid-flow-row max-md:flex max-md:justify-start max-md:items-center max-md:flex-col">
         {consultasFiltradas.map((consulta) => (
           <ConsultasPacientes
             key={consulta.id}
@@ -218,6 +218,7 @@ const consultasFiltradas = consultas.filter((consulta) => {
           </div>
         </div>
       )}
+      <div className="h-14"></div>
     </div>
   );
 }
