@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ConsultasPacientes } from "./Components/consult_user";
+import nullimg from '../../../assets/images/user_null.svg';
+
 
 export function Consultas() {
   const [consultas, setConsultas] = useState([]);
@@ -78,65 +80,95 @@ export function Consultas() {
   useEffect(() => {
     async function fetchConsultas() {
       const idPsicologo = localStorage.getItem("id");
-
+  
       if (!idPsicologo) {
         console.error("ID do psicólogo não encontrado no localStorage.");
         return;
       }
-
+  
       try {
         const response = await fetch(`http://localhost:3000/consultas/psicologos/${idPsicologo}`);
         const data = await response.json();
+  
+        const consultasComFotos = await Promise.all(
+          data.map(async (consulta) => {
+            try {
+              const fotoResponse = await fetch(
+                `http://localhost:3000/user/pacientes/${consulta.id_paciente}/foto`
+              );
+              const fotoData = await fotoResponse.json();
+        
+              const fotoPath = fotoData.foto
+  ? `http://localhost:3000/${fotoData.foto.replace(/\\/g, "/")}`
+  : nullimg;
 
-        const consultasFormatadas = data.map((consulta) => {
-          const duracaoFormatada = consulta.duracao.slice(0, 5);
-          const horarioFormatado = consulta.horario.slice(0, 5);
-          const dataConsulta = new Date(consulta.data);
-          const dataAtual = new Date();
-          const mesmaData = dataConsulta.toLocaleDateString() === dataAtual.toLocaleDateString();
+        
+              const duracaoFormatada = consulta.duracao.slice(0, 5);
+              const horarioFormatado = consulta.horario.slice(0, 5);
+              const dataConsulta = new Date(consulta.data);
+              const dataAtual = new Date();
+              const mesmaData = dataConsulta.toLocaleDateString() === dataAtual.toLocaleDateString();
 
-          let able = 0;
-          let accept = 0;
+              console.log("Foto path:", fotoPath);
+              console.log("Foto data:", fotoData);
 
-          if (mesmaData) {
-            const [horarioHora, horarioMinuto] = consulta.horario.split(":");
-            const horarioConsulta = new Date(dataConsulta);
-            horarioConsulta.setHours(horarioHora);
-            horarioConsulta.setMinutes(horarioMinuto);
 
-            const diffTime = horarioConsulta - dataAtual;
-            const diffMinutos = diffTime / 60000;
-
-            if (diffMinutos <= 10) {
-              able = 1;
+        
+              let able = 0;
+              let accept = 0;
+        
+              if (mesmaData) {
+                const [horarioHora, horarioMinuto] = consulta.horario.split(":");
+                const horarioConsulta = new Date(dataConsulta);
+                horarioConsulta.setHours(horarioHora);
+                horarioConsulta.setMinutes(horarioMinuto);
+        
+                const diffTime = horarioConsulta - dataAtual;
+                const diffMinutos = diffTime / 60000;
+        
+                if (diffMinutos <= 10) {
+                  able = 1;
+                }
+              }
+        
+              if (consulta.status === "pendente") {
+                accept = 1;
+              }
+        
+              return {
+                ...consulta,
+                duracao: duracaoFormatada,
+                horario: horarioFormatado,
+                fotoPaciente: fotoPath,
+                able,
+                accept,
+              };
+            } catch (err) {
+              console.error(`Erro ao buscar foto do paciente ${consulta.id_paciente}:`, err);
+              return {
+                ...consulta,
+                fotoPaciente: nullimg, // Define a imagem padrão em caso de erro
+              };
             }
-          }
-
-          if (consulta.status === "pendente") {
-            accept = 1;
-          }
-
-          return {
-            ...consulta,
-            duracao: duracaoFormatada,
-            horario: horarioFormatado,
-            able,
-            accept,
-          };
-        });
-
-        setConsultas(consultasFormatadas);
+          })
+        );
+        
+  
+        setConsultas(consultasComFotos);
       } catch (error) {
         console.error("Erro ao buscar consultas:", error);
       }
     }
-
+  
     fetchConsultas();
 
+    
+  
     const intervalId = setInterval(fetchConsultas, 30000);
-
+  
     return () => clearInterval(intervalId);
   }, []);
+  
 
 
 // Filtro para o campo de pesquisa
@@ -181,19 +213,21 @@ const consultasFiltradas = consultas.filter((consulta) => {
       <div className="grid justify-center translate-y-10 items-start w-full h-full p-8 overflow-x-clip overflow-y-scroll grid-cols-4 max-lg:grid-cols-1 max-xl:grid-cols-2 max-md:grid-cols-1 grid-flow-row max-md:flex max-md:justify-start max-md:items-center max-md:flex-col">
         {consultasFiltradas.map((consulta) => (
           <ConsultasPacientes
-            key={consulta.id}
-            nome={consulta.nome_paciente}
-            date={new Date(consulta.data).toLocaleDateString("pt-BR")}
-            horario={consulta.horario}
-            duracao={consulta.duracao}
-            able={consulta.able}
-            accept={consulta.accept}
-            onConfirm={() => handleConfirmarConsulta(consulta.id)}
-            onCancel={() => {
-              setConsultaCancelada(consulta.id);
-              setConfirmCancel(true);
-            }}
-          />
+          key={consulta.id}
+          nome={consulta.nome_paciente}
+          date={new Date(consulta.data).toLocaleDateString("pt-BR")}
+          horario={consulta.horario}
+          duracao={consulta.duracao}
+          foto={consulta.fotoPaciente || nullimg} // Fallback redundante para segurança
+          able={consulta.able}
+          accept={consulta.accept}
+          onConfirm={() => handleConfirmarConsulta(consulta.id)}
+          onCancel={() => {
+            setConsultaCancelada(consulta.id);
+            setConfirmCancel(true);
+          }}
+        />
+        
         ))}
       </div>
 
