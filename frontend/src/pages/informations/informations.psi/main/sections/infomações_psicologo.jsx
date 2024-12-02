@@ -23,15 +23,15 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         try {
           const response = await fetch(`http://localhost:3000/user/psicologos/${idPsi}`);
           const data = await response.json();
-  
+
           if (response.ok) {
             // Pega a duração da API e formata para o formato 00:00
             let duracao = data.duracao || '00:00'; // Valor padrão '00:00' caso não tenha duração
-            
+
             // Se a duração estiver no formato em minutos, converte para o formato 00:00
             const [hours, minutes] = duracao.split(':').map(Number);
             const formattedDuration = `${String(hours).padStart(2, '0')}:${String(minutes || 0).padStart(2, '0')}`;
-  
+
             setDuração(formattedDuration); // Passa a duração formatada para o estado
           } else {
             console.error("Erro ao obter a duração");
@@ -41,10 +41,10 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         }
       }
     };
-  
+
     fetchDuração();
   }, [idPsi]); // Executa a requisição quando o idPsi mudar
-  
+
 
 
   // Efeito para buscar a imagem do banco de dados
@@ -69,7 +69,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
 
   const handleUpdateTopicosFormacao = async () => {
     const idPsi = localStorage.getItem("id"); // Obtém o id do psicólogo
-  
+
     if (idPsi) {
       try {
         // Monta o objeto com os tópicos e formações
@@ -77,7 +77,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
           topicos: Topicos,
           formacao: Formação
         };
-  
+
         // Envia a requisição POST com os dados
         const response = await fetch(`http://localhost:3000/updatetopicosformacao/${idPsi}`, {
           method: 'POST',
@@ -86,7 +86,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
           },
           body: JSON.stringify(data), // Envia os dados como JSON
         });
-  
+
         if (response.ok) {
           console.log('Tópicos e formação atualizados com sucesso!');
           // Aqui você pode adicionar um feedback visual, como um alerta ou mensagem de sucesso
@@ -98,7 +98,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       }
     }
   };
-  
+
 
   const handleSubmit = async () => {
     try {
@@ -146,7 +146,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     if (inputText.length < 32) {
       SetTextArea(inputText);
       SetLimiteChar(false)
-    }else {
+    } else {
       SetLimiteChar(true)
     }
   };
@@ -156,8 +156,16 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       SetTopicos([...Topicos, TextArea]);
       SetTextArea(''); // Limpa a TextArea após adicionar
       inputRef.current.focus(); // Mantém o foco no campo
-    } 
+    }
   };
+
+  // UseEffect que vai disparar quando o estado de Topicos for alterado
+  useEffect(() => {
+    if (Topicos.length > 0) {
+      // Chama a função para enviar os tópicos ao backend
+      enviarTopicos(Topicos);
+    }
+  }, [Topicos]);
 
   const ExcluirTopicos = (index) => {
     const ValorTopicosNew = Topicos.filter((_, i) => i !== index);
@@ -168,20 +176,20 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
     const inputTextFormação = e.target.value
 
     if (inputTextFormação.length < 32) {
-        SetTextAreaFormação(inputTextFormação);
-        SetLimiteCharFormação(false)
+      SetTextAreaFormação(inputTextFormação);
+      SetLimiteCharFormação(false)
     } else {
-        SetLimiteCharFormação(true)
+      SetLimiteCharFormação(true)
     }
-};
+  };
 
-const ValorFormação = () => {
+  const ValorFormação = () => {
     if (TextAreaFormação.trim() !== "" && Formação.length < 6) {
-        setFormação([...Formação, TextAreaFormação])
-        SetTextAreaFormação('')
-        SetLimiteCharFormação(false)
+      setFormação([...Formação, TextAreaFormação])
+      SetTextAreaFormação('')
+      SetLimiteCharFormação(false)
     }
-};
+  };
   const ExcluirFormação = (index) => {
     const ValorFormaçãoNew = Formação.filter((_, i) => i !== index);
     setFormação(ValorFormaçãoNew);
@@ -200,6 +208,44 @@ const ValorFormação = () => {
       onChange(e);
     }
   };
+
+  const enviarTopicos = async () => {
+    try {
+      // Obtém o ID do psicólogo do localStorage
+      const idPsi = localStorage.getItem('id');
+      if (!idPsi) {
+        throw new Error('ID do psicólogo não encontrado no localStorage.');
+      }
+
+      // Verifica se os tópicos existem
+      if (!Topicos || Topicos.length === 0) {
+        throw new Error('Não há tópicos para enviar.');
+      }
+
+      // Configura a URL da API
+      const url = `http://localhost:3000/user/psicologos/${idPsi}/topicos`;
+
+      // Faz a requisição POST com os tópicos
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ topicos: Topicos }), // Envia os tópicos armazenados
+      });
+
+      if (response.ok) {
+        console.log('Tópicos enviados com sucesso!');
+        // Você pode adicionar mais lógica aqui, como limpar os tópicos ou atualizar a UI
+      } else {
+        console.error('Erro ao enviar tópicos:', await response.json());
+      }
+    } catch (error) {
+      console.error('Erro ao enviar tópicos:', error.message);
+    }
+  };
+
+
 
 
   return (
@@ -335,11 +381,24 @@ const ValorFormação = () => {
             />
             <p className={`w-full text-center text-red-600 text-[16px] font-poppins duration-500 max-xl:text-[18px] ${LimiteChar ? 'opacity-100' : 'hidden'}`}>Limite de caracteres excedido</p>
 
-            <button className='absolute right-6 bottom-4 max-md:h-6 max-md:w-6' onClick={ValorTopicos} type='submit' >
+            <button
+              className="absolute right-6 bottom-4"
+              onClick={() => {
+                ValorTopicos(); // Primeiro chama a função que manipula os tópicos
+              }}
+              type="submit"
+            >
               <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                <path
+                  d="M43.6667 2L20.75 24.9167M43.6667 2L29.0833 43.6667L20.75 24.9167M43.6667 2L2 16.5833L20.75 24.9167"
+                  stroke="#1E1E1E"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
+
 
           </div>
         </div>

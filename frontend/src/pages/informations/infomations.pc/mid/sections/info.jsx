@@ -1,13 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Alterações } from './alterações';
 
 export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
   const [selectedImage, setSelectedImage] = useState(imagem);
+  const [isUploading, setIsUploading] = useState(false);
 
-  const handleImageChange = (e) => {
-    setSelectedImage(e.target.files[0]);
-    onChange(e);
+  useEffect(() => {
+    if (typeof selectedImage !== 'string' && selectedImage) {
+      const imageUrl = URL.createObjectURL(selectedImage);
+      return () => URL.revokeObjectURL(imageUrl);
+    }
+  }, [selectedImage]);
+  
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+      setIsUploading(true);
+  
+      const formData = new FormData();
+      formData.append("foto", file);
+  
+      const token = localStorage.getItem("token");
+      try {
+        const response = await fetch("http://localhost:3000/user/pacientes/upload-foto", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          body: formData
+        });
+  
+        if (!response.ok) {
+          throw new Error("Erro ao fazer o upload da imagem");
+        }
+        console.log("Imagem enviada com sucesso!");
+      } catch (error) {
+        console.error("Erro ao enviar imagem:", error);
+      } finally {
+        setIsUploading(false);
+      }
+    }
   };
+  
+
+  
+
+    // Pega a foto do psicólogo
+    useEffect(() => {
+      const idPaciente = localStorage.getItem("id");
+      if (idPaciente) {
+        fetch(`http://localhost:3000/user/pacientes/${idPaciente}/foto`)
+          .then(response => {
+            if (!response.ok) throw new Error("Erro ao buscar a imagem");
+            return response.json();
+          })
+          .then(data => {
+            const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}`;
+            setSelectedImage(imageUrl);
+          })
+          .catch(error => {
+            console.error("Erro ao buscar imagem:", error);
+            setSelectedImage(null); // Evita exibir conteúdo inválido
+          });
+      }
+    }, []);
+    
+    
 
   return (
     <div className="w-[90vw] h-[80vh] bg-white rounded-lg flex items-center relative max-md:flex-col max-lg:h-[70%] max-xl:h-[100%]">
@@ -34,18 +94,23 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_pc }) {
 
           {/* Label que contém a imagem ou o símbolo de adição */}
           <label htmlFor="image-input" className="w-full h-full rounded-full flex justify-center items-center">
+  {selectedImage ? (
+    <img
+      src={typeof selectedImage === 'string' ? selectedImage : URL.createObjectURL(selectedImage)}
+      alt="Imagem selecionada"
+      className="h-full w-full rounded-full object-cover"
+    />
+  ) : (
+    <span className="text-5xl text-white items-center flex mb-2">+</span>
+  )}
+</label>
 
-            {/* Se a imagem foi selecionada, exibimos a imagem */}
-            {selectedImage ? (
-              <img src={URL.createObjectURL(selectedImage)} alt="Imagem selecionada" className="h-full w-full rounded-full object-cover" />
-            ) : (
-              // Se a imagem não foi selecionada, não exibimos a imagem
-              <span className="text-5xl text-white items-center flex mb-2" draggable="true">+</span>
-            )}
-          </label>
+
         </div>
 
         <h3 className='mt-3 font-poppins text-[#465A7F] text-sm font-medium'>Escolher foto</h3>
+        {isUploading && <p className="text-blue-500 text-sm">Carregando imagem...</p>}
+
         <h2 className="mt-1 max-md:mt-0 font-poppins text-[#000000] text-xl font-medium whitespace-break-spaces break-all text-center max-md:whitespace-nowrap">{nome}
         </h2>
         <h3 className='mt-1 max-md:mt-0 font-poppins text-[#465A7F] text-sm font-medium'>ID:{id_pc}</h3>

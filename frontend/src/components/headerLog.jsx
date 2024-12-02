@@ -1,7 +1,7 @@
 import { HeaderLink } from './header-link';
 import { Logo } from './logo';
 import User_null from '../assets/images/user_null.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const LINKS = [
     { name: 'Procurar Psicólogos', href: '/psicologos' },
@@ -18,10 +18,32 @@ const LINKSUser = [
 
 export function HeaderLog() {
     const [userinfo, setinfo] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(User_null);
 
     function Visibilidade() {
         setinfo(!userinfo);
     }
+
+
+
+
+          //pega a foto do paciente
+          useEffect(() => {
+            const idPaciente = localStorage.getItem("id");
+            if (idPaciente) {
+                fetch(`http://localhost:3000/user/pacientes/${idPaciente}/foto`)
+                    .then(response => {
+                        if (!response.ok) throw new Error("Erro ao buscar a imagem");
+                        return response.json();
+                    })
+                    .then(data => {
+                        const imageUrl = `http://localhost:3000/${data.foto.replace(/\\/g, '/')}?t=${new Date().getTime()}`;
+                        setSelectedImage(imageUrl);
+                    })
+                    .catch(error => console.error("Erro ao buscar a foto do paciente:", error));
+            }
+        }, []);
+        
 
     // Recupera o nome do localStorage
     const nome = localStorage.getItem('usuarioNome') || "Usuário"; // "Usuário" é o fallback caso não tenha nome
@@ -55,7 +77,10 @@ export function HeaderLog() {
                     <h1 className='font-poppins text-base font-medium text-slate-600 hover:text-hover hover:font-semibold transition ease min-w-fit duration-200 cursor-pointer mr-7'>
                         {nome}
                     </h1>
-                    <img src={User_null} alt="Foto de Perfil" className='h-8' />
+                    <div 
+                        className="h-12 w-12 rounded-full cursor-pointer flex overflow-hidden bg-center bg-cover" 
+                        style={{ backgroundImage: `url(${selectedImage})` }}
+                    ></div>
                 </div>
 
                 <div className={`w-fit h-fit translate-y-24 flex-col justify-center items-end absolute z-custom shadow-lg ${userinfo ? 'flex' : 'hidden'}`}>

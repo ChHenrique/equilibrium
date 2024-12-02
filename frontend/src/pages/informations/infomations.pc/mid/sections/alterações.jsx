@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../../mid/style.css";
 
 export function Alterações() {
@@ -7,9 +7,33 @@ export function Alterações() {
     const [Estado, setEstado] = useState('');
     const [telefone, setTelefone] = useState('');
     const [cidade, setCidade] = useState(''); 
+    const [nome, setNome] = useState(''); 
+    const [email, setEmail] = useState(''); 
+    const [Sobrenome, setSobrenome] = useState('');
 
     const handleToggle1 = () => abrir(!abriu);
     const handleToggle2 = () => abrir_pais(!abriu_pais);
+
+      // Pega os dados do paciente
+  useEffect(() => {
+    const idPaciente = localStorage.getItem("id");
+    if (idPaciente) {
+      fetch(`http://localhost:3000/user/pacientes/${idPaciente}`)
+        .then(response => {
+          if (!response.ok) throw new Error("Erro ao buscar os dados do psicólogo");
+          return response.json();
+        })
+        .then(data => {
+          setEmail(data.email || ''); // Atualiza o email
+          setEstado(data.estado || ''); // Atualiza o estado se disponível
+          setTelefone(data.telefone || ''); // Atualiza o telefone se disponível
+          setSobrenome(data.sobrenome || '');
+          setNome(data.nome || '');
+          setCidade(data.cidade || '');
+        })
+        .catch(error => console.error("Erro:", error));
+    }
+  }, []);
 
     const handleSaveChanges = async (e) => {
         const pacienteId = localStorage.getItem('id');
@@ -65,6 +89,7 @@ export function Alterações() {
                 <div className="flex flex-col w-full max-md:ml-16 md:ml-8 ">
                     <label className="text-[#807e7e]">Nome:</label>
                     <input
+                    placeholder={nome}
                         readOnly
                         type="text"
                         id="input_name_alterações"
@@ -75,6 +100,7 @@ export function Alterações() {
                 <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
                     <label className="text-[#807e7e]">Email:</label>
                     <input
+                    placeholder={email}
                         readOnly
                         type="email"
                         id="input_email_alterações"
@@ -85,6 +111,7 @@ export function Alterações() {
                 <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
                     <label className="text-[#807e7e]">Estado:</label>
                     <input
+                    placeholder={Estado}
                         value={Estado}
                         onChange={(e) => setEstado(e.target.value)}
                         type="text"
@@ -97,6 +124,7 @@ export function Alterações() {
                 <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
                     <label className="text-[#807e7e]">Sobrenome:</label>
                     <input
+                    placeholder={Sobrenome}
                         readOnly
                         type="text"
                         id="input_sobrenome_alterações"
@@ -107,6 +135,7 @@ export function Alterações() {
                 <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
                     <label className="text-[#807e7e]">Telefone:</label>
                     <input
+                    
                         value={telefone}
                         onChange={(e) => setTelefone(e.target.value)}
                         type="number"
@@ -119,6 +148,7 @@ export function Alterações() {
                 <div className="flex flex-col w-full max-md:ml-16  md:ml-8">
                     <label className="text-[#807e7e]">Cidade:</label>
                     <input
+                    placeholder={cidade}
                         value={cidade}
                         onChange={(e) => setCidade(e.target.value)}
                         type="text"

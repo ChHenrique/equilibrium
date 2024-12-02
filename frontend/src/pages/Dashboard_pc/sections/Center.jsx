@@ -98,7 +98,7 @@ const botoesMobile = [
     }
 ]
 
-export function Camp_Dash() {
+export function Camp_Dash({pagstate , setPage}) {
     const location = useLocation();
     const [activeId, setActiveId] = useState(1);
     const [isHovered, setIsHovered] = useState(false);
@@ -117,7 +117,7 @@ export function Camp_Dash() {
             case 1:
                 return <Consultas />;
             case 2:
-                return <Chats />;
+                return <Chats pagstate={pagstate} setPag={setPage}/>;
             case 3:
                 return <Historico />;
             case 4: 
@@ -133,7 +133,7 @@ export function Camp_Dash() {
         <div className="w-full h-full flex justify-evenly max-md:h-screen flex-row items-center rounded-2xl mb-24 max-md:mb-0 max-md:flex-col-reverse max-md:justify-start">
             
             <div 
-                className="max-md:flex-row max-md:justify-evenly flex-col h-full mb-0 max-md:mt-4 max-md:rounded-none max-md:h-[10%]  max-md:w-full w-fit bg-white rounded-2xl p-2 flex items-center transition-colors duration-300"
+                className={`max-md:flex-row max-md:justify-evenly flex-col h-full mb-0 max-md:mt-4 max-md:rounded-none max-md:h-[10%]  max-md:w-full w-fit bg-white rounded-2xl p-2 flex items-center transition-colors duration-300 ${pagstate ? "hidden" : ""}`}
                 id="barra" 
                 onMouseEnter={() => setIsHovered(true)} 
                 onMouseLeave={() => setIsHovered(false)}

@@ -43,6 +43,29 @@ router.post('/upload-foto', authenticateToken, upload.single('foto'), async (req
     }
 });
 
+// Rota para upload da foto do paciente
+router.post('/pacientes/upload-foto', authenticateToken, upload.single('foto'), async (req, res) => {
+    const userId = req.user.id; // O 'id' do paciente vem do token JWT
+
+    if (!req.file) {
+        return res.status(400).json({ message: 'Nenhum arquivo foi enviado.' });
+    }
+
+    const photoPath = req.file.path; // Caminho do arquivo que foi salvo
+
+    try {
+        // Atualiza a tabela do paciente com o caminho da foto
+        const query = 'UPDATE pacientes SET foto = ? WHERE id = ?';
+        await db.query(query, [photoPath, userId]);
+
+        res.status(200).json({ message: 'Foto enviada com sucesso!', photoPath });
+    } catch (error) {
+        console.error('Erro ao enviar foto:', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+});
+
+
 // Rota para obter a foto do psicólogo
 router.get('/psicologos/:id_psi/foto', async (req, res) => {
     const psicologoId = req.params.id_psi;
@@ -64,6 +87,73 @@ router.get('/psicologos/:id_psi/foto', async (req, res) => {
         return res.status(500).json({ message: 'Erro no servidor' });
     }
 });
+
+// Rota para obter a foto do paciente
+router.get('/pacientes/:id/foto', async (req, res) => {
+    const pacienteId = req.params.id;
+
+    try {
+        // Busca a foto do paciente no banco de dados
+        const [results] = await db.query('SELECT foto FROM pacientes WHERE id = ?', [pacienteId]);
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Paciente não encontrado' });
+        }
+
+        const paciente = results[0];
+
+        // Retorna a URL da foto
+        res.json({ foto: paciente.foto });
+    } catch (error) {
+        console.error('Erro ao buscar a foto do paciente:', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+});
+
+router.post('/psicologos/:id_psi/topicos', async (req, res) => {
+    const psicologoId = req.params.id_psi;
+    const { topicos, formacao } = req.body;
+
+    try {
+        // Validação básica
+        if (!topicos && !formacao) {
+            return res.status(400).json({ message: 'É necessário fornecer ao menos os tópicos ou a formação.' });
+        }
+
+        // Construir a query dinamicamente com base nos campos fornecidos
+        let query = 'UPDATE psicologos SET ';
+        const values = [];
+
+        if (topicos) {
+            query += 'topicos = ?, ';
+            values.push(JSON.stringify(topicos)); // Armazena o array como string JSON
+        }
+
+        if (formacao) {
+            query += 'formacao = ?, ';
+            values.push(formacao);
+        }
+
+        // Remover a última vírgula e espaço
+        query = query.slice(0, -2);
+        query += ' WHERE id_psi = ?';
+        values.push(psicologoId);
+
+        // Executar a query
+        const [result] = await db.query(query, values);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Psicólogo não encontrado.' });
+        }
+
+        res.json({ message: 'Informações atualizadas com sucesso.' });
+    } catch (error) {
+        console.error('Erro ao atualizar os tópicos ou formação do psicólogo:', error);
+        return res.status(500).json({ message: 'Erro no servidor.' });
+    }
+});
+
+
 
 
 

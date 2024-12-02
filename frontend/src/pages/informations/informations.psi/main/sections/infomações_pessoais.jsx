@@ -88,6 +88,43 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
     }
   }, []);
 
+  const handleSaveChanges = async (e) => {
+    const idPsi = localStorage.getItem('id');
+    e.preventDefault()
+    if (!idPsi) {
+        console.error('ID do psicologo não encontrado no localStorage');
+        return;
+    }
+
+    // Monta os dados que serão enviados
+    const dados = {
+        telefone,
+        cidade,
+        estado: Estado,
+    };
+
+    console.log('Dados a serem enviados:', dados);
+
+    try {
+        // Envia os dados para o backend
+        const response = await fetch(`http://localhost:3000/infopsi/${idPsi}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dados),  // Os dados estão sendo passados aqui
+        });
+
+        if (response.ok) {
+            console.log('Informações atualizadas com sucesso:');
+        } else {
+            console.error('Erro ao salvar as alterações:', response);
+        }
+    } catch (error) {
+        console.error('Erro ao enviar os dados para o servidor:', error);
+    }
+};
+
   return (
     <div className="w-full h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[82vh] max-lg:h-[50vh]">
 
@@ -134,7 +171,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
         </h1>
 
           {/* Form dos inputs e labels */}
-          <form id="form1" method="post" className="grid max-md:grid-cols-1 grid-cols-2 items-center flex-col  ml-12 w-full space-y-10 place-items-center -translate-y-8 max-md:ml-0 max-md:-translate-y-0 max-md:translate-y-7 max-lg:ml-0 max-xl:ml-3">
+          <form id="form1" method="post" onSubmit={handleSaveChanges} className="grid max-md:grid-cols-1 grid-cols-2 items-center flex-col  ml-12 w-full space-y-10 place-items-center -translate-y-8 max-md:ml-0 max-md:-translate-y-0 max-md:translate-y-7 max-lg:ml-0 max-xl:ml-3">
             {/* Div Nome */}
             
             <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center max-md:relative">

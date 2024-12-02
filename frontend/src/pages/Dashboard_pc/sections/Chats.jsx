@@ -3,9 +3,9 @@ import io from 'socket.io-client';
 import { ChatsUsers } from './Components/chat_users';
 import { Dashboard } from '../principal';
 
-export const Contextopag = createContext()
 
-export function Chats() {
+
+export function Chats({pagstate , setPag}) {
     const [mensagens, setMensagens] = useState([]);
     const [value, setValue] = useState('');
     const [psicologos, setPsicologos] = useState([]); // Novo estado para armazenar psicólogos
@@ -15,7 +15,7 @@ export function Chats() {
     const textRef = useRef(null);
     const chatRef = useRef(null);
 
-    const [pagstate,setPag] = useState(0)
+
 
  
 
@@ -104,9 +104,7 @@ export function Chats() {
     return (
         <div className="bg-white h-full max-h-full max-md:bg-primary-300 w-full font-satoshi-medium flex flex-row rounded-2xl">
             <div className='hidden h-0 w-0'>
-              <Contextopag.Provider value={pagstate} className="hidden">
-                        <Dashboard/>
-                 </Contextopag.Provider>
+
                  </div>
 
             {/* Aba dos conversantes */}

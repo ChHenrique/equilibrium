@@ -1,31 +1,33 @@
-// server.js
 const express = require('express');
-const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const { Server } = require('socket.io');
-const cors = require("cors");
+const cors = require('cors');
 const PORT = 5000;
-
 
 const app = express();
 app.use(cors());
-const server = http.createServer(app);
+
+const server = https.createServer({
+  key: fs.readFileSync('../frontend/ssl/key-no-pass.pem'),
+  cert: fs.readFileSync('../frontend/ssl/cert.pem'),
+}, app);
+
 const io = new Server(server, {
-    cors: {
-      origin: "*", 
-      methods: ["GET", "POST"]
-    }
-
-    })
-
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
 io.on('connection', (socket) => {
-    console.log('Usuário conectado!', socket.id);
+  console.log('Usuário conectado!', socket.id);
 
-    socket.on('signal', (data) => {
-        socket.broadcast.emit('signal', data);
-    });
+  socket.on('signal', (data) => {
+    socket.broadcast.emit('signal', data);
+  });
 });
 
 server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on https://localhost:${PORT}`);
 });
