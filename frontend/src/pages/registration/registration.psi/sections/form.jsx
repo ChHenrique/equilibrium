@@ -5,13 +5,22 @@ import { Email } from "../storage/email";
 import { Password } from "../storage/password";
 import { CPF_CRP } from "../storage/cpf_crp";
 import { Verification } from "../recognition/verification";
+import zxcvbn from 'zxcvbn';
 
 export const Form = forwardRef(({ errors = {}, setErrors }, ref) => {
 
     const handleSubmit = (event) => {
         // Verifica e armazena erros
         const hasErrors = Verification(event, ref, setErrors);
-    
+        
+        const passwordInput = ref.current.querySelector('input[id="senha"]');
+        const passwordStrength = zxcvbn(passwordInput.value);
+
+        if (passwordStrength.score < 3) {
+            setErrors(prev => ({ ...prev, password: 'Sua senha não é segura'}));
+            return
+        }
+
         if (hasErrors) {
             // Se houver erros, não envie o formulário
             return;

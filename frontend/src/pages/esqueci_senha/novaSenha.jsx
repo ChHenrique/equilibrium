@@ -4,8 +4,8 @@ import linha3 from "../../assets/images/decoraçãoLoginRegistro3.svg";
 import "../../log,reg.css";
 import { Bolas } from "./bolas";
 import React, { useState } from 'react';
-import logo from "../../assets/images/logo-title.svg";
-import zxcvbn from 'zxcvbn';  // Importando a biblioteca zxcvbn
+import logo from "../../assets/images/logo-title.svg"
+import zxcvbn from 'zxcvbn'
 
 export function NovaSenha() {
   const [novaSenha, setNovaSenha] = useState('');
@@ -17,7 +17,7 @@ export function NovaSenha() {
   // Função de verificação de senha usando o zxcvbn
   const verificacaoSenha = (e) => {
     const senha = e.target.value;
-    setNovaSenha(senha);
+    setNovaSenha(senha)
 
     if (senha == ""){
         setLabelNovaSenha("Digite sua nova senha")
@@ -33,23 +33,23 @@ export function NovaSenha() {
       case 0:
         setLabelNovaSenha("Senha muito fraca")
         setCorNovaSenha("text-red-800")
-        break;
+        break
       case 1:
         setLabelNovaSenha("Senha fraca")
         setCorNovaSenha("text-red-600")
-        break;
+        break
       case 2:
-        setLabelNovaSenha("Senha média")
+        setLabelNovaSenha("Senha meedia")
         setCorNovaSenha("text-orange-500")
-        break;
+        break
       case 3:
         setLabelNovaSenha("Senha forte")
         setCorNovaSenha("text-green-500")
-        break;
+        break
       case 4:
         setLabelNovaSenha("Senha muito forte")
         setCorNovaSenha("text-green-800")
-        break;
+        break
       default:
         setLabelNovaSenha("Senha inválida")
         setCorNovaSenha("text-gray-500")
@@ -65,7 +65,7 @@ export function NovaSenha() {
         setLabelConfirmarSenha("Confirme sua nova senha")
         return
     }
-  };
+  }
 
   const EnviarValor = (e) => {
     e.preventDefault();
