@@ -4,7 +4,7 @@ import SimplePeer from 'simple-peer';
 import Webcam from 'react-webcam';
 
 
-const socket = io('http://localhost:5000');
+const socket = io('https://localhost:5000');
 
 
 

@@ -14,7 +14,7 @@ export function Chats({chat , setChat}) {
 
     useEffect(() => {
         // Conexão com o servidor
-        socketRef.current = io.connect('http://localhost:3001');
+        socketRef.current = io.connect('https://localhost:3001');
 
         // Envia a rota para o servidor após a conexão
         socketRef.current.on('connect', () => {
