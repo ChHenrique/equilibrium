@@ -26,14 +26,14 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         if (!idPsi) {
           throw new Error('ID do psicólogo não encontrado no localStorage.');
         }
-  
+
         // Buscar os dados de tópicos e formação do backend
         const response = await fetch(`http://localhost:3000/user/psicologos/${idPsi}/topicos-formacao`);
         if (!response.ok) {
           throw new Error('Erro ao buscar dados de tópicos e formação');
         }
         const data = await response.json();
-  
+
         // Atualizar os estados com os dados carregados
         if (data.topicos) {
           SetTopicos(data.topicos);
@@ -49,18 +49,18 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         console.error('Erro ao carregar dados:', error);
       }
     };
-  
+
     fetchData(); // Executa a função para carregar os dados
   }, []); // Este useEffect só será executado uma vez, ao carregar a página
-  
+
   useEffect(() => {
     // Só chama a função de envio quando os dados estiverem carregados
     if (isDataLoaded) {
       // Envia os tópicos ao backend, incluindo quando estiver vazio
-      enviarTopicos(); 
+      enviarTopicos();
     }
   }, [Topicos, isDataLoaded]); // Este useEffect será executado sempre que Topicos mudar ou os dados forem carregados
-  
+
   useEffect(() => {
     // Só chama a função de envio quando os dados estiverem carregados
     if (isDataLoaded) {
@@ -76,10 +76,10 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       if (!idPsi) {
         throw new Error('ID do psicólogo não encontrado no localStorage.');
       }
-  
+
       // Configura a URL da API
       const url = `http://localhost:3000/user/psicologos/${idPsi}/topicos`;
-  
+
       // Envia os tópicos (mesmo que esteja vazio)
       const response = await fetch(url, {
         method: 'POST',
@@ -88,7 +88,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         },
         body: JSON.stringify({ topicos: Topicos }), // Envia o array de tópicos, que pode estar vazio
       });
-  
+
       if (response.ok) {
         console.log('Tópicos enviados com sucesso!');
       } else {
@@ -106,10 +106,10 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
       if (!idPsi) {
         throw new Error('ID do psicólogo não encontrado no localStorage.');
       }
-  
+
       // Configura a URL da API
       const url = `http://localhost:3000/user/psicologos/${idPsi}/topicos`;
-  
+
       // Envia a formação (mesmo que esteja vazia)
       const response = await fetch(url, {
         method: 'POST',
@@ -118,7 +118,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
         },
         body: JSON.stringify({ formacao: Formação }), // Envia o array de formação, que pode estar vazio
       });
-  
+
       if (response.ok) {
         console.log('Formação enviada com sucesso!');
       } else {
@@ -407,7 +407,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
             <textarea
               ref={inputRef} // Adicionando referência aqui
               spellCheck
-              className='w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9] max-md:text-[14px]'
+              className='w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9] max-md:text-[14px] pt-32'
               onChange={PegarValorTextArea}
               value={TextArea}
               onKeyDown={(e) => {
@@ -436,8 +436,6 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
                 />
               </svg>
             </button>
-
-
           </div>
         </div>
 
@@ -469,7 +467,7 @@ export function InfoPsi({ imagem, onChange, nome, id_pc }) {
             </div>
 
             <textarea
-              className='w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9]  max-md:text-[14px]'
+              className="w-full h-full rounded-2xl p-4 pl-4 outline-none resize-none bg-[#C9D4E9] max-md:text-[14px] pt-32"
               onChange={PegarValorTextAreaDaFormação}
               value={TextAreaFormação}
               onKeyDown={(e) => {

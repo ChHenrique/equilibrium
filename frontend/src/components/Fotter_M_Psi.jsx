@@ -92,12 +92,12 @@ export function Footer_MobilePsi() {
         <div className="flex flex-col justify-center items-center bg-slate-50 w-screen md:hidden fixed bottom-0 p-2 z-50">
             <div className="flex w-full justify-center items-center space-x-9 mr-11">
 
-                <div className='w-fit absolute bottom-20 translate-x-[140px] -translate-y-6'>
+                <div className='w-fit absolute bottom-20 translate-x-[130px] -translate-y-6'>
                     {VisibleInfoLogOut && (
                         <div className=' bg-white rounded-2xl w-fit relative'>
                             <InfoLogOutPsi />
                             <div
-                                className='bg-white w-7 h-3 rotate-180 absolute translate-x-[100%]'
+                                className='bg-white w-7 h-3 rotate-180 absolute translate-x-[240%]'
                                 style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }}
                             ></div>
                         </div>
