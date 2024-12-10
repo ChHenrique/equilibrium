@@ -7,7 +7,7 @@ export function ConsultasPsicologos({ able,nome, date, horario, duracao, foto })
 
     return (
       
-        <div className="min-w-fit  h-fit flex flex-col max-md:w-full max-md:flex-row bg-[#F1F5F9] font-poppins justify-center items-center  max-sm:m-0 rounded-2xl m-2 max-w-fit max-md:max-w-[80%] ">
+        <div className="min-w-fit  h-fit flex flex-col max-md:w-full max-md:flex-row bg-[#F1F5F9] font-poppins justify-center items-center shadow-[0px_4px_20px_#CED9EE]  max-sm:m-0 rounded-2xl m-2 max-w-fit max-md:max-w-[80%] ">
                            <div 
                         className="w-32 max-md:w-28 max-sm:w-28 ml-1 aspect-square rounded-full cursor-pointer flex overflow-hidden bg-center bg-cover" 
                         style={{ backgroundImage: `url(${foto})` }}

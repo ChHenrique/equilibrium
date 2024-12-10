@@ -104,7 +104,8 @@ export function Consultas() {
         </button>
         </div>
       </div>
-      <div className="grid justify-center translate-y-10  w-full h-full p-8 max-md:p-0 overflow-x-clip overflow-y-scroll grid-cols-4 max-lg:grid-cols-1 max-xl:grid-cols-2 max-md:grid-cols-1 grid-flow-row max-md:flex max-md:justify-start max-md:items-center max-md:flex-col items-start max-md:gap-2">
+      <div className="grid justify-center  place-items-center max-md:translate-y-10  items-start w-full h-full  max-md:p-0
+      px-2 overflow-x-clip overflow-y-scroll grid-cols-4 max-lg:grid-cols-1 max-xl:grid-cols-2 max-md:grid-cols-1 grid-flow-row max-md:flex max-md:justify-start max-md:items-center max-md:flex-col gap-2">
 
 
         {consultas.length === 0 ? (
