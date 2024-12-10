@@ -250,8 +250,8 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                     <input
                     
                         value={telefone}
-                        onChange={(e) => setTelefone(e.target.value)}
-                        type="number"
+                        onChange={handleTelefoneChange}
+                        type="text"
                         name="telefone"
                         id="input_telefone_alterações"
                         className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none"/>
