@@ -11,8 +11,32 @@ export function Alterações() {
     const [email, setEmail] = useState(''); 
     const [Sobrenome, setSobrenome] = useState('');
 
-    const handleToggle1 = () => abrir(!abriu);
-    const handleToggle2 = () => abrir_pais(!abriu_pais);
+    const formatarTelefone = (valor) => {
+        // Remove qualquer caractere que não seja número
+        const apenasNumeros = valor.replace(/\D/g, '');
+      
+        // Aplica a máscara (XX) XXXXX-XXXX
+        if (apenasNumeros.length <= 10) {
+          return apenasNumeros.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        } else {
+          // Se o número tiver mais de 10 dígitos, formatar com máscara
+          return apenasNumeros.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        }
+      };
+      
+      const handleTelefoneChange = (e) => {
+        // Captura o valor digitado
+        const value = e.target.value;
+      
+        // Remove qualquer caractere não numérico
+        const apenasNumeros = value.replace(/\D/g, '');
+      
+        // Verifica se o número de dígitos é maior que o limite (10 dígitos)
+        if (apenasNumeros.length <= 11) {
+          // Atualiza o estado com o valor formatado
+          setTelefone(formatarTelefone(value));
+        }
+      };
 
       // Pega os dados do paciente
   useEffect(() => {
@@ -147,8 +171,8 @@ export function Alterações() {
                     <input
                     
                         value={telefone}
-                        onChange={(e) => setTelefone(e.target.value)}
-                        type="number"
+                        onChange={handleTelefoneChange}
+                        type="text"
                         name="telefone"
                         id="input_telefone_alterações"
                         className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none"/>

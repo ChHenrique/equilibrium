@@ -11,16 +11,30 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
 
   const nomeFormartado = nome.charAt(0).toUpperCase() + nome.slice(1)
 
-  // Função para formatar o telefone
-  const formatarTelefone = (valor, e) => {
-    setTelefone(e.target.value)
-    const apenasNumeros = valor.replace(/\D/g, ''); // Remove qualquer caractere que não seja número
-
+  const formatarTelefone = (valor) => {
+    // Remove qualquer caractere que não seja número
+    const apenasNumeros = valor.replace(/\D/g, '');
+  
     // Aplica a máscara (XX) XXXXX-XXXX
     if (apenasNumeros.length <= 10) {
       return apenasNumeros.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     } else {
+      // Se o número tiver mais de 10 dígitos, formatar com máscara
       return apenasNumeros.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    }
+  };
+  
+  const handleTelefoneChange = (e) => {
+    // Captura o valor digitado
+    const value = e.target.value;
+  
+    // Remove qualquer caractere não numérico
+    const apenasNumeros = value.replace(/\D/g, '');
+  
+    // Verifica se o número de dígitos é maior que o limite (10 dígitos)
+    if (apenasNumeros.length <= 11) {
+      // Atualiza o estado com o valor formatado
+      setTelefone(formatarTelefone(value));
     }
   };
 
@@ -173,7 +187,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
         </h1>
 
           {/* Form dos inputs e labels */}
-          <form id="form1" method="post" onSubmit={handleSaveChanges} className="grid max-md:grid-cols-1 grid-cols-2 items-center flex-col w-full space-y-14 max-2xl:translate-y-0 place-items-center -translate-y-0 max-md:ml-0 max-md:-translate-y-0 max-md:translate-y-24 max-lg:ml-0 max-xl:ml-3 ">
+          <form id="form1" method="post" onSubmit={handleSaveChanges} className="grid max-md:grid-cols-1 grid-cols-2 items-center flex-col w-full space-y-14 max-2xl:translate-y-0 place-items-center -translate-y-16 max-md:ml-0 max-md:-translate-y-0 max-md:translate-y-24 max-lg:ml-0 max-xl:ml-3 ">
             {/* Div Nome */}
             
             <div className="flex flex-col w-full relative justify-center md:translate-y-7">
@@ -236,7 +250,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                     <input
                     
                         value={telefone}
-                        onChange={formatarTelefone}
+                        onChange={(e) => setTelefone(e.target.value)}
                         type="number"
                         name="telefone"
                         id="input_telefone_alterações"
@@ -258,7 +272,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                         className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
                     </div>
                 </div>
-            <div className='flex justify-center items-center w-full'>
+            <div className='flex justify-center items-center w-full md:absolute -bottom-14'>
                 <button className=" md:absolute max-2xl:left-[33%] bottom-0 translate-y-10 ml-1  whitespace-nowrap bg-[#3B82F6] w-1/3 px-2 py-1 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700  hover:rounded-xl transition-all duration-300 mb-3 max-md:h-fit max-md:py-2 max-md:-translate-y-2 max-md:translate-x-1 max-md:w-1/2 max-lg:w-1/2 max-lg:py-1 max-lg:px-1 max-lg:h-fit max-xl:w-1/2 max-xl:-translate-x-10 max-xl:bottom-2 max-lg:-translate-x-10">
                   Salvar Alterações
                 </button>
