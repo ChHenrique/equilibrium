@@ -127,13 +127,13 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
 };
 
   return (
-    <div className="w-full h-[80vh] bg-white rounded-2xl flex items-center max-md:flex-col max-md:scrollbar-thin max-md:overflow-y-scroll max-md:overflow-x-hidden max-md:h-[82vh] max-lg:h-[50vh] max-2xl:max-h-[500px]">
+    <div className="w-full h-[80vh] bg-white max-md:bg-primary-300 rounded-2xl flex items-center max-md:flex-col max-md:overflow-x-hidden max-md:h-[100vh] max-lg:h-[50vh] max-2xl:max-h-[500px] max-md:min-h-[500px] overflow-y-visible">
 
       <h1 className=" max-md:mt-4 whitespace-nowrap font-poppins font-bold text-[23px] max-md:text-[20px] text-primary-700 md:hidden">
                 Altere e salve suas Alterações!
             </h1>
 
-      <div className='w-[40%] h-full bg-white flex flex-col items-center rounded-bl-2xl rounded-2xl p-4 relative max-lg:w-[35%]'>
+      <div className='w-[40%] h-full bg-white max-md:bg-primary-300 flex flex-col items-center rounded-bl-2xl rounded-2xl p-4 relative max-lg:w-[35%]'>
         <div className='h-40 w-40 bg-[#465A7F] mt-7 rounded-full aspect-square relative max-lg:h-32 max-lg:w-32'>
           <div className='flex relative flex-col'>
             <input
@@ -156,7 +156,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
         <h3 className='mt-3 font-poppins text-[#465A7F] text-sm font-medium'>Escolher foto</h3>
         <h2 className="mt-1 font-poppins text-[#000000] text-xl font-medium text-center">{nomeFormartado}</h2>
         <h3 className='mt-1 font-poppins text-[#465A7F] text-sm font-medium'>ID: {id_psi}</h3>
-        <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium text-center'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span></h3>
+        <h3 className='mt-7 font-poppins text-[#465A7F] text-sm font-medium text-center whitespace-nowrap'>Criação de conta: <span className='font-poppins text-[#6083c4] text-lg font-medium'>{diaConta}</span></h3>
         <hr className='w-60 h-[0.1px] border border-[#1c283d] max-md:hidden max-lg:hidden' />
         <a href='/home/psicologo' className='w-fit flex justify-center'>
           <button className="mt-10 w-fit h-fit bg-[#8CB3FF] hover:bg-[#546481] text-white font-bold py-2 px-4 rounded-xl whitespace-nowrap max-md:hidden duration-500">Ver Consultas</button>
@@ -167,92 +167,101 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
       {/* Div do componente das alterações */}
       <div className="w-full h-full flex items-center font-poppins font-medium relative">
 
-        <h1 className="absolute top-4 left-1/2 transform -translate-x-[55%] whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700 max-md:hidden max-lg:text-[18px]">
+        <h1 className="absolute top-4 left-1/2 transform -translate-x-[55%] whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700 max-md:hidden max-lg:text-[18px] max-xl:text-[20px] max-xl:-translate-x-[52%]">
           Altere e salve suas Alterações!
         </h1>
 
           {/* Form dos inputs e labels */}
-          <form id="form1" method="post" onSubmit={handleSaveChanges} className="grid max-md:grid-cols-1 grid-cols-2 items-center flex-col  ml-12 w-full space-y-10 place-items-center -translate-y-8 max-md:ml-0 max-md:-translate-y-0 max-md:translate-y-7 max-lg:ml-0 max-xl:ml-3 ">
+          <form id="form1" method="post" onSubmit={handleSaveChanges} className="grid max-md:grid-cols-1 grid-cols-2 items-center flex-col w-full space-y-14 max-2xl:translate-y-0 place-items-center -translate-y-0 max-md:ml-0 max-md:-translate-y-0 max-md:translate-y-24 max-lg:ml-0 max-xl:ml-3 ">
             {/* Div Nome */}
             
-            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center max-md:relative">
-              <label className="text-[#807e7e]">Nome:</label>
-              <input
-                placeholder={nomeFormartado}
-                readOnly
-                type="text"
-                id="input_name_alterações"
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular placeholder:font-poppins placeholder:font-medium outline-none w-3/4 max-md:text-center placeholder:text-slate-900"
-              />
-            </div>
+            <div className="flex flex-col w-full relative justify-center md:translate-y-7">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Nome</label>
+                    <div className="flex flex-col w-full relative items-center">
+                    <input
+                    placeholder={nome}
+                        readOnly
+                        type="text"
+                        id="input_name_alterações"
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                        </div>
+                        </div>
 
             {/* Div Email */}
-            <div className="flex flex-col w-full ml-8 -translate-y-[19px] max-md:-translate-y-[0px] max-md:ml-0 max-md:justify-center max-md:items-center">
-              <label className="text-[#807e7e]">Email:</label>
-              <input
-                readOnly
-                placeholder={email}
-                type="email"
-                value={Email}
-                onChange={(e) => setEmail(e.target.value)} // Controlando o email
-                id="input_email_alterações"
-                className="border-b-2 border-[#807e7e] placeholder:font-poppins placeholder:font-medium outline-none w-3/4 max-md:text-center placeholder:text-slate-900 font-satoshi-Regular"
-              />
-            </div>
+            <div className="flex flex-col w-full justify-center">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Email</label>
+                    <div className="flex flex-col w-full relative items-center">
+                    <input
+                    placeholder={email}
+                        readOnly
+                        type="email"
+                        id="input_email_alterações"
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                </div>
+                </div>
 
             {/* Div Estado */}
-            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
-              <label className="text-[#807e7e]">Estado:</label>
-              <input
-                type="text"
-                id="input_estado"
-                value={Estado}
-                onChange={(e) => setEstado(e.target.value)} // Atualiza o estado
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 max-md:items-center"
-              />
-            </div>
+            <div className="flex flex-col w-full">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Estado</label>
+                    <div className="flex flex-col w-full relative items-center">
+                    <input
+                    placeholder={Estado}
+                        value={Estado}
+                        onChange={(e) => setEstado(e.target.value)}
+                        type="text"
+                        name="estado"
+                        id="input_estado"
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                    </div>
+                </div>
 
             {/* Div Sobrenome */}
-            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
-              <label className="text-[#807e7e]">Sobrenome:</label>
-              <input
-                placeholder={Sobrenome}
-                readOnly
-                type="text"
-                id="input_sobrenome_alterações"
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 placeholder:font-poppins placeholder:font-medium max-md:text-center placeholder:text-slate-900"
-              />
-            </div>
+            <div className="flex flex-col w-full">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Sobrenome</label>
+                    <div className="flex flex-col w-full relative items-center">
+                    <input
+                    placeholder={Sobrenome}
+                        readOnly
+                        type="text"
+                        id="input_sobrenome_alterações"
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                    </div>
+                </div>
 
             {/* Div Telefone */}
-            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
-              <label className="text-[#807e7e]">Telefone:</label>
-              <input
-                placeholder="(XX) 99999-9999"
-                type="tel"
-                maxLength={11}
-                value={telefone}
-                onChange={(e) => setTelefone(formatarTelefone(e.target.value))} // Formata o telefone
-                id="input_telefone"
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular placeholder:font-poppins placeholder:font-medium outline-none w-3/4 max-md:text-center placeholder:text-slate-900"
-              />
-            </div>
+            <div className="flex flex-col w-full">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Telefone</label>
+                    <div className="flex flex-col w-full relative items-center">
+                    <input
+                    
+                        value={telefone}
+                        onChange={(e) => setTelefone(e.target.value)}
+                        type="number"
+                        name="telefone"
+                        id="input_telefone_alterações"
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none"/>
+                    </div>
+                </div>
 
-            {/* Div Cidade */}
-            <div className="flex flex-col w-full ml-8 max-md:ml-0 max-md:justify-center max-md:items-center">
-              <label className="text-[#807e7e]">Cidade:</label>
-              <input
-                placeholder={cidade}
-                onChange={(e) => setCidade(e.target.value)}
-                value={cidade}
-                type="text"
-                id="input_cidade"
-                className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-3/4 max-md:items-center"
-              />
-            </div>
-                <button className="md:absolute bottom-0 translate-y-24 mr-16 max-2xl:-translate-x-4 max-2xl:translate-y-28 whitespace-nowrap bg-[#3B82F6] w-1/3 px-2 py-1 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700  hover:rounded-xl transition-all duration-300 mb-3 max-md:h-fit max-md:py-2 max-md:-translate-y-2 max-md:translate-x-1 max-md:w-1/2 max-lg:translate-x-0 max-lg:w-1/2 max-lg:py-1 max-lg:px-1 max-lg:h-fit max-xl:w-1/2 max-xl:-translate-x-1 max-xl:bottom-2">
+                {/* Div Cidade */}
+                <div className="flex flex-col w-full">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Cidade</label>
+                    <div className="flex flex-col w-full relative items-center">
+                    <input
+                    placeholder={cidade}
+                        value={cidade}
+                        onChange={(e) => setCidade(e.target.value)}
+                        type="text"
+                        name="cidade"
+                        id="input_cidade"
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                    </div>
+                </div>
+            <div className='flex justify-center items-center w-full'>
+                <button className=" md:absolute max-2xl:left-[33%] bottom-0 translate-y-10 ml-1  whitespace-nowrap bg-[#3B82F6] w-1/3 px-2 py-1 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700  hover:rounded-xl transition-all duration-300 mb-3 max-md:h-fit max-md:py-2 max-md:-translate-y-2 max-md:translate-x-1 max-md:w-1/2 max-lg:w-1/2 max-lg:py-1 max-lg:px-1 max-lg:h-fit max-xl:w-1/2 max-xl:-translate-x-10 max-xl:bottom-2 max-lg:-translate-x-10">
                   Salvar Alterações
                 </button>
+            </div>
           </form>
         </div>
       </div>
