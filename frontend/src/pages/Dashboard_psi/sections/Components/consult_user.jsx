@@ -3,7 +3,7 @@ import nullimg from '../../../../assets/images/user_null.svg'
 
 
 
-export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,onConfirm,onCancel, foto,join,realization }) {
+export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,onConfirm,onCancel, foto,join, realization }) {
  //   const [able, setAble] = useState(1) 
  //   const [accept, setacceptance] = useState(0) 
 
@@ -73,7 +73,7 @@ export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,on
     ) : (
         <div className="w-fit">
         <button className="w-full h-fit mb-4 bg-primary-300 text-slate-500 text-base rounded-2xl p-2 mt-4 cursor-default ">
-            Juntar-se a chamada
+            Indisponivel
         </button>
         </div>
 

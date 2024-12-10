@@ -116,6 +116,7 @@ export function Consultas() {
         
               let able = 0;
               let accept = 0;
+              let join = 1;
         
               if (mesmaData) {
                 const [horarioHora, horarioMinuto] = consulta.horario.split(":");
@@ -126,14 +127,19 @@ export function Consultas() {
                 const diffTime = horarioConsulta - dataAtual;
                 const diffMinutos = diffTime / 60000;
         
+                
+
                 if (diffMinutos <= 10) {
                   able = 1;
+                  join = 1;
                 }
               }
         
               if (consulta.status === "pendente") {
                 accept = 1;
               }
+
+
         
               return {
                 ...consulta,
@@ -142,6 +148,7 @@ export function Consultas() {
                 fotoPaciente: fotoPath,
                 able,
                 accept,
+                join
               };
             } catch (err) {
               console.error(`Erro ao buscar foto do paciente ${consulta.id_paciente}:`, err);
@@ -222,6 +229,7 @@ const consultasFiltradas = consultas.filter((consulta) => {
           foto={consulta.fotoPaciente || nullimg} // Fallback redundante para segurança
           able={consulta.able}
           accept={consulta.accept}
+          join={consulta.join}
           onConfirm={() => handleConfirmarConsulta(consulta.id)}
           onCancel={() => {
             setConsultaCancelada(consulta.id);

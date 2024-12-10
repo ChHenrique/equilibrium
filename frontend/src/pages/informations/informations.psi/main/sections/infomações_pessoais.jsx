@@ -12,7 +12,8 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
   const nomeFormartado = nome.charAt(0).toUpperCase() + nome.slice(1)
 
   // Função para formatar o telefone
-  const formatarTelefone = (valor) => {
+  const formatarTelefone = (valor, e) => {
+    setTelefone(e.target.value)
     const apenasNumeros = valor.replace(/\D/g, ''); // Remove qualquer caractere que não seja número
 
     // Aplica a máscara (XX) XXXXX-XXXX
@@ -235,7 +236,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                     <input
                     
                         value={telefone}
-                        onChange={(e) => setTelefone(e.target.value)}
+                        onChange={formatarTelefone}
                         type="number"
                         name="telefone"
                         id="input_telefone_alterações"
