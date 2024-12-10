@@ -124,7 +124,7 @@ export function Seach_psicologos() {
                     )}
 
                 </div>
-                <div className="h-[10vh]"></div>
+                <div className="h-[10vh] relative z-10"></div>
             </div>
                 <Footer_Mobile className="fixed"/>
         </section>

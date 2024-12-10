@@ -293,9 +293,14 @@ router.get('/psicologos', async (req, res) => {
         const psicologos = results.map(psicologo => {
             return {
                 ...psicologo,
-                topicos: JSON.parse(psicologo.topicos) // Converte de string JSON para array
+                topicos: JSON.parse(psicologo.topicos),// Converte de string JSON para array
+                formacao: JSON.parse(psicologo.formacao)
             };
         });
+
+        
+
+        
 
         // Retorna a lista de psicólogos
         res.json(psicologos);
