@@ -3,7 +3,7 @@ import nullimg from '../../../../assets/images/user_null.svg'
 
 
 
-export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,onConfirm,onCancel, foto }) {
+export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,onConfirm,onCancel, foto,join,realization }) {
  //   const [able, setAble] = useState(1) 
  //   const [accept, setacceptance] = useState(0) 
 
@@ -63,6 +63,7 @@ export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,on
 
     </div>
     :
+    join?
     able ? (
         <a href="https://localhost:8888/chat?peer1" className="w-fit">
             <button className="w-full h-fit mb-4 bg-primary-200 text-white text-base rounded-2xl p-2 mt-4 cursor-pointer duration-150 hover:bg-primary-500">
@@ -76,9 +77,18 @@ export function ConsultasPacientes({ nome, date, horario, duracao,able,accept,on
         </button>
         </div>
 
+    ):(
+        <div className="w-fit">
+        <h1 className="w-full h-fit mb-4 bg-primary-100 text-white text-base font-semibold rounded-2xl p-2 mt-4 cursor-default ">Realizada</h1>
+           
+        
+        </div>
     )
+    }
 
-}
+
+
+
         </div>
     </div>
 );

@@ -58,13 +58,20 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                             </svg>
                         </a>
                         {mouseFora && (
-                            <div className="w-60 max-w-60 max-md:w-fit h-fit max-md:h-14 max-md:max-h-16 max-md:overflow-y-scroll bg-slate-200 absolute text-[#355081] rounded-md p-1 text-xs font-poppins z-10">
-                                {(Array.isArray(formação_psicologo) ? formação_psicologo : []).map((formação, index) => (
-                                    <div key={index} className="h-7 w-full border border-slate-600 rounded-xl p-1 text-center mx-3 my-1 max-md:mx-1 max-md:white whitespace-normal">
-                                        {formação}
-                                    </div>
-                                ))}
-                            </div>
+                         <div className="w-fit max-w-60 max-md:w-fit h-fit max-md:h-fit max-md:max-h-14 max-md:overflow-y-scroll bg-slate-200 absolute text-[#355081] rounded-md p-1 text-xs font-poppins z-10 ">
+                         {Array.isArray(formação_psicologo) && formação_psicologo.length > 0 ? (
+                             formação_psicologo.map((formação, index) => (
+                                 <div
+                                     key={index}
+                                     className="h-fit w-fit border border-slate-600 rounded-xl p-1 text-center mx-3 my-1 max-md:mx-1 max-md:white whitespace-normal"
+                                 >
+                                     {formação}
+                                 </div>
+                             ))
+                         ) : (
+                             <div className="text-center mx-3 my-1">Não há formação para esse psicólogo</div>
+                         )}
+                     </div>
                         )}
                     </h3>
 
@@ -81,12 +88,16 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                             </svg>
                         </a>
                         {mouseDentroTopico && (
-                            <div className="w-96 max-h-20 overflow-x-hidden max-md:max-h-20 overflow-y-auto bg-slate-200 absolute text-[#3c4961] rounded-md p-1 pr-6 text-xs font-poppins z-50 grid gap-1 grid-cols-4 max-md:w-[250px] max-md:grid-cols-2  scrollbar-thin">
-                                {(Array.isArray(topicos) ? topicos : []).map((topico, index) => (
+                            <div className={`w-96 max-h-20 overflow-x-hidden max-md:max-h-12 overflow-y-auto bg-slate-200 absolute text-[#3c4961] rounded-md p-1 text-xs font-poppins z-50  scrollbar-thin ${Array.isArray(topicos) && topicos.length > 0 ? 'w-96 grid gap-1 grid-cols-4 max-md:w-[250px] max-md:grid-cols-2 pr-6' : 'w-fit max-md:w-fit md:w-fit text-[#355081] p-2'}`}>
+                                {Array.isArray(topicos) && topicos.length > 0 ?
+                                ( topicos.map((topico, index) => (
                                     <div key={index} className="h-7 w-full border border-slate-600 rounded-xl p-1 text-center mx-3 my-1 max-md:mx-1 max-md:white whitespace-normal">
                                         {topico}
                                     </div>
-                                ))}
+                                ))
+                            ) : (
+                                <div className="text-center">Não há<span className="whitespace-break-spaces"> topicos para esse psicólogo </span></div>
+                            )}
                             </div>
                         )}
                     </h3>

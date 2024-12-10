@@ -1,0 +1,155 @@
+@keyframes Animaperna{
+    0%{
+        transform: rotate(0deg);
+
+    }
+    100%{
+        transform: rotateY(10deg);
+        
+    }
+}
+
+@keyframes bola{
+ 0%{
+  transform: rotateX(0deg);
+ }50%{
+    transform: rotateX(10deg) rotateY(5deg);
+ }
+ 100%{
+    transform: rotateX(0deg);
+ }
+}
+
+
+@keyframes blocos1{
+    0%{
+     transform: rotateX(0deg);
+    }50%{
+       transform: rotateX(10deg) rotateY(5deg);
+    }
+    100%{
+       transform: rotateX(0deg);
+    }
+   }
+
+
+
+@keyframes Animaperna2{
+    0%{
+        transform: rotateX(0deg);
+
+    }
+    100%{
+        transform: rotateX(10deg) rotateZ(-1deg);
+        
+    }
+}
+
+@keyframes Animaperna3{
+    0%{
+        transform: rotateX(0deg);
+
+    }
+    100%{
+        transform: rotateX(10deg) ;
+        
+    }
+}
+
+@keyframes Animaperna4{
+    0%{
+        transform: rotateX(0deg);
+
+    }
+    100%{
+        transform: rotateX(10deg) rotateZ(-1deg) ;
+
+        
+    }
+}
+
+@keyframes fio{
+    0%{
+        transform: rotateX(0deg);
+
+    }
+    100%{
+        transform: rotateX(0.3deg) rotateZ(1deg) ;
+
+        
+    }
+}
+
+@keyframes fio1{
+    0%{
+        transform: rotateX(2deg);
+
+    }
+    100%{
+        transform: rotateX(20deg) rotateZ(1deg) ;
+
+        
+    }
+}
+
+
+
+.bola{
+    animation-duration: 5s;
+    animation-name: bola;
+    animation-iteration-count:infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.fio{
+    animation-duration: 2s;
+    animation-name: fio;
+    animation-iteration-count:infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+
+.fio1{
+    animation-duration: 2s;
+    animation-name: fio1;
+    animation-iteration-count:infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+
+.pernam{
+    animation-duration: 2s;
+    animation-name: Animaperna;
+    animation-iteration-count:infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+
+}
+
+.pernas{
+    animation-duration: 2.3s;
+    animation-name: Animaperna2;
+    animation-iteration-count:infinite;
+    animation-timing-function: ease;
+    animation-direction: alternate;
+
+}
+
+
+.pernas4{
+    animation-duration: 2.7s;
+    animation-name: Animaperna4;
+    animation-iteration-count:infinite;
+    animation-timing-function: ease;
+    animation-direction: alternate;
+
+}
+
+.pernas3{
+    animation-duration: 2.3s;
+    animation-name: Animaperna3;
+    animation-iteration-count:infinite;
+    animation-timing-function: ease;
+    animation-direction: alternate;
+
+}
