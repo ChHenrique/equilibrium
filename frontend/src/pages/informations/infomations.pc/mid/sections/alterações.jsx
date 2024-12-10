@@ -73,7 +73,7 @@ export function Alterações() {
     };
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center font-poppins font-medium relative max-md:rounded-2xl  overflow-x-hidden">
+        <div className="w-full h-full flex flex-col items-center max-md:min-h-fit justify-center font-poppins font-medium relative max-md:rounded-2xl overflow-y-visible overflow-x-hidden">
             <h1 className="absolute top-4 left-1/2 transform -translate-x-1/2 whitespace-nowrap font-poppins font-bold text-[23px] text-primary-700 max-md:hidden">
                 Altere e salve suas Alterações!
             </h1>
@@ -83,33 +83,39 @@ export function Alterações() {
                 id="form1"
                 onSubmit={handleSaveChanges}
                 method="post"
-                className="w-[100%] grid grid-cols-1 ml-12 md:grid-cols-2 gap-8 mt-0 max-md:space-y-2 max-md:translate-y-0 max-md:mt-16 max-lg:mb-10 max-lg:-translate-y-6 max-lg:ml-4 max-lg:mr-4  max-2xl:mb-10 max-2xl:-translate-y-6 max-2xl:ml-4 max-2xl:mr-0 place-items-center max-lg:h-full max-lg:mt-[30%] max-xl:mt-[20%] relative ">
+                className="w-full grid items-center place-items-center grid-cols-1 md:grid-cols-2 space-y-2 gap-8 mt-0 max-md:space-y-0 max-md:translate-y-0 max-md:mt-10 max-lg:mb-10 max-lg:-translate-y-6 max-lg:mr-4 max-2xl:mb-10 max-2xl:-translate-y-6 max-2xl:mr-0  max-lg:h-full max-lg:mt-[30%] max-xl:mt-[20%] relative max-md:ml-4">
                 
                 {/* Div Nome */}
-                <div className="flex flex-col w-full max-md:ml-16 md:ml-8 ">
-                    <label className="text-[#807e7e]">Nome:</label>
+                <div className="flex flex-col w-full relative justify-center">
+                    <label className="text-primary-1200 left-4 max-md:ml-[11%] ml-[10%]">Nome</label>
+                    <div className="flex flex-col w-full relative items-center">
                     <input
                     placeholder={nome}
                         readOnly
                         type="text"
                         id="input_name_alterações"
-                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%]" />
-                </div>
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                        </div>
+                        </div>
+                
 
                 {/* Div Email */}
-                <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
-                    <label className="text-[#807e7e]">Email:</label>
+                <div className="flex flex-col w-full justify-center">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Email</label>
+                    <div className="flex flex-col w-full relative items-center">
                     <input
                     placeholder={email}
                         readOnly
                         type="email"
                         id="input_email_alterações"
-                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%]" />
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                </div>
                 </div>
 
                 {/* Div Estado */}
-                <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
-                    <label className="text-[#807e7e]">Estado:</label>
+                <div className="flex flex-col w-full">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Estado</label>
+                    <div className="flex flex-col w-full relative items-center">
                     <input
                     placeholder={Estado}
                         value={Estado}
@@ -117,23 +123,27 @@ export function Alterações() {
                         type="text"
                         name="estado"
                         id="input_estado"
-                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%]" />
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                    </div>
                 </div>
 
                 {/* Div Sobrenome */}
-                <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
-                    <label className="text-[#807e7e]">Sobrenome:</label>
+                <div className="flex flex-col w-full">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Sobrenome</label>
+                    <div className="flex flex-col w-full relative items-center">
                     <input
                     placeholder={Sobrenome}
                         readOnly
                         type="text"
                         id="input_sobrenome_alterações"
-                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%]" />
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                    </div>
                 </div>
 
                 {/* Div Telefone */}
-                <div className="flex flex-col w-full max-md:ml-16 md:ml-8">
-                    <label className="text-[#807e7e]">Telefone:</label>
+                <div className="flex flex-col w-full">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Telefone</label>
+                    <div className="flex flex-col w-full relative items-center">
                     <input
                     
                         value={telefone}
@@ -141,12 +151,14 @@ export function Alterações() {
                         type="number"
                         name="telefone"
                         id="input_telefone_alterações"
-                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%]"/>
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none"/>
+                    </div>
                 </div>
 
                 {/* Div Cidade */}
-                <div className="flex flex-col w-full max-md:ml-16  md:ml-8">
-                    <label className="text-[#807e7e]">Cidade:</label>
+                <div className="flex flex-col w-full">
+                    <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Cidade</label>
+                    <div className="flex flex-col w-full relative items-center">
                     <input
                     placeholder={cidade}
                         value={cidade}
@@ -154,7 +166,8 @@ export function Alterações() {
                         type="text"
                         name="cidade"
                         id="input_cidade"
-                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%]" />
+                        className="border-b-2 border-[#807e7e] font-satoshi-Regular outline-none w-[80%] max-md:rounded-lg max-md:px-3 max-md:py-1 max-md:border-none" />
+                    </div>
                 </div>
                 <div className='flex justify-center items-center w-full max-md:mt-11 md:hidden h-fit translate-y-7'>
                 <button
@@ -164,10 +177,10 @@ export function Alterações() {
                 </button>
             </div>
 
-            <div className='w-fit flex justify-center items-center'>
+            <div className='w-full flex justify-center items-center'>
                  <button
                      type='submit'
-                     className=" absolute bottom-0 translate-x-[74%] mr-5 translate-y-28 max-lg:px-1 whitespace-nowrap bg-[#3B82F6] w-2/6 px-3 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:rounded-xl transition-all duration-300 max-md:hidden max-lg:w-2/4 max-lg:translate-y-9 max-xl:translate-y-14 max-2xl:translate-y-24">
+                     className=" absolute bottom-0 translate-x-[82%] mr-5 translate-y-28 max-lg:px-1 whitespace-nowrap bg-[#3B82F6] w-2/6 px-3 font-poppins text-white h-[5vh] rounded-lg hover:bg-primary-700 hover:rounded-xl transition-all duration-300 max-md:hidden max-lg:w-2/4 max-lg:translate-y-9 max-xl:translate-y-14 max-2xl:translate-y-24">
                      Salvar Alterações
                 </button>
             </div>
@@ -176,4 +189,6 @@ export function Alterações() {
         
         </div>
     );
+
+
 }

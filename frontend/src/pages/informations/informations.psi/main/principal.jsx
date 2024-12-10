@@ -86,7 +86,7 @@ export function Principal() {
     };
 
     return (
-        <div className="w-[90vw] h-[80vh] flex justify-center items-center space-x-5 mt-2 max-md:w-full max-md:h-full max-md:mr-[50%] max-md:ml-[45%] max-md:mt-8 max-lg:w-[97vw] max-2xl:h-[560px]">
+        <div className="w-[90vw] h-[80vh] flex justify-center items-center space-x-5 mt-2 max-md:w-full max-md:h-full max-md:mr-[50%] max-md:ml-[45%] max-md:mt-8 max-lg:w-[97vw] max-lg:h-[43vh] max-2xl:h-[560px] overflow-visible max-md:overflow-y-visible max-md:min-h-fit">
             <div className="w-fit h-full bg-white mr-auto rounded-2xl flex flex-col items-center max-md:hidden p-1 max-lg:h-full max-xl:h-full " id="barra">
                 {button.map((botao) => (
                     <button key={botao.id} className="w-full ml-5" onClick={() => SetIdAtivado(botao.id)}>

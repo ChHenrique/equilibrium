@@ -89,7 +89,7 @@ export function Footer_MobilePsi() {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center bg-slate-50 w-screen md:hidden fixed bottom-0 p-2 z-50">
+        <div className="flex flex-col justify-center items-center bg-slate-50 w-screen md:hidden fixed bottom-0 p-2 z-50 h-[70px]">
             <div className="flex w-full justify-center items-center space-x-9 mr-11">
 
                 <div className='w-fit absolute bottom-20 translate-x-[130px] -translate-y-6'>
