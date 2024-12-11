@@ -91,7 +91,7 @@ export function Psicologo({ nome, foto, tempConsulta, formação_psicologo, topi
                             <div className={`w-96 max-h-20 overflow-x-hidden max-md:max-h-12 overflow-y-auto bg-slate-200 absolute text-[#3c4961] rounded-md p-1 text-xs font-poppins z-50  scrollbar-thin ${Array.isArray(topicos) && topicos.length > 0 ? 'w-96 grid gap-1 grid-cols-4 max-md:w-[250px] max-md:grid-cols-2 pr-6' : 'w-fit max-md:w-fit md:w-fit text-[#355081] p-2'}`}>
                                 {Array.isArray(topicos) && topicos.length > 0 ?
                                 ( topicos.map((topico, index) => (
-                                    <div key={index} className="h-7 w-full border border-slate-600 rounded-xl p-1 text-center mx-3 my-1 max-md:mx-1 max-md:white whitespace-normal">
+                                    <div key={index} className="h-7 w-full border whitespace-nowrap border-slate-600 rounded-xl p-1 text-center mx-3 my-1 max-md:mx-1 max-md:white overflow-x-auto">
                                         {topico}
                                     </div>
                                 ))

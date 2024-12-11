@@ -131,7 +131,6 @@ export function Consultas() {
 
                 if (diffMinutos <= 10) {
                   able = 1;
-                  join = 1;
                 }
               }
         
