@@ -74,18 +74,23 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
       fetch(`http://localhost:3000/user/psicologos/${idPsi}`)
         .then(response => {
           if (!response.ok) throw new Error("Erro ao buscar os dados do psicólogo");
-          return response.json();
+          if (response.headers.get("content-type")?.includes("application/json")) {
+            return response.json();
+          } else {
+            throw new Error("Resposta não é JSON");
+          }
         })
         .then(data => {
-          setEmail(data.email || ''); // Atualiza o email
-          setEstado(data.estado || ''); // Atualiza o estado se disponível
-          setTelefone(data.telefone || ''); // Atualiza o telefone se disponível
+          setEmail(data.email || '');
+          setEstado(data.estado || '');
+          setTelefone(data.telefone || '');
           setSobrenome(data.sobrenome || '');
           setCidade(data.cidade || '');
         })
         .catch(error => console.error("Erro:", error));
     }
   }, []);
+  
 
   // Pega a foto do psicólogo
   useEffect(() => {
@@ -207,7 +212,7 @@ export function Info({ imagem, onChange, num_sesões, diaConta, nome, id_psi, so
                     <label className="text-primary-1200 max-md:ml-[11%] ml-[10%]">Email</label>
                     <div className="flex flex-col w-full relative items-center">
                     <input
-                    placeholder={email}
+                    placeholder={Email}
                         readOnly
                         type="email"
                         id="input_email_alterações"
