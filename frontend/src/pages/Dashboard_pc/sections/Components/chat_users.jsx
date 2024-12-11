@@ -14,7 +14,7 @@ return(
 
             <img src={foto ? foto :nullimg} alt="" className="h-full rounded-full mr-4" />
             <div className="flex flex-col text-2xl justify-between h-full w-full">
-                <h4 className="text-primary-700 text-sm">psicologo:</h4>
+                <h4 className="text-primary-700 text-sm">Psicólogo:</h4>
                 <h1 className="text-primary-700 text-2xl font-bold">Psi. {nomefor}</h1>
                 <h2 className="text-xl font-light text-primary-700">{lastmsg}</h2>
             </div>

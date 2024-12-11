@@ -38,8 +38,9 @@ export const getConsultasPorPaciente = async (req, res) => {
     `;
     const [results] = await db.query(query, [pacienteId]);
 
+    // Retorna um array vazio se não houver consultas
     if (results.length === 0) {
-      return res.status(404).json({ message: 'Consultas não encontradas para este paciente' });
+      return res.json([]);
     }
 
     res.json(results);
@@ -48,6 +49,7 @@ export const getConsultasPorPaciente = async (req, res) => {
     return res.status(500).json({ message: 'Erro no servidor' });
   }
 };
+
 
 export const getConsultasPorPsicologo = async (req, res) => {
   const psicologoId = req.params.id;
