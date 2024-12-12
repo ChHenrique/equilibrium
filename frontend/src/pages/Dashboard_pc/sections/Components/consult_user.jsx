@@ -5,6 +5,7 @@ import { useState } from "react";
 export function ConsultasPsicologos({ able,nome, date, horario, duracao, foto }) {
    //const [able, setAble] = useState(0); Se =1 e entravel na secção, se 0 não
 
+
     return (
       
         <div className="min-w-fit  h-fit flex flex-col max-md:w-full max-md:flex-row bg-[#F1F5F9] font-poppins justify-center items-center shadow-[0px_4px_20px_#CED9EE]  max-sm:m-0 rounded-2xl m-2 max-w-fit max-md:max-w-[80%] ">
@@ -13,7 +14,7 @@ export function ConsultasPsicologos({ able,nome, date, horario, duracao, foto })
                         style={{ backgroundImage: `url(${foto})` }}
                     ></div>
         <div className="flex flex-col text-2xl max-md:text-xl justify-center items-center h-full p-2 w-full ">
-            <h1 className=" text-primary-700 text-2xl font-medium max-md:text-xl  mb-4 max-md:mb-0 max-md:text-3xl"> Psi.{nome}</h1>
+            <h1 className=" text-primary-700 text-2xl font-medium max-md:text-xl  mb-4 max-md:mb-0 max-md:text-3xl"> Psi. {nome}</h1>
             <div className="flex flex-row justify-center items-center w-full h-fit">
                 <h2 className=" text-primary-700 text-base font-light bg-primary-300  whitespace-nowrap  max-sm:text-sm flex text-nowrap items-center justify-center p-[2px] rounded-lg">
                     <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">

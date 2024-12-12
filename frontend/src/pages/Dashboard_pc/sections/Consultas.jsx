@@ -47,6 +47,33 @@ export function Consultas() {
           const fotoResponse = await fetch(`http://localhost:3000/user/psicologos/${consulta.id_psicologo}/foto`);
           const fotoData = await fotoResponse.json(); // Obtem o objeto com a propriedade "foto"
           const fotoPath = fotoData.foto.replace(/\\/g, "/"); // Substitui \ por /
+
+
+          const dataAtual = new Date();
+          const dataConsulta = new Date(consulta.data);
+          const mesmaData = dataConsulta.toLocaleDateString() === dataAtual.toLocaleDateString();
+
+          let able = 0
+
+
+
+          if (mesmaData) {
+            const [horarioHora, horarioMinuto] = consulta.horario.split(":");
+            const horarioConsulta = new Date(dataConsulta);
+            horarioConsulta.setHours(horarioHora);
+            horarioConsulta.setMinutes(horarioMinuto);
+    
+            const diffTime = horarioConsulta - dataAtual;
+            const diffMinutos = diffTime / 60000;
+    
+           
+
+            if (diffMinutos <= 10) {
+              able = 1;
+            }
+          }
+
+          
           
   
           return {
@@ -56,6 +83,7 @@ export function Consultas() {
             dataFormatada: formatarData(consulta.data),
             horarioFormatado: formatarHorario(consulta.horario),
             duracaoFormatada: formatarDuracao(consulta.duracao),
+            able
           };
         }));
   
@@ -119,6 +147,7 @@ export function Consultas() {
               horario={consulta.horarioFormatado}
               duracao={consulta.duracaoFormatada}
               foto={`http://localhost:3000/${consulta.fotoPsicologo}`} // Caminho correto
+              able={consulta.able}
             />
           ))
           
