@@ -46,6 +46,9 @@ export function Footer({ formRef, setErrors, setLoggedIn }) {
             localStorage.setItem('token', token);
             const id = data.id;
             localStorage.setItem('id', id);
+            const email = data.email
+            localStorage.setItem('email', email);
+
             setLoggedIn(true);
             navigate('/home/paciente');
         })

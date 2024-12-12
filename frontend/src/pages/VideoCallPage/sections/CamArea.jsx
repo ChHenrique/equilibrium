@@ -287,7 +287,8 @@ export function VideoChat({setChat , chat}) {
             if (response.ok) {
               alert("Chamada encerrada com sucesso!");
               // Redirecionar ou fazer algo após encerrar
-              window.location.href = "/"; // Exemplo: Redirecionar para outra página
+              // Exemplo: Redirecionar para outra página
+              
             } else {
               alert("Erro ao encerrar a chamada. Tente novamente.");
             }

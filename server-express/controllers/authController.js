@@ -102,7 +102,7 @@ export const loginUser = async (req, res) => {
         const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // Envia o token para o frontend
-        return res.status(200).json({ message: 'Login realizado com sucesso', token, data_criacao: user.data_criacao, id: user.id });
+        return res.status(200).json({ message: 'Login realizado com sucesso', token, data_criacao: user.data_criacao, id: user.id, email: user.email });
 
     } catch (error) {
         console.error('Erro no login do usuário:', error);
@@ -138,7 +138,7 @@ export const loginPs = async (req, res) => {
         const token = jwt.sign({ id_psi: user.id_psi, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         // Envia o token para o frontend
-        return res.status(200).json({ message: 'Login realizado com sucesso', token, data_criacao: user.data_criacao, id: user.id_psi });
+        return res.status(200).json({ message: 'Login realizado com sucesso', token, data_criacao: user.data_criacao, id: user.id_psi, email: user.email });
 
     } catch (error) {
         console.error('Erro no login do psicologo:', error);

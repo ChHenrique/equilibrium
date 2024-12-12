@@ -46,10 +46,12 @@ export const Form = forwardRef(({ setLoggedIn }, ref) => {
             const result = await response.json();
             const token = result.token;
             const id = result.id
+            const email = result.email
 
             // Armazena o token e o id no localStorage
             localStorage.setItem("token", token);
             localStorage.setItem("id", id);
+            localStorage.setItem('email', email);
 
             // Redireciona o usuário para a página desejada, como por exemplo "/dashboard"
             navigate("/home/psicologo");

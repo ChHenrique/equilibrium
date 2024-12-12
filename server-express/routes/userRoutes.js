@@ -298,6 +298,10 @@ router.get('/psicologos', async (req, res) => {
             };
         });
 
+
+
+    
+
         
 
         
@@ -309,6 +313,49 @@ router.get('/psicologos', async (req, res) => {
         return res.status(500).json({ message: 'Erro no servidor' });
     }
 });
+
+router.get('/usuario/:id', async (req, res) => {
+    const { id } = req.params;  // Captura o id da URL
+    const { email } = req.query; // Captura o email da query string
+
+    try {
+        // Verifica se o id pertence à tabela 'psicologos' (campo id_psi)
+        const [psicologoResults] = await db.query('SELECT * FROM psicologos WHERE id_psi = ?', [id]);
+        
+        if (psicologoResults.length > 0) {
+            const psicologo = psicologoResults[0];
+            
+            // Verifica se o email no banco de dados corresponde ao email no localStorage
+            if (psicologo.email === email) {
+                psicologo.topicos = JSON.parse(psicologo.topicos);
+                psicologo.formacao = JSON.parse(psicologo.formacao);
+                return res.json({ tipo: 'psicologo', dados: psicologo });
+            }
+        }
+
+        // Se não encontrado na tabela 'psicologos', verifica na tabela 'pacientes' (campo id)
+        const [pacienteResults] = await db.query('SELECT * FROM pacientes WHERE id = ?', [id]);
+        
+        if (pacienteResults.length > 0) {
+            const paciente = pacienteResults[0];
+            
+            // Verifica se o email no banco de dados corresponde ao email no localStorage
+            if (paciente.email === email) {
+                return res.json({ tipo: 'paciente', dados: paciente });
+            }
+        }
+
+        // Se o id não for encontrado ou o email não corresponder
+        return res.status(404).json({ message: 'Usuário não encontrado ou e-mail não corresponde ao ID' });
+
+    } catch (error) {
+        console.error('Erro ao buscar o usuário:', error);
+        return res.status(500).json({ message: 'Erro no servidor' });
+    }
+});
+
+
+
 
 
 export default router;
