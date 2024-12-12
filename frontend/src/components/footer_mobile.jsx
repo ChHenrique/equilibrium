@@ -121,7 +121,7 @@ export function Footer_Mobile() {
                         <button
                             id='link'
                             key={link.id}
-                            className={`flex justify-center items-center ease-in-out duration-500 ${id === link.id ? "text-primary-700 max-md:bg-white max-md:text-primary-700 rounded-2xl"
+                            className={`flex justify-center items-center ease-in-out duration-500 ${id === link.id ? "text-primary-700 max-md:bg-white max-md:text-primary-700 rounded-2xl scale-125 shadow-primary-200 shadow-xl"
                                 : "bg-white text-primary-200 hover:text-primary-700 max-md:text-primary-200 rounded-2xl"
                                 }`}
                             onClick={() => EnviarLocal(link.id)}>
